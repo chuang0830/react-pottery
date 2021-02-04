@@ -1,0 +1,27 @@
+.cindy-form {
+  font-size: $font-size-base * 0.8;
+  .forgetpass {
+    display: block;
+    text-align: right;
+    margin: 10px 0;
+    color: $info;
+  }
+  .loginbtn {
+    display: block;
+    margin: 50px auto;
+    margin-top: 147px;
+    font-size: $font-size-base * 0.94;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    color: $primary;
+    padding: 14px 50px;
+    //底線推這裡
+    border-radius: 5px;
+    border: 1px solid $primary;
+    &:hover {
+      color: white;
+      background-color: $primary;
+    }
+  }
+}

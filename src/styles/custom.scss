@@ -1,0 +1,991 @@
+// 其它要覆蓋掉原本的預設bootstrap樣式-變數-要放在這上面
+@import './variables.scss';
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Noto+Serif+TC:wght@300;400;500&display=swap');
+
+
+// 其它要導入覆蓋掉原本的預設bootstrap樣式-類別-要放在這下面
+* {
+  font-family: 'Cinzel', serif;
+  font-family: 'Noto Serif TC', serif;
+}
+//imgchangening
+.wrapper {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding-bottom:30px
+}
+
+.img-change-l {
+  margin-top: 8px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+.img-change-s {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  position: absolute;
+  z-index: 3;
+  left: 175px;
+  top: 373px;
+  img {
+    margin: 0px 5px;
+    border: 3px solid white;
+  }
+}
+//roductsmorecard
+//文字置中
+text {
+  justify-content: center;
+  text-align: center;
+}
+//productsmore-card
+.productsmore-card-content {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-weight: bolder;
+  .productsmore-card-title {
+    text-align: left;
+    font-size: $font-size-base * 3/2;
+    padding: 10px 0 20px 0;
+    margin-bottom: 20px;
+    color: $primary;
+    border-bottom: $primary 2px solid;
+  }
+  .productsmore-card-icon {
+    color: $success;
+    font-size: $font-size-base * 3;
+  }
+  .productsmore-card-img {
+    background-size: cover;
+    background-position: center;
+  }
+  .productsmore-card-p {
+    font-size: $font-size-base * 0.75;
+    padding: 10px 0 20px 0;
+    word-break: break-all;
+  }
+  .productsmore-card-a {
+    display: block;
+    text-decoration: none;
+    color: $primary;
+    font-size: $font-size-base;
+    text-align: left;
+    padding-top: 10px;
+    &:hover {
+      font-weight: bolder;
+      color: $primary;
+    }
+  }
+}
+//dropdownning
+// The dropdown wrapper (`<div>`)
+.dropup,
+.dropright,
+.dropdown,
+.dropleft {
+  position: relative;
+}
+
+.dropdown-toggle {
+  white-space: nowrap;
+
+  // Generate the caret automatically
+  @include caret;
+}
+
+// The dropdown menu
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: $zindex-dropdown;
+  display: none; // none by default, but block on "open" of the menu
+  float: left;
+  min-width: $dropdown-min-width;
+  padding: $dropdown-padding-y 0;
+  margin: $dropdown-spacer 0 0; // override default ul
+  @include font-size($dropdown-font-size);
+  color: $dropdown-color;
+  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  list-style: none;
+  background-color: $dropdown-bg;
+  background-clip: padding-box;
+  border: $dropdown-border-width solid $dropdown-border-color;
+  @include border-radius($dropdown-border-radius);
+  @include box-shadow($dropdown-box-shadow);
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .dropdown-menu#{$infix}-left {
+      right: auto;
+      left: 0;
+    }
+
+    .dropdown-menu#{$infix}-right {
+      right: 0;
+      left: auto;
+    }
+  }
+}
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+// Just add .dropup after the standard .dropdown class and you're set.
+.dropup {
+  .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: $dropdown-spacer;
+  }
+
+  .dropdown-toggle {
+    @include caret(up);
+  }
+}
+
+.dropright {
+  .dropdown-menu {
+    top: 0;
+    right: auto;
+    left: 100%;
+    margin-top: 0;
+    margin-left: $dropdown-spacer;
+  }
+
+  .dropdown-toggle {
+    @include caret(right);
+    &::after {
+      vertical-align: 0;
+    }
+  }
+}
+
+.dropleft {
+  .dropdown-menu {
+    top: 0;
+    right: 100%;
+    left: auto;
+    margin-top: 0;
+    margin-right: $dropdown-spacer;
+  }
+
+  .dropdown-toggle {
+    @include caret(left);
+    &::before {
+      vertical-align: 0;
+    }
+  }
+}
+
+// When enabled Popper.js, reset basic dropdown position
+// stylelint-disable-next-line no-duplicate-selectors
+.dropdown-menu {
+  &[x-placement^="top"],
+  &[x-placement^="right"],
+  &[x-placement^="bottom"],
+  &[x-placement^="left"] {
+    right: auto;
+    bottom: auto;
+  }
+}
+
+// Dividers (basically an `<hr>`) within the dropdown
+.dropdown-divider {
+  @include nav-divider($dropdown-divider-bg, $dropdown-divider-margin-y);
+}
+
+// Links, buttons, and more within the dropdown menu
+//
+// `<button>`-specific styles are denoted with `// For <button>s`
+.dropdown-item {
+  display: block;
+  width: 100%; // For `<button>`s
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  clear: both;
+  font-weight: $font-weight-normal;
+  color: $dropdown-link-color;
+  text-align: inherit; // For `<button>`s
+  white-space: nowrap; // prevent links from randomly breaking onto new lines
+  background-color: transparent; // For `<button>`s
+  border: 0; // For `<button>`s
+
+  // Prevent dropdown overflow if there's no padding
+  // See https://github.com/twbs/bootstrap/pull/27703
+  @if $dropdown-padding-y == 0 {
+    &:first-child {
+      @include border-top-radius($dropdown-inner-border-radius);
+    }
+
+    &:last-child {
+      @include border-bottom-radius($dropdown-inner-border-radius);
+    }
+  }
+
+  @include hover-focus {
+    color: $dropdown-link-hover-color;
+    text-decoration: none;
+    @include gradient-bg($dropdown-link-hover-bg);
+  }
+
+  &.active,
+  &:active {
+    color: $dropdown-link-active-color;
+    text-decoration: none;
+    @include gradient-bg($dropdown-link-active-bg);
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $dropdown-link-disabled-color;
+    pointer-events: none;
+    background-color: transparent;
+    // Remove CSS gradients if they're enabled
+    @if $enable-gradients {
+      background-image: none;
+    }
+  }
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+// Dropdown section headers
+.dropdown-header {
+  display: block;
+  padding: $dropdown-padding-y $dropdown-item-padding-x;
+  margin-bottom: 0; // for use with heading elements
+  @include font-size($font-size-sm);
+  color: $dropdown-header-color;
+  white-space: nowrap; // as with > li > a
+}
+
+// Dropdown text
+.dropdown-item-text {
+  display: block;
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  color: $dropdown-link-color;
+}
+//cindyform
+.cindy-form {
+  font-size: $font-size-base * 0.8;
+  // form表單用div width去推底線
+  //width: 60%;
+}
+//cindyinput
+.cindy-input {
+  font-size: $font-size-base * 0.8;
+  border-bottom: 1px solid $primary;
+  label {
+    color: $primary;
+    margin: 10px 0 8px 0;
+  }
+  input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-bottom: 5px;
+    width: 100%;
+  }
+}
+//cindybtn
+.cindy-btn {
+  font-size: $font-size-base * 0.94;
+  text-align: center;
+  border: none;
+  background-color: white;
+  color: $primary;
+  padding: 15px 47px;
+  border-radius: 5px;
+  border: 1px solid $primary;
+  &:hover {
+    color: white;
+    background-color: $primary;
+  }
+}
+// primary btn
+.ninginfo-btn {
+  font-size: $font-size-base * 0.94;
+  text-align: center;
+  border: none;
+  background-color: white;
+  color: $info;
+  padding: 15px 47px;
+  border-radius: 5px;
+  border: 1px solid $info;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:hover {
+    color: white;
+    background-color: $info;
+  }
+}
+//cindycheck
+.cindy-check {
+  font-size: $font-size-base;
+  color: $primary;
+  background-color: transparent;
+  border: none;
+
+  svg {
+    margin-left: 3px;
+  }
+
+  &:hover {
+    color: $primary;
+    border-bottom: 1px solid $primary;
+  }
+}
+//cindytable
+.cindy-table {
+  text-align: center;
+  margin: 20px auto;
+  width: 100%;
+  border-bottom: 3px solid $primary;
+  // 只能動這邊的寬度
+  table {
+    width: 100%;
+    border-spacing: 0;
+    table-layout: fixed;
+
+    thead {
+      tr {
+        font-weight: normal;
+        font-size: $font-size-base * 1.5;
+        border-bottom: 3px solid $primary;
+        color: $primary;
+        th {
+          padding: 18px 0px;
+        }
+      }
+    }
+    tbody {
+      tr {
+        font-size: $font-size-base * 1.125;
+        border-top: 1px solid #dbdbdf;
+        color: $success;
+        td:first-child {
+          padding: 0;
+        }
+        td {
+          padding: 35px 0px;
+        }
+      }
+      tr:first-child {
+        border: none;
+      }
+    }
+  }
+}
+//winnieclassimg
+//_winnieclassimg 商品分類＋hover效果
+.winnie-classimg{
+  margin: 0px 170px;
+  position: absolute;
+  top:75%
+ 
+}
+.winnie-classimg ul{
+  display: flex;
+  list-style: none;
+  
+}
+
+.winnie-classimg li{
+  position:relative;
+  margin: 0 30px;
+  height: 130px;
+  width: 140px;
+}
+.winnie-classimg li img{
+  position:absolute;
+  bottom:0px;
+  transition:all .4s ease;
+  width: 100%;
+  height: 100%;
+}
+
+.winnie-class-p{
+
+  position: relative;
+  padding: 5px;
+  
+}
+.winnie-class-p::before{
+    content: '';
+    position: absolute;
+    left:20%;
+    top:100%;
+    width: 0;
+    z-index: -1;
+    border-bottom: 3px solid #92B6BA;
+    transition:.8s
+}
+
+.winnie-classimg li p{
+  font-size: 19px;
+  text-align: center;
+  color: #615956;
+  margin: auto;
+}
+
+.winnie-classimg li:hover >.winnie-class-p::before {
+
+ width: 60%;
+}
+.winnie-classimg li:hover > img{
+ bottom:15px;
+}
+//winniepage
+// _winniepage 商品頁籤
+.winnie-page {
+  padding-top: 140px;
+  padding-bottom: 100px;
+  
+
+  .page-link {
+    border: none;
+    font-family: "Cinzel", serif;
+    font-size: $font-size-base;
+    svg {
+      font-family: "Cinzel", serif;
+      
+    }
+  }
+
+  .page-item.active .page-link {
+    background-color: transparent;
+    color: $success;
+    border-bottom: 1px solid $info;
+  }
+}
+
+
+//winnieproductcard
+//_winnieproductcard 商品card
+.winnie-p-wrap {
+  padding: 0px;
+  flex-wrap: wrap;
+  .col-lg-4.col-md-6 {
+    padding: 0 30px;
+  }
+  .winnie-card-content {
+    margin: 70px 0 70px 0;
+    display: flex;
+    flex-direction: column;
+    .winnie-card-img {
+      font-size: $font-size-base * 3/2;
+      padding: 10px 0 20px 0;
+      margin-bottom: 20px;
+      color: $primary;
+      animation-fill-mode: forwards;
+      &:hover {
+        opacity: 0.1;
+        overflow: hidden;
+
+        
+        /* IE10、Firefox and Opera，IE9以及更早的版本不支持 */
+        animation-name: light;
+        animation-duration: 700ms;
+        animation-timing-function: ease-in-out;
+
+        /* Safari and Chrome */
+        -webkit-animation-name: light;
+        -webkit-animation-duration: 700ms;
+        -webkit-animation-timing-function: ease-in-out;
+      }
+
+      @keyframes light {
+        from {
+          opacity: 0.1;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @-webkit-keyframes light {
+        from {
+          opacity: 0.1;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
+
+    .winnie-card-name {
+      color: $primary;
+      font-size: $font-size-base * 1.25;
+      padding: 10px 0 10px 0;
+      word-break: break-all;
+      .far.fa-heart {
+        color: $danger;
+      }
+    }
+
+    .winnie-card-price {
+      font-family: "Cinzel", serif;
+      display: block;
+      color: $success;
+      font-size: $font-size-base * 0.875;
+      text-align: left;
+      &::before {
+        content: "$";
+      }
+    }
+  }
+}
+//winnierecentview
+//__winnierecentview 近期觀看的商品
+.winnie-line {
+  border-top: 1px solid $warning;
+}
+
+.winnie-recent-title {
+  margin-top: 100px;
+  
+}
+
+.winnie-recent-title > h2 {
+  font-family: "Cinzel", serif;
+  line-height: 33px;
+  font-size: 25px;
+  color: #615956;
+  margin-right: 15px;
+}
+.winnie-recent-img {
+  width: 105px;
+  height: 100px;
+}
+
+.winnie-recent-img > img {
+  width: 100%;
+  height: 100px;
+}
+
+//chienpolicycard
+.chien-f-24 {
+  font-size: 1.5rem;
+}
+.chien-f-12 {
+  font-size: 0.75rem;
+  line-height: 2rem;
+}
+.chien-card-title {
+  color: #92b6ba;
+  border-bottom: 3px solid #92b6ba;
+}
+//chienfooter
+.chien-social-icon {
+  color: #fcaa3e;
+}
+.chien-f-14 {
+  font-size: 0.875rem;
+}
+.chien-f-12 {
+  font-size: 0.75rem;
+  line-height: 2rem;
+}
+.chien-footer-top {
+  background-color: #92b6ba;
+}
+.chien-aboutus-content {
+  color: #707070;
+  line-height: 30px;
+}
+.chien-contactus-subtitle {
+  color: #707070;
+}
+.chien-news-content {
+  color: #707070;
+}
+.chien-footer-bottom {
+  background-color: #4e757a;
+}
+.chien-hidden-icon {
+  color: #4e757a;
+}
+//chiennavbar
+.chien-navbar-logo {
+  width: 10%;
+  max-width: 180px;
+  position: absolute;
+  z-index: 9997;
+  top: 20px;
+  left: 30px;
+}
+
+.chien-homepage-navbar-logo {
+  width: 10%;
+  max-width: 180px;
+  position: absolute;
+  z-index: 9997;
+  top: 20px;
+  left: 30px;
+}
+
+.chien-navbar-hidden-icon {
+  color: rgba(0, 0, 0, 0);
+}
+
+.chien-navbar-item-member {
+  margin: 20px 10px 10px 10px;
+}
+
+.chien-navbar-icon-member {
+  color: #fff;
+  font-size: 20px;
+}
+
+.chien-navbar-item-cart {
+  margin: 0px 10px 10px 10px;
+}
+
+.chien-navbar-icon-cart {
+  color: #fff;
+}
+
+.chien-nav-checkbox {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  right: 0;
+}
+
+.chien-ham {
+  width: 40px;
+  height: 40px;
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  right: 0;
+}
+
+.chien-ham-origin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.chien-ham-bar {
+  height: 3px;
+  width: 18px;
+  position: absolute;
+  background: white;
+  margin: 10px 0 0 -23px;
+  transition: all 0.5s;
+}
+
+.chien-ham-bar-top {
+  transform: translateY(-6px);
+}
+
+.chien-ham-bar-bottom {
+  transform: translateY(6px);
+}
+
+#chien-nav-toggle {
+  display: none;
+}
+
+#chien-nav-toggle:checked ~ .chien-ham .chien-ham-bar-middle {
+  opacity: 0;
+}
+
+#chien-nav-toggle:checked ~ .chien-ham .chien-ham-bar-top {
+  transform: rotate(-45deg);
+}
+
+#chien-nav-toggle:checked ~ .chien-ham .chien-ham-bar-bottom {
+  transform: rotate(45deg);
+}
+
+.chien-menu {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 9998;
+  background: rgba(146, 182, 186, 0.7);
+  transform: translateX(100%);
+  transition: transform 0.5s;
+}
+
+#chien-nav-toggle:checked ~ .chien-menu {
+  transform: none;
+}
+
+.chien-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+}
+
+.chien-menu-item {
+  margin-top: 20px;
+}
+
+.chien-menu-underline {
+  width: 70%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-bottom: 1px solid #92b6ba;
+}
+
+.chien-menu-link {
+  text-decoration: none;
+  color: white;
+  font-size: 0.875rem;
+  line-height: 5rem;
+  &:hover {
+    text-decoration: none;
+    color: #fcaa3e;
+  }
+}
+//creditcard
+@mixin creditcard {
+  height: 150px;
+  width: 250px;
+  border-radius: 20px;
+  background-color: $primary;
+  position: relative;
+}
+.creditcardbackning {
+  @include creditcard;
+  .creditcardning-black {
+    position: absolute;
+    top: 20px;
+    background-color: $success;
+    width: 250px;
+    height: 30px;
+  }
+  .creditcardning-graybg {
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    display: flex;
+    justify-content: center;
+    .creditcardning-gray {
+      left: 10px;
+      background-color: $warning;
+      width: 150px;
+      height: 30px;
+    }
+    .creditcardning-gray-title {
+      margin-left: 20px;
+      margin-top: -2px;
+      height: 30px;
+      color: $success;
+      border-bottom: 1px solid $white;
+    }
+  }
+  .creditcardning-yellow {
+    position: absolute;
+    background-color: $info;
+    height: 30px;
+    width: 50px;
+    top: 105px;
+    left: 10px;
+    border-radius: 10px;
+  }
+}
+.creditcardning {
+  @include creditcard;
+  .creditcardning-yellow {
+    position: absolute;
+    background-color: $info;
+    height: 30px;
+    width: 50px;
+    top: 20px;
+    left: 25px;
+    border-radius: 10px;
+  }
+  .creditcardning-gray-title {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: -2px;
+    height: 30px;
+    color: $success;
+    top: 30px;
+    border-bottom: 1px solid $white;
+  }
+  .creditcardning-gray-name {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: -2px;
+    height: 30px;
+    color: $success;
+    top: 105px;
+    border-bottom: 1px solid $white;
+  }
+  .creditcardning-gray-date {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: -2px;
+    height: 30px;
+    color: $success;
+    top: 105px;
+    left: 110px;
+    border-bottom: 1px solid $white;
+  }
+}
+//snailbtnline
+.snailbtnline {
+  border-bottom: 1px solid rgb(235, 233, 233);
+
+}
+.snail-button{
+      position: relative;
+      border-bottom: 2px solid white;
+      display: inline-block;
+      color: $primary;
+  }
+.snail-button::before{
+    content: ""; //必要屬性
+      position: absolute;
+      z-index: 2; //壓在上面
+      border-bottom: 3px solid $info;
+      transition: .8s;
+      width: 0; //原本不出現
+      top:100%; //讓他下來到底線
+  }
+  .snail-button:hover::before{
+    width: 100%;
+
+      
+  }
+//biddetail
+/* 小孩照片 */
+.kidpic {
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;
+  height: 50%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* banner照片 */
+.bannerpic {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.container-margin {
+  margin-top: 15px;
+  /* background-color: rgb(213, 227, 228); */
+}
+.chang-title-line {
+  h3 {
+    font-family: "Cinzel", serif;
+    font-size: 30px;
+    line-height: 33px;
+    color: #77777a;
+    padding: 20px 0px;
+
+    &::before {
+      content: "$";
+    }
+  }
+}
+
+.chang-title-line {
+  h2 {
+    color: #92b6ba;
+    border-bottom: #92b6ba solid 3px;
+    padding-bottom: 20px;
+  }
+}
+
+.footer {
+  background-color: cornflowerblue;
+  width: 100%;
+  height: 300px;
+}
+
+.line {
+  padding: 0px 0px 0px 0px;
+  margin: 70px 0px 70px 0px;
+  border-bottom: 1px solid rgb(212, 212, 212);
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;
+}
+
+.chang-cart-btn {
+  font-size: 16px * 0.94;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  color: #92b6ba;
+  padding: 15px 50px;
+  border-radius: 5px;
+  border: 2px solid #92b6ba;
+}
+
+.chang-cart-btn:hover {
+  color: white;
+  background-color: #92b6ba;
+}
+
+.chang-count-border-btn {
+  font-size: 16px * 0.94;
+  text-align: center;
+  padding: 15px 30px;
+  border-radius: 5px;
+  border: 2px solid #e5e5e5;
+}
+
+.chang-count-btn {
+  font-size: 16px * 0.94;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  color: #fcaa3e;
+  /* padding: 15px 47px; */
+  border-radius: 5px;
+  /* border: 2px solid #92b6ba; */
+  &:focus {
+    outline: none;
+  }
+  &:nth-child(1) {
+    margin-left: 20px;
+  }
+  &:nth-child(2) {
+    color: #615956;
+    font-size: 17px;
+  }
+  &:nth-child(3) {
+    margin-right: 20px;
+  }
+}
+
+.chang-button-box {
+  margin-bottom: 50px;
+}
+@import './cindymember.scss';
+@import './cindylogin.scss';
+
