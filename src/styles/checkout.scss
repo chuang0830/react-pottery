@@ -1,0 +1,244 @@
+$primary: #92b6ba;
+$secondary: rgba(#4e757a, 0.8);
+$success: #615956;
+$info: #fcaa3e;
+$warning: #dbdbdf;
+$danger: #ff7e7e;
+.pretty-select {
+  color: $success;
+}
+////////////////////////////////////////////////
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col {
+  position: relative;
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+//////////////////////////////////////////////////////
+@mixin img {
+  background-size: cover;
+  background-position: center;
+}
+@mixin ballstyle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: -1px 5px 0 15px;
+  padding-top: 2px;
+  div {
+    margin-left: 10px;
+  }
+}
+@mixin checkoutballstyle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: -1px 5px 0 10px;
+  padding-top: 2px;
+  div {
+    margin-left: 10px;
+  }
+}
+/////////////////////////////////////////////////////
+// 訂單進度
+.process {
+  margin-top: 30px;
+  color: #fff;
+  .process-title {
+    color: $primary;
+    margin-left: 6px;
+    margin-top: 3px;
+    font-weight: bolder;
+  }
+  .process-title-none {
+    color: $success;
+    margin-left: 5px;
+    margin-top: 2px;
+  }
+  .processball {
+    background-color: $primary;
+    @include ballstyle;
+  }
+  .processball-none {
+    background-color: $success;
+    @include ballstyle;
+  }
+}
+// 表單
+.form-title {
+  border-bottom: 3px solid $primary;
+  padding-bottom: 25px;
+  margin-bottom: 50px;
+  font-weight: bolder;
+  .form-title-content {
+    color: $primary;
+    font-size: 24px;
+  }
+}
+.form-text {
+  color: $primary;
+  font-size: 20px;
+}
+// 表格標題 checkout2 3
+.tablestyle-title {
+  border-bottom: 3px solid $primary;
+  padding-bottom: 25px;
+  margin-bottom: 5px;
+  font-weight: bolder;
+  .tablestyle-title-content {
+    color: $primary;
+    font-size: 24px;
+  }
+}
+.checkoutorder-text {
+  color: $primary;
+  font-size: 20px;
+}
+.checkoutorder-title {
+  border-bottom: 3px solid $primary;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+  font-weight: bolder;
+  .checkoutorder-title-content {
+    color: $primary;
+    font-size: 24px;
+  }
+}
+// 訂單明細 checkout1
+.orderstyle div {
+  margin-bottom: 20px;
+  :first-child {
+    color: $primary;
+    font-size: 20px;
+  }
+  :nth-child(2) {
+    color: $success;
+  }
+}
+// 付款程序表單
+// 訂單進度
+.checkout {
+  margin-top: 30px;
+  color: #fff;
+  .checkout-title {
+    color: $info;
+    margin-left: 6px;
+    margin-top: 5px;
+    font-weight: bolder;
+    font-size: 24px;
+  }
+  .checkout-title-demo {
+    color: $success;
+    margin-left: 6px;
+    margin-top: 5px;
+    font-weight: bolder;
+    font-size: 24px;
+  }
+  .checkoutball {
+    background-color: $info;
+    @include checkoutballstyle;
+    :only-child {
+      color: #fff;
+    }
+    .icon-person {
+      padding-left: 12px;
+      padding-top: 8px;
+      font-size: 25px;
+    }
+    .icon-car {
+      padding-left: 10px;
+      padding-top: 10px;
+      font-size: 25px;
+    }
+    .icon-money {
+      padding-left: 15px;
+      padding-top: 5px;
+      font-size: 35px;
+    }
+    .icon-bill {
+      padding-left: 14px;
+      padding-top: 7px;
+      font-size: 30px;
+    }
+  }
+  .checkoutball-none {
+    background-color: $success;
+    @include checkoutballstyle;
+  }
+}
+
+// 信用卡
+.creditcard {
+  :nth-child(2) {
+    margin-top: 30px;
+  }
+}
+// //刪除
+// .delete-icon {
+//   width: 18px;
+//   height: 12px;
+// }
+// 感謝購買
+.circle {
+  stroke-dasharray: 1194;
+  stroke-dashoffset: 1300;
+}
+.circle.active {
+  animation: circle 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+.tick {
+  stroke-dasharray: 350;
+  stroke-dashoffset: 350;
+}
+.tick.active {
+  animation: tick 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: 0.8s;
+}
+@keyframes circle {
+  form {
+    stroke-dashoffset: 1194;
+  }
+  to {
+    stroke-dashoffset: 2388;
+  }
+}
+@keyframes tick {
+  form {
+    stroke-dashoffset: 350;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.svg-title {
+  color: $primary;
+  font-size: 24px;
+}
+//checkoutout3
+.checkout-text {
+  margin-left: 60px;
+}
+
+// delete icon
+td {
+  button {
+    font-size: $font-size-base;
+    outline: none;
+    background-color: transparent;
+    border: none;
+  }
+}

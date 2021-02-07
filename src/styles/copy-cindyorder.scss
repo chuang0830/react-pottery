@@ -1,0 +1,61 @@
+.cindyorder {
+  tbody {
+    td:first-child {
+      img {
+        height: 93px;
+        overflow: hidden;
+      }
+    }
+    td {
+      button {
+        font-size: $font-size-base;
+        outline: none;
+        color: $primary;
+        background-color: transparent;
+        border: none;
+        svg {
+          margin-left: 3px;
+        }
+      }
+    }
+  }
+}
+
+.collapse {
+  td {
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .collapse2 {
+    padding: 0;
+    .cindy-sm-table {
+      display: inline;
+      .cindy-control-tb {
+        border-radius: 5px;
+        border: 1px solid $primary;
+        margin: 20px 0;
+        .td {
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+//   .cindy-sm-table {
+//     border-radius: 5px;
+//     border: 1px solid $primary;
+//     padding: 0 20px;
+//     font-size: $font-size-base * 0.75;
+//     color: $success;
+//     .tr {
+//       border-bottom: 1px solid $primary;
+//       .td {
+//         padding: 0;
+//       }
+//     }
+//     .tr:last-child {
+//       border: none;
+//     }
+//   }
+//

@@ -1,0 +1,62 @@
+.winnie-header {
+  width: 100%;
+  height: 605px;
+}
+
+.winnie-header > img {
+  width: 100%;
+  height: 100%;
+}
+
+.winnie-title {
+  font-family: "Cinzel", serif;
+  font-size: 38.4px;
+  line-height: 25px;
+  color: #77777a;
+  margin-top: 50px;
+}
+
+.winnie-detail-margin {
+  padding-bottom: 100px;
+}
+
+.winnie-text {
+  margin-bottom: 100px;
+  color: #615956;
+  font-size: 14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
+}
+
+.winnie-description {
+  color: #615956;
+  font-size: 14px;
+  line-height: 33px;
+  margin-bottom: 30px;
+}
+
+.winnie-detail-p {
+  font-weight: 900;
+}
+
+.winnie-recent-title {
+  margin-top: 100px;
+}
+
+.winnie-recent-title > h2 {
+  font-family: "Cinzel", serif;
+  line-height: 33px;
+  font-size: 25px;
+  color: #615956;
+}
+
+.winnie-recent-img {
+  width: 105px;
+  height: 100px;
+}
+
+.winnie-recent-img > img {
+  width: 100%;
+  height: 100px;
+}
+/*# sourceMappingURL=winnieproductdetail.css.map */

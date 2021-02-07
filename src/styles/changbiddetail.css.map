@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": ";AAAA,UAAU;AACV,OAAO,CAAC,mFAAI;AACZ,OAAO,CAAC,2FAAI;AAEZ,AAAA,CAAC,CAAC;EACA,WAAW,EAAE,sBAAsB;EACnC,mCAAmC;CACpC;;AAED,AAAA,YAAY,CAAC;EACX,aAAa,EAAE,KAAK,CAAC,GAAG,CAAC,OAAkB;CAC5C",
+    "sources": [
+        "changbiddetail.scss"
+    ],
+    "names": [],
+    "file": "changbiddetail.css"
+}

@@ -67,7 +67,7 @@ function UserAdd(props) {
       }),
     })
 
-    console.log(JSON.stringify(newData))
+    console.log('JSON.stringify', JSON.stringify(newData))
 
     const response = await fetch(request)
     const data = await response.json()

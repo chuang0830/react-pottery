@@ -1,0 +1,26 @@
+@mixin img {
+  background-size: cover;
+  background-position: center;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col {
+  position: relative;
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.logobox {
+  margin-top: 70px;
+  .logo {
+    @include img;
+  }
+}
