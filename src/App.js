@@ -10,6 +10,9 @@ import React, { useState, useEffect } from 'react'
 //import UserAdd from './pages/UserAdd'
 import MemberLogin from './pages/MemberLogin'
 import ForgetPass from './pages/ForgetPass'
+import Products from './pages/Products'
+import ProductsDetail from './pages/ProductsDetail'
+import Customize from './pages/Customize'
 // 課程
 import Experience from './pages/Experience'
 import CourseCategory from './pages/CourseCategory'
@@ -30,6 +33,7 @@ function App() {
     // Router只會有一個
     <Router>
       <>
+        {/* 嚴謹的要放上面 */}
         {/* 放連結 */}
         <Link to="/CourseCategory">CourseCategory</Link>
         <Link to="/CourseCategory/Experience">Experience</Link>
@@ -49,6 +53,15 @@ function App() {
           {/* 會員路由 */}
           <Route exact path="/user-forgetpass">
             <ForgetPass />
+          </Route>
+          <Route exact path="/products">
+            <Products />
+          </Route>
+          <Route exact path="/customize">
+            <Customize />
+          </Route>
+          <Route exact path="/products/:id">
+            <ProductsDetail />
           </Route>
 
           {/* 課程路由 */}
