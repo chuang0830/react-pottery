@@ -10,16 +10,27 @@ import React, { useState, useEffect } from 'react'
 //import UserAdd from './pages/UserAdd'
 import MemberLogin from './pages/MemberLogin'
 import ForgetPass from './pages/ForgetPass'
+import Products from './pages/Products'
+import ProductsDetail from './pages/ProductsDetail'
+import Customize from './pages/Customize'
 
 function App() {
   return (
     <Router>
       <>
-        <MemberLogin />
-
+        {/* 嚴謹的要放上面 */}
         <Switch>
           <Route exact path="/user-forgetpass">
             <ForgetPass />
+          </Route>
+          <Route exact path="/products">
+            <Products />
+          </Route>
+          <Route exact path="/customize">
+            <Customize />
+          </Route>
+          <Route exact path="/products/:id">
+            <ProductsDetail />
           </Route>
         </Switch>
       </>
