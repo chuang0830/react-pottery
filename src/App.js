@@ -10,6 +10,7 @@ import React, { useState, useEffect } from 'react'
 //import UserAdd from './pages/UserAdd'
 import MemberLogin from './pages/MemberLogin'
 import ForgetPass from './pages/ForgetPass'
+//商品
 import Products from './pages/Products'
 import ProductsDetail from './pages/ProductsDetail'
 import Customize from './pages/Customize'
