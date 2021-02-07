@@ -1,0 +1,27 @@
+.cindyorder {
+  thead{
+    th{
+      
+    }
+  }
+  tbody {
+    td:first-child {
+      img {
+        height: 93px;
+        overflow: hidden;
+      }
+    }
+    td {
+      button {
+        font-size: $font-size-base;
+        outline: none;
+        color: $primary;
+        background-color: transparent;
+        border: none;
+        svg {
+          margin-left: 3px;
+        }
+      }
+    }
+  }
+}

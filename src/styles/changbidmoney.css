@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* 字體 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&display=swap");
+* {
+  font-family: "Noto Serif TC", serif;
+  /* font-family: 'Cinzel', serif; */
+}
+
+.chang-input {
+  border-bottom: solid 1px #bbbbbb;
+}
+
+.chang-list-linehight {
+  color: #615956;
+}
+
+.chang-bidding-green {
+  background-color: #92b6ba63;
+}
+
+.chang-table th,
+.chang-table td {
+  text-align: center;
+  vertical-align: middle !important;
+}
+
+.chang-bidding-list-title {
+  border-top: none;
+}
+/*# sourceMappingURL=changbidmoney.css.map */

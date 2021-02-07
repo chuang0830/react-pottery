@@ -1,0 +1,18 @@
+.cindylike {
+  tbody {
+    td:first-child {
+      img {
+        height: 93px;
+        overflow: hidden;
+      }
+    }
+    td {
+      button {
+        font-size: $font-size-base;
+        outline: none;
+        background-color: transparent;
+        border: none;
+      }
+    }
+  }
+}

@@ -5,7 +5,6 @@
 @import '~bootstrap/scss/bootstrap.scss';
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Noto+Serif+TC:wght@300;400;500&display=swap');
 
-
 // 其它要導入覆蓋掉原本的預設bootstrap樣式-類別-要放在這下面
 * {
   font-family: 'Cinzel', serif;
@@ -16,7 +15,7 @@
   position: relative;
   background-size: cover;
   background-position: center;
-  padding-bottom:30px
+  padding-bottom: 30px;
 }
 
 .img-change-l {
@@ -192,10 +191,10 @@ text {
 // When enabled Popper.js, reset basic dropdown position
 // stylelint-disable-next-line no-duplicate-selectors
 .dropdown-menu {
-  &[x-placement^="top"],
-  &[x-placement^="right"],
-  &[x-placement^="bottom"],
-  &[x-placement^="left"] {
+  &[x-placement^='top'],
+  &[x-placement^='right'],
+  &[x-placement^='bottom'],
+  &[x-placement^='left'] {
     right: auto;
     bottom: auto;
   }
@@ -393,77 +392,70 @@ text {
 }
 //winnieclassimg
 //_winnieclassimg 商品分類＋hover效果
-.winnie-classimg{
+.winnie-classimg {
   margin: 0px 170px;
   position: absolute;
-  top:75%
- 
+  top: 75%;
 }
-.winnie-classimg ul{
+.winnie-classimg ul {
   display: flex;
   list-style: none;
-  
 }
 
-.winnie-classimg li{
-  position:relative;
+.winnie-classimg li {
+  position: relative;
   margin: 0 30px;
   height: 130px;
   width: 140px;
 }
-.winnie-classimg li img{
-  position:absolute;
-  bottom:0px;
-  transition:all .4s ease;
+.winnie-classimg li img {
+  position: absolute;
+  bottom: 0px;
+  transition: all 0.4s ease;
   width: 100%;
   height: 100%;
 }
 
-.winnie-class-p{
-
+.winnie-class-p {
   position: relative;
   padding: 5px;
-  
 }
-.winnie-class-p::before{
-    content: '';
-    position: absolute;
-    left:20%;
-    top:100%;
-    width: 0;
-    z-index: -1;
-    border-bottom: 3px solid #92B6BA;
-    transition:.8s
+.winnie-class-p::before {
+  content: '';
+  position: absolute;
+  left: 20%;
+  top: 100%;
+  width: 0;
+  z-index: -1;
+  border-bottom: 3px solid #92b6ba;
+  transition: 0.8s;
 }
 
-.winnie-classimg li p{
+.winnie-classimg li p {
   font-size: 19px;
   text-align: center;
   color: #615956;
   margin: auto;
 }
 
-.winnie-classimg li:hover >.winnie-class-p::before {
-
- width: 60%;
+.winnie-classimg li:hover > .winnie-class-p::before {
+  width: 60%;
 }
-.winnie-classimg li:hover > img{
- bottom:15px;
+.winnie-classimg li:hover > img {
+  bottom: 15px;
 }
 //winniepage
 // _winniepage 商品頁籤
 .winnie-page {
   padding-top: 140px;
   padding-bottom: 100px;
-  
 
   .page-link {
     border: none;
-    font-family: "Cinzel", serif;
+    font-family: 'Cinzel', serif;
     font-size: $font-size-base;
     svg {
-      font-family: "Cinzel", serif;
-      
+      font-family: 'Cinzel', serif;
     }
   }
 
@@ -473,7 +465,6 @@ text {
     border-bottom: 1px solid $info;
   }
 }
-
 
 //winnieproductcard
 //_winnieproductcard 商品card
@@ -497,7 +488,6 @@ text {
         opacity: 0.1;
         overflow: hidden;
 
-        
         /* IE10、Firefox and Opera，IE9以及更早的版本不支持 */
         animation-name: light;
         animation-duration: 700ms;
@@ -539,13 +529,13 @@ text {
     }
 
     .winnie-card-price {
-      font-family: "Cinzel", serif;
+      font-family: 'Cinzel', serif;
       display: block;
       color: $success;
       font-size: $font-size-base * 0.875;
       text-align: left;
       &::before {
-        content: "$";
+        content: '$';
       }
     }
   }
@@ -558,11 +548,10 @@ text {
 
 .winnie-recent-title {
   margin-top: 100px;
-  
 }
 
 .winnie-recent-title > h2 {
-  font-family: "Cinzel", serif;
+  font-family: 'Cinzel', serif;
   line-height: 33px;
   font-size: 25px;
   color: #615956;
@@ -852,28 +841,25 @@ text {
 //snailbtnline
 .snailbtnline {
   border-bottom: 1px solid rgb(235, 233, 233);
-
 }
-.snail-button{
-      position: relative;
-      border-bottom: 2px solid white;
-      display: inline-block;
-      color: $primary;
-  }
-.snail-button::before{
-    content: ""; //必要屬性
-      position: absolute;
-      z-index: 2; //壓在上面
-      border-bottom: 3px solid $info;
-      transition: .8s;
-      width: 0; //原本不出現
-      top:100%; //讓他下來到底線
-  }
-  .snail-button:hover::before{
-    width: 100%;
-
-      
-  }
+.snail-button {
+  position: relative;
+  border-bottom: 2px solid white;
+  display: inline-block;
+  color: $primary;
+}
+.snail-button::before {
+  content: ''; //必要屬性
+  position: absolute;
+  z-index: 2; //壓在上面
+  border-bottom: 3px solid $info;
+  transition: 0.8s;
+  width: 0; //原本不出現
+  top: 100%; //讓他下來到底線
+}
+.snail-button:hover::before {
+  width: 100%;
+}
 //biddetail
 /* 小孩照片 */
 .kidpic {
@@ -900,14 +886,14 @@ text {
 }
 .chang-title-line {
   h3 {
-    font-family: "Cinzel", serif;
+    font-family: 'Cinzel', serif;
     font-size: 30px;
     line-height: 33px;
     color: #77777a;
     padding: 20px 0px;
 
     &::before {
-      content: "$";
+      content: '$';
     }
   }
 }
@@ -988,4 +974,12 @@ text {
 }
 @import './cindymember.scss';
 @import './cindylogin.scss';
-
+@import './snailcoursexperience';
+@import './snailcoursecategory';
+@import './snailonlinecourse';
+@import './snailplaypage';
+@import './winnieproduct.scss';
+@import './winnieproductcustomize.scss';
+@import './winnieproductdetail.scss';
+@import './shoppingning.scss';
+@import './checkout.scss';

@@ -1,0 +1,34 @@
+.categorycard-pic {
+  width: 100%;
+  height: 400px;
+  margin: 20px 20px;
+  margin: 10px;
+  background-size: contain;
+  background: red;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  position: relative;
+}
+
+.categorycard-pic .categorycard-Entitle {
+  position: absolute;
+  top: 75%;
+  left: 15%;
+  color: white;
+}
+
+.categorycard-pic .categorycard-Chtitle {
+  position: absolute;
+  top: 80%;
+  left: 15%;
+  color: white;
+}
+
+.categorycard-pic:hover {
+  opacity: 0.5;
+}
+
+.categorycard-pic:hover p {
+  color: black;
+}
+/*# sourceMappingURL=snailcoursecategory.css.map */

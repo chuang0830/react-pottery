@@ -1,0 +1,125 @@
+@charset "UTF-8";
+* {
+  font-family: "Noto Serif TC", serif;
+  /* font-family: 'Cinzel', serif; */
+}
+
+body {
+  /* banner會有白邊，body預設 */
+  margin: 0;
+  padding: 0;
+}
+
+/* 小孩照片 */
+.kidpic {
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;
+  height: 50%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* banner照片 */
+.bannerpic {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+.container-margin {
+  margin-top: 15px;
+  /* background-color: rgb(213, 227, 228); */
+}
+
+.chang-title-line h3 {
+  font-family: "Cinzel", serif;
+  font-size: 30px;
+  line-height: 33px;
+  color: #77777a;
+  padding: 20px 0px;
+}
+
+.chang-title-line h3::before {
+  content: "$";
+}
+
+.chang-title-line h2 {
+  color: #92b6ba;
+  border-bottom: #92b6ba solid 3px;
+  padding-bottom: 20px;
+}
+
+.footer {
+  background-color: cornflowerblue;
+  width: 100%;
+  height: 300px;
+}
+
+.line {
+  padding: 0px 0px 0px 0px;
+  margin: 70px 0px 70px 0px;
+  border-bottom: 1px solid #d4d4d4;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;
+}
+
+.chang-cart-btn {
+  font-size: 15.04px;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  color: #92b6ba;
+  padding: 15px 50px;
+  border-radius: 5px;
+  border: 2px solid #92b6ba;
+}
+
+.chang-cart-btn:hover {
+  color: white;
+  background-color: #92b6ba;
+}
+
+.chang-count-border-btn {
+  font-size: 15.04px;
+  text-align: center;
+  padding: 15px 30px;
+  border-radius: 5px;
+  border: 2px solid #e5e5e5;
+}
+
+.chang-count-btn {
+  font-size: 15.04px;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  color: #fcaa3e;
+  /* padding: 15px 47px; */
+  border-radius: 5px;
+  /* border: 2px solid #92b6ba; */
+}
+
+.chang-count-btn:focus {
+  outline: none;
+}
+
+.chang-count-btn:nth-child(1) {
+  margin-left: 20px;
+}
+
+.chang-count-btn:nth-child(2) {
+  color: #615956;
+  font-size: 17px;
+}
+
+.chang-count-btn:nth-child(3) {
+  margin-right: 20px;
+}
+
+.chang-button-box {
+  margin-bottom: 50px;
+}
+/*# sourceMappingURL=biddetail.css.map */

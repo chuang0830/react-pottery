@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-//元件
+// 元件
 // import Menu from './components/Menu'
 // import MyFooter from './components/MyFooter'
 
@@ -10,16 +10,84 @@ import React, { useState, useEffect } from 'react'
 //import UserAdd from './pages/UserAdd'
 import MemberLogin from './pages/MemberLogin'
 import ForgetPass from './pages/ForgetPass'
+// 課程
+import Experience from './pages/Experience'
+import CourseCategory from './pages/CourseCategory'
+import OnlineCourse from './pages/OnlineCourse'
+import MyOnlineCourse from './pages/MyOnlineCourse'
+import PlayPage from './pages/PlayPage'
+// 購物車
+import CheckOutP1 from './pages/CheckOutP1'
+import CheckOutP2 from './pages/CheckOutP2'
+import CheckOutP3 from './pages/CheckOutP3'
+import ShoppingCart from './pages/ShoppingCart'
+// 競標
+import Changbidindex from './pages/Changbidindex'
+import Changbiddetail from './pages/Changbiddetail'
 
 function App() {
   return (
+    // Router只會有一個
     <Router>
       <>
-        <MemberLogin />
+        {/* 放連結 */}
+        <Link to="/CourseCategory">CourseCategory</Link>
+        <Link to="/CourseCategory/Experience">Experience</Link>
+        <Link to="/CourseCategory/OnlineCourse">OnlineCourse</Link>
+        <Link to="/CourseCategory/MyOnlineCourse">MyOnlineCourse</Link>
+        <Link to="/CourseCategory/MyOnlineCourse/PlayPage">PlayPage</Link>
+        <Link to="/CheckOutP1">CheckOutP1</Link>
+        <Link to="/CheckOutP2">CheckOutP2</Link>
+        <Link to="/CheckOutP3">CheckOutP3</Link>
+        <Link to="/ShoppingCart">ShoppingCart</Link>
+        <Link to="/changbidindex">changbidindex</Link>
+        <Link to="/changbidindex/changbiddetail">changbiddetail</Link>
 
+        {/* Switch從上到下找唯一匹配的路由表 */}
         <Switch>
+          {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
+          {/* 會員路由 */}
           <Route exact path="/user-forgetpass">
             <ForgetPass />
+          </Route>
+
+          {/* 課程路由 */}
+          <Route exact path="/CourseCategory/MyOnlineCourse/PlayPage">
+            <PlayPage />
+          </Route>
+          <Route exact path="/CourseCategory/Experience">
+            <Experience />
+          </Route>
+          <Route exact path="/CourseCategory/OnlineCourse">
+            <OnlineCourse />
+          </Route>
+          <Route exact path="/CourseCategory/MyOnlineCourse">
+            <MyOnlineCourse />
+          </Route>
+          <Route path="/CourseCategory">
+            <CourseCategory />
+          </Route>
+
+          {/* 購物車路由 */}
+          <Route exact path="/CheckOutP1">
+            <CheckOutP1 />
+          </Route>
+          <Route exact path="/CheckOutP2">
+            <CheckOutP2 />
+          </Route>
+          <Route exact path="/CheckOutP3">
+            <CheckOutP3 />
+          </Route>
+          <Route exact path="/ShoppingCart">
+            <ShoppingCart />
+          </Route>
+
+          {/* 競標路由 */}
+          <Route exact path="/Changbidindex/Changbiddetail">
+            <Changbiddetail />
+          </Route>
+          <Route exact path="/Changbidindex">
+            <Changbidindex />
           </Route>
         </Switch>
       </>
