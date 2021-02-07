@@ -62,6 +62,7 @@ function App() {
           </Route>
           <Route exact path="/products/:id">
             <ProductsDetail />
+          </Route>
 
           {/* 課程路由 */}
           <Route exact path="/CourseCategory/MyOnlineCourse/PlayPage">
