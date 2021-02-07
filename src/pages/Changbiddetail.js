@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
-
+//測試git
 function Changbiddetail() {
   return (
     <>
