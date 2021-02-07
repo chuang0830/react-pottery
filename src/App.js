@@ -46,6 +46,9 @@ function App() {
         <Link to="/ShoppingCart">ShoppingCart</Link>
         <Link to="/changbidindex">changbidindex</Link>
         <Link to="/changbidindex/changbiddetail">changbiddetail</Link>
+        <Link to="/products">Products</Link>
+        <Link to="/products/:id">ProductsDetail</Link>
+        <Link to="/customize">Customize</Link>
 
         {/* Switch從上到下找唯一匹配的路由表 */}
         <Switch>
