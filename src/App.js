@@ -28,6 +28,13 @@ import ShoppingCart from './pages/ShoppingCart'
 // 競標
 import Changbidindex from './pages/Changbidindex'
 import Changbiddetail from './pages/Changbiddetail'
+// 首頁
+import ChienHeader from './components/ChienHeader'
+import ChienBanner from './components/ChienBanner'
+import ChienMain from './components/ChienMain'
+import ChienPolicycard from './components/ChienPolicycard'
+import ChienFooter from './components/ChienFooter'
+
 
 function App() {
   return (
@@ -36,6 +43,11 @@ function App() {
       <>
         {/* 嚴謹的要放上面 */}
         {/* 放連結 */}
+        <ChienHeader />
+        <ChienBanner />
+        <ChienMain />
+        <ChienPolicycard />
+        <ChienFooter />
         <Link to="/CourseCategory">CourseCategory</Link>
         <Link to="/CourseCategory/Experience">Experience</Link>
         <Link to="/CourseCategory/OnlineCourse">OnlineCourse</Link>
@@ -50,7 +62,7 @@ function App() {
         <Link to="/products">Products</Link>
         <Link to="/products/:id">ProductsDetail</Link>
         <Link to="/customize">Customize</Link>
-
+        
         {/* Switch從上到下找唯一匹配的路由表 */}
         <Switch>
           {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
