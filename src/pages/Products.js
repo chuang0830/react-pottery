@@ -5,6 +5,55 @@ import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
 
 function Products(props) {
+  const [photos, setPhotos] = useState([])
+  //const [dataLoading, setDataLoding] = useState(false)
+
+  async function getPhotosFromServer() {
+    // 開啟載入指示
+    //setDataLoading(true)
+
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/products/json'
+
+    //header格式設定為json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log(data)
+    //設定資料給photos
+    setPhotos(data)
+  }
+
+  //一開始就會開始載入資料
+  useEffect(() => {
+    getPhotosFromServer()
+  }, [])
+
+  //每次users資料有變動就會X秒後關掉載入指示
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setDataLoading(false)
+  //   }, 1000)
+  // }, [photos])
+
+  //載入圖示
+  const loading = (
+    <>
+      <div className="d-flex justify-content-center">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    </>
+  )
+
   return (
     <>
       {/* hero page */}
@@ -175,28 +224,33 @@ function Products(props) {
           </select>
         </div>
         {/* [_winnieproductcard.scss] 商品card */}
-        <div className="row ">
+        <div className="row">
           <div className="winnie-p-wrap d-flex">
             {/* 第一個 */}
+
             <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
+              {photos.length &&
+                photos.map((value, index) => {
+                  let p = JSON.parse(value.photo)[0]
+                  p = 'http://localhost:3008/winnie-images/' + p
+                  return (
+                    <div className="winnie-card-content">
+                      <div key={value.sid} className="winnie-card-img">
+                        <img className="w-100" src={p} alt="" />
+                      </div>
+                      <div className="winnie-card-name text-justify d-flex justify-content-between">
+                        <p>{value.product_name}</p>
+                        <div>
+                          <FaRegHeart className="far fa-heart mr-2" />
+                          <FaShoppingCart />
+                        </div>
+                      </div>
+                      <p className="winnie-card-price">{value.price}</p>
+                    </div>
+                  )
+                })}
             </div>
+
             {/*2*/}
             <div className="col-lg-4 col-md-6">
               <div className="winnie-card-content">
