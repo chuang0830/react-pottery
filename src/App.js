@@ -1,23 +1,18 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-<<<<<<< HEAD
 //元件
-=======
 // 元件
 // import Menu from './components/Menu'
 // import MyFooter from './components/MyFooter'
->>>>>>> 9e87de6805a2b741973becd84076797c0dc0132f
 
 //頁面
 import Login from './pages/Login'
 import ForgetPass from './pages/ForgetPass'
-<<<<<<< HEAD
 import Register from './pages/Register'
 import MemberEdit from './pages/MemberEdit'
 import MemberOrderList from './pages/MemberOrderList'
 import MemberFav from './pages/MemberFav'
 import MemberCoupon from './pages/MemberCoupon'
-=======
 //商品
 import Products from './pages/Products'
 import ProductsDetail from './pages/ProductsDetail'
@@ -43,15 +38,11 @@ import ChienMain from './components/ChienMain'
 import ChienPolicycard from './components/ChienPolicycard'
 import ChienFooter from './components/ChienFooter'
 
->>>>>>> 9e87de6805a2b741973becd84076797c0dc0132f
-
 function App() {
   return (
     // Router只會有一個
     <Router>
       <>
-<<<<<<< HEAD
-=======
         {/* 嚴謹的要放上面 */}
         {/* 放連結 */}
         <ChienHeader />
@@ -73,16 +64,14 @@ function App() {
         <Link to="/products">Products</Link>
         <Link to="/products/:id">ProductsDetail</Link>
         <Link to="/customize">Customize</Link>
-        
+
         {/* Switch從上到下找唯一匹配的路由表 */}
->>>>>>> 9e87de6805a2b741973becd84076797c0dc0132f
         <Switch>
           {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
           {/* 會員路由 */}
           <Route exact path="/user-forgetpass">
             <ForgetPass />
           </Route>
-<<<<<<< HEAD
           <Route path="/login">
             <Login />
           </Route>
@@ -100,7 +89,7 @@ function App() {
           </Route>
           <Route path="/membercoupon">
             <MemberCoupon />
-=======
+          </Route>
           <Route exact path="/products">
             <Products />
           </Route>
@@ -148,7 +137,6 @@ function App() {
           </Route>
           <Route exact path="/Changbidindex">
             <Changbidindex />
->>>>>>> 9e87de6805a2b741973becd84076797c0dc0132f
           </Route>
         </Switch>
       </>
