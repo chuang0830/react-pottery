@@ -1,15 +1,18 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
+//元件
 // 元件
 // import Menu from './components/Menu'
 // import MyFooter from './components/MyFooter'
 
 //頁面
-// import UserList from './pages/UserList'
-// import UserEdit from './pages/UserEdit'
-//import UserAdd from './pages/UserAdd'
-import MemberLogin from './pages/MemberLogin'
+import Login from './pages/Login'
 import ForgetPass from './pages/ForgetPass'
+import Register from './pages/Register'
+import MemberEdit from './pages/MemberEdit'
+import MemberOrderList from './pages/MemberOrderList'
+import MemberFav from './pages/MemberFav'
+import MemberCoupon from './pages/MemberCoupon'
 //商品
 import Products from './pages/Products'
 import ProductsDetail from './pages/ProductsDetail'
@@ -34,7 +37,6 @@ import ChienBanner from './components/ChienBanner'
 import ChienMain from './components/ChienMain'
 import ChienPolicycard from './components/ChienPolicycard'
 import ChienFooter from './components/ChienFooter'
-
 
 function App() {
   return (
@@ -62,13 +64,31 @@ function App() {
         <Link to="/products">Products</Link>
         <Link to="/products/:id">ProductsDetail</Link>
         <Link to="/customize">Customize</Link>
-        
+
         {/* Switch從上到下找唯一匹配的路由表 */}
         <Switch>
           {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
           {/* 會員路由 */}
           <Route exact path="/user-forgetpass">
             <ForgetPass />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/memberedit">
+            <MemberEdit />
+          </Route>
+          <Route path="/memberorderList">
+            <MemberOrderList />
+          </Route>
+          <Route path="/memberfav">
+            <MemberFav />
+          </Route>
+          <Route path="/membercoupon">
+            <MemberCoupon />
           </Route>
           <Route exact path="/products">
             <Products />
