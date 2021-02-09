@@ -1,0 +1,29 @@
+.onlinecourse-card {
+  color: red;
+  height: 500px;
+  width: 300px;
+  background-color: rgb(180, 80, 80);
+  
+}
+.snail-card-content{
+    border-bottom: 2px soild $info;
+}
+.snail-teacher {
+    color: red;
+    font-size: $font-size-base * 0.75;
+  }
+  .snail-card-content {
+
+    margin: 20px 10px;
+  }
+ 
+
+  .play-avatar-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: pink;
+    position: absolute;
+    right: 5%;
+    top: 55%;
+  }

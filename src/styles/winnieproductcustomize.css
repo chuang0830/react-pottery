@@ -1,0 +1,192 @@
+.winnie-header {
+  width: 100%;
+  height: 605px;
+}
+
+.winnie-header > img {
+  width: 100%;
+  height: 100%;
+}
+
+.winnie-title {
+  font-family: "Cinzel", serif;
+  font-size: 38.4px;
+  line-height: 25px;
+  color: #77777a;
+  margin-top: 50px;
+}
+
+.winnie-text {
+  margin-bottom: 100px;
+  color: #615956;
+  font-size: 14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
+}
+
+.winnie-customize-text {
+  color: #615956;
+  font-size: 14px;
+  line-height: 33px;
+}
+
+.winnie-detail-p {
+  font-weight: bold;
+}
+
+.winnie-recent-title {
+  margin-top: 100px;
+}
+
+.winnie-recent-title > h2 {
+  font-family: "Cinzel", serif;
+  line-height: 33px;
+  font-size: 25px;
+  color: #615956;
+}
+
+.winnie-recent-img {
+  width: 105px;
+  height: 100px;
+}
+
+.winnie-recent-img > img {
+  width: 100%;
+  height: 100px;
+}
+
+.customer-wrap {
+  margin: 0 100px;
+}
+
+.c-1 {
+  margin-bottom: 40px;
+}
+
+.c-2 {
+  margin-right: 40px;
+}
+
+.winnie-cutomize-title {
+  margin-top: 100px;
+  margin-bottom: 40px;
+  color: #615956;
+  font-size: 28px;
+  line-height: 33px;
+}
+
+.winnie-title-wrap {
+  position: relative;
+}
+
+.plate1 {
+  position: absolute;
+  top: -220px;
+  right: -200px;
+  width: 410px;
+  height: 240px;
+}
+
+.plate1 > img {
+  width: 100%;
+  height: 100%;
+}
+
+.plate2 {
+  position: absolute;
+  top: -100px;
+  right: -30px;
+  width: 490px;
+  height: 280px;
+}
+
+.plate2 > img {
+  width: 100%;
+  height: 100%;
+}
+
+.winnie-customize-bg {
+  width: 100%;
+  height: 440px;
+}
+
+.winnie-customize-bg > img {
+  width: 100%;
+  height: 100%;
+}
+
+.winnie-customize-p-wrap {
+  margin: 100px 0px;
+}
+
+.c-plate {
+  width: 480px;
+  height: 350px;
+}
+
+.c-plate > img {
+  width: 100%;
+  height: 100%;
+}
+
+.winnie-plate-color-wrap {
+  padding: 20px 60px;
+  margin-left: -125px;
+}
+
+.winnie-plate-color {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.c1 {
+  background-color: #f8e713;
+}
+
+.c2 {
+  background-color: #6e8dbb;
+}
+
+.c3 {
+  background-color: #7ec9d0;
+}
+
+.c4 {
+  background-color: #629691;
+}
+
+.c5 {
+  background-color: #e2a3ba;
+}
+
+.winnie-customize-d {
+  padding: 100px;
+  border-left: 1px solid #92b6ba;
+}
+
+.winnie-customize-price {
+  font-family: "Cinzel", serif;
+  color: #615956;
+  font-size: 20px;
+  line-height: 33px;
+  border-bottom: 30px;
+}
+
+.winnie-customize-price::before {
+  content: "$";
+}
+
+.winnie-input {
+  font-size: 14px;
+  color: #dbdbdf;
+}
+
+.winnie-input > input {
+  border: none;
+  border-bottom: 1px solid #dbdbdf;
+  text-align: center;
+  width: 40%;
+}
+/*# sourceMappingURL=winnieproductcustomize.css.map */

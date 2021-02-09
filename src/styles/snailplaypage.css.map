@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,iBAAiB,CAAA;EACb,gBAAgB,EAAE,OAAgB;EAClC,MAAM,EAAE,KAAK;CAEhB;;AACD,AAAA,gBAAgB,CAAA;EACZ,gBAAgB,EAAE,OAAgB;EAClC,MAAM,EAAE,KAAK;CAEhB;;AAGD,AAAA,aAAa,CAAA;EACL,QAAQ,EAAE,KAAK;EACf,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,gBAAgB,EAAE,OAAkB;EACpC,MAAM,EAAC,IAAI;EACX,KAAK,EAAE,IAAI;CACd",
+    "sources": [
+        "snailplaypage.scss"
+    ],
+    "names": [],
+    "file": "snailplaypage.css"
+}

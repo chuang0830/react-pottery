@@ -13,7 +13,11 @@
     box-shadow: 0 0 5px #2b3b36;
     .cindy-card-left {
       border-right: 1px solid $primary;
+<<<<<<< HEAD
       padding-right: 15px;
+=======
+      padding-right: 10px;
+>>>>>>> 9e87de6805a2b741973becd84076797c0dc0132f
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -29,7 +33,11 @@
       }
     }
     .cindy-card-right {
+<<<<<<< HEAD
       padding-left: 15px;
+=======
+      padding-left: 10px;
+>>>>>>> 9e87de6805a2b741973becd84076797c0dc0132f
       text-align: center;
       display: flex;
       flex-direction: column;

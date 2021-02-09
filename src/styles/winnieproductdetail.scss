@@ -1,0 +1,69 @@
+.winnie-detail-t-bg {
+  height: 80vh;
+  background-image: url('http://localhost:3008/winnie-images/hero-d-1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.winnie-title {
+  h1 {
+    font-family: 'Cinzel';
+    font-size: $font-size-base * 2.4; //38.4px
+    line-height: 25px;
+    color: #77777a;
+  }
+  margin: 50px 0px;
+}
+
+.winnie-detail-margin {
+  padding-bottom: 100px;
+}
+
+.winnie-text {
+  margin-bottom: 100px;
+  color: #615956;
+  font-size: $font-size-base * 0.875; //14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
+}
+
+.winnie-description {
+  color: #615956;
+  font-size: $font-size-base * 0.875; //14px;
+  line-height: 33px;
+  margin-bottom: 30px;
+}
+.winnie-detail-p {
+  font-weight: 900;
+}
+
+.winnie-recent-title {
+  margin-top: 100px;
+}
+
+.winnie-recent-title > h2 {
+  font-family: 'Cinzel', serif;
+  line-height: 33px;
+  font-size: $font-size-base * 1.56; //25px;
+  color: #615956;
+}
+.winnie-recent-img {
+  width: 105px;
+  height: 100px;
+}
+
+.winnie-recent-img > img {
+  width: 100%;
+  height: 100px;
+}
+
+.winnie-detail-f-bg {
+  height: 60vh;
+  background-image: url('http://localhost:3008/winnie-images/detail-4.jpg');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  background-attachment: fixed;
+}

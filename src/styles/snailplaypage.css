@@ -1,0 +1,19 @@
+.onlinepage-video {
+  background-color: #836363;
+  height: 300px;
+}
+
+.onlinepage-list {
+  background-color: #d84c4c;
+  height: 300px;
+}
+
+.teacher-chat {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  background-color: #94bbe0;
+  bottom: 30px;
+  right: 50px;
+}
+/*# sourceMappingURL=snailplaypage.css.map */
