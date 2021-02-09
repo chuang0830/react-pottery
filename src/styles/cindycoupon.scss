@@ -1,0 +1,59 @@
+.cindy-coupon-outer {
+  height: 70vh;
+  width: 100%;
+  border-top: 3px solid $primary;
+  border-bottom: 3px solid $primary;
+  .cindy-card {
+    width: 30%;
+    height: 25vh;
+    border-radius: 5px;
+    border: 1px solid $primary;
+    margin: 50px 30px;
+    padding: 30px 20px;
+    box-shadow: 0 0 5px #2b3b36;
+    .cindy-card-left {
+      border-right: 1px solid $primary;
+      padding-right: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      p {
+        margin: 0;
+        color: $primary;
+      }
+      h2 {
+        color: $info;
+      }
+      p:last-child {
+        color: $success;
+      }
+    }
+    .cindy-card-right {
+      padding-left: 15px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      p {
+        margin: 0;
+        color: $primary;
+      }
+      .cindy-card-date {
+        color: $success;
+      }
+      button {
+        font-size: $font-size-base * 0.85;
+        text-align: center;
+        border: none;
+        background-color: white;
+        color: $primary;
+        padding: 7px 10px;
+        border: 1px solid $primary;
+        &:hover {
+          color: white;
+          background-color: $primary;
+        }
+      }
+    }
+  }
+}

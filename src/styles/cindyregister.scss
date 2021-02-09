@@ -2,6 +2,13 @@
   margin: auto 0;
   color: $success;
   .tag {
+    a {
+      text-decoration: none;
+      color: $success;
+      &:hover {
+        color: $primary;
+      }
+    }
     cursor: pointer;
     background: hsla(0, 0%, 100%, 0.8);
     -webkit-writing-mode: vertical-lr;
@@ -10,9 +17,6 @@
     border-radius: 5px 0 0 5px;
     padding: 30px 15px 20px 15px;
     font-size: $font-size-base;
-    &:hover {
-      color: $primary;
-    }
   }
   .cindy-memberbox {
     margin-top: 50px;

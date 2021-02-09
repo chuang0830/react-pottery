@@ -1,0 +1,53 @@
+.cindy-seclectbox {
+  .cindy-sec {
+    margin: 18px 35px;
+    a {
+      color: $success;
+      text-decoration: none;
+      img {
+        width: 52px;
+        filter: grayscale(100%);
+      }
+      &:hover {
+        img {
+          filter: grayscale(0);
+        }
+        color: $primary;
+      }
+    }
+  }
+}
+.cindy-accountouter {
+  .cindy-account-left {
+    margin-top: 10px;
+    .img-outer {
+      img {
+        width: 227px;
+        height: 257px;
+        overflow: hidden;
+        object-fit: cover;
+      }
+      .cindy-crossx {
+        top: 3px;
+        left: 10px;
+      }
+      .cindy-camera {
+        bottom: -15px;
+        right: -15px;
+      }
+    }
+  }
+  .cindy-account-right {
+    margin: 0 50px;
+    .cindy-form {
+      input {
+        width: 100%;
+      }
+    }
+
+    .cindy-btn-center {
+      text-align: center;
+      margin-top: 50px;
+    }
+  }
+}
