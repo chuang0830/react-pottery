@@ -2,8 +2,59 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Accordion, Card, Button } from 'react-bootstrap'
+import { FaRegHeart } from 'react-icons/fa'
+import { FaShoppingCart } from 'react-icons/fa'
 
-function OnlineCourse() {
+function OnlineCourse(props) {
+  const [photos1, setPhotos1] = useState([])
+  //const [dataLoading, setDataLoding] = useState(false)
+
+  async function getPhotos1FromServer1() {
+    // 開啟載入指示
+    //setDataLoading(true)
+
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/course/json'
+
+    //header格式設定為json格式
+    const request1 = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+
+    const response1 = await fetch(request1)
+    const data1 = await response1.json()
+    console.log(data1)
+    //設定資料給photos
+    setPhotos1(data1)
+  }
+
+  //一開始就會開始載入資料
+  useEffect(() => {
+    getPhotos1FromServer1()
+  }, [])
+
+  //每次users資料有變動就會X秒後關掉載入指示
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setDataLoading(false)
+  //   }, 1000)
+  // }, [photos1])
+
+  //載入圖示
+  const loading = (
+    <>
+      <div className="d-flex justify-content-center">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    </>
+  )
+
   return (
     <>
       {/* banner */}
@@ -63,44 +114,33 @@ function OnlineCourse() {
             </div>
             {/* 課程卡片 */}
             <div className="row">
-              {/* card1 */}
-              <div className="col-lg-3 ">
-                <div className="snail-card-content">
-                  <div className="snail-card-img">
-                    <img
-                      className="w-100"
-                      src="http://localhost:3008/snail-imgs/on-course-1.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div className="snail-card-titile text-justify d-flex justify-content-between">
-                    <p>
-                      初階
-                      <span
-                        className="snail-teacher ml-3"
-                        style={{ color: 'red', fontSize: '$font-size-base' }}
-                      >
-                        鄭宇寬老師
-                      </span>
-                    </p>
-                    <div className="play-avatar-photo">
-                      <img className="w-100" src="" alt="" />
-                    </div>
-                  </div>
-                  <div className="d-flex justify-content-between">
-                    <a href="#" className="snail-card-price">
-                      690
-                    </a>
-                    <div className="snail-stars">
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                      <i className="fas fa-star" />
-                    </div>
-                  </div>
-                </div>
+              {/* 第一個 */}
+
+              <div className="col-lg-4 col-md-6">
+                {photos1.length &&
+                  photos1.map((value, index) => {
+                    //單筆圖片直接value.photo
+                    //多筆圖片let p = JSON.parse(value.photo)[0]
+                    let p1 = value.photo
+                    p1 = 'http://localhost:3008/snail-imgs/' + p1
+                    return (
+                      <div className="winnie-card-content">
+                        <div key={value.sid} className="winnie-card-img">
+                          <img className="w-100" src={p1} alt="" />
+                        </div>
+                        <div className="winnie-card-name text-justify d-flex justify-content-between">
+                          <p>{value.product_name}</p>
+                          <div>
+                            <FaRegHeart className="far fa-heart mr-2" />
+                            <FaShoppingCart />
+                          </div>
+                        </div>
+                        <p className="winnie-card-price">{value.price}</p>
+                      </div>
+                    )
+                  })}
               </div>
+
               {/* card2 */}
               <div className="col-lg-3 ">
                 <div className="snail-card-content">

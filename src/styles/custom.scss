@@ -984,8 +984,13 @@ text {
 .chang-button-box {
   margin-bottom: 50px;
 }
-@import './cindymember.scss';
+@import './cindyregister.scss';
 @import './cindylogin.scss';
+@import './cindymemberedit.scss';
+@import './cindycoupon.scss';
+@import './cindyfav.scss';
+@import './cindyorderlist.scss';
+
 @import './winnieproduct.scss';
 @import './winnieproductcustomize.scss';
 @import './winnieproductdetail.scss';
@@ -998,3 +1003,4 @@ text {
 @import './winnieproductdetail.scss';
 @import './shoppingning.scss';
 @import './checkout.scss';
+@import './ChienStyles.scss';

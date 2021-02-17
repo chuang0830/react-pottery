@@ -1,0 +1,46 @@
+.cindyorder {
+  thead{
+    th{
+      
+    }
+  }
+  tbody {
+    td:first-child {
+      img {
+        height: 93px;
+        overflow: hidden;
+      }
+    }
+    td {
+      button {
+        font-size: $font-size-base;
+        outline: none;
+        color: $primary;
+        background-color: transparent;
+        border: none;
+        svg {
+          margin-left: 3px;
+        }
+      }
+    }
+    label {
+      display:block;
+      }
+  label:hover{
+  cursor: pointer;
+  }
+  input[type=checkbox]:checked + div {
+      opacity:0;
+      max-height:0;
+      }
+  .toggle-box {
+      display: inline-block;
+      padding: 10px;
+      opacity:1;
+      overflow:hidden;
+      }
+  input{
+      display: none;
+      }
+  }
+}
