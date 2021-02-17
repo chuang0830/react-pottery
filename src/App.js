@@ -58,14 +58,19 @@ function App() {
           <Route exact path="/user-forgetpass">
             <ForgetPass />
           </Route>
+
+          {/* 商品路由 */}
+          <Route exact path="/products/page/:pageNumber">
+            <Products />
+          </Route>
           <Route exact path="/products">
             <Products />
           </Route>
-          <Route exact path="/customize">
-            <Customize />
-          </Route>
           <Route exact path="/products/:id">
             <ProductsDetail />
+          </Route>
+          <Route exact path="/customize">
+            <Customize />
           </Route>
 
           {/* 課程路由 */}

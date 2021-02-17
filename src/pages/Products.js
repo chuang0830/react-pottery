@@ -1,19 +1,33 @@
 import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import Carousel from 'react-bootstrap/Carousel'
+import Pagination from 'react-bootstrap/Pagination'
+import PageItem from 'react-bootstrap/PageItem'
 import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
 
 function Products(props) {
   const [photos, setPhotos] = useState([])
+  const [page, setPage] = useState(1)
   //const [dataLoading, setDataLoding] = useState(false)
+
+  //設定頁碼
+  let active = page
+  let items = []
+  for (let number = 1; number <= 6; number++) {
+    items.push(
+      <Pagination.Item key={number} active={number === active}>
+        <Link to={`/products/page/${number}`}>{number}</Link>
+      </Pagination.Item>
+    )
+  }
 
   async function getPhotosFromServer() {
     // 開啟載入指示
     //setDataLoading(true)
 
     // 連接的伺服器資料網址
-    const url = 'http://localhost:3000/products/json'
+    const url = `http://localhost:3000/products/api/list?page=${props.match.params.pageNumber}`
 
     //header格式設定為json格式
     const request = new Request(url, {
@@ -28,7 +42,8 @@ function Products(props) {
     const data = await response.json()
     console.log(data)
     //設定資料給photos
-    setPhotos(data)
+    setPhotos(data.rows)
+    setPage((data.page = parseInt(props.match.params.pageNumber) || 1))
   }
 
   //一開始就會開始載入資料
@@ -136,12 +151,15 @@ function Products(props) {
         </Carousel>
       </div>
       {/* 分類 */}
-      <div className="winnie-classbg">
-        <img src="http://localhost:3008/winnie-images/class-bg.png" alt="" />
-        <p>商品專區</p>
-        {/* [_winnieclassimg.scss] 分類圖片 */}
-        <div className="winnie-classimg">
-          <ul>
+      <div>
+        <div className="winnie-classbg">
+          <p>商品專區</p>
+        </div>
+      </div>
+      {/* [_winnieclassimg.scss] 分類圖片 */}
+      <div className="container">
+        <div className="row justify-content-around">
+          <ul className="winnie-classimg">
             <li>
               <img
                 src="http://localhost:3008/winnie-images/class1.png"
@@ -215,6 +233,7 @@ function Products(props) {
           </ul>
         </div>
       </div>
+
       <div className="container">
         {/* 下拉選單 */}
         <div className="row justify-content-end">
@@ -228,12 +247,12 @@ function Products(props) {
           <div className="winnie-p-wrap d-flex">
             {/* 第一個 */}
 
-            <div className="col-lg-4 col-md-6">
-              {photos.length &&
-                photos.map((value, index) => {
-                  let p = JSON.parse(value.photo)[0]
-                  p = 'http://localhost:3008/winnie-images/' + p
-                  return (
+            {photos.length &&
+              photos.map((value, index) => {
+                let p = JSON.parse(value.photo)[0]
+                p = 'http://localhost:3008/winnie-images/' + p
+                return (
+                  <div className="col-lg-4 col-md-6">
                     <div className="winnie-card-content">
                       <div key={value.sid} className="winnie-card-img">
                         <img className="w-100" src={p} alt="" />
@@ -247,9 +266,9 @@ function Products(props) {
                       </div>
                       <p className="winnie-card-price">{value.price}</p>
                     </div>
-                  )
-                })}
-            </div>
+                  </div>
+                )
+              })}
 
             {/*2*/}
             <div className="col-lg-4 col-md-6">
@@ -271,264 +290,23 @@ function Products(props) {
                 <p className="winnie-card-price">690</p>
               </div>
             </div>
-            {/*3 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-            {/*4 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-            {/* 5*/}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-            {/*6 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-            {/*7 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-            {/*8 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-            {/* 9*/}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
           </div>
         </div>
-        {/* [_winniepage.scss] 頁籤 bootstrap:pagination */}
+        {/* [_winniepage.scss] 頁籤 react bootstrap:pagination */}
         <div className="winnie-page">
           <div className="row">
             <div className="mx-auto">
-              <nav aria-label="Page navigation example ">
-                <ul className="pagination">
-                  <li className="page-item">
-                    <class className="page-link" href="#" aria-label="Previous">
-                      {/* bs icon Chevron double left */}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={16}
-                        height={16}
-                        fill="#77777a"
-                        className="bi bi-chevron-double-left"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-                        />
-                        <path
-                          fillRule="evenodd"
-                          d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-                        />
-                      </svg>
-                    </class>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#" aria-label="Previous">
-                      {/* bs icon Chevron left */}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={16}
-                        height={16}
-                        fill="#77777a"
-                        className="bi bi-chevron-left"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                  <li className="page-item active">
-                    <a className="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link " href="#">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      4
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      5
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#" aria-label="Next">
-                      {/* bs icon Chevron right */}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={16}
-                        height={16}
-                        fill="#77777a"
-                        className="bi bi-chevron-right"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#" aria-label="Next">
-                      {/* bs icon Chevron double right */}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={16}
-                        height={16}
-                        fill="#77777a"
-                        className="bi bi-chevron-double-right"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
-                        />
-                        <path
-                          fillRule="evenodd"
-                          d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+              <Pagination>
+                <Pagination.First />
+                <Pagination.Prev />
+                <Pagination>{items}</Pagination>
+                <Pagination.Next />
+                <Pagination.Last />
+              </Pagination>
             </div>
           </div>
         </div>
+
         {/* [_winnierecentview.scss]recent view title*/}
         <div className="container">
           <div className="row winnie-line">
@@ -757,4 +535,4 @@ function Products(props) {
   )
 }
 
-export default Products
+export default withRouter(Products)

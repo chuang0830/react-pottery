@@ -393,18 +393,17 @@ text {
 //winnieclassimg
 //_winnieclassimg 商品分類＋hover效果
 .winnie-classimg {
-  margin: 0px 170px;
-  position: absolute;
-  top: 75%;
-}
-.winnie-classimg ul {
-  display: flex;
   list-style: none;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: -350px;
+  padding: 0px 0px;
 }
 
 .winnie-classimg li {
   position: relative;
-  margin: 0 30px;
+  margin: 0px 30px;
   height: 130px;
   width: 140px;
 }
@@ -892,7 +891,7 @@ text {
     font-size: 30px;
     line-height: 33px;
     color: #77777a;
-    padding: 20px 0px;
+    padding: 28px 0px 20px 0px;
     &::before {
       content: '$';
     }

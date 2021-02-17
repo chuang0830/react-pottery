@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
 
 function Customize(props) {
+  const [text, setText] = useState('')
+  const [total, setTotal] = useState(0)
   return (
     <>
       {/* hero page */}
@@ -97,6 +99,18 @@ function Customize(props) {
               {/* 盤子 */}
               <div className="c-plate">
                 <img src="http://localhost:3008/winnie-images/52.png" alt="" />
+                {/* 刻字區 */}
+
+                <svg viewBox="0 0 500 500" className="winnie-svg">
+                  <path
+                    id="curve"
+                    d="M190,56 C207,90 300,96 311,54 Z"
+                    fill="transparent"
+                  />
+                  <text width="800" className="winnie-plate-text">
+                    <textPath xlinkHref="#curve">{text}</textPath>
+                  </text>
+                </svg>
               </div>
               {/* 顏色 */}
               <div className="winnie-plate-color-wrap">
@@ -106,11 +120,11 @@ function Customize(props) {
                 </div>
                 <div className="d-flex mb-1">
                   <div className="winnie-plate-color c2 my-auto" />
-                  <p className="winnie-customize-text my-auto">深藍</p>
+                  <p className="winnie-customize-text my-auto">靛</p>
                 </div>
                 <div className="d-flex mb-1">
                   <div className="winnie-plate-color c3 my-auto" />
-                  <p className="winnie-customize-text my-auto">天空藍</p>
+                  <p className="winnie-customize-text my-auto">藍</p>
                 </div>
                 <div className="d-flex mb-1">
                   <div className="winnie-plate-color c4 my-auto" />
@@ -129,15 +143,31 @@ function Customize(props) {
                   <input
                     placeholder="字母最多十碼"
                     type="text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
                     maxLength={10}
                   />
                 </span>
                 <div className="d-flex justify-content chang-button-box mt-5">
                   {/* 計數器 */}
                   <div className="col-4 chang-count-border-btn d-flex flex-row justify-content-center">
-                    <button className="chang-count-btn">-</button>
-                    <button className="chang-count-btn">1</button>
-                    <button className="chang-count-btn">+</button>
+                    <button
+                      className="chang-count-btn"
+                      onClick={() => {
+                        setTotal(total - 1)
+                      }}
+                    >
+                      -
+                    </button>
+                    <button className="chang-count-btn">{total}</button>
+                    <button
+                      className="chang-count-btn"
+                      onClick={() => {
+                        setTotal(total + 1)
+                      }}
+                    >
+                      +
+                    </button>
                   </div>
                   {/* 加入購物車按鈕 */}
                   <class className="col-8 ml-4">
