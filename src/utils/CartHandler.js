@@ -31,11 +31,19 @@ export default {
   },
   addItem: function (item) {
     if (!this.hasItem(item)) {
-
       this.cart.push(item)
       this.updateCart()
+      alert('已加入購物車')
     }
   },
-  removeItem: function (sid) {},
-  modifyQuantity: function (sid, q) {},
+  removeItem: function (sid) {
+    // this.cart = this.cart.filter((item) => item.sid !== sid)
+    localStorage.removeItem(JSON.stringify(this.cart))
+  },
+  removeAll: function () {
+    this.cart = []
+    //測試用
+    //localStorage.clear()
+  },
+  // modifyQuantity: function (sid, q) {},
 }

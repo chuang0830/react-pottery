@@ -1,10 +1,87 @@
 // import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { RiDeleteBinFill } from 'react-icons/ri'
+
+import { Link } from 'react-router-dom'
+
 //元件
 import LogoNing from './../components/ningcomponents/LogoNing'
-import TableNing from './../components/ningcomponents/TableNing'
-
+import CheckOutP1TransportSelectNing from '../components/ningcomponents/CheckOutP1TransportSelectNing'
 function CheckOutP1(props) {
+  // style ------------------------------------------------------------
+  const style = {
+    color: 'primary',
+    fontSize: 24,
+  }
+
+  // 商品--------------------------------------------------------------
+  // State ------------------------------------------------------------
+  const [mycart, setMycart] = useState([])
+  // const [dataLoading, setDataLoading] = useState(false)
+  const [mycartDisplay, setMycartDisplay] = useState([])
+  // 優惠卷
+  const [Discount, setDiscount] = useState(0)
+  const [Total, setTotal] = useState(0)
+  const [Shipping, setShipping] = useState(120)
+
+  // function ----------------------------------------------------------
+  function getCartFromLocalStorage() {
+    const newCart = localStorage.getItem('utsuwacart') || '[]'
+    setMycart(JSON.parse(newCart))
+  }
+  useEffect(() => {
+    getCartFromLocalStorage()
+  }, [])
+  useEffect(() => {
+    let newMycartDisplay = []
+    for (let i = 0; i < mycart.length; i++) {
+      const index = newMycartDisplay.findIndex(
+        (value) => value.sid === mycart[i].sid
+      )
+      if (index !== -1) {
+        newMycartDisplay[index].amount += mycart[i].amount
+      } else {
+        const newItem = { ...mycart[i] }
+        newMycartDisplay = [...newMycartDisplay, newItem]
+      }
+    }
+    setMycartDisplay(newMycartDisplay)
+  }, [mycart])
+  // 更新購物車中的商品數量
+  function updateCartToLocalStorage(item, isAdded = true) {
+    console.log(item, isAdded)
+    const currentCart = JSON.parse(localStorage.getItem('utsuwacart')) || []
+    const index = currentCart.findIndex((v) => v.sid === item.sid)
+    if (index > -1) {
+      isAdded ? currentCart[index].amount++ : currentCart[index].amount--
+    }
+    localStorage.setItem('utsuwacart', JSON.stringify(currentCart))
+    setMycart(currentCart)
+  }
+  //移除整個物件
+  function removeCart(item) {
+    const index = JSON.parse(localStorage.getItem('utsuwacart')) || []
+    // 拿掉選取的物件
+    const currentCart = index.filter((v) => v.sid !== item.sid)
+    localStorage.setItem('utsuwacart', JSON.stringify(currentCart))
+    // 設定資料
+    setMycart(currentCart)
+  }
+  //移除整個localStorage
+  function removeCartALL() {
+    const currentCart = JSON.parse(localStorage.getItem('utsuwacart')) || []
+    localStorage.removeItem('utsuwacart', JSON.stringify(currentCart))
+    localStorage.getItem('utsuwacart', JSON.stringify(currentCart))
+    setMycart(currentCart)
+  }
+  // 計算總價用的函式
+  function sum(items) {
+    let total = 0
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].amount * items[i].price
+    }
+    return total
+  }
   return (
     <>
       <div className="container">
@@ -35,58 +112,101 @@ function CheckOutP1(props) {
         {/* table */}
         <div className="row">
           <div className="container mt-5">
-            <div className="row no-gutters">
-              <TableNing />
+            <div className="row">
+              <div className="cindy-table col border-bottom-0">
+                <table>
+                  <thead>
+                    <tr>
+                      <th scope="col" />
+                      <th scope="col">商品名稱</th>
+                      <th scope="col">金額</th>
+                      <th scope="col">數量</th>
+                      <th scope="col">
+                        <RiDeleteBinFill
+                          style={style}
+                          onClick={() => removeCartALL()}
+                        />
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {mycartDisplay.map((item, index) => {
+                      return (
+                        <tr>
+                          <img
+                            src="http://localhost:3008/winnie-images/{JSON.parse(item.photo)[0]}"
+                            alt=""
+                            srcset=""
+                          />
+                          <td> {item.product_name}</td>
+                          <td> {item.price}</td>
+                          <td className="d-flex justify-content-center">
+                            {/* 計數器 */}
+                            <div className="chang-count-border-btn col-4 d-flex flex-row justify-content-center">
+                              <button
+                                className="chang-count-btn"
+                                onClick={() => {
+                                  // if (item.amount === 1) return
+                                  updateCartToLocalStorage(item, false)
+                                  setTotal(
+                                    sum(mycartDisplay) - Discount - Shipping
+                                  )
+                                }}
+                              >
+                                -
+                              </button>
+                              <button className="chang-count-btn">
+                                {item.amount}
+                              </button>
+                              <button
+                                className="chang-count-btn"
+                                onClick={() => {
+                                  // if (item.amount === 1) return
+                                  updateCartToLocalStorage(item, true)
+                                  setTotal(
+                                    sum(mycartDisplay) - Discount - Shipping
+                                  )
+                                }}
+                              >
+                                +
+                              </button>
+                            </div>
+                          </td>
+                          <td>
+                            <button
+                              onClick={() => {
+                                removeCart(item)
+                              }}
+                            >
+                              <svg
+                                id="noun_Delete_34719"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width={23}
+                                height={20}
+                                viewBox="0 0 19.111 15.884"
+                              >
+                                <path
+                                  id="Path_54"
+                                  data-name="Path 54"
+                                  d="M-134.247-16.515a21.159,21.159,0,0,0-9.085,3.9,32.518,32.518,0,0,0-5.145-3.443,4.281,4.281,0,0,0-3.693,0c-1.108.468-1.108,1.94,0,2.141a28.986,28.986,0,0,1,6.432,3.25,30.736,30.736,0,0,0-5.129,5.932,3.261,3.261,0,0,0,0,3.346c.517,1,2.142,1,2.363,0A25.964,25.964,0,0,1-143.4-8.944c5.67,4.585,8.089,9.6,7.919,7.942-.763-4.035-3.28-7.384-5.9-9.893C-136.849-14.922-132.616-16.652-134.247-16.515Z"
+                                  transform="translate(153.001 16.522)"
+                                  fill="#fcaa3e"
+                                />
+                              </svg>
+                            </button>
+                          </td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
         {/* 選擇運送及付款方式 */}
         <div className="row d-flex justify-content-end mt-9">
-          <div className="col-lg-6 col-12">
-            <form className="mt-5">
-              <div className="form-title text-center">
-                <span className="form-title-content">選擇運送及付款方式</span>
-              </div>
-              <div className="form-group">
-                <label
-                  htmlFor="exampleFormControlSelect1"
-                  className="form-text"
-                >
-                  運送方式
-                </label>
-                <select
-                  className="form-control pretty-select"
-                  id="exampleFormControlSelect1"
-                >
-                  <option className="text-success" value>
-                    請選擇
-                  </option>
-                  <option className="text-success">宅配到府</option>
-                  <option className="text-success">超商取貨</option>
-                  <option className="text-success">海外運送</option>
-                </select>
-              </div>
-              <div>
-                <label
-                  htmlFor="exampleFormControlSelect1"
-                  className="form-text"
-                >
-                  付款方式
-                </label>
-                <select
-                  className="form-control pretty-select"
-                  id="exampleFormControlSelect1"
-                >
-                  <option className="text-success" value>
-                    請選擇
-                  </option>
-                  <option className="text-success">信用卡</option>
-                  <option className="text-success">現金</option>
-                  <option className="text-success">銀行轉帳</option>
-                </select>
-              </div>
-            </form>
-          </div>
+          <CheckOutP1TransportSelectNing />
           <div className="col-lg-6 col-12">
             <div className="form-title text-center mt-5">
               <span className="form-title-content"> 訂單明細 </span>
@@ -94,21 +214,21 @@ function CheckOutP1(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>小計</span>
-                <span>1500</span>
+                <span>{sum(mycartDisplay)}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>折扣</span>
-                <span>-100</span>
+                <span>{Discount}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>運費</span>
-                <span>100</span>
+                <span>{Shipping}</span>
               </div>
               <div className="d-flex justify-content-between">
                 <span>總計</span>
-                <span>1500</span>
+                <span>{Total}</span>
               </div>
-              <form action>
+              {/* <form action>
                 <div className="form-group">
                   <div className="form-row">
                     <div className="col">
@@ -127,12 +247,44 @@ function CheckOutP1(props) {
                     </div>
                   </div>
                 </div>
-              </form>
+              </form> */}
+            </div>
+            <div className="row d-flex justify-content-center mb-5">
+              <button
+                className="cindy-btn"
+                onClick={() => {
+                  setDiscount(Discount + 100)
+                  setTotal(sum(mycartDisplay) - Discount - Shipping)
+                }}
+              >
+                生日優惠卷
+              </button>
+              <button
+                className="cindy-btn mx-1"
+                onClick={() => {
+                  setDiscount(Discount + 60)
+                  setTotal(sum(mycartDisplay) - Discount - Shipping)
+                }}
+              >
+                新用戶優惠卷
+              </button>
+              <button
+                className="cindy-btn"
+                onClick={() => {
+                  setDiscount(Discount + 60)
+                  setTotal(sum(mycartDisplay) - Discount - Shipping)
+                }}
+              >
+                滿額優惠卷
+              </button>
             </div>
           </div>
         </div>
-        <div className="row d-flex justify-content-end mt-7 no-gutters">
-          <button className="ninginfo-btn">填寫訂單訊息</button>
+
+        <div className="row d-flex justify-content-end mb-7 mt-5 mt-3">
+          <Link to="/CheckOutP2">
+            <button className="ninginfo-btn mx-1">填寫訂單訊息</button>
+          </Link>
         </div>
       </div>
     </>
