@@ -1,12 +1,63 @@
 /* 字體 */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&display=swap');
 
 * {
-  font-family: "Noto Serif TC", serif;
+  font-family: 'Noto Serif TC', serif;
   /* font-family: 'Cinzel', serif; */
 }
 
 .chang-input {
   border-bottom: solid 1px rgb(187, 187, 187);
+}
+
+.chang-bid-btn {
+  font-size: 16px * 0.94;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  color: #fcaa3e;
+  padding: 15px 30px;
+  border-radius: 5px;
+  border: 2px solid #cacaca;
+}
+
+.chang-bid-btn:hover {
+  color: #fcaa3e;
+  background-color: #ffffff;
+}
+
+// 競標表格頭像
+.chang-bidding-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+
+.chang-bid-table-title > th {
+  border: 0px;
+}
+
+// 競標表格
+.chang-bid-table > tr > td {
+  vertical-align: middle;
+  border-left: 0px;
+  border-right: 0px;
+  background-color: #ffffff;
+  margin-bottom: 100px;
+
+  // 文字顏色
+  color: #615956;
+  font-size: $font-size-base * 0.875; //14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
+}
+
+// 競標表格(會員)字體顏色?????????????????????????呼叫不到
+.chang-account-text {
+  margin-bottom: 100px;
+  color: #92b6ba;
+  font-size: $font-size-base * 0.875; //14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
 }

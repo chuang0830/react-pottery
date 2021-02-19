@@ -1,32 +1,86 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
+import { FaRegHeart } from 'react-icons/fa'
+import { FaShoppingCart } from 'react-icons/fa'
 
 function Changbidindex() {
+  const [photos2, setphotos2] = useState([])
+  //const [dataLoading, setDataLoding] = useState(false)
+
+  async function getphotos2FromServer1() {
+    // 開啟載入指示
+    //setDataLoading(true)
+
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/address-book/json'
+
+    //header格式設定為json格式
+    const request1 = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+
+    const response1 = await fetch(request1)
+    const data1 = await response1.json()
+    console.log(data1)
+    //設定資料給photos
+    setphotos2(data1)
+  }
+
+  //一開始就會開始載入資料
+  useEffect(() => {
+    getphotos2FromServer1()
+  }, [])
+
+  //每次users資料有變動就會X秒後關掉載入指示
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setDataLoading(false)
+  //   }, 1000)
+  // }, [photos2])
+
+  //載入圖示
+  const loading = (
+    <>
+      <div className="d-flex justify-content-center">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    </>
+  )
   return (
     <>
       {/* banner照片 */}
-      <div className="header">
-        <div className="bannerpic">
-          <img src="picture/banner.jpeg" />
+      <div className="chang-header">
+        <div className="chang-banner">
+          <img
+            src="http://localhost:3008/chang-images/banner.jpeg"
+            alt="bidbanner"
+          />
         </div>
       </div>
-      {/* 麵包屑 */}
-      <div className="container con">
-        <div>
+
+      {/* winnie(不要動到) 麵包屑 */}
+      <div className="container">
+        <div className="row">
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
                 <a href="#">首頁</a>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                商品專區
+                競標專區
               </li>
             </ol>
           </nav>
         </div>
-        {/* 標題，文字 */}
-        <div className="row box2">
+        {/* winnie(不要動到) 標題，文字 */}
+        <div className="row">
           <div className="winnie-title">
             <h1>Custormize</h1>
           </div>
@@ -38,505 +92,59 @@ function Changbidindex() {
             」正是品牌傳達的理念。堅持保留古文化，以知性、人文，現代、創新的方式，傳承製陶技藝，推廣陶藝普及化，讓現代人一探古陶奧妙之旅。博物館有寬廣明亮的廣場式展覽中心，休閒、教育性質兼具，做陶、玩陶，賞陶、創陶，邀您親自一探陶之靈魂，體驗陶之樂趣。新旺集瓷陶藝教室是個以知性人文的心、現代創新的方式，並以傳承鶯歌傳統技藝文化自許的地方。
           </p>
         </div>
-        {/* 照片文字 */}
-        <div className="row justify-content-between">
-          {/* 左半部 */}
-          <div className="col-7">
-            <img src="picture/kid.jpg" />
+
+        {/* chien(不要動到) 照片+文字 */}
+        <div className="row py-5 mb-5 chien-prod">
+          <div className="chien-prod-img col-8">
+            <img
+              className="overflow-hidden w-100"
+              src="http://localhost:3008/chang-images/kid.jpg"
+              alt="bidbanner"
+            />
           </div>
-          {/* 右半部 */}
-          <div className="col-4 chang-title-line">
-            <h2>天空藍手作圓盤</h2>
-            <h3>690</h3>
-            <div className="d-flex justify-content chang-button-box">
-              {/* 計數器 */}
-              <div className="chang-count-border-btn col-4 d-flex flex-row justify-content-center">
-                <button className="chang-count-btn">-&nbsp;</button>
-                <button className="chang-count-btn">1</button>
-                <button className="chang-count-btn">&nbsp;+</button>
-              </div>
-              {/* 加入購物車按鈕 */}
-              <div className="col-8">
-                <button className="chang-cart-btn">加入購物車</button>
-              </div>
-            </div>
-            {/* 商品描述 */}
-            <div className="winnie-description">
-              <p className="winnie-detail-p">商品描述</p>
-              <p className="text-break">
-                克雷洛夫曾經認為現實是此岸，理想是彼岸。
-                <br />
-                中間隔著湍。
-              </p>
-            </div>
-            <div className="winnie-description">
-              <p className="winnie-detail-p">商品規格</p>
-              <p className="text-break">
-                克雷洛夫曾經認為現實是此岸，理想是彼岸。
-                <br />
-                中間隔著湍。
+          <div className="chien-prod-cont col-4 my-auto">
+            <div className="card-body">
+              <h5 className="pb-4 chien-card-title chien-f-24">商品專區</h5>
+              <p className="card-text py-4 chien-f-14">
+                克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
               </p>
             </div>
           </div>
         </div>
-        {/* Card */}
+        <div className="winnie-title">
+          <h1>Product</h1>
+        </div>
+        {/* winnie(不要動到) Card() */}
         <div className="row">
-          <div className="chang-title-line">
-            <h2>商品分類</h2>
-          </div>
+          {/* Card-抓商品資料 */}
+
           <div className="winnie-p-wrap d-flex">
             {/* 第一個 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="d-flex">
-                  <div className="chang-clock">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={44}
-                      height={44}
-                      viewBox="0 0 44 44"
-                    >
-                      <g
-                        id="Group_811"
-                        data-name="Group 811"
-                        transform="translate(-162 -2056)"
-                      >
-                        <g
-                          id="Group_666"
-                          data-name="Group 666"
-                          transform="translate(-241 124.358)"
-                        >
-                          <g
-                            id="Ellipse_18"
-                            data-name="Ellipse 18"
-                            transform="translate(403 1931.642)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeWidth={2}
-                          >
-                            <circle cx={22} cy={22} r={22} stroke="none" />
-                            <circle cx={22} cy={22} r={21} fill="none" />
-                          </g>
-                          <line
-                            id="Line_74"
-                            data-name="Line 74"
-                            y2="13.907"
-                            transform="translate(423.829 1940.905)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                          <line
-                            id="Line_75"
-                            data-name="Line 75"
-                            x1="11.902"
-                            transform="translate(423.829 1954.813)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                        </g>
-                      </g>
-                    </svg>
+
+            {photos2.length &&
+              photos2.map((value, index) => {
+                //單筆圖片直接value.photo
+                //多筆圖片let p = JSON.parse(value.photo)[0]
+                let p1 = value.photo
+                p1 = 'http://localhost:3008/chang-images/' + p1
+                return (
+                  <div className="col-lg-4 col-md-6">
+                    <div className="winnie-card-content">
+                      <div key={value.bid_id} className="winnie-card-img">
+                        <img className="w-100" src={p1} alt="" />
+                      </div>
+                      <div className="winnie-card-name text-justify d-flex justify-content-between">
+                        <p>{value.bid_product_number}</p>
+                        <div>
+                          <FaRegHeart className="far fa-heart mr-2" />
+                          <FaShoppingCart />
+                        </div>
+                      </div>
+                      <p className="winnie-card-price">{value.bid_sum_money}</p>
+                    </div>
                   </div>
-                  <div className="chang-time">
-                    <p>01:08:47</p>
-                  </div>
-                </div>
-                <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
-                  </div>
-                </div>
-                <a href="#" className="winnie-card-price">
-                  690
-                </a>
-              </div>
-            </div>
-            {/* 2 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="d-flex">
-                  <div className="chang-clock">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={44}
-                      height={44}
-                      viewBox="0 0 44 44"
-                    >
-                      <g
-                        id="Group_811"
-                        data-name="Group 811"
-                        transform="translate(-162 -2056)"
-                      >
-                        <g
-                          id="Group_666"
-                          data-name="Group 666"
-                          transform="translate(-241 124.358)"
-                        >
-                          <g
-                            id="Ellipse_18"
-                            data-name="Ellipse 18"
-                            transform="translate(403 1931.642)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeWidth={2}
-                          >
-                            <circle cx={22} cy={22} r={22} stroke="none" />
-                            <circle cx={22} cy={22} r={21} fill="none" />
-                          </g>
-                          <line
-                            id="Line_74"
-                            data-name="Line 74"
-                            y2="13.907"
-                            transform="translate(423.829 1940.905)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                          <line
-                            id="Line_75"
-                            data-name="Line 75"
-                            x1="11.902"
-                            transform="translate(423.829 1954.813)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                  <div className="chang-time">
-                    <p>01:08:47</p>
-                  </div>
-                </div>
-                <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
-                  </div>
-                </div>
-                <a href="#" className="winnie-card-price">
-                  690
-                </a>
-              </div>
-            </div>
-            {/* 3 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="d-flex">
-                  <div className="chang-clock">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={44}
-                      height={44}
-                      viewBox="0 0 44 44"
-                    >
-                      <g
-                        id="Group_811"
-                        data-name="Group 811"
-                        transform="translate(-162 -2056)"
-                      >
-                        <g
-                          id="Group_666"
-                          data-name="Group 666"
-                          transform="translate(-241 124.358)"
-                        >
-                          <g
-                            id="Ellipse_18"
-                            data-name="Ellipse 18"
-                            transform="translate(403 1931.642)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeWidth={2}
-                          >
-                            <circle cx={22} cy={22} r={22} stroke="none" />
-                            <circle cx={22} cy={22} r={21} fill="none" />
-                          </g>
-                          <line
-                            id="Line_74"
-                            data-name="Line 74"
-                            y2="13.907"
-                            transform="translate(423.829 1940.905)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                          <line
-                            id="Line_75"
-                            data-name="Line 75"
-                            x1="11.902"
-                            transform="translate(423.829 1954.813)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                  <div className="chang-time">
-                    <p>01:08:47</p>
-                  </div>
-                </div>
-                <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
-                  </div>
-                </div>
-                <a href="#" className="winnie-card-price">
-                  690
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="winnie-p-wrap d-flex">
-            {/* 第一個 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="d-flex">
-                  <div className="chang-clock">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={44}
-                      height={44}
-                      viewBox="0 0 44 44"
-                    >
-                      <g
-                        id="Group_811"
-                        data-name="Group 811"
-                        transform="translate(-162 -2056)"
-                      >
-                        <g
-                          id="Group_666"
-                          data-name="Group 666"
-                          transform="translate(-241 124.358)"
-                        >
-                          <g
-                            id="Ellipse_18"
-                            data-name="Ellipse 18"
-                            transform="translate(403 1931.642)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeWidth={2}
-                          >
-                            <circle cx={22} cy={22} r={22} stroke="none" />
-                            <circle cx={22} cy={22} r={21} fill="none" />
-                          </g>
-                          <line
-                            id="Line_74"
-                            data-name="Line 74"
-                            y2="13.907"
-                            transform="translate(423.829 1940.905)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                          <line
-                            id="Line_75"
-                            data-name="Line 75"
-                            x1="11.902"
-                            transform="translate(423.829 1954.813)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                  <div className="chang-time">
-                    <p>01:08:47</p>
-                  </div>
-                </div>
-                <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
-                  </div>
-                </div>
-                <a href="#" className="winnie-card-price">
-                  690
-                </a>
-              </div>
-            </div>
-            {/* 2 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="d-flex">
-                  <div className="chang-clock">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={44}
-                      height={44}
-                      viewBox="0 0 44 44"
-                    >
-                      <g
-                        id="Group_811"
-                        data-name="Group 811"
-                        transform="translate(-162 -2056)"
-                      >
-                        <g
-                          id="Group_666"
-                          data-name="Group 666"
-                          transform="translate(-241 124.358)"
-                        >
-                          <g
-                            id="Ellipse_18"
-                            data-name="Ellipse 18"
-                            transform="translate(403 1931.642)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeWidth={2}
-                          >
-                            <circle cx={22} cy={22} r={22} stroke="none" />
-                            <circle cx={22} cy={22} r={21} fill="none" />
-                          </g>
-                          <line
-                            id="Line_74"
-                            data-name="Line 74"
-                            y2="13.907"
-                            transform="translate(423.829 1940.905)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                          <line
-                            id="Line_75"
-                            data-name="Line 75"
-                            x1="11.902"
-                            transform="translate(423.829 1954.813)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                  <div className="chang-time">
-                    <p>01:08:47</p>
-                  </div>
-                </div>
-                <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
-                  </div>
-                </div>
-                <a href="#" className="winnie-card-price">
-                  690
-                </a>
-              </div>
-            </div>
-            {/* 3 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="d-flex">
-                  <div className="chang-clock">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={44}
-                      height={44}
-                      viewBox="0 0 44 44"
-                    >
-                      <g
-                        id="Group_811"
-                        data-name="Group 811"
-                        transform="translate(-162 -2056)"
-                      >
-                        <g
-                          id="Group_666"
-                          data-name="Group 666"
-                          transform="translate(-241 124.358)"
-                        >
-                          <g
-                            id="Ellipse_18"
-                            data-name="Ellipse 18"
-                            transform="translate(403 1931.642)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeWidth={2}
-                          >
-                            <circle cx={22} cy={22} r={22} stroke="none" />
-                            <circle cx={22} cy={22} r={21} fill="none" />
-                          </g>
-                          <line
-                            id="Line_74"
-                            data-name="Line 74"
-                            y2="13.907"
-                            transform="translate(423.829 1940.905)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                          <line
-                            id="Line_75"
-                            data-name="Line 75"
-                            x1="11.902"
-                            transform="translate(423.829 1954.813)"
-                            fill="none"
-                            stroke="#615956"
-                            strokeLinecap="round"
-                            strokeWidth={1}
-                          />
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
-                  <div className="chang-time">
-                    <p>01:08:47</p>
-                  </div>
-                </div>
-                <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
-                  </div>
-                </div>
-                <a href="#" className="winnie-card-price">
-                  690
-                </a>
-              </div>
-            </div>
+                )
+              })}
           </div>
         </div>
         {/* [_winniepage.scss] 頁籤 bootstrap:pagination */}
@@ -694,7 +302,11 @@ function Changbidindex() {
             <div className="col-lg-4 col-md-6">
               <div className="winnie-card-content">
                 <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
+                  <img
+                    className="w-100"
+                    src="./winnie-images/test.png"
+                    alt=""
+                  />
                 </div>
                 <div className="winnie-card-name text-justify d-flex justify-content-between">
                   <p>小巧的花瓶瓷器</p>
@@ -747,7 +359,130 @@ function Changbidindex() {
           </div>
         </div>
       </div>
-      <div className="footer" />
+
+      {/* chien(不要動到) 頁尾 */}
+      <footer>
+        <div className="chien-footer-top py-5 container-fluid">
+          <div className="ch-footer-top">
+            <div className="row p-3">
+              <div className="col-6">
+                <a className="chien-f-14 m-4 text-white" href="#">
+                  關於我們
+                </a>
+                <p className="chien-aboutus-content chien-f-14 mx-5 my-3">
+                  克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
+                </p>
+              </div>
+              <div className="col-3">
+                <a className="chien-f-14 m-4 text-white" href="#">
+                  聯絡我們
+                </a>
+                <p className="chien-contactus-subtitle chien-f-14 mx-5 mt-3 mb-0">
+                  E-Mail
+                </p>
+                <p className="chien-f-14 mx-5 text-white">contact@utsuwa.com</p>
+                <p className="chien-contactus-subtitle chien-f-14 mx-5 mt-3 mb-0">
+                  Telephone
+                </p>
+                <p className="chien-f-14 mx-5 text-white">+886-908-000-000</p>
+                <p className="chien-contactus-subtitle chien-f-14 mx-5 mt-3 mb-0">
+                  Office Address
+                </p>
+                <p className="chien-f-14 mx-5 text-white">
+                  2F., No. 390, Sec. 1, Fuxing S. Rd., Da’an Dist., Taipei City
+                  106, Taiwan (R.O.C.)
+                </p>
+              </div>
+              <div className="col-3">
+                <a className="chien-f-14 m-4 text-white" href="#">
+                  最新消息
+                </a>
+                <p className="chien-news-content chien-f-14 mx-5 mt-3 mb-1">
+                  克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍。
+                </p>
+                <p className="chien-f-12 mx-5 text-white">
+                  August, 25, 2018 | by Utsuwa
+                </p>
+                <p className="chien-news-content chien-f-14 mx-5 mt-3 mb-1">
+                  克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍。
+                </p>
+                <p className="chien-f-12 mx-5 text-white">
+                  August, 25, 2018 | by Utsuwa
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="chien-footer-bottom py-3 container-fluid">
+          <div className="ch-footer-bottom">
+            <div className="row">
+              <ul className="social-links-area nav">
+                <li>
+                  <span className="chien-hidden-icon mx-3">
+                    <i className="fab fa-facebook-square" />
+                  </span>
+                </li>
+                <li>
+                  <span className="chien-hidden-icon mx-3">
+                    <i className="fab fa-twitter-square" />
+                  </span>
+                </li>
+                <li>
+                  <span className="chien-hidden-icon mx-3">
+                    <i className="fab fa-instagram-square" />
+                  </span>
+                </li>
+                <li>
+                  <span className="chien-hidden-icon mx-3">
+                    <i className="fab fa-telegram" />
+                  </span>
+                </li>
+              </ul>
+              <div className="mx-auto text-white copyright social-icon">
+                Copyright © 2021 Utsuwa Inc.
+              </div>
+              <ul className="social-links-area nav">
+                <li>
+                  <a
+                    className="mx-3 chien-social-icon"
+                    href="#"
+                    target="_blank"
+                  >
+                    <i className="fab fa-facebook-square" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="mx-3 chien-social-icon"
+                    href="#"
+                    target="_blank"
+                  >
+                    <i className="fab fa-twitter-square" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="mx-3 chien-social-icon"
+                    href="#"
+                    target="_blank"
+                  >
+                    <i className="fab fa-instagram-square" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="mx-3 chien-social-icon"
+                    href="#"
+                    target="_blank"
+                  >
+                    <i className="fab fa-telegram" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }
