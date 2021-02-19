@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import React, { useState } from 'react'
 //import { withRouter } from 'react-router-dom'
 
 function Login(props) {
@@ -12,6 +12,7 @@ function Login(props) {
   }
   const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
+  const [showcss, setShowcss] = useState(false)
   async function handleSubmit() {
     const newData = { account, password }
     const url = 'http://localhost:3000/login'
@@ -27,6 +28,13 @@ function Login(props) {
     const response = await fetch(request)
     const data = await response.json()
     console.log('伺服器回傳的json資料', data)
+    if (data.success) {
+      console.log('set sid')
+      localStorage.setItem('member-sid', data.sid)
+      props.history.push('/member')
+    } else {
+      setShowcss(true)
+    }
   }
 
   return (
@@ -46,20 +54,18 @@ function Login(props) {
               className="alert alert-danger"
               role="alert"
               id="info"
-              style={{ textAlign: 'center', display: 'none' }}
+              style={{
+                textAlign: 'center',
+                visibility: showcss ? 'visible' : 'hidden',
+              }}
             >
               帳號或密碼錯誤
             </div>
             <div className="p-control">
-              <p>會員註冊</p>
+              <p>會員登入</p>
             </div>
             <div className="cindy-form">
-              <form
-                action=""
-                autocomplete="off"
-                name="loginform"
-                onsubmit="checkForm()"
-              >
+              <form action="" autoComplete="off" name="loginform">
                 <div className="cindy-input">
                   <label htmlFor="account">帳號</label>
                   <br />
@@ -102,4 +108,4 @@ function Login(props) {
     </>
   )
 }
-export default Login
+export default withRouter(Login)

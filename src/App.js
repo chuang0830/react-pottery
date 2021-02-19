@@ -9,10 +9,8 @@ import React, { useState, useEffect } from 'react'
 import Login from './pages/Login'
 import ForgetPass from './pages/ForgetPass'
 import Register from './pages/Register'
-import MemberEdit from './pages/MemberEdit'
-import MemberOrderList from './pages/MemberOrderList'
-import MemberFav from './pages/MemberFav'
-import MemberCoupon from './pages/MemberCoupon'
+import Member from './pages/Member'
+
 //商品
 import Products from './pages/Products'
 import ProductsDetail from './pages/ProductsDetail'
@@ -45,11 +43,11 @@ function App() {
       <>
         {/* 嚴謹的要放上面 */}
         {/* 放連結 */}
-        <ChienHeader />
+        {/* <ChienHeader />
         <ChienBanner />
         <ChienMain />
         <ChienPolicycard />
-        <ChienFooter />
+        <ChienFooter /> */}
         <Link to="/CourseCategory">CourseCategory</Link>
         <Link to="/CourseCategory/Experience">Experience</Link>
         <Link to="/CourseCategory/OnlineCourse">OnlineCourse</Link>
@@ -64,6 +62,7 @@ function App() {
         <Link to="/products">Products</Link>
         <Link to="/products/:id">ProductsDetail</Link>
         <Link to="/customize">Customize</Link>
+        <Link to="/member">Member</Link>
 
         {/* Switch從上到下找唯一匹配的路由表 */}
         <Switch>
@@ -78,17 +77,8 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/memberedit">
-            <MemberEdit />
-          </Route>
-          <Route path="/memberorderList">
-            <MemberOrderList />
-          </Route>
-          <Route path="/memberfav">
-            <MemberFav />
-          </Route>
-          <Route path="/membercoupon">
-            <MemberCoupon />
+          <Route path="/member">
+            <Member />
           </Route>
           <Route exact path="/products">
             <Products />
