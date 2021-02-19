@@ -1,6 +1,23 @@
 // 其它要覆蓋掉原本的預設bootstrap樣式-變數-要放在這上面
 @import './variables.scss';
-
+// 覆蓋bootstrap form
+$border-radius: 0;
+$input-border-radius: 0;
+$input-box-shadow: 0;
+$input-focus-box-shadow: 0;
+@mixin form-control-focus() {
+  &:focus {
+    color: $input-focus-color;
+    background-color: $input-focus-bg;
+    border-color: $input-focus-border-color;
+    outline: none;
+    @if $enable-shadows {
+      box-shadow: $input-box-shadow, $input-focus-box-shadow;
+    } @else {
+      box-shadow: $input-focus-box-shadow;
+    }
+  }
+}
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Noto+Serif+TC:wght@300;400;500&display=swap');
@@ -36,6 +53,10 @@
   img {
     margin: 0px 5px;
     border: 3px solid white;
+    &:hover {
+      cursor: pointer;
+      border: 3px solid #77777a;
+    }
   }
 }
 //roductsmorecard
@@ -393,18 +414,17 @@ text {
 //winnieclassimg
 //_winnieclassimg 商品分類＋hover效果
 .winnie-classimg {
-  margin: 0px 170px;
-  position: absolute;
-  top: 75%;
-}
-.winnie-classimg ul {
-  display: flex;
   list-style: none;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: -350px;
+  padding: 0px 0px;
 }
 
 .winnie-classimg li {
   position: relative;
-  margin: 0 30px;
+  margin: 0px 30px;
   height: 130px;
   width: 140px;
 }
@@ -437,11 +457,14 @@ text {
   color: #615956;
   margin: auto;
 }
+.winnie-classimg li a {
+  text-decoration: none;
+}
 
-.winnie-classimg li:hover > .winnie-class-p::before {
+.winnie-classimg li a:hover > .winnie-class-p::before {
   width: 60%;
 }
-.winnie-classimg li:hover > img {
+.winnie-classimg li a:hover > img {
   bottom: 15px;
 }
 //winniepage
@@ -463,7 +486,7 @@ text {
   .page-item.active .page-link {
     background-color: transparent;
     color: $success;
-    border-bottom: 1px solid $info;
+    border-bottom: 2px solid $info;
   }
 }
 
@@ -754,6 +777,7 @@ text {
 }
 //creditcard
 @mixin creditcard {
+  letter-spacing: 3px;
   height: 150px;
   width: 250px;
   border-radius: 20px;
@@ -772,17 +796,17 @@ text {
   .creditcardning-graybg {
     position: absolute;
     top: 35px;
-    left: 10px;
+    left: 20px;
     display: flex;
     justify-content: center;
     .creditcardning-gray {
       left: 10px;
       background-color: $warning;
-      width: 150px;
+      width: 165px;
       height: 30px;
     }
     .creditcardning-gray-title {
-      margin-left: 20px;
+      margin-left: 15px;
       margin-top: -2px;
       height: 30px;
       color: $success;
@@ -795,7 +819,7 @@ text {
     height: 30px;
     width: 50px;
     top: 105px;
-    left: 10px;
+    left: 20px;
     border-radius: 10px;
   }
 }
@@ -812,7 +836,7 @@ text {
   }
   .creditcardning-gray-title {
     position: absolute;
-    margin-left: 20px;
+    margin-left: 30px;
     margin-top: -2px;
     height: 30px;
     color: $success;
@@ -821,7 +845,7 @@ text {
   }
   .creditcardning-gray-name {
     position: absolute;
-    margin-left: 20px;
+    margin-left: 30px;
     margin-top: -2px;
     height: 30px;
     color: $success;
@@ -830,7 +854,7 @@ text {
   }
   .creditcardning-gray-date {
     position: absolute;
-    margin-left: 20px;
+    margin-left: 50px;
     margin-top: -2px;
     height: 30px;
     color: $success;
@@ -892,7 +916,7 @@ text {
     font-size: 30px;
     line-height: 33px;
     color: #77777a;
-    padding: 20px 0px;
+    padding: 28px 0px 20px 0px;
     &::before {
       content: '$';
     }
@@ -984,6 +1008,31 @@ text {
 
 .chang-button-box {
   margin-bottom: 50px;
+}
+
+// 覆蓋 boostrap
+.form-control {
+  display: block;
+  width: 100%;
+  height: 40px; //$input-height;
+  margin: 10px 0px; //$input-padding-y $input-padding-x;
+  //font-family: $input-font-family;
+  @include font-size($input-font-size);
+  font-weight: $input-font-weight;
+  line-height: 30px; //$input-line-height;;
+  color: $input-color;
+  background-color: $input-bg;
+  background-clip: padding-box;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: $input-border-width solid $primary;
+
+  // Unstyle the caret on `<select>`s in IE10+.
+  &::-ms-expand {
+    background-color: transparent;
+    border: 0;
+  }
 }
 @import './cindyregister.scss';
 @import './cindylogin.scss';

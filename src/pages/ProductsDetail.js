@@ -2,9 +2,98 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
-import cartHandler from './../utils/CartHandler'
 
 function ProductsDetail(props) {
+  // const testData1 = {
+  //   sid: 3,
+  //   product_name: '深灰手作陶瓷杯',
+  //   category_id: 1,
+  //   price: 420,
+  //   color: '灰',
+  //   size: '105mm*105mm',
+  //   photo: '["3.jpg","20-2.jpg","20-3.jpg"]',
+  //   introduction: '希望通過豐富的色彩變化為日常生活著色的日子。',
+  // }
+  const [photos, setPhotos] = useState([])
+
+  // 加入購物車-----------------------------------------------------------------
+  const [mycart, setMycart] = useState([])
+  const updateCartToLocalStorage = (item) => {
+    const currentCart = JSON.parse(localStorage.getItem('utsuwacart')) || []
+    const index = currentCart.findIndex((v) => v.sid === item.sid)
+    if (index > -1) {
+      return
+    } else {
+      currentCart.push(item)
+    }
+    localStorage.setItem('utsuwacart', JSON.stringify(currentCart))
+    setMycart(currentCart)
+  }
+  //-----------------------------------------------------------------------------
+  //async function getPhotosFromServer() {
+  // 開啟載入指示
+  //setDataLoading(true)
+  const [total, setTotal] = useState(0)
+  const [data, setData] = useState([
+    {
+      sid: 0,
+      product_name: '',
+      category_id: 0,
+      price: 0,
+      color: '',
+      size: '',
+      photo: '',
+      introduction: '',
+    },
+  ])
+  const [photo, setPhoto] = useState([
+    {
+      sid: 0,
+      product_name: '',
+      category_id: 0,
+      price: 0,
+      color: '',
+      size: '',
+      photo: '',
+      introduction: '',
+    },
+  ])
+  const [photo1, setPhoto1] = useState([
+    {
+      sid: 0,
+      product_name: '',
+      category_id: 0,
+      price: 0,
+      color: '',
+      size: '',
+      photo: '',
+      introduction: '',
+    },
+  ])
+  const [photo2, setPhoto2] = useState([
+    {
+      sid: 0,
+      product_name: '',
+      category_id: 0,
+      price: 0,
+      color: '',
+      size: '',
+      photo: '',
+      introduction: '',
+    },
+  ])
+  const [photo3, setPhoto3] = useState([
+    {
+      sid: 0,
+      product_name: '',
+      category_id: 0,
+      price: 0,
+      color: '',
+      size: '',
+      photo: '',
+      introduction: '',
+    },
+  ])
   const testData1 = {
     sid: 3,
     product_name: '深灰手作陶瓷杯',
@@ -15,35 +104,54 @@ function ProductsDetail(props) {
     photo: '["3.jpg","20-2.jpg","20-3.jpg"]',
     introduction: '希望通過豐富的色彩變化為日常生活著色的日子。',
   }
-  const [photos, setPhotos] = useState([])
-  //const [dataLoading, setDataLoding] = useState(false)
 
-  async function getPhotosFromServer() {
-    // 開啟載入指示
-    //setDataLoading(true)
+  // //const [dataLoading, setDataLoding] = useState(false)
 
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:3000/products/json'
+  // async function getPhotosFromServer() {
+  //   // 開啟載入指示
+  //   //setDataLoading(true)
 
-    //header格式設定為json格式
-    const request = new Request(url, {
+  //   // 連接的伺服器資料網址
+  //   const url = 'http://localhost:3000/products/json'
+
+  //   //header格式設定為json格式
+  //   const request = new Request(url, {
+  //     method: 'GET',
+  //     headers: new Headers({
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     }),
+  //   })
+
+  //   const response = await fetch(request)
+  //   const data = await response.json()
+  //   console.log(data)
+  //   //設定資料給photos
+  //   setPhotos(data)
+  // }
+
+  //抓id&處理photo資料
+  const handleGetdata = () => {
+    const url = `http://localhost:3000/products/id?sid=${props.match.params.id}`
+    fetch(url, {
       method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
     })
-
-    const response = await fetch(request)
-    const data = await response.json()
-    console.log(data)
-    //設定資料給photos
-    setPhotos(data)
+      .then((r) => r.json())
+      .then((r) => {
+        let p = 'http://localhost:3008/winnie-images/'
+        setPhoto(p + JSON.parse(r[0].photo)[0])
+        setPhoto1(p + JSON.parse(r[0].photo)[0])
+        setPhoto2(p + JSON.parse(r[0].photo)[1])
+        setPhoto3(p + JSON.parse(r[0].photo)[2])
+        setData(r)
+        console.log(r)
+      })
   }
 
   //一開始就會開始載入資料
   useEffect(() => {
-    getPhotosFromServer()
+    handleGetdata()
+    //getPhotosFromServer()
   }, [])
 
   //每次users資料有變動就會X秒後關掉載入指示
@@ -63,6 +171,7 @@ function ProductsDetail(props) {
       </div>
     </>
   )
+
   return (
     <>
       {/* hero page */}
@@ -70,6 +179,7 @@ function ProductsDetail(props) {
         <div className="winnie-detail-t-bg"></div>
       </div>
       {/* 麵包屑 */}
+      {/*查看id是否有抓到<h3>{props.match.params.id}</h3> */}
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
@@ -99,30 +209,38 @@ function ProductsDetail(props) {
           </p>
         </div>
         {/* 商品區 */}
+
         <div className="winnie-detail-margin">
           <div className="row">
             <div className="wrapper col-lg-8 col-md-12">
               <div className="img-change-l">
-                <img
-                  src="http://localhost:3008/winnie-images/21-1.jpg"
-                  width={680}
-                  height={440}
-                  alt=""
-                />
+                <img src={photo} width={680} height={440} alt="" />
               </div>
               <div className="img-change-s">
                 <img
-                  src="http://localhost:3008/winnie-images/21-1.jpg"
+                  onClick={() => {
+                    setPhoto(photo1)
+                  }}
+                  src={photo1}
+                  width={110}
                   height={110}
                   alt=""
                 />
                 <img
-                  src="http://localhost:3008/winnie-images/21-2.jpg"
+                  onClick={() => {
+                    setPhoto(photo2)
+                  }}
+                  src={photo2}
+                  width={110}
                   height={110}
                   alt=""
                 />
                 <img
-                  src="http://localhost:3008/winnie-images/21-3.jpg"
+                  onClick={() => {
+                    setPhoto(photo3)
+                  }}
+                  src={photo3}
+                  width={110}
                   height={110}
                   alt=""
                 />
@@ -130,54 +248,66 @@ function ProductsDetail(props) {
             </div>
             <div className="col-lg-4 col-md-12 chang-title-line">
               <div className="d-flex chang-border-bottom justify-content-between">
-                <h2>天空藍手作圓盤</h2>
+                <h2>{data[0].product_name}</h2>
                 <p>
                   加入追蹤清單
                   <FaRegHeart className="i mb-1 ml-1" />
                 </p>
               </div>
-              <h3>690</h3>
+              <h3>{data[0].price}</h3>
               <div className="d-flex justify-content chang-button-box">
                 {/* 計數器 */}
                 <div className="col-4 chang-count-border-btn  d-flex flex-row justify-content-center">
-                  <button className="chang-count-btn">-</button>
-                  <button className="chang-count-btn">1</button>
-                  <button className="chang-count-btn">+</button>
+                  <button
+                    className="chang-count-btn"
+                    onClick={() => {
+                      setTotal(total - 1)
+                    }}
+                  >
+                    -
+                  </button>
+                  <button className="chang-count-btn">{total}</button>
+                  <button
+                    className="chang-count-btn"
+                    onClick={() => {
+                      setTotal(total + 1)
+                    }}
+                  >
+                    +
+                  </button>
                 </div>
                 {/* 加入購物車按鈕 */}
                 <class className="col-8 ml-4">
-                  <button
+                  {/* <button
                     className="chang-cart-btn"
                     onClick={() => {
-                      const obj = { ...testData1, qty: 1 }
-                      cartHandler.addItem(obj)
+                      updateCartToLocalStorage({
+                        ...testData1,
+                        amount: 1,
+                      })
                     }}
                   >
                     加入購物車 <FaShoppingCart className="mb-1" />
-                  </button>
+                  </button> */}
                 </class>
               </div>
               {/* 商品描述 */}
               <div className="winnie-description">
                 <p className="winnie-detail-p">商品描述</p>
-                <p className="text-break">
-                  {' '}
-                  克雷洛夫曾經認為現實是此岸，理想是彼岸。
-                  <br />
-                  中間隔著湍。
-                </p>
+                <p className="text-break">{data[0].introduction}</p>
               </div>
               <div className="winnie-description">
                 <p className="winnie-detail-p">商品規格</p>
                 <p className="text-break">
-                  克雷洛夫曾經認為現實是此岸，理想是彼岸。
+                  顏色: {data[0].color}
                   <br />
-                  中間隔著湍。
+                  尺寸: {data[0].size}
                 </p>
               </div>
             </div>
           </div>
         </div>
+
         {/*[_winnierecentview.scss] recent view title*/}
         <div className="container">
           <div className="row winnie-line">
@@ -406,4 +536,4 @@ function ProductsDetail(props) {
   )
 }
 
-export default ProductsDetail
+export default withRouter(ProductsDetail)

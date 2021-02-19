@@ -116,7 +116,7 @@ export const ChienHeader = () => (
               </a>
             </li>
             <li className="nav-item chien-navbar-item-member">
-              <Nav.Link as={NavLink} to="/MemberLogin" className="nav-link">
+              <Nav.Link as={NavLink} to="/login" className="nav-link">
                 <FontAwesomeIcon
                   icon={faUser}
                   className="chien-navbar-icon-member"
@@ -156,7 +156,7 @@ export const ChienHeader = () => (
               <Nav.Link
                 className="chien-menu-link py-3"
                 as={NavLink}
-                to="/MemberLogin"
+                to="/login"
               >
                 會員專區
               </Nav.Link>
