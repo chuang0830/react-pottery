@@ -14,7 +14,7 @@ function ProductsDetail(props) {
   //   photo: '["3.jpg","20-2.jpg","20-3.jpg"]',
   //   introduction: '希望通過豐富的色彩變化為日常生活著色的日子。',
   // }
-  const [photos, setPhotos] = useState([])
+  // const [photos, setPhotos] = useState([])
 
   // 加入購物車-----------------------------------------------------------------
   const [mycart, setMycart] = useState([])
@@ -162,16 +162,16 @@ function ProductsDetail(props) {
   // }, [photos])
 
   //載入圖示
-  const loading = (
-    <>
-      <div className="d-flex justify-content-center">
-        <div className="spinner-border" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div>
-    </>
-  )
-
+  // const loading = (
+  //   <>
+  //     <div className="d-flex justify-content-center">
+  //       <div className="spinner-border" role="status">
+  //         <span className="sr-only">Loading...</span>
+  //       </div>
+  //     </div>
+  //   </>
+  // )
+  //}
   return (
     <>
       {/* hero page */}
@@ -278,17 +278,17 @@ function ProductsDetail(props) {
                 </div>
                 {/* 加入購物車按鈕 */}
                 <class className="col-8 ml-4">
-                  {/* <button
+                  <button
                     className="chang-cart-btn"
                     onClick={() => {
                       updateCartToLocalStorage({
-                        ...testData1,
+                        ...data[0],
                         amount: 1,
                       })
                     }}
                   >
                     加入購物車 <FaShoppingCart className="mb-1" />
-                  </button> */}
+                  </button>
                 </class>
               </div>
               {/* 商品描述 */}

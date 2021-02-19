@@ -16,6 +16,10 @@ function CheckOutP1(props) {
 
   // 商品--------------------------------------------------------------
   // State ------------------------------------------------------------
+  // fetch orders
+  const [orders, setOrders] = useState('')
+
+  // 購物車
   const [mycart, setMycart] = useState([])
   // const [dataLoading, setDataLoading] = useState(false)
   const [mycartDisplay, setMycartDisplay] = useState([])
@@ -24,7 +28,47 @@ function CheckOutP1(props) {
   const [Total, setTotal] = useState(0)
   const [Shipping, setShipping] = useState(120)
 
-  // function ----------------------------------------------------------
+  // function fetch orders-----------------------------------------------
+  // 傳送的資料
+  async function addOrders() {
+    const DataProduct = JSON.parse(localStorage.getItem('utsuwacart'))
+    console.log(DataProduct)
+    const Datasid = DataProduct.sid
+    console.log(Datasid)
+    // const DataProductarray = []
+    // DataProduct.map((v, i) => {
+    //   DataProductarray.push(v.sid)
+
+    //   console.log({ DataProductarray })
+    // })
+
+    // console.log(Datasid)
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/orderdetails/list'
+    // 注意header資料格式要設定，伺服器才知道是json格式
+
+    const request = new Request(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(DataProduct),
+      //   // headers: new Headers({
+      //   //   Accept: 'application/json',
+      //   //   'Content-Type': 'appliaction/json',
+      //   // }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    // setOrders(data)
+
+    console.log('伺服器回傳的json資料', data)
+  }
+
+  // 設定傳送資料
+
+  // function 購物車-----------------------------------------------------
   function getCartFromLocalStorage() {
     const newCart = localStorage.getItem('utsuwacart') || '[]'
     setMycart(JSON.parse(newCart))
@@ -55,6 +99,8 @@ function CheckOutP1(props) {
     if (index > -1) {
       isAdded ? currentCart[index].amount++ : currentCart[index].amount--
     }
+    // // 計數器bug
+    // if(currentCart[index].amount<1){}
     localStorage.setItem('utsuwacart', JSON.stringify(currentCart))
     setMycart(currentCart)
   }
@@ -82,6 +128,8 @@ function CheckOutP1(props) {
     }
     return total
   }
+  const index = JSON.parse(localStorage.getItem('utsuwacart')) || []
+  console.log(index)
   return (
     <>
       <div className="container">
@@ -134,9 +182,12 @@ function CheckOutP1(props) {
                       return (
                         <tr>
                           <img
-                            src="http://localhost:3008/winnie-images/{JSON.parse(item.photo)[0]}"
+                            src={`http://localhost:3008/winnie-images/${
+                              JSON.parse(item.photo)[0]
+                            }`}
                             alt=""
                             srcset=""
+                            width="150"
                           />
                           <td> {item.product_name}</td>
                           <td> {item.price}</td>
@@ -249,7 +300,7 @@ function CheckOutP1(props) {
                 </div>
               </form> */}
             </div>
-            <div className="row d-flex justify-content-center mb-5">
+            {/* <div className="row d-flex justify-content-center mb-5">
               <button
                 className="cindy-btn"
                 onClick={() => {
@@ -277,13 +328,19 @@ function CheckOutP1(props) {
               >
                 滿額優惠卷
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
-
         <div className="row d-flex justify-content-end mb-7 mt-5 mt-3">
           <Link to="/CheckOutP2">
-            <button className="ninginfo-btn mx-1">填寫訂單訊息</button>
+            <button
+              className="ninginfo-btn mx-1"
+              onClick={() => {
+                addOrders()
+              }}
+            >
+              填寫訂單訊息
+            </button>
           </Link>
         </div>
       </div>

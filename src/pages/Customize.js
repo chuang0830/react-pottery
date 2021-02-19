@@ -4,13 +4,13 @@ import { FaShoppingCart } from 'react-icons/fa'
 
 function Customize(props) {
   const testData = {
-    sid: 54,
+    sid: 52,
     product_name: '客製商品',
     category_id: 6,
     price: 1080,
     color: '粉',
     size: '200mm*200mm',
-    photo: '["54.jpg"]',
+    photo: '["52.jpg"]',
     introduction: '此商品承載著您特製的心意，非常適合作為禮物。',
   }
   // 加入購物車-----------------------------------------------------------------
@@ -231,6 +231,7 @@ function Customize(props) {
                         updateCartToLocalStorage({
                           ...testData,
                           amount: 1,
+                          customize: 'I Love you',
                         })
                       }}
                     >

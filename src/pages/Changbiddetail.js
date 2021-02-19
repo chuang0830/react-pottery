@@ -1,104 +1,474 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
-//測試git2
+import { FaRegHeart } from 'react-icons/fa'
+import { FaShoppingCart } from 'react-icons/fa'
+import cartHandler from './../utils/CartHandler'
+import Table from 'react-bootstrap/Table'
+
 function Changbiddetail() {
+  // 新增競標資料*******************************************
+  const [dataLoading, setDataLoading] = useState(false)
+  const sid = 1
+  const product_id = 3
+  // const [avatar, setAvatar] = useState('')
+  // const [account, setAccount] = useState('')
+  // const [bid_product_number, setBid_product_number] = useState('')
+  // const [bid_created_time, setBid_created_time] = useState('')
+  const [bid_add_money, setBid_add_money] = useState('')
+  const [bid_sum_money, setBid_sum_money] = useState('')
+
+  // 測試抓member資料
+  const testMemberData1 = {
+    sid: 34,
+    avatar: '1.jpg',
+    account: 'admin',
+    email: 'asd@',
+    password: 'admin',
+    mobile: 'NULL',
+    address: 'NULL',
+    birthday: 'NULL',
+    created_at: '2021-02-04 17:43:55',
+  }
+
+  const testProductData1 = {
+    product_id: 34,
+    sid: '1.jpg',
+    photo: 'admin',
+    bid_product_number: 'asd@',
+  }
+
+  async function addUserToSever() {
+    // 開啟載入指示
+    setDataLoading(true)
+
+    // avatar,account,bid_product_number,bid_add_money,bid_sum_money
+    const newData = {
+      // avatar,
+      // account,
+      sid,
+      product_id,
+      // bid_product_number,
+      // bid_created_time,
+      bid_add_money,
+      bid_sum_money,
+    }
+
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/address-book/add'
+
+    // 注意資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'POST',
+      body: JSON.stringify(newData),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+
+    console.log(JSON.stringify(newData))
+
+    const response = await fetch(request)
+    const data = await response.json()
+
+    console.log('伺服器回傳的json資料', data)
+
+    // 要等驗証過，再設定資料(簡單的直接設定)
+
+    //直接在一段x秒關掉指示器
+    // setTimeout(() => {
+    //   setDataLoading(false)
+    //   alert('儲存完成')
+    //   props.history.push('/')
+    // }, 500)
+  }
+
+  // 顯示競標資料********************************************
+  const [changphotos, setchangphotos] = useState([])
+  //const [dataLoading, setDataLoding] = useState(false)
+
+  async function getphotos2FromServer1() {
+    // 開啟載入指示
+    //setDataLoading(true)
+
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/address-book/json3'
+
+    //header格式設定為json格式
+    const request1 = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+
+    const response1 = await fetch(request1)
+    const data1 = await response1.json()
+    console.log(data1)
+    //設定資料給photos
+    setchangphotos(data1)
+    // localStorage.setItem{'product-sid', data1.product_id}
+  }
+
+  //一開始就會開始載入資料
+  useEffect(() => {
+    getphotos2FromServer1()
+  }, [])
+
+  //每次users資料有變動就會X秒後關掉載入指示
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setDataLoading(false)
+  //   }, 1000)
+  // }, [photos2])
+
+  // 抓id資料，丟出product id**************************************************
+  const [changproductid, setchangproductid] = useState([])
+  //const [dataLoadin0g, setDataLoding] = useState(false)
+
+  async function getproductidFromServer() {
+    // 開啟載入指示
+    //setDataLoading(true)
+
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/address-book/json3'
+
+    //header格式設定為json格式
+    const request1 = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+
+    const response1 = await fetch(request1)
+    const data2 = await response1.json()
+    console.log('data2', data2)
+    //設定資料給photos
+    setchangproductid(data2)
+    // localStorage.setItem{'product-sid', data1.product_id}
+
+    localStorage.setItem('product_id', data2[0].product_id)
+  }
+
+  //一開始就會開始載入資料
+  useEffect(() => {
+    getproductidFromServer()
+  }, [])
+
+  // 測試-----------------------------------------
+  const testData1 = {
+    sid: 1,
+    avatar: '1.jpg',
+    account: 'admin',
+    email: 'asd@',
+    password: 'admin',
+    mobile: 'NULL',
+    address: 'NULL',
+    birthday: 'NULL',
+    created_at: '2021-02-04 17:43:55',
+    product_id: 34,
+    photo: 'admin',
+    bid_product_number: 'asd@',
+  }
+
+  localStorage.setItem('member-sid', testData1.sid)
+  const [photos, setPhotos] = useState([])
+  //const [dataLoading, setDataLoding] = useState(false)
+
+  async function getPhotosFromServer() {
+    // 開啟載入指示
+    //setDataLoading(true)
+    // 連接的伺服器資料網址
+    // const url = 'http://localhost:3000/products/json2'
+    //header格式設定為json格式
+    // const request = new Request(url, {
+    //   method: 'GET',
+    //   headers: new Headers({
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   }),
+    // })
+    // const response = await fetch(request)
+    // const data = await response.json()
+    // console.log(data)
+    // //設定資料給photos
+    // setPhotos(data)
+  }
+
+  //一開始就會開始載入資料
+  useEffect(() => {
+    getPhotosFromServer()
+  }, [])
+
   return (
     <>
-      {/* banner */}
-      <div className="header">
-        <div className="bannerpic">
-          <img src="picture/banner.jpeg" />
-        </div>
+      {/* 測試新增資料 */}
+      {/* // avatar,account,bid_product_number,bid_created_time,bid_add_money,bid_sum_money */}
+      {/* <div className="form-group">
+        <label htmlFor="exampleInputEmail1">avatar</label>
+        <input
+          type="text"
+          className="form-control"
+          value={avatar}
+          onChange={(event) => {
+            setAvatar(event.target.value)
+          }}
+        />
+      </div> */}
+      {/* <div className="form-group">
+        <label htmlFor="exampleInputEmail1">account</label>
+        <input
+          type="text"
+          className="form-control"
+          value={account}
+          onChange={(event) => {
+            setAccount(event.target.value)
+          }}
+        />
+      </div> */}
+      {/* <div className="form-group">
+        <label htmlFor="exampleInputEmail1">bid_product_number</label>
+        <input
+          type="email"
+          className="form-control"
+          value={bid_product_number}
+          onChange={(event) => {
+            setBid_product_number(event.target.value)
+          }}
+        />
+      </div> */}
+      {/* <div className="form-group">
+        <label htmlFor="exampleInputPassword1">bid_created_time</label>
+        <input
+          type="time"
+          className="form-control"
+          value={bid_created_time}
+          onChange={(event) => {
+            setBid_created_time(event.target.value)
+          }}
+        />
+      </div> */}
+      <div className="form-group">
+        <label htmlFor="exampleInputPassword1">bid_add_money</label>
+        <input
+          type="text"
+          className="form-control"
+          value={bid_add_money}
+          onChange={(event) => {
+            setBid_add_money(event.target.value)
+          }}
+        />
       </div>
-      <div className="container container-margin">
-        {/* 麵包屑 */}
-        <div className="row">
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <a href="#">Home</a>
-              </li>
-              <li className="breadcrumb-item">
-                <a href="#">Library</a>
-              </li>
-              <li className="breadcrumb-item active" aria-current="page">
-                Data
-              </li>
-            </ol>
-          </nav>
+      <div className="form-group">
+        <label htmlFor="exampleInputPassword1">bid_sum_money</label>
+        <input
+          type="text"
+          className="form-control"
+          value={bid_sum_money}
+          onChange={(event) => {
+            setBid_sum_money(event.target.value)
+          }}
+        />
+      </div>
+      {/* <button
+        onClick={() => {
+          addUserToSever()
+        }}
+        className="btn btn-primary"
+      >
+        儲存
+      </button> */}
+      {/* hero page */}
+      <div>
+        <div className="winnie-detail-t-bg"></div>
+      </div>
+      {/* 麵包屑 */}
+      <div className="container">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <a href="#">首頁</a>
+            </li>
+            <li className="breadcrumb-item">
+              <a href="#">商品專區</a>
+            </li>
+            <li className="breadcrumb-item">
+              <a href="#">餐盤</a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              天空藍手作圓盤
+            </li>
+          </ol>
+        </nav>
+        {/* title */}
+        <div className="winnie-title">
+          <h1>PRODUCT</h1>
         </div>
-        {/* 照片和右邊資訊 */}
-        <div className="row justify-content-between">
-          {/* 左半邊 */}
-          <div className="col-7">
-            <img src="picture/kid.jpg" />
-          </div>
-          {/* 右半邊 */}
-          <div className="col-4 chang-title-line">
-            <div className="chang-bidding-title">
-              <h2>天空藍手作圓盤</h2>
-              <br />
-              <p style={{ color: '#fcaa3e' }}>
-                <b>倒數3天</b>
-              </p>
-              <p style={{ lineHeight: 30, color: '#fcaa3e' }}>
-                24小時:10分:59秒
-              </p>
-              <br />
-              <p>
-                <b>競標開始日</b>
-              </p>
-              <p style={{ lineHeight: 30 }}>2019-10-26</p>
-              <br />
-              <p>
-                <b>目前金額</b>
-              </p>
-              <p style={{ lineHeight: 30 }}>5412元</p>
-              <br />
-              <p>
-                <b>出價金額</b>
-              </p>
-              <div className="d-flex justify-content-between">
-                <p style={{ lineHeight: 15 }}>1000元</p>
-                {/* 加入購物車按鈕 */}
-                <button className="chang-cart-btn">出價</button>
+        <div className="winnie-text">
+          <p>
+            克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
+            <br />
+            克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
+          </p>
+        </div>
+        {/* 商品區 */}
+        <div className="winnie-detail-margin">
+          <div className="row">
+            <div className="wrapper col-lg-8 col-md-12">
+              <div className="img-change-l">
+                <img
+                  src="http://localhost:3008/chang-images/1.jpg"
+                  width={680}
+                  height={440}
+                  alt=""
+                />
               </div>
-              <br />
-              <button className="chang-cart-btn" style={{ float: 'right' }}>
-                購買
-              </button>
+              <div className="img-change-s">
+                <img
+                  src="http://localhost:3008/chang-images/2.jpg"
+                  height={110}
+                  alt=""
+                />
+                <img
+                  src="http://localhost:3008/chang-images/3.jpg"
+                  height={110}
+                  alt=""
+                />
+                <img
+                  src="http://localhost:3008/chang-images/4.jpg"
+                  height={110}
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-12 chang-title-line">
+              <div className="d-flex chang-border-bottom justify-content-between">
+                <h2>天空藍手作圓盤</h2>
+                <p>已出價 50 次</p>
+              </div>
+              <h3>倒數3天</h3>
+              <h3>競標開始日</h3>
+              <h3>目前金額</h3>
+              <h3>出價金額</h3>
+
+              {/* <div className="form-group">
+                <label htmlFor="exampleInputPassword1">bid_add_money</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={bid_add_money}
+                  onChange={(event) => {
+                    setBid_add_money(event.target.value)
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">bid_sum_money</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={bid_sum_money}
+                  onChange={(event) => {
+                    setBid_sum_money(event.target.value)
+                  }}
+                />
+              </div> */}
+
+              <div className="d-flex justify-content chang-button-box">
+                {/* 計數器 */}
+                <div className="col-4 d-flex flex-row justify-content-center">
+                  <button className="chang-bid-btn">1000</button>
+                </div>
+                {/* 加入購物車按鈕 */}
+                <class className="col-8 ml-4">
+                  <button
+                    className="chang-cart-btn"
+                    onClick={() => {
+                      // const obj = { ...testData1, qty: 1 }
+                      // cartHandler.addItem(obj)
+                      addUserToSever()
+                    }}
+                  >
+                    加注 <FaShoppingCart className="mb-1" />
+                  </button>
+                  {/* <button
+                    onClick={() => {
+                      addUserToSever()
+                    }}
+                    className="btn btn-primary"
+                  >
+                    儲存
+                  </button> */}
+                </class>
+              </div>
+              {/* 商品描述
+              <div className="winnie-description">
+                <p className="winnie-detail-p">商品描述</p>
+                <p className="text-break">
+                  {' '}
+                  克雷洛夫曾經認為現實是此岸，理想是彼岸。
+                  <br />
+                  中間隔著湍。
+                </p>
+              </div>
+              <div className="winnie-description">
+                <p className="winnie-detail-p">商品規格</p>
+                <p className="text-break">
+                  克雷洛夫曾經認為現實是此岸，理想是彼岸。
+                  <br />
+                  中間隔著湍。
+                </p>
+              </div> */}
             </div>
           </div>
         </div>
-        {/* 商品資訊、出價紀錄 */}
-        <div className="row">
-          <div className="chang-title-line">
-            <h2>商品資訊&nbsp;&nbsp;&nbsp;出價紀錄</h2>
-          </div>
+        {/* 競標列表 */}
+
+        <div className="winnie-p-wrap d-flex">
+          {/* 第一個 */}
+          <Table responsive hover>
+            <thead>
+              <tr className="chang-bid-table-title">
+                <th></th>
+                <th></th>
+                <th>產品編號</th>
+                <th>出價時間</th>
+                <th>出價金額</th>
+                <th>目前金額</th>
+              </tr>
+            </thead>
+            <tbody className="chang-bid-table">
+              {changphotos.length &&
+                changphotos.map((value, index) => {
+                  //單筆圖片直接value.photo
+                  //多筆圖片let p = JSON.parse(value.photo)[0]
+                  let p1 = value.avatar
+                  p1 = 'http://localhost:3008/chang-images/' + p1
+                  return (
+                    <tr>
+                      <td>
+                        <img className="chang-bidding-photo" src={p1} alt="" />
+                      </td>
+                      <td className="chang-account-text">{value.account}</td>
+                      <td>{value.bid_product_number}</td>
+                      <td>{value.bid_created_time}</td>
+                      <td>{value.bid_add_money}</td>
+                      <td>{value.bid_sum_money}</td>
+                    </tr>
+                  )
+                })}
+            </tbody>
+          </Table>
         </div>
-        <div className="row">
-          {/* 商品描述 */}
-          <div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <p>
-              <b>商品描述</b>
-            </p>
-            <p>克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍。</p>
-            <br />
-            <p>
-              <b>商品描述</b>
-            </p>
-            <p>克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍。</p>
-            <br />
-          </div>
-        </div>
-        <div className="row">
-          <div className="winnie-line">
-            <div className="d-flex winnie-recent-title">
+
+        {/*[_winnierecentview.scss] recent view title*/}
+        <div className="container">
+          <div className="row winnie-line">
+            <div className="col d-flex winnie-recent-title">
               <h2 className="my-auto">-Recent View-</h2>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -127,66 +497,72 @@ function Changbiddetail() {
             </div>
           </div>
         </div>
+        {/* recent view product*/}
         <div className="row">
-          <div className="winnie-p-wrap d-flex">
+          <div className=" winnie-p-wrap d-flex">
             {/* 第一個 */}
             <div className="col-lg-4 col-md-6">
               <div className="winnie-card-content">
                 <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
+                  <img
+                    className="w-100"
+                    src="http://localhost:3008/winnie-images/test.png"
+                    alt=""
+                  />
                 </div>
                 <div className="winnie-card-name text-justify d-flex justify-content-between">
                   <p>小巧的花瓶瓷器</p>
                   <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
+                    <FaRegHeart className="far fa-heart mr-2" />
+                    <FaShoppingCart />
                   </div>
                 </div>
-                <a href="#" className="winnie-card-price">
-                  690
-                </a>
+                <p className="winnie-card-price">690</p>
               </div>
             </div>
             {/* 2 */}
             <div className="col-lg-4 col-md-6">
               <div className="winnie-card-content">
                 <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
+                  <img
+                    className="w-100"
+                    src="http://localhost:3008/winnie-images/test.png"
+                    alt=""
+                  />
                 </div>
                 <div className="winnie-card-name text-justify d-flex justify-content-between">
                   <p>小巧的花瓶瓷器</p>
                   <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
+                    <FaRegHeart className="far fa-heart mr-2" />
+                    <FaShoppingCart />
                   </div>
                 </div>
-                <a href="#" className="winnie-card-price">
-                  690
-                </a>
+                <p className="winnie-card-price">690</p>
               </div>
             </div>
             {/* 3 */}
             <div className="col-lg-4 col-md-6">
               <div className="winnie-card-content">
                 <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
+                  <img
+                    className="w-100"
+                    src="http://localhost:3008/winnie-images/test.png"
+                    alt=""
+                  />
                 </div>
                 <div className="winnie-card-name text-justify d-flex justify-content-between">
                   <p>小巧的花瓶瓷器</p>
                   <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
+                    <FaRegHeart className="far fa-heart mr-2" />
+                    <FaShoppingCart />
                   </div>
                 </div>
-                <a href="#" className="winnie-card-price">
-                  690
-                </a>
+                <p className="winnie-card-price">690</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="footer" />
     </>
   )
 }

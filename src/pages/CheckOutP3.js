@@ -6,24 +6,25 @@ import LogoNing from '../components/ningcomponents/LogoNing'
 
 function CheckOutP3(props) {
   const [myform, setMyform] = useState([])
+  const [cart, setCart] = useState([])
   // const [dataLoading, setDataLoading] = useState(false)
-  const [myformDisplay, setMyformDisplay] = useState([])
+  // const [myformDisplay, setMyformDisplay] = useState([])
   // function ----------------------------------------------------------
   function getFormToLocalStorage() {
-    const newForm = localStorage.getItem('utsuwaformdataning') || '[]'
+    const newForm = localStorage.getItem('utsuwaformdataning') || '{}'
     setMyform(JSON.parse(newForm))
+    console.log(newForm)
+
+    const myCart = localStorage.getItem('utsuwacart') || '[]'
+    setCart(JSON.parse(myCart))
   }
   useEffect(() => {
     getFormToLocalStorage()
   }, [])
   useEffect(() => {
-    let newMyformDisplay = []
-    for (let i = 0; i < myform.length; i++) {
-      const newItem = { ...myform[i] }
-      newMyformDisplay = [...newMyformDisplay, newItem]
-      setMyformDisplay(newMyformDisplay.slice(myform.length - 1))
-    }
-  }, [myform])
+    console.log(myform)
+    console.log(cart)
+  }, [myform, cart])
   return (
     <>
       <div className="container">
@@ -145,30 +146,18 @@ function CheckOutP3(props) {
               <span className="form-title-content"> 訂單明細 </span>
             </div>
             <div className="orderstyle">
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>訂單編號</span>
-                    <span>1</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>訂單日期</span>
-                    <span>{item.orderDay}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>訂單狀態</span>
-                    <span>準備中</span>
-                  </div>
-                )
-              })}
+              <div className="d-flex justify-content-between align-items-center">
+                <span>訂單編號</span>
+                <span>1</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>訂單日期</span>
+                <span>{myform.orderDay}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>訂單狀態</span>
+                <span>準備中</span>
+              </div>
             </div>
           </div>
           <div className="col-lg-6 col-12">
@@ -176,30 +165,18 @@ function CheckOutP3(props) {
               <span className="form-title-content"> 訂購人資訊 </span>
             </div>
             <div className="orderstyle">
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>會員姓名</span>
-                    <span>{item.orderName}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>電話</span>
-                    <span>{item.orderTel}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>信箱</span>
-                    <span>{item.orderEmail}</span>
-                  </div>
-                )
-              })}
+              <div className="d-flex justify-content-between align-items-center">
+                <span>會員姓名</span>
+                <span>{myform.orderName}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>電話</span>
+                <span>{myform.orderTel}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>信箱</span>
+                <span>{myform.orderEmail}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -209,30 +186,18 @@ function CheckOutP3(props) {
               <span className="form-title-content"> 收件人資訊 </span>
             </div>
             <div className="orderstyle">
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>收件人姓名</span>
-                    <span>{item.orderRecipient}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>收件人電話</span>
-                    <span>{item.orderRecipientTel}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>收件人地址</span>
-                    <span>{item.orderRecipientAddress}</span>
-                  </div>
-                )
-              })}
+              <div className="d-flex justify-content-between align-items-center">
+                <span>收件人姓名</span>
+                <span>{myform.orderRecipient}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>收件人電話</span>
+                <span>{myform.orderRecipientTel}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>收件人地址</span>
+                <span>{myform.orderRecipientAddress}</span>
+              </div>
             </div>
           </div>
           <div className="col-lg-6 col-12">
@@ -240,30 +205,18 @@ function CheckOutP3(props) {
               <span className="form-title-content"> 配送 </span>
             </div>
             <div className="orderstyle">
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>希望到貨日</span>
-                    <span>{item.orderarrivaldate}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>希望到貨時間</span>
-                    <span>{item.orderarrivaltime}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>地址</span>
-                    <span>{item.orderarrivaladdress}</span>
-                  </div>
-                )
-              })}
+              <div className="d-flex justify-content-between align-items-center">
+                <span>希望到貨日</span>
+                <span>{myform.orderarrivaldate}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>希望到貨時間</span>
+                <span>{myform.orderarrivaltime}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>地址</span>
+                <span>{myform.orderarrivaladdress}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -273,38 +226,22 @@ function CheckOutP3(props) {
               <span className="form-title-content"> 付款 </span>
             </div>
             <div className="orderstyle">
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>付款方式</span>
-                    <span>信用卡(線上刷卡)</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>付款狀態</span>
-                    <span>已付款</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>信用卡卡號</span>
-                    <span>{item.ordercreditcard}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>持卡人姓名</span>
-                    <span>{item.ordercreditcardname}</span>
-                  </div>
-                )
-              })}
+              <div className="d-flex justify-content-between align-items-center">
+                <span>付款方式</span>
+                <span>信用卡(線上刷卡)</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>付款狀態</span>
+                <span>已付款</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>信用卡卡號</span>
+                <span>{myform.ordercreditcard}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>持卡人姓名</span>
+                <span>{myform.ordercreditcardname}</span>
+              </div>
             </div>
           </div>
           <div className="col-lg-6 col-12">
@@ -312,38 +249,22 @@ function CheckOutP3(props) {
               <span className="form-title-content"> 發票/訂單備註 </span>
             </div>
             <div className="orderstyle">
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>發票日期</span>
-                    <span>{item.orderDay}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>發票類型</span>
-                    <span>{item.orderinvoice}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>載具類型</span>
-                    <span>{item.orderinvoicetype}</span>
-                  </div>
-                )
-              })}
-              {myformDisplay.map((item) => {
-                return (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>訂單備註</span>
-                    <span>{item.orderinvoicearea}</span>
-                  </div>
-                )
-              })}
+              <div className="d-flex justify-content-between align-items-center">
+                <span>發票日期</span>
+                <span>{myform.orderDay}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>發票類型</span>
+                <span>{myform.orderinvoice}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>載具類型</span>
+                <span>{myform.orderinvoicetype}</span>
+              </div>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>訂單備註</span>
+                <span>{myform.orderinvoicearea}</span>
+              </div>
             </div>
           </div>
         </div>
