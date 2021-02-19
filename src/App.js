@@ -12,10 +12,8 @@ import ScrollToItem from './components/winniecomponents/winnieitemscroll'
 import Login from './pages/Login'
 import ForgetPass from './pages/ForgetPass'
 import Register from './pages/Register'
-import MemberEdit from './pages/MemberEdit'
-import MemberOrderList from './pages/MemberOrderList'
-import MemberFav from './pages/MemberFav'
-import MemberCoupon from './pages/MemberCoupon'
+import Member from './pages/Member'
+
 //商品
 import Products from './pages/Products'
 import ProductsDetail from './pages/ProductsDetail'
@@ -31,6 +29,7 @@ import CheckOutP1 from './pages/CheckOutP1'
 import CheckOutP2 from './pages/CheckOutP2'
 import CheckOutP3 from './pages/CheckOutP3'
 import ShoppingCart from './pages/ShoppingCart'
+//import LocalStorageTest from './pages/LocalStorageTest'
 // 競標
 import Changbidindex from './pages/Changbidindex'
 import Changbiddetail from './pages/Changbiddetail'
@@ -62,6 +61,7 @@ function App() {
         <Link to="/CheckOutP2">CheckOutP2</Link>
         <Link to="/CheckOutP3">CheckOutP3</Link>
         <Link to="/ShoppingCart">ShoppingCart</Link>
+        <Link to="/LocalStorageTest">LocalStorageTest</Link>
         <Link to="/changbidindex">changbidindex</Link>
         <Link to="/changbidindex/changbiddetail">changbiddetail</Link>
         <Link to="/products">Products</Link>
@@ -71,6 +71,7 @@ function App() {
         {/* Switch從上到下找唯一匹配的路由表 */}
         {/* 測試 */}
         <ScrollToTop>
+          {/* Switch從上到下找唯一匹配的路由表 */}
           <Switch>
             {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
             {/* 會員路由 */}
@@ -80,17 +81,8 @@ function App() {
             <Route path="/register">
               <Register />
             </Route>
-            <Route path="/memberedit">
-              <MemberEdit />
-            </Route>
-            <Route path="/memberorderList">
-              <MemberOrderList />
-            </Route>
-            <Route path="/memberfav">
-              <MemberFav />
-            </Route>
-            <Route path="/membercoupon">
-              <MemberCoupon />
+            <Route path="/member">
+              <Member />
             </Route>
             <Route path="/login">
               <Login />

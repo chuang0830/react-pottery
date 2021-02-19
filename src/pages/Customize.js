@@ -3,6 +3,30 @@ import { withRouter } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
 
 function Customize(props) {
+  const testData = {
+    sid: 54,
+    product_name: '客製商品',
+    category_id: 6,
+    price: 1080,
+    color: '粉',
+    size: '200mm*200mm',
+    photo: '["54.jpg"]',
+    introduction: '此商品承載著您特製的心意，非常適合作為禮物。',
+  }
+  // 加入購物車-----------------------------------------------------------------
+  const [mycart, setMycart] = useState([])
+  const updateCartToLocalStorage = (item) => {
+    const currentCart = JSON.parse(localStorage.getItem('utsuwacart')) || []
+    const index = currentCart.findIndex((v) => v.sid === item.sid)
+    if (index > -1) {
+      return
+    } else {
+      currentCart.push(item)
+    }
+    localStorage.setItem('utsuwacart', JSON.stringify(currentCart))
+    setMycart(currentCart)
+  }
+  //-----------------------------------------------------------------------------
   const [text, setText] = useState('')
   const [total, setTotal] = useState(0)
   const [photo, setPhoto] = useState(52)
@@ -201,7 +225,15 @@ function Customize(props) {
                   </div>
                   {/* 加入購物車按鈕 */}
                   <class className="col-8 ml-4">
-                    <button className="chang-cart-btn">
+                    <button
+                      className="chang-cart-btn"
+                      onClick={() => {
+                        updateCartToLocalStorage({
+                          ...testData,
+                          amount: 1,
+                        })
+                      }}
+                    >
                       加入購物車 <FaShoppingCart className="mb-1" />
                     </button>
                   </class>

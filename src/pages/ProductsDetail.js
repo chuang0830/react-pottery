@@ -2,9 +2,37 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
-import cartHandler from './../utils/CartHandler'
 
 function ProductsDetail(props) {
+  // const testData1 = {
+  //   sid: 3,
+  //   product_name: '深灰手作陶瓷杯',
+  //   category_id: 1,
+  //   price: 420,
+  //   color: '灰',
+  //   size: '105mm*105mm',
+  //   photo: '["3.jpg","20-2.jpg","20-3.jpg"]',
+  //   introduction: '希望通過豐富的色彩變化為日常生活著色的日子。',
+  // }
+  const [photos, setPhotos] = useState([])
+
+  // 加入購物車-----------------------------------------------------------------
+  const [mycart, setMycart] = useState([])
+  const updateCartToLocalStorage = (item) => {
+    const currentCart = JSON.parse(localStorage.getItem('utsuwacart')) || []
+    const index = currentCart.findIndex((v) => v.sid === item.sid)
+    if (index > -1) {
+      return
+    } else {
+      currentCart.push(item)
+    }
+    localStorage.setItem('utsuwacart', JSON.stringify(currentCart))
+    setMycart(currentCart)
+  }
+  //-----------------------------------------------------------------------------
+  async function getPhotosFromServer() {
+    // 開啟載入指示
+    //setDataLoading(true)
   const [total, setTotal] = useState(0)
   const [data, setData] = useState([
     {
@@ -250,15 +278,17 @@ function ProductsDetail(props) {
                 </div>
                 {/* 加入購物車按鈕 */}
                 <class className="col-8 ml-4">
-                  <button
+                  {/* <button
                     className="chang-cart-btn"
                     onClick={() => {
-                      const obj = { ...testData1, qty: 1 }
-                      cartHandler.addItem(obj)
+                      updateCartToLocalStorage({
+                        ...testData1,
+                        amount: 1,
+                      })
                     }}
                   >
                     加入購物車 <FaShoppingCart className="mb-1" />
-                  </button>
+                  </button> */}
                 </class>
               </div>
               {/* 商品描述 */}

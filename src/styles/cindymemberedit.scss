@@ -15,6 +15,12 @@
         color: $primary;
       }
     }
+    .active {
+      color: $primary;
+      img {
+        filter: grayscale(0);
+      }
+    }
   }
 }
 .cindy-accountouter {
@@ -26,6 +32,11 @@
         height: 257px;
         overflow: hidden;
         object-fit: cover;
+      }
+      button {
+        border: none;
+        outline: none;
+        background-color: transparent;
       }
       .cindy-crossx {
         top: 3px;

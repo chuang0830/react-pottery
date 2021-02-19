@@ -3,6 +3,30 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 
 function Experience() {
+  const testData1 = {
+    sid: 1,
+    product_name: '拉胚',
+    category_id: 7,
+    price: 5800,
+    photo: '',
+    introduction: '',
+    time: '2021-03-20T16:00:00.000Z',
+  }
+  // 立即結帳-----------------------------------------------------------------
+  const [mycoursecart, setMyCoursecart] = useState([])
+  const updateCourseCartToLocalStorage = (item) => {
+    const currentCart =
+      JSON.parse(localStorage.getItem('utsuwacoursecart')) || []
+    const index = currentCart.findIndex((v) => v.sid === item.sid)
+    if (index > -1) {
+      return
+    } else {
+      currentCart.push(item)
+    }
+    localStorage.setItem('utsuwacoursecart', JSON.stringify(currentCart))
+    setMyCoursecart(currentCart)
+  }
+  //-----------------------------------------------------------------------------
   return (
     <>
       <>
@@ -453,6 +477,22 @@ function Experience() {
               </div>
               <button class="cindy-btn">上傳圖片</button>
             </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-3">
+            <button
+              className="ninginfo-btn"
+              onClick={() => {
+                updateCourseCartToLocalStorage({
+                  ...testData1,
+                  amount: 1,
+                })
+              }}
+            >
+              立即結帳
+            </button>
           </div>
         </div>
       </>

@@ -1,6 +1,24 @@
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-function MemberCoupon(props) {
+import { Route, withRouter, Switch, Link } from 'react-router-dom'
+import MMemberEdit from './MMemberEdit'
+import MMemberOrderList from './MMemberOrderList'
+import MMemberFav from './MMemberFav'
+import MMemberCoupon from './MMemberCoupon'
+
+function Member(props) {
+  console.log(props.match.pathname)
+  const url = props.match.url
+  const path = props.match.path
+
+  const [light, setLight] = useState('account')
+
+  function logoutbtn(e) {
+    e.preventDefault()
+    fetch('http://localhost:3000/logout', { method: 'GET' })
+    localStorage.removeItem('member-sid')
+    console.log('remove sid')
+    props.history.push('/login')
+  }
   return (
     <>
       <div className="container mt-5">
@@ -33,47 +51,87 @@ function MemberCoupon(props) {
           </div>
           <div className="cindy-seclectbox d-flex justify-content-center w-100">
             <div className="cindy-sec seclectbox1">
-              <Link to="/member/:userid/edit">
-                <img src="./cindy-imgs/selectbox1.png" alt="" />
+              <Link
+                to={`${url}/edit`}
+                className={light === 'account' ? 'active' : ''}
+                onClick={() => setLight('account')}
+              >
+                <img
+                  src="http://localhost:3008/cindy-imgs/selectbox1.png"
+                  alt=""
+                />
                 帳號資料
               </Link>
             </div>
             <div className="cindy-sec seclectbox2">
-              <Link to="/member/:userid/orderlist">
-                <img src="./cindy-imgs/selectbox2.png" alt="" />
+              <Link
+                to={`${url}/orderlist`}
+                className={light === 'orderlist' ? 'active' : ''}
+                onClick={() => setLight('orderlist')}
+              >
+                <img
+                  src="http://localhost:3008/cindy-imgs/selectbox2.png"
+                  alt=""
+                />
                 訂單查詢
               </Link>
             </div>
             <div className="cindy-sec seclectbox3">
-              <Link to="/member/:userid/fav">
-                <img src="./cindy-imgs/selectbox3.png" alt="" />
+              <Link
+                to={`${url}/fav`}
+                className={light === 'fav' ? 'active' : ''}
+                onClick={() => setLight('fav')}
+              >
+                <img
+                  src="http://localhost:3008/cindy-imgs/selectbox3.png"
+                  alt=""
+                />
                 收藏清單
               </Link>
             </div>
             <div className="cindy-sec seclectbox4">
-              <Link to="/member/:userid/coupon">
-                <img src="./cindy-imgs/selectbox4.png" alt="" />
+              <Link
+                to={`${url}/coupon`}
+                className={light === 'coupon' ? 'active' : ''}
+                onClick={() => setLight('coupon')}
+              >
+                <img
+                  src="http://localhost:3008/cindy-imgs/selectbox4.png"
+                  alt=""
+                />
                 優惠券
               </Link>
             </div>
-          </div>
-          <div class="cindy-coupon-outer">
-            <div class="cindy-card d-flex justify-content-center">
-              <div class="cindy-card-left ">
-                <p>生日優惠券</p>
-                <h2>100元</h2>
-                <p>折扣碼：BB0304</p>
-              </div>
-              <div class="cindy-card-right ">
-                <p>使用期限至</p>
-                <p class="cindy-card-date">2021-12-31</p>
-                <button>copy</button>
-              </div>
+            <div className="cindy-sec seclectbox5">
+              <Link to="" onClick={logoutbtn}>
+                <img
+                  src="http://localhost:3008/cindy-imgs/selectbox5.png"
+                  alt=""
+                />
+                登出
+              </Link>
             </div>
           </div>
+          <Switch>
+            <Route exact path={path}>
+              <MMemberEdit />
+            </Route>
+            <Route path={`${url}/edit`}>
+              <MMemberEdit />
+            </Route>
+            <Route path={`${url}/orderlist`}>
+              <MMemberOrderList />
+            </Route>
+            <Route path={`${url}/fav`}>
+              <MMemberFav />
+            </Route>
+            <Route path={`${url}/coupon`}>
+              <MMemberCoupon />
+            </Route>
+          </Switch>
         </div>
       </div>
     </>
   )
 }
-export default MemberCoupon
+export default withRouter(Member)
