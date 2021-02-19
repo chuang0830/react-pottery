@@ -30,9 +30,9 @@ function ProductsDetail(props) {
     setMycart(currentCart)
   }
   //-----------------------------------------------------------------------------
-  async function getPhotosFromServer() {
-    // 開啟載入指示
-    //setDataLoading(true)
+  //async function getPhotosFromServer() {
+  // 開啟載入指示
+  //setDataLoading(true)
   const [total, setTotal] = useState(0)
   const [data, setData] = useState([
     {
