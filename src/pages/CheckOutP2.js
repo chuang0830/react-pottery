@@ -69,13 +69,12 @@ function CheckOutP2(props) {
     orderDay: OrderDay,
   }
   // 加入表單-----------------------------------------------------------------
-  const [mycart, setMycart] = useState([])
+  // const [mycart, setMycart] = useState([])
   const updateFormToLocalStorage = (item) => {
-    const currentCart =
-      JSON.parse(localStorage.getItem('utsuwaformdataning')) || []
-    currentCart.push(item)
-    localStorage.setItem('utsuwaformdataning', JSON.stringify(currentCart))
-    setMycart(currentCart)
+    // const currentCart = JSON.parse(localStorage.getItem('utsuwaformdataning')) || []
+    // currentCart.push(item)
+    localStorage.setItem('utsuwaformdataning', JSON.stringify(item))
+    // setMycart(currentCart)
   }
 
   return (
@@ -214,6 +213,7 @@ function CheckOutP2(props) {
                       ...FormDataNing,
                       orderName,
                       orderDay,
+                      orders_sid: 7,
                     })
                   }}
                 />
