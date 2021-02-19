@@ -1,27 +1,33 @@
 // import { BrowserRouter as Link, Switch } from 'react-router-dom'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
 //元件
 import LogoNing from './../components/ningcomponents/LogoNing'
-import TableNing from './../components/ningcomponents/TableNing'
 import RecentView from './../components/ningcomponents/RecentView'
+import ProductTableNing from './../components/ningcomponents/ProductTableNing'
+import CourseTableNing from './../components/ningcomponents/CourseTableNing'
 
 function ShoppingCart(props) {
+  // 渲染------------------------------------------------------------
   return (
     <>
       <div className="container">
         <LogoNing />
         <div className="row">
           <div className="container mt-5">
-            <div className="row">
-              <TableNing />
-            </div>
+            {/* 商品購物車 */}
+            <ProductTableNing />
           </div>
         </div>
-        <div className="row d-flex justify-content-end">
-          <div className="mr-3 mb-5 mt-5">
+        {/* 課程購物車 */}
+        <CourseTableNing />
+        <div className="row d-flex justify-content-end mb-7">
+          <Link to="/CheckOutP1">
             <button className="ninginfo-btn">前往結帳</button>
-          </div>
+          </Link>
         </div>
+
         {/*[_winnierecentview.scss] recent view title*/}
         <div className="container">
           <div className="row winnie-line">
@@ -30,6 +36,7 @@ function ShoppingCart(props) {
             </div>
           </div>
         </div>
+
         {/* recent view product*/}
         <div className="row">
           <RecentView />
@@ -38,4 +45,5 @@ function ShoppingCart(props) {
     </>
   )
 }
+
 export default ShoppingCart

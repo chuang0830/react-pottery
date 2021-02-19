@@ -26,6 +26,7 @@ import CheckOutP1 from './pages/CheckOutP1'
 import CheckOutP2 from './pages/CheckOutP2'
 import CheckOutP3 from './pages/CheckOutP3'
 import ShoppingCart from './pages/ShoppingCart'
+import LocalStorageTest from './pages/LocalStorageTest'
 // 競標
 import Changbidindex from './pages/Changbidindex'
 import Changbiddetail from './pages/Changbiddetail'
@@ -57,6 +58,7 @@ function App() {
         <Link to="/CheckOutP2">CheckOutP2</Link>
         <Link to="/CheckOutP3">CheckOutP3</Link>
         <Link to="/ShoppingCart">ShoppingCart</Link>
+        <Link to="/LocalStorageTest">LocalStorageTest</Link>
         <Link to="/changbidindex">changbidindex</Link>
         <Link to="/changbidindex/changbiddetail">changbiddetail</Link>
         <Link to="/products">Products</Link>
@@ -71,23 +73,28 @@ function App() {
           <Route exact path="/user-forgetpass">
             <ForgetPass />
           </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
           <Route path="/register">
             <Register />
           </Route>
           <Route path="/member">
             <Member />
           </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          {/* 商品路由 */}
+          <Route exact path="/products/page/:pageNumber">
+            <Products />
+          </Route>
+          <Route exact path="/products/:id">
+            <ProductsDetail />
+          </Route>
           <Route exact path="/products">
             <Products />
           </Route>
           <Route exact path="/customize">
             <Customize />
-          </Route>
-          <Route exact path="/products/:id">
-            <ProductsDetail />
           </Route>
 
           {/* 課程路由 */}
@@ -119,6 +126,9 @@ function App() {
           </Route>
           <Route exact path="/ShoppingCart">
             <ShoppingCart />
+          </Route>
+          <Route exact path="/LocalStorageTest">
+            <LocalStorageTest />
           </Route>
 
           {/* 競標路由 */}
