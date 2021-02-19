@@ -141,6 +141,14 @@ body {
   margin-bottom: 50px;
 }
 
+.winnie-c-hover:hover > .winnie-plate-color {
+  border: 2px solid #615956;
+  cursor: pointer;
+}
+.winnie-c-hover:hover {
+  cursor: pointer;
+}
+
 .winnie-plate-color {
   height: 20px;
   width: 20px;

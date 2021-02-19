@@ -53,6 +53,10 @@ $input-focus-box-shadow: 0;
   img {
     margin: 0px 5px;
     border: 3px solid white;
+    &:hover {
+      cursor: pointer;
+      border: 3px solid #77777a;
+    }
   }
 }
 //roductsmorecard
@@ -453,11 +457,14 @@ text {
   color: #615956;
   margin: auto;
 }
+.winnie-classimg li a {
+  text-decoration: none;
+}
 
-.winnie-classimg li:hover > .winnie-class-p::before {
+.winnie-classimg li a:hover > .winnie-class-p::before {
   width: 60%;
 }
-.winnie-classimg li:hover > img {
+.winnie-classimg li a:hover > img {
   bottom: 15px;
 }
 //winniepage
@@ -479,7 +486,7 @@ text {
   .page-item.active .page-link {
     background-color: transparent;
     color: $success;
-    border-bottom: 1px solid $info;
+    border-bottom: 2px solid $info;
   }
 }
 

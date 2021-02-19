@@ -10,12 +10,62 @@ function Register(props) {
   }
   const [account, setAccount] = useState('')
   const [email, setEmail] = useState('')
-  const [password1, setPassword1] = useState('')
-  const [passwor2, setPassword2] = useState('')
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('')
+  const [showcss, setShowcss] = useState(false)
+  const [errors, setErrors] = useState([])
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    const newErrors = []
+    //檢查帳號
+    if (account.trim().length < 5) {
+      newErrors.push('account')
+    }
+    //檢查email
+    const re = /\S+@\S+\.\S+/
+    if (!re.test(email.toLowerCase())) {
+      newErrors.push('email')
+    }
+    //檢查密碼1
+    if (password.trim().length < 5) {
+      newErrors.push('password')
+    }
+    //檢查密碼2
+    if (password !== password2) {
+      newErrors.push('password2')
+    }
+    setErrors(newErrors)
+    //console.log(newErrors)
+
+    if (newErrors.length === 0) {
+      const newData = { account, email, password }
+      const url = 'http://localhost:3000/members/add'
+      const request = new Request(url, {
+        method: 'POST',
+        body: JSON.stringify(newData),
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      })
+      console.log(JSON.stringify(newData))
+      const response = await fetch(request)
+      const data = await response.json()
+
+      console.log('伺服器回傳的json資料', data)
+      setShowcss(true)
+    }
+  }
+  useEffect(() => {
+    console.log('component did update')
+    console.log(errors)
+  }, [errors])
+
   return (
     <>
       <div className="container-fluid" style={styles}>
-        <div className="row d-flex justify-content-end logobox">
+        <div className="row d-flex justify-content-end">
           <div className="cindy-boxtag">
             <div className="cindy-loginbox tag">
               <Link to="/login">會員登入</Link>
@@ -25,11 +75,22 @@ function Register(props) {
             </div>
           </div>
           <div className="cindy-form-control col-4">
+            <div
+              className="alert alert-primary"
+              role="alert"
+              id="info"
+              style={{
+                textAlign: 'center',
+                visibility: showcss ? 'visible' : 'hidden',
+              }}
+            >
+              註冊成功，請登入！
+            </div>
             <div className="p-control">
               <p>會員註冊</p>
             </div>
             <div className="cindy-form">
-              <form action="" autocomplete="off">
+              <form action="" autoComplete="off">
                 <div className="cindy-input">
                   <label htmlFor="account">帳號</label>
                   <br />
@@ -38,8 +99,11 @@ function Register(props) {
                     name="account"
                     id="account"
                     placeholder="請輸入帳號"
+                    value={account}
+                    onChange={(e) => setAccount(e.target.value)}
                   />
                 </div>
+                {errors.includes('account') && <span>帳號格式錯誤</span>}
                 <div className="cindy-input">
                   <label htmlFor="email">信箱</label>
                   <br />
@@ -48,18 +112,24 @@ function Register(props) {
                     name="email"
                     id="email"
                     placeholder="請輸入Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
+                {errors.includes('email') && <span>Email格式錯誤</span>}
                 <div className="cindy-input">
-                  <label htmlFor="password1">密碼</label>
+                  <label htmlFor="password">密碼</label>
                   <br />
                   <input
                     type="password"
-                    name="password1"
-                    id="password1"
+                    name="password"
+                    id="password"
                     placeholder="請輸入密碼"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
+                {errors.includes('password') && <span>密碼格式錯誤</span>}
                 <div className="cindy-input">
                   <label htmlFor="password2">確認密碼</label>
                   <br />
@@ -68,9 +138,20 @@ function Register(props) {
                     name="password2"
                     id="password2"
                     placeholder="請再次輸入密碼"
+                    value={password2}
+                    onChange={(e) => setPassword2(e.target.value)}
                   />
                 </div>
-                <button className="memberbtn">註冊</button>
+                {errors.includes('password2') && (
+                  <span>兩次密碼輸入不一致</span>
+                )}
+                <button
+                  type="button"
+                  className="memberbtn"
+                  onClick={handleSubmit}
+                >
+                  註冊
+                </button>
               </form>
             </div>
           </div>

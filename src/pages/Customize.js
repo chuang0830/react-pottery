@@ -29,6 +29,7 @@ function Customize(props) {
   //-----------------------------------------------------------------------------
   const [text, setText] = useState('')
   const [total, setTotal] = useState(0)
+  const [photo, setPhoto] = useState(52)
   return (
     <>
       {/* hero page */}
@@ -122,7 +123,11 @@ function Customize(props) {
             <div className="d-flex">
               {/* 盤子 */}
               <div className="c-plate">
-                <img src="http://localhost:3008/winnie-images/52.png" alt="" />
+                <img
+                  src={`http://localhost:3008/winnie-images/${photo}.png `}
+                  alt=""
+                />
+
                 {/* 刻字區 */}
 
                 <svg viewBox="0 0 500 500" className="winnie-svg">
@@ -138,30 +143,55 @@ function Customize(props) {
               </div>
               {/* 顏色 */}
               <div className="winnie-plate-color-wrap">
-                <div className="d-flex mb-1">
+                <div
+                  onClick={() => {
+                    setPhoto(50)
+                  }}
+                  className="winnie-c-hover d-flex mb-1"
+                >
                   <div className="winnie-plate-color c1 my-auto" />
                   <p className="winnie-customize-text my-auto">黃</p>
                 </div>
-                <div className="d-flex mb-1">
+                <div
+                  onClick={() => {
+                    setPhoto(51)
+                  }}
+                  className="winnie-c-hover d-flex mb-1"
+                >
                   <div className="winnie-plate-color c2 my-auto" />
                   <p className="winnie-customize-text my-auto">靛</p>
                 </div>
-                <div className="d-flex mb-1">
+                <div
+                  onClick={() => {
+                    setPhoto(52)
+                  }}
+                  className="winnie-c-hover d-flex mb-1"
+                >
                   <div className="winnie-plate-color c3 my-auto" />
                   <p className="winnie-customize-text my-auto">藍</p>
                 </div>
-                <div className="d-flex mb-1">
+                <div
+                  onClick={() => {
+                    setPhoto(53)
+                  }}
+                  className="winnie-c-hover d-flex mb-1"
+                >
                   <div className="winnie-plate-color c4 my-auto" />
                   <p className="winnie-customize-text my-auto">綠</p>
                 </div>
-                <div className="d-flex mb-1">
+                <div
+                  onClick={() => {
+                    setPhoto(54)
+                  }}
+                  className="winnie-c-hover d-flex mb-1"
+                >
                   <div className="winnie-plate-color c5 my-auto" />
                   <p className="winnie-customize-text my-auto">粉</p>
                 </div>
               </div>
               {/* 商品描述 */}
               <div className="winnie-customize-d mx-auto">
-                <p className="winnie-customize-price">690</p>
+                <p className="winnie-customize-price">1080</p>
                 <span className="winnie-customize-text">請輸入英文字母：</span>
                 <span className="winnie-input ml-2">
                   <input

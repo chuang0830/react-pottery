@@ -1,55 +1,143 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import Carousel from 'react-bootstrap/Carousel'
-import Pagination from 'react-bootstrap/Pagination'
-import PageItem from 'react-bootstrap/PageItem'
+// import Pagination from 'react-bootstrap/Pagination'
+// import PageItem from 'react-bootstrap/PageItem'
 import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
+// import ScrollToItem from '../components/winniecomponents/winnieitemscroll'
 
 function Products(props) {
   const [photos, setPhotos] = useState([])
   const [page, setPage] = useState(1)
+  const [totalpage, setTotalPage] = useState(0)
   //const [dataLoading, setDataLoding] = useState(false)
 
+  //細項分類
+  const [detailCate, setDetailCate] = useState('')
+  //搜尋
+  const [search, setSearch] = useState('')
+  //價格範圍
+  const [frontPrice, setFrontPrice] = useState('')
+  const [backPrice, setBackPrice] = useState('')
+  //排序
+  const [sort, setSort] = useState('')
+  const [queryReset, setQueryReset] = useState('')
+
+  //方法一：指定分頁位置
+  //方法二：app.js(<ScrollToItem>)
+  //但不管哪種都會被scrolltop擋住
+  let scrollToAnchor = (anchorName) => {
+    if (anchorName) {
+      // 找到锚点
+      let anchorElement = document.getElementById(anchorName)
+      // 如果对应id的锚点存在，就跳转到锚点
+      if (anchorElement) {
+        anchorElement.scrollIntoView()
+      }
+    }
+  }
+
   //設定頁碼
-  let active = page
+
   let items = []
-  for (let number = 1; number <= 6; number++) {
+  for (let number = 1; number <= totalpage; number++) {
     items.push(
-      <Pagination.Item key={number} active={number === active}>
-        <Link to={`/products/page/${number}`}>{number}</Link>
-      </Pagination.Item>
+      <li className={`page-item ${page === number && 'active'}`}>
+        <Link
+          className="page-link"
+          to={`/products`}
+          onClick={() => {
+            scrollToAnchor('screens')
+            setPage(number)
+          }}
+        >
+          {number}
+        </Link>
+      </li>
     )
   }
 
-  async function getPhotosFromServer() {
-    // 開啟載入指示
-    //setDataLoading(true)
-
-    // 連接的伺服器資料網址
-    const url = `http://localhost:3000/products/api/list?page=${props.match.params.pageNumber}`
-
-    //header格式設定為json格式
-    const request = new Request(url, {
-      method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
-    })
-
-    const response = await fetch(request)
-    const data = await response.json()
-    console.log(data)
-    //設定資料給photos
-    setPhotos(data.rows)
-    setPage((data.page = parseInt(props.match.params.pageNumber) || 1))
+  //清除資料
+  const resetData = () => {
+    setDetailCate('')
+    setPage(1)
+    setSearch('')
+    setFrontPrice('')
+    setBackPrice('')
+    setSort('')
   }
 
-  //一開始就會開始載入資料
+  //測試
   useEffect(() => {
-    getPhotosFromServer()
-  }, [])
+    const getDataFromServer = async () => {
+      try {
+        // let query = ''
+        let query = props.location.search || ''
+        if (page) query += `page=${page}`
+        if (detailCate) query += `&detailCate=${detailCate}`
+        if (search) query += `&search=${search}`
+        if (sort) query += `&sort=${sort}`
+        if (frontPrice || backPrice)
+          query += `&frontPrice=${frontPrice}&backPrice=${backPrice}`
+        if (queryReset) {
+          query = ''
+        }
+        const url = `http://localhost:3000/products/test?${query}`
+        console.log('url', url)
+        console.log('query', props.location.search)
+        const response = await fetch(url, { method: 'GET' })
+        const data = await response.json()
+        // console.log('data', data.rows);
+        setPhotos(data.rows)
+        setTotalPage(data.totalPage)
+        // setSort('priceDESC')
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getDataFromServer()
+  }, [page, detailCate, search, sort, frontPrice, backPrice, queryReset])
+  //查看後端抓回來的資料
+  // useEffect(()=>{
+  //   // console.log('productList',productList)
+  // }, [productList])
+
+  // async function getPhotosFromServer() {
+  //   // 開啟載入指示
+  //   //setDataLoading(true)
+
+  //   // 連接的伺服器資料網址
+  //   const url = `http://localhost:3000/products/api/list?page=${props.location.search.page}`
+
+  //   //header格式設定為json格式
+  //   const request = new Request(url, {
+  //     method: 'GET',
+  //     headers: new Headers({
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     }),
+  //   })
+
+  //   const response = await fetch(request)
+  //   const data = await response.json()
+  //   console.log(data)
+  //   //設定資料給photos
+  //   setPhotos(data.rows)
+  //   setTotalPage(data.totalPages)
+  // }
+
+  //一開始就會開始載入資料
+  // useEffect(() => {
+  //   getPhotosFromServer()
+  // }, [page])
+
+  //更新連動頁面
+  // useEffect(() => {
+  //   console.log('props', props.location.search)
+  //   const pageNum = props.location.search.page || 1
+  //   setPage(parseInt(pageNum))
+  // }, [props.location.search])
 
   //每次users資料有變動就會X秒後關掉載入指示
   // useEffect(() => {
@@ -161,85 +249,149 @@ function Products(props) {
         <div className="row justify-content-around">
           <ul className="winnie-classimg">
             <li>
-              <img
-                src="http://localhost:3008/winnie-images/class1.png"
-                alt=""
-              />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <div className="winnie-class-p">
-                <p>餐盤</p>
-              </div>
+              <Link
+                to={`/products`}
+                onClick={() => {
+                  scrollToAnchor('screens')
+                  resetData()
+                  setDetailCate(2)
+                }}
+              >
+                <img
+                  src="http://localhost:3008/winnie-images/class1.png"
+                  alt=""
+                />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div className="winnie-class-p">
+                  <p>餐盤</p>
+                </div>
+              </Link>
             </li>
             <li>
-              <img
-                src="http://localhost:3008/winnie-images/class2.png"
-                alt=""
-              />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <div className="winnie-class-p">
-                <p>杯具</p>
-              </div>
+              <Link
+                to={`/products`}
+                onClick={() => {
+                  scrollToAnchor('screens')
+                  resetData()
+                  setDetailCate(1)
+                }}
+              >
+                <img
+                  src="http://localhost:3008/winnie-images/class2.png"
+                  alt=""
+                />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div className="winnie-class-p">
+                  <p>杯具</p>
+                </div>
+              </Link>
             </li>
             <li>
-              <img
-                src="http://localhost:3008/winnie-images/class3.png"
-                alt=""
-              />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <div className="winnie-class-p">
-                <p>飯碗</p>
-              </div>
+              <Link
+                to={`/products`}
+                onClick={() => {
+                  scrollToAnchor('screens')
+                  resetData()
+                  setDetailCate(3)
+                }}
+              >
+                <img
+                  src="http://localhost:3008/winnie-images/class3.png"
+                  alt=""
+                />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div className="winnie-class-p">
+                  <p>飯碗</p>
+                </div>
+              </Link>
             </li>
             <li>
-              <img
-                src="http://localhost:3008/winnie-images/class4.png"
-                alt=""
-              />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <div className="winnie-class-p">
-                <p>筷架</p>
-              </div>
+              <Link
+                to={`/products`}
+                onClick={() => {
+                  scrollToAnchor('screens')
+                  resetData()
+                  setDetailCate(5)
+                }}
+              >
+                <img
+                  src="http://localhost:3008/winnie-images/class4.png"
+                  alt=""
+                />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div className="winnie-class-p">
+                  <p>筷架</p>
+                </div>
+              </Link>
             </li>
             <li>
-              <img
-                src="http://localhost:3008/winnie-images/class5.png"
-                alt=""
-              />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <div className="winnie-class-p">
-                <p>花器</p>
-              </div>
+              <Link
+                to={`/products`}
+                onClick={() => {
+                  scrollToAnchor('screens')
+                  resetData()
+                  setDetailCate(4)
+                }}
+              >
+                <img
+                  src="http://localhost:3008/winnie-images/class5.png"
+                  alt=""
+                />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div className="winnie-class-p">
+                  <p>花器</p>
+                </div>
+              </Link>
             </li>
           </ul>
         </div>
       </div>
 
       <div className="container">
-        {/* 下拉選單 */}
-        <div className="row justify-content-end">
-          <select name id>
-            <option value={1}>價格低-&gt;高</option>
-            <option value={2}>價格高-&gt;低</option>
+        {/* 搜尋 */}
+        <div className="row justify-content-end" id={'screens'}>
+          <span className="winnie-search mr-2 mt-1">
+            <input
+              type="text"
+              placeholder="商品名稱搜尋"
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value)
+              }}
+            />
+          </span>
+          {/* 下拉選單 */}
+          <select
+            value={sort}
+            onChange={(e) => {
+              // 將字串轉成數字
+              setSort(e.target.value)
+            }}
+          >
+            {/* 預設值 */}
+            <option value={''}>選擇價格順序</option>
+            <option value={'priceASC'}>價格低-&gt;高</option>
+            <option value={'priceDESC'}>價格高-&gt;低</option>
           </select>
         </div>
         {/* [_winnieproductcard.scss] 商品card */}
@@ -255,7 +407,9 @@ function Products(props) {
                   <div className="col-lg-4 col-md-6">
                     <div className="winnie-card-content">
                       <div key={value.sid} className="winnie-card-img">
-                        <img className="w-100" src={p} alt="" />
+                        <Link to={`/products/${value.sid}`}>
+                          <img className="w-100" src={p} alt="" />
+                        </Link>
                       </div>
                       <div className="winnie-card-name text-justify d-flex justify-content-between">
                         <p>{value.product_name}</p>
@@ -269,44 +423,137 @@ function Products(props) {
                   </div>
                 )
               })}
-
-            {/*2*/}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
           </div>
         </div>
         {/* [_winniepage.scss] 頁籤 react bootstrap:pagination */}
         <div className="winnie-page">
           <div className="row">
             <div className="mx-auto">
-              <Pagination>
-                <Pagination.First />
-                <Pagination.Prev />
-                <Pagination>{items}</Pagination>
-                <Pagination.Next />
-                <Pagination.Last />
-              </Pagination>
+              <nav aria-label="Page navigation example ">
+                <ul className="pagination">
+                  {/* 最前頁 bs icon Chevron double left */}
+                  <li className={`page-item ${page === 1 && 'disabled'}`}>
+                    <Link
+                      className="page-link"
+                      aria-label="Previous"
+                      to={`/products`}
+                      onClick={() => {
+                        scrollToAnchor('screens')
+                        setPage(1)
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={16}
+                        height={16}
+                        fill="#615956"
+                        className="bi bi-chevron-double-left"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                        />
+                        <path
+                          fillRule="evenodd"
+                          d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                        />
+                      </svg>
+                    </Link>
+                  </li>
+                  {/* 前一頁 bs icon Chevron left */}
+                  <li className={`page-item ${page === 1 && 'disabled'}`}>
+                    <Link
+                      className="page-link"
+                      aria-label="Previous"
+                      to={`/products`}
+                      onClick={() => {
+                        scrollToAnchor('screens')
+                        setPage(page - 1)
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={16}
+                        height={16}
+                        fill="#615956"
+                        className="bi bi-chevron-left"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                        />
+                      </svg>
+                    </Link>
+                  </li>
+                  {/* 頁碼區 */}
+                  {items}
+                  {/*下一頁 bs icon Chevron right */}
+                  <li
+                    className={`page-item ${page === totalpage && 'disabled'}`}
+                  >
+                    <Link
+                      className="page-link"
+                      aria-label="Next"
+                      to={`/products`}
+                      onClick={() => {
+                        scrollToAnchor('screens')
+                        setPage(page + 1)
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={16}
+                        height={16}
+                        fill="#615956"
+                        className="bi bi-chevron-right"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                        />
+                      </svg>
+                    </Link>
+                  </li>
+                  {/*最後一頁 bs icon Chevron double right */}
+                  <li
+                    className={`page-item ${page === totalpage && 'disabled'}`}
+                  >
+                    <Link
+                      className="page-link"
+                      aria-label="Next"
+                      to={`/products`}
+                      onClick={() => {
+                        scrollToAnchor('screens')
+                        setPage(totalpage)
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width={16}
+                        height={16}
+                        fill="#615956"
+                        className="bi bi-chevron-double-right"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
+                        />
+                        <path
+                          fillRule="evenodd"
+                          d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
+                        />
+                      </svg>
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
-
         {/* [_winnierecentview.scss]recent view title*/}
         <div className="container">
           <div className="row winnie-line">

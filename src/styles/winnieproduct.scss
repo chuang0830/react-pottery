@@ -55,6 +55,16 @@
   left: 40%;
 }
 
+.winnie-search {
+  font-size: $font-size-base; //16px;
+}
+.winnie-search > input {
+  border: none;
+  border-bottom: 1px solid $primary;
+  text-align: center;
+  color: #615956;
+}
+
 select,
 option {
   border-radius: 5px;

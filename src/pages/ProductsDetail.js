@@ -46,6 +46,18 @@ function ProductsDetail(props) {
       introduction: '',
     },
   ])
+  const [photo, setPhoto] = useState([
+    {
+      sid: 0,
+      product_name: '',
+      category_id: 0,
+      price: 0,
+      color: '',
+      size: '',
+      photo: '',
+      introduction: '',
+    },
+  ])
   const [photo1, setPhoto1] = useState([
     {
       sid: 0,
@@ -127,6 +139,7 @@ function ProductsDetail(props) {
       .then((r) => r.json())
       .then((r) => {
         let p = 'http://localhost:3008/winnie-images/'
+        setPhoto(p + JSON.parse(r[0].photo)[0])
         setPhoto1(p + JSON.parse(r[0].photo)[0])
         setPhoto2(p + JSON.parse(r[0].photo)[1])
         setPhoto3(p + JSON.parse(r[0].photo)[2])
@@ -201,12 +214,36 @@ function ProductsDetail(props) {
           <div className="row">
             <div className="wrapper col-lg-8 col-md-12">
               <div className="img-change-l">
-                <img src={photo1} width={680} height={440} alt="" />
+                <img src={photo} width={680} height={440} alt="" />
               </div>
               <div className="img-change-s">
-                <img src={photo1} width={110} height={110} alt="" />
-                <img src={photo2} width={110} height={110} alt="" />
-                <img src={photo3} width={110} height={110} alt="" />
+                <img
+                  onClick={() => {
+                    setPhoto(photo1)
+                  }}
+                  src={photo1}
+                  width={110}
+                  height={110}
+                  alt=""
+                />
+                <img
+                  onClick={() => {
+                    setPhoto(photo2)
+                  }}
+                  src={photo2}
+                  width={110}
+                  height={110}
+                  alt=""
+                />
+                <img
+                  onClick={() => {
+                    setPhoto(photo3)
+                  }}
+                  src={photo3}
+                  width={110}
+                  height={110}
+                  alt=""
+                />
               </div>
             </div>
             <div className="col-lg-4 col-md-12 chang-title-line">
