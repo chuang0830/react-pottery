@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
+import OnlinePlayer from '../components/OnlinePlayer'
 
 function PlayPage() {
   return (
@@ -36,7 +37,7 @@ function PlayPage() {
             <div className="col-lg-12">
               <div className="onlinepage d-flex justify-content-start">
                 <div className="col-8">
-                  <div className="onlinepage-video" />
+                  <OnlinePlayer />
                 </div>
                 <div className="col-4">
                   <div className="onlinepage-list"></div>

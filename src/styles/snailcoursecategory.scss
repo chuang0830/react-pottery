@@ -1,3 +1,14 @@
+// banner
+.snail-cat-bg {
+  height: 80vh;
+  background-image: url('http://localhost:3008/snail-imgs/course-banner1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
 .categorycard-pic {
   width: 100%;
   height: 400px;
@@ -11,7 +22,7 @@
 
   .categorycard-Entitle {
     // font-size: $font-size-sm;
-    // font-size: 14px;
+    font-size: 14px;
     position: absolute;
     top: 75%;
     left: 15%;
@@ -20,7 +31,7 @@
   }
   .categorycard-Chtitle {
     // font-size: $font-size-base * 2.06;
-    // font-size: 33px;
+    font-size: 33px;
     position: absolute;
     top: 80%;
     left: 15%;
@@ -35,4 +46,13 @@
         color: black;
     }
   }
+}
+.catbackground{
+  height: 80vh;
+  background-image: url('http://localhost:3008/snail-imgs/course-banner1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  //圖片位置
+  background-position: 100% 50%;
 }

@@ -1,3 +1,7 @@
+.EX-container{
+  position:relative;
+  z-index:-1;
+}
 .snail-banner {
   // height: 605px;
   background: url("http://localhost:3008/snail-imgs/course-banner1.jpg") center center no-repeat;
@@ -8,16 +12,15 @@
 
 // 日曆框框
 .experience-calendar {
-  position: fixed;
+  // position: fixed;
   height: 300px;
   width: 300px;
   background-color: rgb(221, 152, 152);
   top: 100px;
   right: 80px;
-  .calendar-group{
-    margin-bottom: 20px;
-    border-bottom: 1px solid gray;
-  }
+  // z-index:99;
+
+  
 }
 
 // 體驗課程標題文字
@@ -32,6 +35,9 @@
       padding-bottom: 20px;
       border-bottom: 1px solid gray;
       margin-top: 20px;
+      label{
+        margin-left: 20px;
+      }
     }
   }
 }
@@ -68,6 +74,21 @@
   
 }
 
+//課程日期文字
+.snail-radioitem-text{
+  margin-bottom: 20px;
+  color: #615956;
+  font-size: $font-size-base * 0.875; //14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
+  border-bottom: 1px solid #dbd7d6;
+}
+
+//內容圖片
+.ex-img{
+  margin: 25px 0 ;
+}
+
 .avatar-photo {
   width: 60px;
   height: 60px;
@@ -90,6 +111,21 @@
 }
 .message-card-content-item {
   margin: 5px;
+}
+.snail-message-text {
+  margin-bottom: 20px;
+  color: #615956;
+  font-size: $font-size-base * 0.875; //14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
+  border-bottom: 1px solid #dbd7d6;
+}
+.snail-inputmessage-text{
+  margin-bottom: 20px;
+  color: #615956;
+  font-size: $font-size-base * 0.875; //14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
 }
 // 學員作品照片
 .portfolio-box {
@@ -120,3 +156,34 @@
   margin: 30px;
 }
 
+.radiobox{
+  height: 50px;
+  background-color: $warning;
+  padding-left: 20px;
+  //高度與行高相同則上下置中
+  line-height:50px;
+  //左右置中
+  // text-align:center;
+  margin: 10px 0 0 50px;
+  label{
+    padding-left: 20px;
+  }
+}
+
+
+//購物車
+.snail-cart-btn {
+  font-size: 16px * 0.94;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  color: #92b6ba;
+  padding: 15px 100px;
+  border-radius: 5px;
+  border: 2px solid #92b6ba;
+}
+
+.snail-cart-btn:hover {
+  color: white;
+  background-color: #92b6ba;
+}

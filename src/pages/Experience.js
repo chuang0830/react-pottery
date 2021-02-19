@@ -1,8 +1,68 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+// import Calendar from 'rc-calendar'
+// import 'rc-calendar/assets/index.css'
+import { FaRegHeart } from 'react-icons/fa'
+import { FaShoppingCart } from 'react-icons/fa'
+import cartHandler from './../utils/CartHandler'
+import SnailButton from '../components/SnailButton'
+import MyNavbar from '../components/MyNavbar'
+import Sticky from 'react-sticky-el'
 
 function Experience() {
+  //單選盒
+  const [radiob, setRadiob] = useState('1')
+  const [course1, setCourse1] = useState([])
+  //const [dataLoading, setDataLoding] = useState(false)
+
+  async function getCourse1FromServer1() {
+    // 開啟載入指示
+    //setDataLoading(true)
+
+    // 連接的伺服器資料網址
+    const url = `http://localhost:3000/course/json` + radiob
+
+    //header格式設定為json格式
+    const request1 = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    console.log(url)
+    const response1 = await fetch(request1)
+    const data1 = await response1.json()
+    console.log(data1)
+    //設定資料給photos
+    setCourse1(data1)
+  }
+
+  //一開始就會開始載入資料
+  useEffect(() => {
+    getCourse1FromServer1()
+  }, [radiob])
+
+  //每次users資料有變動就會X秒後關掉載入指示
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setDataLoading(false)
+  //   }, 1000)
+  // }, [photos1])
+
+  //載入圖示
+  const loading = (
+    <>
+      <div className="d-flex justify-content-center">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    </>
+  )
   const testData1 = {
     sid: 1,
     product_name: '拉胚',
@@ -30,26 +90,12 @@ function Experience() {
   return (
     <>
       <>
-        <div
-          className="container-fluid"
-          style={{
-            height: 605,
-            background:
-              'url("http://localhost:3008/snail-imgs/course-banner1.jpg") center center no-repeat',
-            backgroundSize: 'cover',
-          }}
-        >
-          <div style={{ height: '650px' }}></div>
-        </div>
+        {/* banner */}
+        <banner>
+          <div className="snail-cat-bg"></div>
+        </banner>
 
-        <div className="container">
-          <div className="experience-calendar">
-            我是日曆框框
-            <img
-              src="http://localhost:3008/snail-imgs/course-work1.jpg"
-              alt=""
-            />
-          </div>
+        <div className="container ">
           {/* 麵包屑 */}
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
@@ -64,19 +110,18 @@ function Experience() {
               </li>
             </ol>
           </nav>
-          title
+          {/* 主標題 */}
           <div className="winnie-title ">
-            <h1>CUSTOMIZE</h1>
+            <h1>DIY課程體驗</h1>
           </div>
           <div className="winnie-text mb-11">
             <p>
-              還記得第一次捏陶土就像玩泥巴一樣的有趣觸感嗎？利用創作力創作出的陶土器皿因為其溫潤的特質而顯得獨一無二，無論是陶杯、陶盤還是陶碗，除了實用性之外，還多了一分溫暖之感擁有多年教學經驗的五行創藝陶藝工坊，推出了一系列輕鬆有趣的陶土課程。透過專業老師的引導，您將學會利用陶土的特性做出你自己最喜歡的陶製品，更能在揉、捏、拍、壓的過程中，療癒自己甚至愛上捏陶的樂趣！
+              還記得第一次捏陶土就像玩泥巴一樣的有趣觸感嗎？利用創作力創作出的陶土器皿因為其溫潤的特質而顯得獨一無二，無論是陶杯、陶盤還是陶碗，除了實用性之外，還多了一分溫暖之感擁有多年教學經驗的UTSUWA創藝陶藝工坊，推出了一系列輕鬆有趣的陶土課程。透過專業老師的引導，您將學會利用陶土的特性做出你自己最喜歡的陶製品，更能在揉、捏、拍、壓的過程中，療癒自己甚至愛上捏陶的樂趣！
               <br />
               小朋友也非常適合這樣的體驗課程喔！透過手作的揉捏有充分的觸覺感受，視覺上的
               3D
               概念也能透過陶土捏塑學習，捏陶還可以直接的引導孩子感受數量、形體和造形的變化，更可以訓練孩子手部的各種大小肌肉、手眼協調和創造力。
               <br />
-              克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
             </p>
             {/* 更多按鈕 */}
             <button className="cindy-check more" href="#">
@@ -84,14 +129,20 @@ function Experience() {
               <i className="fas fa-angle-double-down" />
             </button>
           </div>
-          {/* 按鈕列 */}
+        </div>
+        {/* 按鈕列 */}
+        <Sticky topOffset={0}>
+          <MyNavbar />
+        </Sticky>
+        <div className="container EX-container">
           <div className="row">
             <div className="col">
-              <div className="snailbtnline d-flex mb-7">
-                {/* <a href="#" className="snail-button mr-5">
-                  選擇課程
-                </a> */}
-                {/* <a href="#" className="snail-button mr-5">
+              {/* <SnailButton /> */}
+              {/* <div className="snailbtnline d-flex mb-7">
+                <a href="#" className="snail-button mr-5">
+                  價目表
+                </a>
+                <a href="#" className="snail-button mr-5">
                   詳細資料
                 </a>
                 <a href="#" className="snail-button mr-5">
@@ -99,173 +150,101 @@ function Experience() {
                 </a>
                 <a href="#" className="snail-button mr-5">
                   課程評價與學員作品
-                </a> */}
-              </div>
+                </a>
+              </div> */}
             </div>
           </div>
-          {/* 摺疊選單 */}
-          <div className="container">
-            <div className="row">
-              <div className="col-8">
-                {/* 摺疊選單1 */}
-                <div className="accordion" id="accordionExample">
-                  <div className="card">
-                    <div className="card-header" id="headingOne">
-                      <h2 className="mb-0">
-                        <button
-                          className="btn btn-link btn-block text-left"
-                          type="button"
-                          data-toggle="collapse"
-                          data-target="#collapseOne"
-                          aria-expanded="true"
-                          aria-controls="collapseOne"
-                        >
-                          {/* 單選Radio */}
-                          <input
-                            type="radio"
-                            aria-label="Radio button for following text input"
-                          />{' '}
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 療癒系手捏陶
-                        </button>
-                      </h2>
-                    </div>
-                    {/* 摺疊價目表 */}
-                    <div
-                      id="collapseOne"
-                      className="collapse show"
-                      aria-labelledby="headingOne"
-                      data-parent="#accordionExample"
-                    >
-                      <div className="card-body">
-                        <div className="snail-pricelist">
-                          <div className="snailprice-title">
-                            <div className="snail-pricetitle">價目表</div>
-                          </div>
-                          <ul>
-                            <li className="priceline-item d-flex justify-content-between ">
-                              <div>療癒捏陶</div>
-                              <div>4000元</div>
-                            </li>
-                            <li className="priceline-item d-flex justify-content-between ">
-                              <div>療癒捏陶</div>
-                              <div>4000元</div>
-                            </li>
-                            <li className="priceline-item d-flex justify-content-between ">
-                              <div>療癒捏陶</div>
-                              <div>4000元</div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* 摺疊選單2 */}
-                  <div className="card">
-                    <div className="card-header" id="headingTwo">
-                      <h2 className="mb-0">
-                        <button
-                          className="btn btn-link btn-block text-left collapsed"
-                          type="button"
-                          data-toggle="collapse"
-                          data-target="#collapseTwo"
-                          aria-expanded="false"
-                          aria-controls="collapseTwo"
-                        >
-                          {/* 單選Radio */}
-                          <input
-                            type="radio"
-                            aria-label="Radio button for following text input"
-                          />{' '}
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 彩繪陶瓷容器
-                        </button>
-                      </h2>
-                    </div>
-                    <div
-                      id="collapseTwo"
-                      className="collapse"
-                      aria-labelledby="headingTwo"
-                      data-parent="#accordionExample"
-                    >
-                      <div className="card-body">
-                        {/* 摺疊價目表 */}
-                        <div className="snail-pricelist">
-                          <div className="snailprice-title">
-                            <div className="snail-pricetitle">價目表</div>
-                          </div>
-                          <ul>
-                            <li className="priceline-item d-flex justify-content-between ">
-                              <div>療癒捏陶</div>
-                              <div>4000元</div>
-                            </li>
-                            <li className="priceline-item d-flex justify-content-between ">
-                              <div>療癒捏陶</div>
-                              <div>4000元</div>
-                            </li>
-                            <li className="priceline-item d-flex justify-content-between ">
-                              <div>療癒捏陶</div>
-                              <div>4000元</div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div className="card-header" id="headingThree">
-                      <h2 className="mb-0">
-                        <button
-                          className="btn btn-link btn-block text-left collapsed"
-                          type="button"
-                          data-toggle="collapse"
-                          data-target="#collapseThree"
-                          aria-expanded="false"
-                          aria-controls="collapseThree"
-                        >
-                          {/* 單選Radio */}
-                          <input
-                            type="radio"
-                            aria-label="Radio button for following text input"
-                          />{' '}
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 療癒系手捏陶
-                        </button>
-                      </h2>
-                    </div>
-                    <div
-                      id="collapseThree"
-                      className="collapse"
-                      aria-labelledby="headingThree"
-                      data-parent="#accordionExample"
-                    >
-                      <div className="card-body">
-                        {/* 摺疊價目表 */}
-                        <div className="snail-pricelist">
-                          <div className="snailprice-title">
-                            <div className="snail-pricetitle">價目表</div>
-                          </div>
-                          <ul>
-                            <li className="priceline-item d-flex justify-content-between ">
-                              <div>療癒捏陶</div>
-                              <div>4000元</div>
-                            </li>
-                            <li className="priceline-item d-flex justify-content-between ">
-                              <div>療癒捏陶</div>
-                              <div>4000元</div>
-                            </li>
-                            <li className="priceline-item d-flex justify-content-between ">
-                              <div>療癒捏陶</div>
-                              <div>4000元</div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+          {/* 單選Radio -----------------------------*/}
+          <div className="row">
+            <div className="col-8">
+              <div className="radiobox-list">
+                <div
+                  className="course-title"
+                  id="coursestyle"
+                  name="coursestyle"
+                >
+                  樣式選擇
+                </div>
+                <div className="radiobox">
+                  <input
+                    type="radio"
+                    value="1"
+                    checked={radiob === '1'}
+                    onChange={(e) => {
+                      console.log(radiob)
+                      setRadiob('1')
+                    }}
+                  />{' '}
+                  <label>療癒手捏陶</label>
+                </div>
+
+                <div className="radiobox">
+                  <input
+                    type="radio"
+                    value="2"
+                    checked={radiob === '2'}
+                    onChange={(e) => {
+                      console.log('按2到囉')
+                      setRadiob('2')
+                    }}
+                  />{' '}
+                  <label>彩繪陶瓷容器</label>
+                </div>
+                <div className="radiobox">
+                  <input
+                    type="radio"
+                    value="{radiob}"
+                    checked={radiob === '3'}
+                    onChange={(e) => {
+                      console.log('按3到囉')
+                      setRadiob('3')
+                    }}
+                  />{' '}
+                  <label>壓紋拓印陶盤</label>
                 </div>
               </div>
+
+              {/* 單選Radio -----------------------------*/}
+            </div>
+            <div className="col-4">
+              {/* 月曆 */}
+
+              <div className="experience-calendar mt-10">
+                我是日曆框框
+                {/* <div>
+                  <Calendar />
+                </div> */}
+                {/* 資料庫資料 */}
+                <div>
+                  {course1.length &&
+                    course1.map((value, index) => {
+                      return (
+                        <tr key={value.sid}>
+                          <td>{value.time}</td>
+                        </tr>
+                      )
+                    })}
+                </div>
+                抓取單選日期項目
+                <div className="snail-radioitem-text">{radiob}</div>
+              </div>
+              <button
+                className="ninginfo-btn"
+                onClick={() => {
+                  updateCourseCartToLocalStorage({
+                    ...testData1,
+                    amount: 1,
+                  })
+                }}
+              >
+                立即結帳
+              </button>
             </div>
           </div>
+
           {/* 價目表priceline */}
-          <div className="container">
+          <div className="container style={position:relative}">
             <div className="row">
               <div className="col-8"></div>
             </div>
@@ -273,7 +252,9 @@ function Experience() {
             <div className="row">
               <div className="col-lg-12">
                 <div className="course-card-content">
-                  <div className="course-title">體驗包含</div>
+                  <div className="course-title" id="content" name="content">
+                    體驗包含
+                  </div>
                   <div className="winnie-text">
                     陶藝技巧說明、練習
                     <br />
@@ -286,6 +267,20 @@ function Experience() {
                     <br />
                     精美手作下午茶一份，與好友共度美好的午茶創作時光
                     <br />
+                    <div className></div>
+                    <br />
+                    <div className="ex-img">
+                      <img
+                        src="http://localhost:3008/snail-imgs/EX2.jpg"
+                        alt=""
+                      />
+                    </div>
+                    <div className="ex-img">
+                      <img
+                        src="http://localhost:3008/snail-imgs/EX3.jpg"
+                        alt=""
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -293,7 +288,13 @@ function Experience() {
             <div className="row">
               <div className="col-lg-8">
                 <div className="course-card-content">
-                  <div className="course-title">詳細說明</div>
+                  <div
+                    className="course-title"
+                    id="description"
+                    name="description"
+                  >
+                    詳細說明
+                  </div>
                   <div className="winnie-text">
                     體驗時間：2 小時，依現場狀況為主
                     <br />
@@ -338,10 +339,13 @@ function Experience() {
                 </div>
               </div>
             </div>
+
             <div className="row">
               <div className="col-lg-12">
                 <div className="course-card-content">
-                  <div className="course-title">取消變更</div>
+                  <div className="course-title" id="cancel" name="cancel">
+                    取消變更
+                  </div>
                   <div className="winnie-text">
                     取消辦法
                     <br />
@@ -382,31 +386,14 @@ function Experience() {
             </div>
           </div>
           {/* 課程評價與學員作品 */}
-          <div className="course-title">課程評價與學員作品</div>
+          <div className="course-title" id="work" name="work">
+            課程評價與學員作品
+          </div>
+          <div className="course-title-sm">課程評價</div>
           <div className="row">
+            {/* 留言板 */}
             <div className="col-lg-12">
-              {/* 留言板 */}
-              <div className="message-card">
-                <div className="course-title-sm">課程評價</div>
-                <div className="avatar-photo">{/* <img src alt /> */}</div>
-                <div className="message-card-content d-flex justify-content-start">
-                  <div className="message-card-content-item name">PAPAYA</div>
-                  <div className="message-card-content-item time">
-                    2018-05-19
-                  </div>
-                  <div className="message-card-content-item star">5star</div>
-                </div>
-                <div className="message-card-content">
-                  <p className="winnie-text">
-                    插入體驗打造上漲答案物理懂得，完了根本遵守高效，國務院給予最為有一些書記幫助警察自身評論尋求台北百姓消息院給予最為有一些書記幫助警察自身評論尋求台北百姓消息
-                  </p>
-                </div>
-                <div className="message-card-content">
-                  <div className="message-card-content-photo"></div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-12">
+              {/* 留言1 */}
               <div className="message-card border-buttom">
                 <div className="avatar-photo">{/* <img src alt /> */}</div>
                 <div className="message-card-content d-flex justify-content-start">
@@ -415,8 +402,22 @@ function Experience() {
                   <span>5star</span>
                 </div>
                 <div className="message-card-content">
-                  <p className="winnie-text">
+                  <p className="snail-message-text">
                     插入體驗打造上漲答案物理懂得，完了根本遵守高效，國務院給予最為有一些書記幫助警察自身評論尋求台北百姓消息
+                  </p>
+                </div>
+              </div>
+              {/* 留言2 */}
+              <div className="message-card border-buttom">
+                <div className="avatar-photo">{/* <img src alt /> */}</div>
+                <div className="message-card-content d-flex justify-content-start">
+                  <span>PAPAYA</span>&nbsp;&nbsp;
+                  <span>2018-05-19</span>&nbsp;&nbsp;
+                  <span>5star</span>
+                </div>
+                <div className="message-card-content">
+                  <p className="snail-message-text">
+                    插入體驗打造上漲答案物理懂得，完了根本遵守高效，國務院給予最為有一些書記幫助警察自身評論尋求台北百姓消息插入體驗打造上漲答案物理懂得，完了根本遵守高效，國務院給予最為有一些書記幫助警察自身評論尋求台北百姓消息
                   </p>
                 </div>
               </div>
@@ -462,7 +463,7 @@ function Experience() {
                   <div className="form-group">
                     <label
                       htmlFor="exampleFormControlTextarea1 "
-                      className="winnie-text"
+                      className="snail-inputmessage-text"
                     >
                       留言
                     </label>
