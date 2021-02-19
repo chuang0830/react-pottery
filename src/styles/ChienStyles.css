@@ -1,0 +1,297 @@
+@charset "UTF-8";
+/*↓↓↓↓↓↓↓↓↓↓ _chiennavbar.scss ↓↓↓↓↓↓↓↓↓↓*/
+/* logo.svg */
+.cls-1 {
+  fill: none;
+}
+
+.cls-2 {
+  fill: #ffffff;
+}
+
+/* logo.svg */
+.chien-navbar-logo {
+  width: 10%;
+  max-width: 180px;
+  position: absolute;
+  z-index: 9997;
+  top: 20px;
+  left: 30px;
+}
+
+.chien-homepage-navbar-logo {
+  width: 10%;
+  max-width: 180px;
+  position: absolute;
+  z-index: 9997;
+  top: 20px;
+  left: 30px;
+}
+
+.chien-navbar-hidden-icon {
+  color: rgba(0, 0, 0, 0);
+}
+
+.chien-navbar-item-member {
+  margin: 20px 10px 10px 10px;
+}
+
+.chien-navbar-icon-member {
+  color: #fff;
+  font-size: 20px;
+}
+
+.chien-navbar-item-cart {
+  margin: 0px 10px 10px 10px;
+}
+
+.chien-navbar-icon-cart {
+  color: #fff;
+}
+
+.chien-nav-checkbox {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  right: 0;
+}
+
+.chien-ham {
+  width: 40px;
+  height: 40px;
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  right: 0;
+}
+
+.chien-ham-origin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.chien-ham-bar {
+  height: 3px;
+  width: 18px;
+  position: absolute;
+  background: white;
+  margin: 10px 0 0 -23px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.chien-ham-bar-top {
+  -webkit-transform: translateY(-6px);
+          transform: translateY(-6px);
+}
+
+.chien-ham-bar-bottom {
+  -webkit-transform: translateY(6px);
+          transform: translateY(6px);
+}
+
+#chien-nav-toggle {
+  display: none;
+}
+
+#chien-nav-toggle:checked ~ .chien-ham .chien-ham-bar-middle {
+  opacity: 0;
+}
+
+#chien-nav-toggle:checked ~ .chien-ham .chien-ham-bar-top {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  background: #fff !important;
+}
+
+#chien-nav-toggle:checked ~ .chien-ham .chien-ham-bar-bottom {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  background: #fff !important;
+}
+
+.chien-menu {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 9998;
+  background: rgba(146, 182, 186, 0.7);
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+
+#chien-nav-toggle:checked ~ .chien-menu {
+  -webkit-transform: none;
+          transform: none;
+}
+
+.chien-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.chien-menu-item {
+  margin-top: 20px;
+}
+
+.chien-menu-underline {
+  width: 70%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-bottom: 1px solid #92b6ba;
+}
+
+.chien-menu-link {
+  text-decoration: none;
+  color: white;
+  font-size: 0.875rem;
+  line-height: 5rem;
+}
+
+.chien-menu-link:hover {
+  text-decoration: none;
+  color: #fcaa3e;
+}
+
+/*↑↑↑↑↑↑↑↑↑↑ _chiennavbar.scss ↑↑↑↑↑↑↑↑↑↑*/
+/*↓↓↓↓↓↓↓↓↓↓ _chienbanner.scss ↓↓↓↓↓↓↓↓↓↓*/
+.chien-parallax-scrolling-top {
+  height: 800px;
+  background-image: url(http://localhost:3008/chien-images/bn-2.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/*↑↑↑↑↑↑↑↑↑↑ _chienbanner.scss ↑↑↑↑↑↑↑↑↑↑*/
+/*↓↓↓↓↓↓↓↓↓↓ _chienmain.scss ↓↓↓↓↓↓↓↓↓↓*/
+.chien-main-bg {
+  overflow: hidden;
+}
+
+.chien-bg {
+  width: 35vw;
+  position: absolute;
+  z-index: 9997;
+  left: 50%;
+  bottom: 20%;
+  margin-top: -100px;
+}
+
+.chien-main-2-1 {
+  height: 40vh;
+  background: url(http://localhost:3008/chien-images/main-2-1.jpg) center center no-repeat;
+  background-size: cover;
+  background-origin: content-box;
+  margin-bottom: 30px;
+}
+
+.chien-main-2-2 {
+  height: 40vh;
+  background: url(http://localhost:3008/chien-images/main-2-2.jpg) center center no-repeat;
+  background-size: cover;
+  background-origin: content-box;
+  margin-bottom: 30px;
+}
+
+.chien-main-2-3 {
+  height: 40vh;
+  background: url(http://localhost:3008/chien-images/main-2-3.jpg) center center no-repeat;
+  background-size: cover;
+  background-origin: content-box;
+}
+
+.chien-main-2-4 {
+  height: 40vh;
+  background: url(http://localhost:3008/chien-images/main-2-4.jpg) center center no-repeat;
+  background-size: cover;
+  background-origin: content-box;
+}
+
+/*↑↑↑↑↑↑↑↑↑↑ _chienmain.scss ↑↑↑↑↑↑↑↑↑↑*/
+/*↓↓↓↓↓↓↓↓↓↓ _chienpolicycard.scss ↓↓↓↓↓↓↓↓↓↓*/
+.chien-f-24 {
+  font-size: 1.5rem;
+  color: #615956;
+}
+
+.chien-f-12 {
+  font-size: 0.75rem;
+  line-height: 2rem;
+  color: #615956;
+}
+
+.chien-card-title {
+  color: #92b6ba;
+  border-bottom: 3px solid #92b6ba;
+}
+
+/*↑↑↑↑↑↑↑↑↑↑ _chienpolicycard.scss ↑↑↑↑↑↑↑↑↑↑*/
+/*↓↓↓↓↓↓↓↓↓↓ _chienfooter.scss ↓↓↓↓↓↓↓↓↓↓*/
+.chien-parallax-scrolling {
+  height: 605px;
+  background-image: url(http://localhost:3008/chien-images/bn-3.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.chien-social-icon {
+  color: #fcaa3e;
+}
+
+.chien-f-14 {
+  font-size: 0.875rem;
+  line-height: 2rem;
+  color: #615956;
+}
+
+.chien-f-12 {
+  font-size: 0.75rem;
+  line-height: 2rem;
+  color: #615956;
+}
+
+.chien-footer-top {
+  background-color: #92b6ba;
+}
+
+.chien-aboutus-content {
+  color: #615956;
+  line-height: 30px;
+}
+
+.chien-contactus-subtitle {
+  color: #615956;
+}
+
+.chien-news-content {
+  color: #615956;
+}
+
+.chien-footer-bottom {
+  background-color: #4e757a;
+}
+
+.chien-hidden-icon {
+  color: #4e757a;
+}
+
+/*↑↑↑↑↑↑↑↑↑↑ _chienfooter.scss ↑↑↑↑↑↑↑↑↑↑*/
+/*# sourceMappingURL=ChienStyles.css.map */
