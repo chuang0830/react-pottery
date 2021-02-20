@@ -108,7 +108,7 @@ export const ChienHeader = () => (
           </Nav.Link>
           <ul className="nav flex-column ml-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="">
                 <FontAwesomeIcon
                   icon={faBars}
                   className="chien-navbar-hidden-icon"
@@ -157,6 +157,7 @@ export const ChienHeader = () => (
                 className="chien-menu-link py-3"
                 as={NavLink}
                 to="/login"
+                onClick={ChienClear}
               >
                 會員專區
               </Nav.Link>
@@ -168,6 +169,7 @@ export const ChienHeader = () => (
                 className="chien-menu-link py-3"
                 as={NavLink}
                 to="/Products"
+                onClick={ChienClear}
               >
                 商品專區
               </Nav.Link>
@@ -179,6 +181,7 @@ export const ChienHeader = () => (
                 className="chien-menu-link py-3"
                 as={NavLink}
                 to="/Customize"
+                onClick={ChienClear}
               >
                 客製化商品
               </Nav.Link>
@@ -190,6 +193,7 @@ export const ChienHeader = () => (
                 className="chien-menu-link py-3"
                 as={NavLink}
                 to="/Experience"
+                onClick={ChienClear}
               >
                 手作課程
               </Nav.Link>
@@ -201,6 +205,7 @@ export const ChienHeader = () => (
                 className="chien-menu-link py-3"
                 as={NavLink}
                 to="/Changbidindex"
+                onClick={ChienClear}
               >
                 慈善競標
               </Nav.Link>
@@ -212,5 +217,11 @@ export const ChienHeader = () => (
     {/* header */}
   </>
 )
+
+function ChienClear() {
+  document
+    .querySelectorAll('input[id=chien-nav-toggle]')
+    .forEach((el) => (el.checked = false))
+}
 
 export default ChienHeader
