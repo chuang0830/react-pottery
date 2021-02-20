@@ -7,6 +7,15 @@
   fill: #ffffff;
 }
 /* logo.svg */
+.chien-header,
+.cls-2,
+.chien-ham-bar,
+.chien-navbar,
+#chien-navbar-icon-member,
+#chien-navbar-icon-cart {
+  transition: 0.3s;
+}
+
 .chien-navbar-logo {
   width: 10%;
   max-width: 180px;
@@ -30,7 +39,7 @@
 }
 
 .chien-navbar-item-member {
-  margin: 20px 10px 10px 10px;
+  margin: 25px 10px 10px 10px;
 }
 
 .chien-navbar-icon-member {
