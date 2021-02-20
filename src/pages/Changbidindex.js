@@ -131,7 +131,9 @@ function Changbidindex() {
                   <div className="col-lg-4 col-md-6">
                     <div className="winnie-card-content">
                       <div key={value.bid_id} className="winnie-card-img">
-                        <img className="w-100" src={p1} alt="" />
+                        <Link to={`/changbidindex/changbiddetail`}>
+                          <img className="w-100" src={p1} alt="" />
+                        </Link>
                       </div>
                       <div className="winnie-card-name text-justify d-flex justify-content-between">
                         <p>{value.bid_product_number}</p>

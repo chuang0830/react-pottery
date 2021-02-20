@@ -14,6 +14,7 @@ function Login(props) {
   const [password, setPassword] = useState('')
   const [showcss, setShowcss] = useState(false)
   async function handleSubmit() {
+    localStorage.removeItem('member-sid')
     const newData = { account, password }
     const url = 'http://localhost:3000/login'
     const request = new Request(url, {

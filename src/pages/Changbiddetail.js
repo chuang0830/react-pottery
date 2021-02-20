@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table'
 function Changbiddetail() {
   // 新增競標資料*******************************************
   const [dataLoading, setDataLoading] = useState(false)
-  const sid = 1
+  const sid = localStorage.getItem('member-sid')
   const product_id = 3
   // const [avatar, setAvatar] = useState('')
   // const [account, setAccount] = useState('')
@@ -175,7 +175,7 @@ function Changbiddetail() {
     bid_product_number: 'asd@',
   }
 
-  localStorage.setItem('member-sid', testData1.sid)
+  //localStorage.setItem('member-sid', testData1.sid)
   const [photos, setPhotos] = useState([])
   //const [dataLoading, setDataLoding] = useState(false)
 
@@ -252,28 +252,7 @@ function Changbiddetail() {
           }}
         />
       </div> */}
-      <div className="form-group">
-        <label htmlFor="exampleInputPassword1">bid_add_money</label>
-        <input
-          type="text"
-          className="form-control"
-          value={bid_add_money}
-          onChange={(event) => {
-            setBid_add_money(event.target.value)
-          }}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="exampleInputPassword1">bid_sum_money</label>
-        <input
-          type="text"
-          className="form-control"
-          value={bid_sum_money}
-          onChange={(event) => {
-            setBid_sum_money(event.target.value)
-          }}
-        />
-      </div>
+
       {/* <button
         onClick={() => {
           addUserToSever()
@@ -380,6 +359,28 @@ function Changbiddetail() {
 
               <div className="d-flex justify-content chang-button-box">
                 {/* 計數器 */}
+                <div className="form-group">
+                  <label htmlFor="exampleInputPassword1">bid_add_money</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={bid_add_money}
+                    onChange={(event) => {
+                      setBid_add_money(event.target.value)
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="exampleInputPassword1">bid_sum_money</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={bid_sum_money}
+                    onChange={(event) => {
+                      setBid_sum_money(event.target.value)
+                    }}
+                  />
+                </div>
                 <div className="col-4 d-flex flex-row justify-content-center">
                   <button className="chang-bid-btn">1000</button>
                 </div>
@@ -388,6 +389,7 @@ function Changbiddetail() {
                   <button
                     className="chang-cart-btn"
                     onClick={() => {
+                      localStorage.removeItem('member-sid')
                       // const obj = { ...testData1, qty: 1 }
                       // cartHandler.addItem(obj)
                       addUserToSever()
