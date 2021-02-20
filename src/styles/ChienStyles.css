@@ -142,6 +142,7 @@
 }
 
 .chien-menu-list {
+  height: 80%;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -155,7 +156,7 @@
 }
 
 .chien-menu-item {
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .chien-menu-underline {
