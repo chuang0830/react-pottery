@@ -179,7 +179,8 @@
 
 .chien-main-2-1 {
   height: 40vh;
-  background: url(http://localhost:3008/chien-images/main-2-1.jpg) center center no-repeat;
+  background: url(http://localhost:3008/chien-images/main-2-1.jpg) center center
+    no-repeat;
   background-size: cover;
   background-origin: content-box;
   margin-bottom: 30px;
@@ -187,7 +188,8 @@
 
 .chien-main-2-2 {
   height: 40vh;
-  background: url(http://localhost:3008/chien-images/main-2-2.jpg) center center no-repeat;
+  background: url(http://localhost:3008/chien-images/main-2-2.jpg) center center
+    no-repeat;
   background-size: cover;
   background-origin: content-box;
   margin-bottom: 30px;
@@ -195,14 +197,16 @@
 
 .chien-main-2-3 {
   height: 40vh;
-  background: url(http://localhost:3008/chien-images/main-2-3.jpg) center center no-repeat;
+  background: url(http://localhost:3008/chien-images/main-2-3.jpg) center center
+    no-repeat;
   background-size: cover;
   background-origin: content-box;
 }
 
 .chien-main-2-4 {
   height: 40vh;
-  background: url(http://localhost:3008/chien-images/main-2-4.jpg) center center no-repeat;
+  background: url(http://localhost:3008/chien-images/main-2-4.jpg) center center
+    no-repeat;
   background-size: cover;
   background-origin: content-box;
 }
@@ -247,7 +251,7 @@
   color: #615956;
 }
 .chien-footer-top {
-  background-color: #92b6ba;
+  background-color: hsla(186, 22%, 65%, 0.8);
 }
 .chien-aboutus-content {
   color: #615956;
@@ -260,9 +264,9 @@
   color: #615956;
 }
 .chien-footer-bottom {
-  background-color: #4e757a;
+  background-color: hsla(187, 22%, 39%, 0.8);
 }
 .chien-hidden-icon {
-  color: #4e757a;
+  color: hsla(187, 22%, 39%, 0.8);
 }
 /*↑↑↑↑↑↑↑↑↑↑ _chienfooter.scss ↑↑↑↑↑↑↑↑↑↑*/

@@ -19,7 +19,6 @@ export const ChienFooter = () => (
   <>
     {/* footer */}
     <footer>
-      <div className="chien-parallax-scrolling" />
       <div className="chien-footer-top py-5 container-fluid">
         <div className="ch-footer-top">
           <div className="row p-3">
