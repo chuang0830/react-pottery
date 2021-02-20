@@ -269,7 +269,7 @@
 }
 
 .chien-footer-top {
-  background-color: #92b6ba;
+  background-color: rgba(146, 181, 185, 0.8);
 }
 
 .chien-aboutus-content {
@@ -286,11 +286,11 @@
 }
 
 .chien-footer-bottom {
-  background-color: #4e757a;
+  background-color: rgba(78, 116, 121, 0.8);
 }
 
 .chien-hidden-icon {
-  color: #4e757a;
+  color: rgba(78, 116, 121, 0.8);
 }
 
 /*↑↑↑↑↑↑↑↑↑↑ _chienfooter.scss ↑↑↑↑↑↑↑↑↑↑*/
