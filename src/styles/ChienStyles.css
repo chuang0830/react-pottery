@@ -10,6 +10,16 @@
 }
 
 /* logo.svg */
+.chien-header,
+.cls-2,
+.chien-ham-bar,
+.chien-navbar,
+#chien-navbar-icon-member,
+#chien-navbar-icon-cart {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
 .chien-navbar-logo {
   width: 10%;
   max-width: 180px;
@@ -33,7 +43,7 @@
 }
 
 .chien-navbar-item-member {
-  margin: 20px 10px 10px 10px;
+  margin: 25px 10px 10px 10px;
 }
 
 .chien-navbar-icon-member {
@@ -57,8 +67,8 @@
 }
 
 .chien-ham {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   display: block;
   position: fixed;
   z-index: 9999;
@@ -77,7 +87,7 @@
   width: 18px;
   position: absolute;
   background: white;
-  margin: 10px 0 0 -23px;
+  margin: 10px 0 0 -19px;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
@@ -132,6 +142,7 @@
 }
 
 .chien-menu-list {
+  height: 80%;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -145,7 +156,7 @@
 }
 
 .chien-menu-item {
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .chien-menu-underline {
@@ -269,7 +280,7 @@
 }
 
 .chien-footer-top {
-  background-color: #92b6ba;
+  background-color: rgba(146, 181, 185, 0.8);
 }
 
 .chien-aboutus-content {
@@ -286,11 +297,11 @@
 }
 
 .chien-footer-bottom {
-  background-color: #4e757a;
+  background-color: rgba(78, 116, 121, 0.8);
 }
 
 .chien-hidden-icon {
-  color: #4e757a;
+  color: rgba(78, 116, 121, 0.8);
 }
 
 /*↑↑↑↑↑↑↑↑↑↑ _chienfooter.scss ↑↑↑↑↑↑↑↑↑↑*/
