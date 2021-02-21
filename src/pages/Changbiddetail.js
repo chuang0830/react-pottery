@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table'
 function Changbiddetail() {
   // 新增競標資料*******************************************
   const [dataLoading, setDataLoading] = useState(false)
-  const sid = 1
+  const sid = localStorage.getItem('member-sid')
   const product_id = 3
   // const [avatar, setAvatar] = useState('')
   // const [account, setAccount] = useState('')
@@ -17,25 +17,9 @@ function Changbiddetail() {
   // const [bid_created_time, setBid_created_time] = useState('')
   const [bid_add_money, setBid_add_money] = useState('')
   const [bid_sum_money, setBid_sum_money] = useState('')
-
-  // 測試抓member資料
-  const testMemberData1 = {
-    sid: 34,
-    avatar: '1.jpg',
-    account: 'admin',
-    email: 'asd@',
-    password: 'admin',
-    mobile: 'NULL',
-    address: 'NULL',
-    birthday: 'NULL',
-    created_at: '2021-02-04 17:43:55',
-  }
-
-  const testProductData1 = {
-    product_id: 34,
-    sid: '1.jpg',
-    photo: 'admin',
-    bid_product_number: 'asd@',
+  const [bid_refresh, setBid_refresh] = useState('')
+  function load() {
+    window.location.reload()
   }
 
   async function addUserToSever() {
@@ -161,21 +145,21 @@ function Changbiddetail() {
 
   // 測試-----------------------------------------
   const testData1 = {
-    sid: 1,
-    avatar: '1.jpg',
-    account: 'admin',
-    email: 'asd@',
-    password: 'admin',
-    mobile: 'NULL',
-    address: 'NULL',
-    birthday: 'NULL',
-    created_at: '2021-02-04 17:43:55',
-    product_id: 34,
-    photo: 'admin',
-    bid_product_number: 'asd@',
+    // sid: 1,
+    // avatar: '1.jpg',
+    // account: 'admin',
+    // email: 'asd@',
+    // password: 'admin',
+    // mobile: 'NULL',
+    // address: 'NULL',
+    // birthday: 'NULL',
+    // created_at: '2021-02-04 17:43:55',
+    // product_id: 34,
+    // photo: 'admin',
+    // bid_product_number: 'asd@',
   }
 
-  localStorage.setItem('member-sid', testData1.sid)
+  //localStorage.setItem('member-sid', testData1.sid)
   const [photos, setPhotos] = useState([])
   //const [dataLoading, setDataLoding] = useState(false)
 
@@ -206,82 +190,6 @@ function Changbiddetail() {
 
   return (
     <>
-      {/* 測試新增資料 */}
-      {/* // avatar,account,bid_product_number,bid_created_time,bid_add_money,bid_sum_money */}
-      {/* <div className="form-group">
-        <label htmlFor="exampleInputEmail1">avatar</label>
-        <input
-          type="text"
-          className="form-control"
-          value={avatar}
-          onChange={(event) => {
-            setAvatar(event.target.value)
-          }}
-        />
-      </div> */}
-      {/* <div className="form-group">
-        <label htmlFor="exampleInputEmail1">account</label>
-        <input
-          type="text"
-          className="form-control"
-          value={account}
-          onChange={(event) => {
-            setAccount(event.target.value)
-          }}
-        />
-      </div> */}
-      {/* <div className="form-group">
-        <label htmlFor="exampleInputEmail1">bid_product_number</label>
-        <input
-          type="email"
-          className="form-control"
-          value={bid_product_number}
-          onChange={(event) => {
-            setBid_product_number(event.target.value)
-          }}
-        />
-      </div> */}
-      {/* <div className="form-group">
-        <label htmlFor="exampleInputPassword1">bid_created_time</label>
-        <input
-          type="time"
-          className="form-control"
-          value={bid_created_time}
-          onChange={(event) => {
-            setBid_created_time(event.target.value)
-          }}
-        />
-      </div> */}
-      <div className="form-group">
-        <label htmlFor="exampleInputPassword1">bid_add_money</label>
-        <input
-          type="text"
-          className="form-control"
-          value={bid_add_money}
-          onChange={(event) => {
-            setBid_add_money(event.target.value)
-          }}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="exampleInputPassword1">bid_sum_money</label>
-        <input
-          type="text"
-          className="form-control"
-          value={bid_sum_money}
-          onChange={(event) => {
-            setBid_sum_money(event.target.value)
-          }}
-        />
-      </div>
-      {/* <button
-        onClick={() => {
-          addUserToSever()
-        }}
-        className="btn btn-primary"
-      >
-        儲存
-      </button> */}
       {/* hero page */}
       <div>
         <div className="winnie-detail-t-bg"></div>
@@ -380,6 +288,28 @@ function Changbiddetail() {
 
               <div className="d-flex justify-content chang-button-box">
                 {/* 計數器 */}
+                <div className="form-group">
+                  <label htmlFor="exampleInputPassword1">bid_add_money</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={bid_add_money}
+                    onChange={(event) => {
+                      setBid_add_money(event.target.value)
+                    }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="exampleInputPassword1">bid_sum_money</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={bid_sum_money}
+                    onChange={(event) => {
+                      setBid_sum_money(event.target.value)
+                    }}
+                  />
+                </div>
                 <div className="col-4 d-flex flex-row justify-content-center">
                   <button className="chang-bid-btn">1000</button>
                 </div>
@@ -388,9 +318,13 @@ function Changbiddetail() {
                   <button
                     className="chang-cart-btn"
                     onClick={() => {
+                      // localStorage.removeItem('member-sid')
                       // const obj = { ...testData1, qty: 1 }
                       // cartHandler.addItem(obj)
                       addUserToSever()
+                      setTimeout(() => {
+                        load()
+                      }, 0)
                     }}
                   >
                     加注 <FaShoppingCart className="mb-1" />

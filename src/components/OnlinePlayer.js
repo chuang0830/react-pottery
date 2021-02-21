@@ -1,12 +1,12 @@
-import React from 'react'
-import { Player } from 'video-react'
+import React, { Component } from 'react'
+import ReactPlayer from 'react-player'
 
-function OnlinePlayer(props) {
-  return (
-    <Player>
-      <source src="" />
-    </Player>
-  )
+class OnlinePlayer extends Component {
+  render() {
+    return (
+      <ReactPlayer url="https://www.youtube.com/watch?v=HgzGwKwLmgM" playing />
+    )
+  }
 }
 
 export default OnlinePlayer

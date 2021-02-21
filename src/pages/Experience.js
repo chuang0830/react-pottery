@@ -11,6 +11,7 @@ import cartHandler from './../utils/CartHandler'
 import SnailButton from '../components/SnailButton'
 import MyNavbar from '../components/MyNavbar'
 import Sticky from 'react-sticky-el'
+import Calendar from '../components/snailcomponents/Calendar'
 
 function Experience() {
   //單選盒
@@ -95,6 +96,10 @@ function Experience() {
           <div className="snail-cat-bg"></div>
         </banner>
 
+        <div>
+          <Calendar />
+        </div>
+
         <div className="container ">
           {/* 麵包屑 */}
           <nav aria-label="breadcrumb">
@@ -168,6 +173,8 @@ function Experience() {
                 </div>
                 <div className="radiobox">
                   <input
+                    id="1"
+                    name="1"
                     type="radio"
                     value="1"
                     checked={radiob === '1'}
@@ -176,11 +183,13 @@ function Experience() {
                       setRadiob('1')
                     }}
                   />{' '}
-                  <label>療癒手捏陶</label>
+                  <label for="1">療癒手捏陶</label>
                 </div>
 
                 <div className="radiobox">
                   <input
+                    id="2"
+                    name="2"
                     type="radio"
                     value="2"
                     checked={radiob === '2'}
@@ -189,10 +198,12 @@ function Experience() {
                       setRadiob('2')
                     }}
                   />{' '}
-                  <label>彩繪陶瓷容器</label>
+                  <label for="2">彩繪陶瓷容器</label>
                 </div>
                 <div className="radiobox">
                   <input
+                    id="3"
+                    name="3"
                     type="radio"
                     value="{radiob}"
                     checked={radiob === '3'}
@@ -201,7 +212,7 @@ function Experience() {
                       setRadiob('3')
                     }}
                   />{' '}
-                  <label>壓紋拓印陶盤</label>
+                  <label for="3">壓紋拓印陶盤</label>
                 </div>
               </div>
 
