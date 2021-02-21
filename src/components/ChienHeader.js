@@ -21,7 +21,7 @@ export const ChienHeader = () => (
     {/* header */}
     <header>
       <div className="container-fluid fixed-top">
-        <div className="row">
+        <div className="chien-navbar row">
           <Nav.Link as={NavLink} to="/">
             <svg
               className="chien-navbar-logo chien-homepage-navbar-logo"
@@ -108,7 +108,7 @@ export const ChienHeader = () => (
           </Nav.Link>
           <ul className="nav flex-column ml-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="">
                 <FontAwesomeIcon
                   icon={faBars}
                   className="chien-navbar-hidden-icon"
@@ -120,6 +120,7 @@ export const ChienHeader = () => (
                 <FontAwesomeIcon
                   icon={faUser}
                   className="chien-navbar-icon-member"
+                  id="chien-navbar-icon-member"
                 />
               </Nav.Link>
             </li>
@@ -128,6 +129,7 @@ export const ChienHeader = () => (
                 <FontAwesomeIcon
                   icon={faShoppingCart}
                   className="chien-navbar-icon-cart"
+                  id="chien-navbar-icon-cart"
                 />
               </Nav.Link>
             </li>
@@ -137,9 +139,12 @@ export const ChienHeader = () => (
       <input
         id="chien-nav-toggle"
         type="checkbox"
-        className="float-right chien-nav-checkbox"
+        className="chien-navbar float-right chien-nav-checkbox"
       />
-      <label htmlFor="chien-nav-toggle" className="chien-ham float-right">
+      <label
+        htmlFor="chien-nav-toggle"
+        className="chien-navbar chien-ham float-right"
+      >
         <div className="chien-ham-origin">
           <div className="chien-ham-bar chien-ham-bar-top" />
           <div className="chien-ham-bar chien-ham-bar-middle" />
@@ -154,9 +159,10 @@ export const ChienHeader = () => (
           <li className="chien-menu-item text-center">
             <div className="chien-menu-underline">
               <Nav.Link
-                className="chien-menu-link py-3"
+                className="chien-menu-link py-2"
                 as={NavLink}
                 to="/login"
+                onClick={ChienClear}
               >
                 會員專區
               </Nav.Link>
@@ -165,9 +171,10 @@ export const ChienHeader = () => (
           <li className="chien-menu-item text-center">
             <div className="chien-menu-underline">
               <Nav.Link
-                className="chien-menu-link py-3"
+                className="chien-menu-link py-2"
                 as={NavLink}
                 to="/Products"
+                onClick={ChienClear}
               >
                 商品專區
               </Nav.Link>
@@ -176,9 +183,10 @@ export const ChienHeader = () => (
           <li className="chien-menu-item text-center">
             <div className="chien-menu-underline">
               <Nav.Link
-                className="chien-menu-link py-3"
+                className="chien-menu-link py-2"
                 as={NavLink}
                 to="/Customize"
+                onClick={ChienClear}
               >
                 客製化商品
               </Nav.Link>
@@ -187,9 +195,10 @@ export const ChienHeader = () => (
           <li className="chien-menu-item text-center">
             <div className="chien-menu-underline">
               <Nav.Link
-                className="chien-menu-link py-3"
+                className="chien-menu-link py-2"
                 as={NavLink}
                 to="/Experience"
+                onClick={ChienClear}
               >
                 手作課程
               </Nav.Link>
@@ -198,9 +207,10 @@ export const ChienHeader = () => (
           <li className="chien-menu-item text-center">
             <div className="chien-menu-underline">
               <Nav.Link
-                className="chien-menu-link py-3"
+                className="chien-menu-link py-2"
                 as={NavLink}
                 to="/Changbidindex"
+                onClick={ChienClear}
               >
                 慈善競標
               </Nav.Link>
@@ -212,5 +222,96 @@ export const ChienHeader = () => (
     {/* header */}
   </>
 )
+
+function ChienClear() {
+  document
+    .querySelectorAll('input[id=chien-nav-toggle]')
+    .forEach((el) => (el.checked = false))
+}
+
+var prevScrollpos = window.pageYOffset
+window.onscroll = function () {
+  var inputElements = document.getElementById('chien-nav-toggle').checked
+  // console.log(inputElements)
+
+  if ((inputElements: true)) {
+    // console.log('checked')
+  } else {
+    var currentScrollPos = window.pageYOffset
+    if (prevScrollpos > currentScrollPos) {
+      if (prevScrollpos > 400) {
+        // console.log('up>')
+
+        var chiennavbar = document.getElementsByClassName('chien-navbar')
+        for (var i = 0; i < chiennavbar.length; i++) {
+          chiennavbar[i].style.transform = 'translateY(0)'
+        }
+
+        var logopath = document.getElementsByClassName('cls-2')
+        for (var i = 0; i < logopath.length; i++) {
+          logopath[i].style.fill = '#92b6ba'
+        }
+
+        var chienhambar = document.getElementsByClassName('chien-ham-bar')
+        for (var i = 0; i < chienhambar.length; i++) {
+          chienhambar[i].style.background = '#92b6ba'
+        }
+        document.getElementById('chien-navbar-icon-member').style.color =
+          '#92b6ba'
+        document.getElementById('chien-navbar-icon-cart').style.color =
+          '#92b6ba'
+      } else {
+        // console.log('up<')
+
+        var chiennavbar = document.getElementsByClassName('chien-navbar')
+        for (var i = 0; i < chiennavbar.length; i++) {
+          chiennavbar[i].style.transform = 'translateY(0)'
+        }
+
+        var logopath = document.getElementsByClassName('cls-2')
+        for (var i = 0; i < logopath.length; i++) {
+          logopath[i].style.fill = '#fff'
+        }
+        var chienhambar = document.getElementsByClassName('chien-ham-bar')
+        for (var i = 0; i < chienhambar.length; i++) {
+          chienhambar[i].style.background = '#fff'
+        }
+        document.getElementById('chien-navbar-icon-member').style.color = '#fff'
+        document.getElementById('chien-navbar-icon-cart').style.color = '#fff'
+      }
+    } else {
+      if (prevScrollpos <= 400) {
+        // console.log('down<')
+        // console.log(currentScrollPos)
+
+        var chiennavbar = document.getElementsByClassName('chien-navbar')
+        for (var i = 0; i < chiennavbar.length; i++) {
+          chiennavbar[i].style.transform = 'translateY(0)'
+        }
+
+        var logopath = document.getElementsByClassName('cls-2')
+        for (var i = 0; i < logopath.length; i++) {
+          logopath[i].style.fill = '#fff'
+        }
+
+        var chienhambar = document.getElementsByClassName('chien-ham-bar')
+        for (var i = 0; i < chienhambar.length; i++) {
+          chienhambar[i].style.background = '#fff'
+        }
+        document.getElementById('chien-navbar-icon-member').style.color = '#fff'
+        document.getElementById('chien-navbar-icon-cart').style.color = '#fff'
+      } else {
+        // console.log('down>')
+        // console.log(currentScrollPos)
+
+        var chiennavbar = document.getElementsByClassName('chien-navbar')
+        for (var i = 0; i < chiennavbar.length; i++) {
+          chiennavbar[i].style.transform = 'translateY(-250%)'
+        }
+      }
+    }
+    prevScrollpos = currentScrollPos
+  }
+}
 
 export default ChienHeader

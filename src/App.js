@@ -35,8 +35,7 @@ import Changbidindex from './pages/Changbidindex'
 import Changbiddetail from './pages/Changbiddetail'
 // 首頁
 import ChienHeader from './components/ChienHeader'
-import ChienBanner from './components/ChienBanner'
-import ChienMain from './components/ChienMain'
+import ChienHomepage from './components/ChienHomepage'
 import ChienPolicycard from './components/ChienPolicycard'
 import ChienFooter from './components/ChienFooter'
 
@@ -48,10 +47,6 @@ function App() {
         {/* 嚴謹的要放上面 */}
         {/* 放連結 */}
         <ChienHeader />
-        {/* <ChienBanner />
-        <ChienMain /> */}
-        {/*<ChienPolicycard />
-        <ChienFooter /> */}
         {/* <Link to="/CourseCategory">CourseCategory</Link>
         <Link to="/CourseCategory/Experience">Experience</Link>
         <Link to="/CourseCategory/OnlineCourse">OnlineCourse</Link>
@@ -73,6 +68,11 @@ function App() {
         <ScrollToTop>
           {/* Switch從上到下找唯一匹配的路由表 */}
           <Switch>
+            <Route exact path="/">
+              <ChienHomepage />
+              <ChienPolicycard />
+              <ChienFooter />
+            </Route>
             {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
             {/* 會員路由 */}
             <Route exact path="/user-forgetpass">

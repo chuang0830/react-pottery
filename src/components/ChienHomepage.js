@@ -2,6 +2,12 @@ import React from 'react'
 
 export const ChienMain = () => (
   <>
+    {/* banner */}
+    <banner>
+      <div className="chien-parallax-scrolling-top" />
+    </banner>
+
+    {/* banner */}
     <main className="my-5">
       <div className="container chien-main-bg">
         {/* 首頁小標 */}
