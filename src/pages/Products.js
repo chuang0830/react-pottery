@@ -245,7 +245,7 @@ function Products(props) {
         </div>
       </div>
       {/* [_winnieclassimg.scss] 分類圖片 */}
-      <div className="container">
+      <div className="container-fluid">
         <div className="row justify-content-around">
           <ul className="winnie-classimg">
             <li>

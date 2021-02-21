@@ -3,7 +3,7 @@ body {
 }
 
 .winnie-customize-t-bg {
-  height: 605px;
+  height: 80vh;
   background-image: url('http://localhost:3008/winnie-images/bg.png');
   background-repeat: no-repeat;
   background-position: center top;
@@ -216,10 +216,10 @@ body {
 }
 
 .winnie-customize-f-bg {
-  height: 400px;
+  height: 60vh;
   background-image: url('http://localhost:3008/winnie-images/customize-bg.jpg');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center bottom;
   background-size: cover;
   background-attachment: fixed;
 }
