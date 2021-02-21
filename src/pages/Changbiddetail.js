@@ -16,26 +16,11 @@ function Changbiddetail() {
   // const [bid_product_number, setBid_product_number] = useState('')
   // const [bid_created_time, setBid_created_time] = useState('')
   const [bid_add_money, setBid_add_money] = useState('')
-  const [bid_sum_money, setBid_sum_money] = useState('')
-
-  // 測試抓member資料
-  const testMemberData1 = {
-    sid: 34,
-    avatar: '1.jpg',
-    account: 'admin',
-    email: 'asd@',
-    password: 'admin',
-    mobile: 'NULL',
-    address: 'NULL',
-    birthday: 'NULL',
-    created_at: '2021-02-04 17:43:55',
-  }
-
-  const testProductData1 = {
-    product_id: 34,
-    sid: '1.jpg',
-    photo: 'admin',
-    bid_product_number: 'asd@',
+  const [bid_sum_money, setBid_sum_money] = useState(0)
+  console.log('bid_sum_money', bid_sum_money)
+  const [bid_refresh, setBid_refresh] = useState('')
+  function load() {
+    window.location.reload()
   }
 
   async function addUserToSever() {
@@ -146,12 +131,20 @@ function Changbiddetail() {
 
     const response1 = await fetch(request1)
     const data2 = await response1.json()
-    console.log('data2', data2)
+    // 拿到sum再丟值進去，不然POST沒東西
+    console.log(data2)
+    if (data2.length > 0) {
+      setBid_sum_money(data2[0].bid_sum_money)
+    }
     //設定資料給photos
     setchangproductid(data2)
     // localStorage.setItem{'product-sid', data1.product_id}
 
-    localStorage.setItem('product_id', data2[0].product_id)
+    if (data2[0]) {
+      localStorage.setItem('product_id', data2[0].product_id)
+    } else {
+      return
+    }
   }
 
   //一開始就會開始載入資料
@@ -161,18 +154,18 @@ function Changbiddetail() {
 
   // 測試-----------------------------------------
   const testData1 = {
-    sid: 1,
-    avatar: '1.jpg',
-    account: 'admin',
-    email: 'asd@',
-    password: 'admin',
-    mobile: 'NULL',
-    address: 'NULL',
-    birthday: 'NULL',
-    created_at: '2021-02-04 17:43:55',
-    product_id: 34,
-    photo: 'admin',
-    bid_product_number: 'asd@',
+    // sid: 1,
+    // avatar: '1.jpg',
+    // account: 'admin',
+    // email: 'asd@',
+    // password: 'admin',
+    // mobile: 'NULL',
+    // address: 'NULL',
+    // birthday: 'NULL',
+    // created_at: '2021-02-04 17:43:55',
+    // product_id: 34,
+    // photo: 'admin',
+    // bid_product_number: 'asd@',
   }
 
   //localStorage.setItem('member-sid', testData1.sid)
@@ -206,61 +199,6 @@ function Changbiddetail() {
 
   return (
     <>
-      {/* 測試新增資料 */}
-      {/* // avatar,account,bid_product_number,bid_created_time,bid_add_money,bid_sum_money */}
-      {/* <div className="form-group">
-        <label htmlFor="exampleInputEmail1">avatar</label>
-        <input
-          type="text"
-          className="form-control"
-          value={avatar}
-          onChange={(event) => {
-            setAvatar(event.target.value)
-          }}
-        />
-      </div> */}
-      {/* <div className="form-group">
-        <label htmlFor="exampleInputEmail1">account</label>
-        <input
-          type="text"
-          className="form-control"
-          value={account}
-          onChange={(event) => {
-            setAccount(event.target.value)
-          }}
-        />
-      </div> */}
-      {/* <div className="form-group">
-        <label htmlFor="exampleInputEmail1">bid_product_number</label>
-        <input
-          type="email"
-          className="form-control"
-          value={bid_product_number}
-          onChange={(event) => {
-            setBid_product_number(event.target.value)
-          }}
-        />
-      </div> */}
-      {/* <div className="form-group">
-        <label htmlFor="exampleInputPassword1">bid_created_time</label>
-        <input
-          type="time"
-          className="form-control"
-          value={bid_created_time}
-          onChange={(event) => {
-            setBid_created_time(event.target.value)
-          }}
-        />
-      </div> */}
-
-      {/* <button
-        onClick={() => {
-          addUserToSever()
-        }}
-        className="btn btn-primary"
-      >
-        儲存
-      </button> */}
       {/* hero page */}
       <div>
         <div className="winnie-detail-t-bg"></div>
@@ -372,14 +310,6 @@ function Changbiddetail() {
                 </div>
                 <div className="form-group">
                   <label htmlFor="exampleInputPassword1">bid_sum_money</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={bid_sum_money}
-                    onChange={(event) => {
-                      setBid_sum_money(event.target.value)
-                    }}
-                  />
                 </div>
                 <div className="col-4 d-flex flex-row justify-content-center">
                   <button className="chang-bid-btn">1000</button>
@@ -389,10 +319,13 @@ function Changbiddetail() {
                   <button
                     className="chang-cart-btn"
                     onClick={() => {
-                      localStorage.removeItem('member-sid')
+                      // localStorage.removeItem('member-sid')
                       // const obj = { ...testData1, qty: 1 }
                       // cartHandler.addItem(obj)
                       addUserToSever()
+                      setTimeout(() => {
+                        load()
+                      }, 0)
                     }}
                   >
                     加注 <FaShoppingCart className="mb-1" />
