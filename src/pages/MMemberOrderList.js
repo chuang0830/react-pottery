@@ -1,7 +1,10 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
+import { Modal, Button } from 'react-bootstrap'
 
 function MMemberOrderList(props) {
+  const [modalShow, setModalShow] = React.useState(false)
+
   return (
     <>
       <div className="cindyorder">
@@ -27,87 +30,48 @@ function MMemberOrderList(props) {
                 <td>1290</td>
                 <td>已出貨</td>
                 <td>
-                  <button
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#collapse1"
-                    aria-expanded="false"
-                    aria-controls="collapseExample"
-                  >
-                    <label htmlFor="toggle">查看更多</label>
-                    <input type="checkbox" id="toggle" checked />
-                    <i className="fas fa-angle-double-down"></i>
-                  </button>
+                  <Button variant="primary" onClick={() => setModalShow(true)}>
+                    查看更多
+                  </Button>
                 </td>
               </tr>
-              <tr className="collapse" id="collapse1">
-                <td></td>
-                <td className="collapse2" colSpan="4">
-                  <div className="cindy-sm-table toggle-box">
-                    <div className="cindy-control-tb">
-                      <div className="tr d-flex justify-content-around">
-                        <div className="td">圖片</div>
-                        <div className="td">productname</div>
-                        <div className="td">藍色</div>
-                        <div className="td">一件</div>
-                        <div className="td">690</div>
-                      </div>
-                      <div className="tr d-flex justify-content-around">
-                        <div className="td">圖片</div>
-                        <div className="td">productname</div>
-                        <div className="td">藍色</div>
-                        <div className="td">一件</div>
-                        <div className="td">690</div>
-                      </div>
+              <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              >
+                <Modal.Header
+                  closeButton
+                  style={{ borderBottom: '1px solid $primary' }}
+                >
+                  <Modal.Title id="contained-modal-title-vcenter">
+                    訂單詳細
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {/* <h5>編號：bbcc12345</h5> */}
+                  <div className="cindy-control-tb">
+                    <div className="tr d-flex justify-content-around">
+                      <div className="td">圖片</div>
+                      <div className="td">productname</div>
+                      <div className="td">藍色</div>
+                      <div className="td">一件</div>
+                      <div className="td">690</div>
                     </div>
                   </div>
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="./cindy-imgs/selectbox1.png" alt="" />
-                </td>
-                <td>productname</td>
-                <td>2020-12-31</td>
-                <td>1290</td>
-                <td>已出貨</td>
-                <td>
-                  <button
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#collapse2"
-                    aria-expanded="false"
-                    aria-controls="collapseExample"
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    className="close-btn"
+                    onClick={() => setModalShow(false)}
                   >
-                    查看更多<i className="fas fa-angle-double-down"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr className="collapse" id="collapse2">
-                <td></td>
-                <td className="collapse2" colSpan="4">
-                  <div className="cindy-sm-table">
-                    <div className="cindy-control-tb">
-                      <div className="tr d-flex justify-content-around">
-                        <div className="td">圖片</div>
-                        <div className="td">productname</div>
-                        <div className="td">藍色</div>
-                        <div className="td">一件</div>
-                        <div className="td">690</div>
-                      </div>
-                      <div className="tr d-flex justify-content-around">
-                        <div className="td">圖片</div>
-                        <div className="td">productname</div>
-                        <div className="td">藍色</div>
-                        <div className="td">一件</div>
-                        <div className="td">690</div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td></td>
-              </tr>
+                    關閉
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </tbody>
           </table>
         </div>

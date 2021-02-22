@@ -40,8 +40,8 @@ function Register(props) {
 
     if (newErrors.length === 0) {
       const newData = { account, email, password }
-      const url = 'http://localhost:3000/members/add'
-      const request = new Request(url, {
+      const url_add = 'http://localhost:3000/members/add'
+      const request_add = new Request(url_add, {
         method: 'POST',
         body: JSON.stringify(newData),
         headers: new Headers({
@@ -50,10 +50,28 @@ function Register(props) {
         }),
       })
       console.log(JSON.stringify(newData))
-      const response = await fetch(request)
-      const data = await response.json()
+      const response_add = await fetch(request_add)
+      const data_add = await response_add.json()
+      console.log('伺服器回傳的json資料', data_add)
 
-      console.log('伺服器回傳的json資料', data)
+      const member_sid = data_add.sid
+      const name = '新用戶優惠券'
+      const price = '60'
+      const code = 'NewAccount'
+      const data_cou = { name, price, code, member_sid }
+      const url_cou = 'http://localhost:3000/members/coupon'
+      const request_cou = new Request(url_cou, {
+        method: 'POST',
+        body: JSON.stringify(data_cou),
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      })
+      console.log(JSON.stringify(data_cou))
+      const response_cou = await fetch(request_cou)
+      const data_coupon = await response_cou.json()
+      console.log('伺服器回傳的json資料', data_coupon)
       setShowcss(true)
     }
   }

@@ -64,15 +64,42 @@ function MMemberEdit(props) {
     // 連接的伺服器資料網址
     const url = 'http://localhost:3000/members/edit/' + sid
 
-    // 注意資料格式要設定，伺服器才知道是json格式
-    fetch(url, {
+    const request = new Request(url, {
       method: 'POST',
       body: formData,
     })
-      .then((response) => response.json())
-      .then((response) => console.log('伺服器回傳的json資料', response))
 
-    alert('修改成功！')
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('伺服器回傳的json資料', data)
+    console.log(data.birth)
+    const birthday = new Date(data.birth)
+    const birth_month = birthday.getMonth() + 1
+    console.log(birth_month)
+    const today = new Date()
+    const this_month = today.getMonth() + 1
+    console.log(this_month)
+    if (birth_month === this_month) {
+      const member_sid = sid
+      const name = '生日戶優惠券'
+      const price = '60'
+      const code = 'HappyBirthday'
+      const data_cou = { name, price, code, member_sid }
+      const url_cou = 'http://localhost:3000/members/coupon'
+      const request_cou = new Request(url_cou, {
+        method: 'POST',
+        body: JSON.stringify(data_cou),
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      })
+      console.log(JSON.stringify(data_cou))
+      const response_cou = await fetch(request_cou)
+      const data_coupon = await response_cou.json()
+      console.log('伺服器回傳的json資料', data_coupon)
+      alert('生日快樂！快去領取生日優惠券吧！！！')
+    }
   }
   useEffect(() => {
     getUserFromServer(sid)
@@ -86,7 +113,11 @@ function MMemberEdit(props) {
           <div className="position-relative img-outer">
             <img src={profileImg} alt="" />
             <div className="position-absolute cindy-crossx">
-              <button onClick={() => setProfileImg(profileinit)}>
+              <button
+                onClick={() =>
+                  setProfileImg('http://localhost:3000/imgs/profileImg.jpeg')
+                }
+              >
                 <svg
                   id="noun_Delete_34719"
                   xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +187,7 @@ function MMemberEdit(props) {
           </div>
           <div>
             <tr>
-              <td>帳號：abc123</td>
+              <td>帳號:{account}</td>
             </tr>
           </div>
         </div>

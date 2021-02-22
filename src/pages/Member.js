@@ -6,11 +6,13 @@ import MMemberFav from './MMemberFav'
 import MMemberCoupon from './MMemberCoupon'
 
 function Member(props) {
+  const [light, setLight] = useState('account')
   console.log(props.match.pathname)
   const url = props.match.url
   const path = props.match.path
-
-  const [light, setLight] = useState('account')
+  if (!localStorage.getItem('member-sid')) {
+    props.history.push('/login')
+  }
 
   function logoutbtn(e) {
     e.preventDefault()

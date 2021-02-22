@@ -319,6 +319,14 @@ text {
     padding-bottom: 5px;
     width: 100%;
   }
+  button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    left: 90%;
+    color: $success;
+    //font-size: $font-size-base;
+  }
 }
 //cindybtn
 .cindy-btn {
