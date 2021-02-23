@@ -959,20 +959,29 @@ text {
 }
 
 .chang-cart-btn {
-  font-size: 16px * 0.94;
-  text-align: center;
-  border: none;
-  background-color: transparent;
-  color: #92b6ba;
-  padding: 15px 50px;
-  border-radius: 5px;
-  border: 2px solid #92b6ba;
+  // font-size: 16px * 0.94;
+  // text-align: center;
+  // border: none;
+  // background-color: transparent;
+  // color: #92b6ba;
+  // padding: 15px 50px;
+  // border-radius: 5px;
+  // border: 2px solid #92b6ba;
+  cursor: pointer;
+  border: 0px;
+  background-color: white;
+  background: url('http://localhost:3008/chang-images/bid1.svg') no-repeat;
 }
 
 .chang-cart-btn:hover {
-  color: white;
-  background-color: #92b6ba;
+  // color: white;
+  // background-color: #92b6ba;
+  cursor: pointer;
+  background: url('http://localhost:3008/chang-images/bid2.svg') no-repeat;
 }
+// .rose-bit-btn{
+//   // width: 50px;
+// }
 
 .chang-count-border-btn {
   font-size: 16px * 0.94;

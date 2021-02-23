@@ -5,7 +5,8 @@ import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
 import cartHandler from './../utils/CartHandler'
 import Table from 'react-bootstrap/Table'
-
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 function Changbiddetail() {
   // 新增競標資料*******************************************
   const [dataLoading, setDataLoading] = useState(false)
@@ -153,20 +154,7 @@ function Changbiddetail() {
   }, [])
 
   // 測試-----------------------------------------
-  const testData1 = {
-    // sid: 1,
-    // avatar: '1.jpg',
-    // account: 'admin',
-    // email: 'asd@',
-    // password: 'admin',
-    // mobile: 'NULL',
-    // address: 'NULL',
-    // birthday: 'NULL',
-    // created_at: '2021-02-04 17:43:55',
-    // product_id: 34,
-    // photo: 'admin',
-    // bid_product_number: 'asd@',
-  }
+  const testData1 = {}
 
   //localStorage.setItem('member-sid', testData1.sid)
   const [photos, setPhotos] = useState([])
@@ -197,11 +185,15 @@ function Changbiddetail() {
     getPhotosFromServer()
   }, [])
 
+  // aos套件
+  useEffect(() => {
+    Aos.init({ duration: 2000 })
+  }, [])
   return (
     <>
       {/* hero page */}
       <div>
-        <div className="winnie-detail-t-bg"></div>
+        <div className="chang-detail-t-bg"></div>
       </div>
       {/* 麵包屑 */}
       <div className="container">
@@ -222,10 +214,10 @@ function Changbiddetail() {
           </ol>
         </nav>
         {/* title */}
-        <div className="winnie-title">
+        <div data-aos="fade-up" className="winnie-title">
           <h1>PRODUCT</h1>
         </div>
-        <div className="winnie-text">
+        <div data-aos="fade-up" className="winnie-text">
           <p>
             克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
             <br />
@@ -233,7 +225,7 @@ function Changbiddetail() {
           </p>
         </div>
         {/* 商品區 */}
-        <div className="winnie-detail-margin">
+        <div data-aos="fade-up" className="winnie-detail-margin">
           <div className="row">
             <div className="wrapper col-lg-8 col-md-12">
               <div className="img-change-l">
@@ -262,43 +254,26 @@ function Changbiddetail() {
                 />
               </div>
             </div>
-            <div className="col-lg-4 col-md-12 chang-title-line">
+            <div
+              data-aos="fade-up"
+              className="col-lg-4 col-md-12 lotzu-title-line"
+            >
               <div className="d-flex chang-border-bottom justify-content-between">
                 <h2>天空藍手作圓盤</h2>
-                <p>已出價 50 次</p>
+                {/* {changphotos.length &&
+                  changphotos.map((value, index) => {
+                    if (index > 0) return
+                    return <p>已出價{value.bid_id} 次</p>
+                  })} */}
+                <p>已出價{changphotos.length && changphotos[0].bid_id}次</p>
               </div>
-              <h3>倒數3天</h3>
-              <h3>競標開始日</h3>
-              <h3>目前金額</h3>
-              <h3>出價金額</h3>
-
-              {/* <div className="form-group">
-                <label htmlFor="exampleInputPassword1">bid_add_money</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={bid_add_money}
-                  onChange={(event) => {
-                    setBid_add_money(event.target.value)
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">bid_sum_money</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={bid_sum_money}
-                  onChange={(event) => {
-                    setBid_sum_money(event.target.value)
-                  }}
-                />
-              </div> */}
-
+              <p className="winnie-text">倒數3天</p>
+              <p>競標開始日</p>
+              <p>目前金額</p>
+              <p>出價金額</p>
               <div className="d-flex justify-content chang-button-box">
                 {/* 計數器 */}
                 <div className="form-group">
-                  <label htmlFor="exampleInputPassword1">bid_add_money</label>
                   <input
                     type="text"
                     className="form-control"
@@ -308,15 +283,10 @@ function Changbiddetail() {
                     }}
                   />
                 </div>
-                <div className="form-group">
-                  <label htmlFor="exampleInputPassword1">bid_sum_money</label>
-                </div>
-                <div className="col-4 d-flex flex-row justify-content-center">
-                  <button className="chang-bid-btn">1000</button>
-                </div>
                 {/* 加入購物車按鈕 */}
-                <class className="col-8 ml-4">
-                  <button
+                {/* col-8 ml-4 */}
+                <div className="">
+                  <div
                     className="chang-cart-btn"
                     onClick={() => {
                       // localStorage.removeItem('member-sid')
@@ -328,42 +298,18 @@ function Changbiddetail() {
                       }, 0)
                     }}
                   >
-                    加注 <FaShoppingCart className="mb-1" />
-                  </button>
-                  {/* <button
-                    onClick={() => {
-                      addUserToSever()
-                    }}
-                    className="btn btn-primary"
-                  >
-                    儲存
-                  </button> */}
-                </class>
+                    {/* 競標按鈕 */}
+                    {/* className="rosebit-btn" */}
+                    <svg style={{ width: '100px', height: '100px' }}></svg>
+                  </div>
+                </div>
               </div>
-              {/* 商品描述
-              <div className="winnie-description">
-                <p className="winnie-detail-p">商品描述</p>
-                <p className="text-break">
-                  {' '}
-                  克雷洛夫曾經認為現實是此岸，理想是彼岸。
-                  <br />
-                  中間隔著湍。
-                </p>
-              </div>
-              <div className="winnie-description">
-                <p className="winnie-detail-p">商品規格</p>
-                <p className="text-break">
-                  克雷洛夫曾經認為現實是此岸，理想是彼岸。
-                  <br />
-                  中間隔著湍。
-                </p>
-              </div> */}
             </div>
           </div>
         </div>
         {/* 競標列表 */}
 
-        <div className="winnie-p-wrap d-flex">
+        <div data-aos="fade-up" className="winnie-p-wrap d-flex">
           {/* 第一個 */}
           <Table responsive hover>
             <thead>
@@ -433,8 +379,8 @@ function Changbiddetail() {
           </div>
         </div>
         {/* recent view product*/}
-        <div className="row">
-          <div className=" winnie-p-wrap d-flex">
+        <div data-aos="fade-up" className="row">
+          <div className="winnie-p-wrap d-flex">
             {/* 第一個 */}
             <div className="col-lg-4 col-md-6">
               <div className="winnie-card-content">
