@@ -154,24 +154,7 @@ function Changbiddetail() {
   }, [])
 
   // 測試-----------------------------------------
-<<<<<<< HEAD
-  const testData1 = {
-    // sid: 1,
-    // avatar: '1.jpg',
-    // account: 'admin',
-    // email: 'asd@',
-    // password: 'admin',
-    // mobile: 'NULL',
-    // address: 'NULL',
-    // birthday: 'NULL',
-    // created_at: '2021-02-04 17:43:55',
-    // product_id: 34,
-    // photo: 'admin',
-    // bid_product_number: 'asd@',
-  }
-=======
   const testData1 = {}
->>>>>>> c0d192dc44b58ea457e593639a55913db76a6bdd
 
   //localStorage.setItem('member-sid', testData1.sid)
   const [photos, setPhotos] = useState([])

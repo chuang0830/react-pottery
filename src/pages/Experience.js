@@ -207,7 +207,7 @@ function Experience() {
                     course1.map((value, index) => {
                       return (
                         <tr key={value.sid}>
-                          <td>{value.time[0]}</td>
+                          <td>{value.time}</td>
                         </tr>
                       )
                     })}
