@@ -202,16 +202,15 @@ function Products(props) {
     // 設定資料
     setAddHeart(currentRemoveheart)
   }
-  useEffect(() => {}, [heart])
-
   //監聽愛心
   function getAddHeartFromLocalStorage() {
-    const newAddCart = localStorage.getItem('utsuwacartaddheart') || '[]'
-    setHeart(JSON.parse(newAddCart))
+    const getHeart = localStorage.getItem('utsuwacartaddheart') || '[]'
+    setHeart(JSON.parse(getHeart))
   }
   useEffect(() => {
     getAddHeartFromLocalStorage()
   }, [])
+  useEffect(() => {}, [heart])
 
   if (isLoading) return spinner
 
