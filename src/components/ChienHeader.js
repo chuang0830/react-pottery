@@ -1,13 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown,
-} from 'react-bootstrap'
+import { Nav } from 'react-bootstrap'
 import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
@@ -19,8 +12,8 @@ const element = <FontAwesomeIcon icon={faUser} />
 export const ChienHeader = () => (
   <>
     {/* header */}
-    <header>
-      <div className="container-fluid fixed-top">
+    <header id="chien-header">
+      <div className="container-fluid fixed-top" id="chien-nav-top0">
         <div className="chien-navbar row">
           <Nav.Link as={NavLink} to="/">
             <svg
@@ -239,12 +232,13 @@ window.onscroll = function () {
   } else {
     var currentScrollPos = window.pageYOffset
     if (prevScrollpos > currentScrollPos) {
-      if (prevScrollpos > 400) {
+      if (prevScrollpos > 600) {
         // console.log('up>')
 
         var chiennavbar = document.getElementsByClassName('chien-navbar')
         for (var i = 0; i < chiennavbar.length; i++) {
           chiennavbar[i].style.transform = 'translateY(0)'
+          document.getElementById('chien-nav-top0').style.top = '0'
         }
 
         var logopath = document.getElementsByClassName('cls-2')
@@ -266,6 +260,7 @@ window.onscroll = function () {
         var chiennavbar = document.getElementsByClassName('chien-navbar')
         for (var i = 0; i < chiennavbar.length; i++) {
           chiennavbar[i].style.transform = 'translateY(0)'
+          document.getElementById('chien-nav-top0').style.top = '0'
         }
 
         var logopath = document.getElementsByClassName('cls-2')
@@ -280,13 +275,14 @@ window.onscroll = function () {
         document.getElementById('chien-navbar-icon-cart').style.color = '#fff'
       }
     } else {
-      if (prevScrollpos <= 400) {
+      if (prevScrollpos <= 600) {
         // console.log('down<')
         // console.log(currentScrollPos)
 
         var chiennavbar = document.getElementsByClassName('chien-navbar')
         for (var i = 0; i < chiennavbar.length; i++) {
           chiennavbar[i].style.transform = 'translateY(0)'
+          document.getElementById('chien-nav-top0').style.top = '0'
         }
 
         var logopath = document.getElementsByClassName('cls-2')
@@ -306,8 +302,9 @@ window.onscroll = function () {
 
         var chiennavbar = document.getElementsByClassName('chien-navbar')
         for (var i = 0; i < chiennavbar.length; i++) {
-          chiennavbar[i].style.transform = 'translateY(-250%)'
+          chiennavbar[i].style.transform = 'translateY(-100%)'
         }
+        document.getElementById('chien-nav-top0').style.top = '-100%'
       }
     }
     prevScrollpos = currentScrollPos
