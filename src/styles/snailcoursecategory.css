@@ -1,3 +1,12 @@
+.snail-cat-bg {
+  height: 80vh;
+  background-image: url("http://localhost:3008/snail-imgs/course-banner1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .categorycard-pic {
   width: 100%;
   height: 400px;
@@ -11,6 +20,7 @@
 }
 
 .categorycard-pic .categorycard-Entitle {
+  font-size: 14px;
   position: absolute;
   top: 75%;
   left: 15%;
@@ -18,6 +28,7 @@
 }
 
 .categorycard-pic .categorycard-Chtitle {
+  font-size: 33px;
   position: absolute;
   top: 80%;
   left: 15%;
@@ -30,5 +41,14 @@
 
 .categorycard-pic:hover p {
   color: black;
+}
+
+.catbackground {
+  height: 80vh;
+  background-image: url("http://localhost:3008/snail-imgs/course-banner1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-position: 100% 50%;
 }
 /*# sourceMappingURL=snailcoursecategory.css.map */

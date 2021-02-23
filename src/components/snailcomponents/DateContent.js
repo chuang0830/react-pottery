@@ -60,11 +60,14 @@ export default function DateContent() {
             className="dateContent-day"
             style={Styles.dayStyle}
             key={`${day}-${dIdx}`}
+            onClick={(e) => {
+              //console.log(e.target.innerHTML)
+            }}
           >
             {' '}
             {/* fetch資料庫日期課程 */}
             {course1.length > 0 ? (
-              <div>
+              <div style={{ display: 'none' }}>
                 <div style={{ fontSize: '2px' }}>
                   {/* day需大於零，否則arry索引變-1會報錯 */}
                   {day > 0 &&
@@ -75,7 +78,15 @@ export default function DateContent() {
             ) : (
               ''
             )}
-            {day === 0 ? '' : day}
+            <span
+              onClick={(e) => {
+                console.log(e.target.innerHTML)
+                console.log(e.target.previousElementSibling)
+                e.target.previousElementSibling.style.display = 'block'
+              }}
+            >
+              {day === 0 ? '' : day}
+            </span>
           </div>
         ))
         return (

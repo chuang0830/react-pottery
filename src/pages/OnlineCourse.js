@@ -6,18 +6,18 @@ import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
 
 function OnlineCourse(props) {
-  const [photos1, setPhotos1] = useState([])
+  const [photos, setPhotos] = useState([])
   //const [dataLoading, setDataLoding] = useState(false)
 
-  async function getPhotos1FromServer1() {
+  async function getPhotosFromServer() {
     // 開啟載入指示
     //setDataLoading(true)
 
     // 連接的伺服器資料網址
-    const url = 'http://localhost:3000/course/json'
+    const url = 'http://localhost:3000/course/json4'
 
     //header格式設定為json格式
-    const request1 = new Request(url, {
+    const request = new Request(url, {
       method: 'GET',
       headers: new Headers({
         Accept: 'application/json',
@@ -25,16 +25,16 @@ function OnlineCourse(props) {
       }),
     })
 
-    const response1 = await fetch(request1)
-    const data1 = await response1.json()
-    console.log(data1)
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log(data)
     //設定資料給photos
-    setPhotos1(data1)
+    setPhotos(data)
   }
 
   //一開始就會開始載入資料
   useEffect(() => {
-    getPhotos1FromServer1()
+    getPhotosFromServer()
   }, [])
 
   //每次users資料有變動就會X秒後關掉載入指示
@@ -42,7 +42,7 @@ function OnlineCourse(props) {
   //   setTimeout(() => {
   //     setDataLoading(false)
   //   }, 1000)
-  // }, [photos1])
+  // }, [photos])
 
   //載入圖示
   const loading = (
@@ -113,17 +113,17 @@ function OnlineCourse(props) {
           <div className="row">
             {/* 第一個 */}
 
-            {photos1.length &&
-              photos1.map((value, index) => {
+            {photos.length &&
+              photos.map((value, index) => {
                 //單筆圖片直接value.photo
                 //多筆圖片let p = JSON.parse(value.photo)[0]
-                let p1 = value.photo
-                p1 = 'http://localhost:3008/snail-imgs/' + p1
+                let p = value.photo
+                p = 'http://localhost:3008/snail-imgs/' + p
                 return (
                   <div className="col-lg-4 col-md-6">
                     <div className="winnie-card-content">
                       <div key={value.sid} className="winnie-card-img">
-                        <img className="w-100" src={p1} alt="" />
+                        <img className="w-100" src={p} alt="" />
                       </div>
                       <div className="winnie-card-name text-justify d-flex justify-content-between">
                         <p>{value.product_name}</p>
@@ -137,159 +137,6 @@ function OnlineCourse(props) {
                   </div>
                 )
               })}
-
-            {/* card2 */}
-            <div className="col-lg-3 ">
-              <div className="snail-card-content">
-                <div className="snail-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/snail-imgs/on-course-1.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="snail-card-titile text-justify d-flex justify-content-between">
-                  <p>
-                    初階
-                    <span
-                      className="snail-teacher ml-3"
-                      style={{ color: 'red', fontSize: '$font-size-base' }}
-                    >
-                      鄭宇寬老師
-                    </span>
-                  </p>
-                  <div className="play-avatar-photo">
-                    <img className="w-100" src="" alt="" />
-                  </div>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <a href="#" className="snail-card-price">
-                    690
-                  </a>
-                  <div className="snail-stars">
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* card3 */}
-            <div className="col-lg-3 ">
-              <div className="snail-card-content">
-                <div className="snail-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/snail-imgs/on-course-1.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="snail-card-titile text-justify d-flex justify-content-between">
-                  <p>
-                    初階
-                    <span
-                      className="snail-teacher ml-3"
-                      style={{ color: 'red', fontSize: '$font-size-base' }}
-                    >
-                      鄭宇寬老師
-                    </span>
-                  </p>
-                  <div className="play-avatar-photo">
-                    <img className="w-100" src="" alt="" />
-                  </div>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <a href="#" className="snail-card-price">
-                    690
-                  </a>
-                  <div className="snail-stars">
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* card4 */}
-            <div className="col-lg-3 ">
-              <div className="snail-card-content">
-                <div className="snail-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/snail-imgs/on-course-1.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="snail-card-titile text-justify d-flex justify-content-between">
-                  <p>
-                    初階
-                    <span
-                      className="snail-teacher ml-3"
-                      style={{ color: 'red', fontSize: '$font-size-base' }}
-                    >
-                      鄭宇寬老師
-                    </span>
-                  </p>
-                  <div className="play-avatar-photo">
-                    <img src alt />
-                  </div>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <a href="#" className="snail-card-price">
-                    690
-                  </a>
-                  <div className="snail-stars">
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* card5 */}
-            <div className="col-lg-3 ">
-              <div className="snail-card-content">
-                <div className="snail-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/snail-imgs/on-course-1.jpg"
-                    alt=""
-                  />
-                </div>
-                <div className="snail-card-titile text-justify d-flex justify-content-between">
-                  <p>
-                    初階
-                    <span
-                      className="snail-teacher ml-3"
-                      style={{ color: 'red', fontSize: '$font-size-base' }}
-                    >
-                      鄭宇寬老師
-                    </span>
-                  </p>
-                  <div className="play-avatar-photo">
-                    <img src alt />
-                  </div>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <a href="#" className="snail-card-price">
-                    690
-                  </a>
-                  <div className="snail-stars">
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                    <i className="fas fa-star" />
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

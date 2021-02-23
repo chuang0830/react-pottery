@@ -190,6 +190,61 @@ function Changbiddetail() {
 
   return (
     <>
+      {/* 測試新增資料 */}
+      {/* // avatar,account,bid_product_number,bid_created_time,bid_add_money,bid_sum_money */}
+      {/* <div className="form-group">
+        <label htmlFor="exampleInputEmail1">avatar</label>
+        <input
+          type="text"
+          className="form-control"
+          value={avatar}
+          onChange={(event) => {
+            setAvatar(event.target.value)
+          }}
+        />
+      </div> */}
+      {/* <div className="form-group">
+        <label htmlFor="exampleInputEmail1">account</label>
+        <input
+          type="text"
+          className="form-control"
+          value={account}
+          onChange={(event) => {
+            setAccount(event.target.value)
+          }}
+        />
+      </div> */}
+      {/* <div className="form-group">
+        <label htmlFor="exampleInputEmail1">bid_product_number</label>
+        <input
+          type="email"
+          className="form-control"
+          value={bid_product_number}
+          onChange={(event) => {
+            setBid_product_number(event.target.value)
+          }}
+        />
+      </div> */}
+      {/* <div className="form-group">
+        <label htmlFor="exampleInputPassword1">bid_created_time</label>
+        <input
+          type="time"
+          className="form-control"
+          value={bid_created_time}
+          onChange={(event) => {
+            setBid_created_time(event.target.value)
+          }}
+        />
+      </div> */}
+
+      {/* <button
+        onClick={() => {
+          addUserToSever()
+        }}
+        className="btn btn-primary"
+      >
+        儲存
+      </button> */}
       {/* hero page */}
       <div>
         <div className="winnie-detail-t-bg"></div>

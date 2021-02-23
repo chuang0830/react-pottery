@@ -96,16 +96,12 @@ function Experience() {
           <div className="snail-cat-bg"></div>
         </banner>
 
-        <div>
-          <Calendar />
-        </div>
-
         <div className="container ">
           {/* 麵包屑 */}
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                {/* <Link to="/">首頁</Link> */}
+                <Link to="/">首頁</Link>
               </li>
               <li className="breadcrumb-item">
                 <Link to="/CourseCategory">課程類別</Link>
@@ -115,6 +111,9 @@ function Experience() {
               </li>
             </ol>
           </nav>
+          <div>
+            <Calendar />
+          </div>
           {/* 主標題 */}
           <div className="winnie-title ">
             <h1>DIY課程體驗</h1>
@@ -140,26 +139,6 @@ function Experience() {
           <MyNavbar />
         </Sticky>
         <div className="container EX-container">
-          <div className="row">
-            <div className="col">
-              {/* <SnailButton /> */}
-              {/* <div className="snailbtnline d-flex mb-7">
-                <a href="#" className="snail-button mr-5">
-                  價目表
-                </a>
-                <a href="#" className="snail-button mr-5">
-                  詳細資料
-                </a>
-                <a href="#" className="snail-button mr-5">
-                  更改取消
-                </a>
-                <a href="#" className="snail-button mr-5">
-                  課程評價與學員作品
-                </a>
-              </div> */}
-            </div>
-          </div>
-
           {/* 單選Radio -----------------------------*/}
           <div className="row">
             <div className="col-8">
@@ -220,19 +199,15 @@ function Experience() {
             </div>
             <div className="col-4">
               {/* 月曆 */}
-
               <div className="experience-calendar mt-10">
                 我是日曆框框
-                {/* <div>
-                  <Calendar />
-                </div> */}
                 {/* 資料庫資料 */}
                 <div>
                   {course1.length &&
                     course1.map((value, index) => {
                       return (
                         <tr key={value.sid}>
-                          <td>{value.time}</td>
+                          <td>{value.time[0]}</td>
                         </tr>
                       )
                     })}

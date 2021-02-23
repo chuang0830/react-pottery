@@ -866,6 +866,10 @@ text {
 //snailbtnline
 .snailbtnline {
   border-bottom: 1px solid rgb(235, 233, 233);
+  // 不要連結的底線
+  a{
+    text-decoration: none;
+  }
 }
 .snail-button {
   position: relative;
