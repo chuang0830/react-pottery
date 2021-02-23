@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { RiDeleteBinFill } from 'react-icons/ri'
+import { Container, ListGroup, Button } from 'react-bootstrap'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+// 購物車移除效果
 
 function ProductTableNing(props) {
   // style ------------------------------------------------------------
@@ -7,7 +10,6 @@ function ProductTableNing(props) {
     color: 'primary',
     fontSize: 24,
   }
-
   // 商品--------------------------------------------------------------
   // State ------------------------------------------------------------
   const [mycart, setMycart] = useState([])

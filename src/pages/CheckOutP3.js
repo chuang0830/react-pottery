@@ -5,26 +5,55 @@ import React, { useState, useEffect } from 'react'
 import LogoNing from '../components/ningcomponents/LogoNing'
 
 function CheckOutP3(props) {
+  // 購物車 表單
   const [myform, setMyform] = useState([])
-  const [cart, setCart] = useState([])
+  const [myforms, setMyforms] = useState([])
+  const [mycart, setMycart] = useState([])
+  // 優惠卷
+  const [Shipping, setShipping] = useState(120)
+
+  const [mycartDisplay, setMycartDisplay] = useState([])
   // const [dataLoading, setDataLoading] = useState(false)
   // const [myformDisplay, setMyformDisplay] = useState([])
   // function ----------------------------------------------------------
   function getFormToLocalStorage() {
-    const newForm = localStorage.getItem('utsuwaformdataning') || '{}'
+    const newForm = localStorage.getItem('utsuwaformdataningcheck')
     setMyform(JSON.parse(newForm))
-    console.log(newForm)
+    const newForms = localStorage.getItem('utsuwaformdataning')
+    setMyforms(JSON.parse(newForms))
 
     const myCart = localStorage.getItem('utsuwacart') || '[]'
-    setCart(JSON.parse(myCart))
+    setMycart(JSON.parse(myCart))
   }
   useEffect(() => {
     getFormToLocalStorage()
   }, [])
   useEffect(() => {
     console.log(myform)
-    console.log(cart)
-  }, [myform, cart])
+  }, [myform, myforms])
+  useEffect(() => {
+    let newMycartDisplay = []
+    for (let i = 0; i < mycart.length; i++) {
+      const index = newMycartDisplay.findIndex(
+        (value) => value.sid === mycart[i].sid
+      )
+      if (index !== -1) {
+        newMycartDisplay[index].amount += mycart[i].amount
+      } else {
+        const newItem = { ...mycart[i] }
+        newMycartDisplay = [...newMycartDisplay, newItem]
+      }
+    }
+    setMycartDisplay(newMycartDisplay)
+  }, [mycart])
+  // 計算總價用的函式
+  function sum(items) {
+    let total = 0
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].amount * items[i].price
+    }
+    return total
+  }
   return (
     <>
       <div className="container">
@@ -61,28 +90,23 @@ function CheckOutP3(props) {
               </div>
               <table>
                 <tbody>
-                  <tr>
-                    <td>
-                      <img
-                        src="http://localhost:3008/ning-imgs/s.1jpg"
-                        height={70}
-                        alt=""
-                      />
-                    </td>
-                    <td>productname</td>
-                    <td>690</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img
-                        src="http://localhost:3008/ning-imgs/s.1jpg"
-                        height={70}
-                        alt=""
-                      />
-                    </td>
-                    <td>productname</td>
-                    <td>690</td>
-                  </tr>
+                  {mycartDisplay.map((item, index) => {
+                    return (
+                      <tr>
+                        <img
+                          src={`http://localhost:3008/winnie-images/${
+                            JSON.parse(item.photo)[0]
+                          }`}
+                          alt=""
+                          srcset=""
+                          width="150"
+                        />
+                        <td colSpan="2"> {item.product_name}</td>
+                        <td colSpan="2"> {item.price}</td>
+                        <td colSpan="2"> {item.amount}</td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             </div>
@@ -93,19 +117,19 @@ function CheckOutP3(props) {
               <div className="orderstyle">
                 <div className="d-flex justify-content-between">
                   <span>小計</span>
-                  <span>1500</span>
+                  <span>{sum(mycartDisplay)}</span>
                 </div>
                 <div className="d-flex justify-content-between">
                   <span>折扣</span>
-                  <span>-100</span>
+                  <span>{myform.discount}</span>
                 </div>
                 <div className="d-flex justify-content-between">
                   <span>運費</span>
-                  <span>100</span>
+                  <span>{Shipping}</span>
                 </div>
                 <div className="d-flex justify-content-between">
                   <span>總計</span>
-                  <span>1500</span>
+                  <span>{myform.total}</span>
                 </div>
               </div>
             </div>
@@ -152,7 +176,7 @@ function CheckOutP3(props) {
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>訂單日期</span>
-                <span>{myform.orderDay}</span>
+                <span>{myforms.orderDay}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>訂單狀態</span>
@@ -167,15 +191,15 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>會員姓名</span>
-                <span>{myform.orderName}</span>
+                <span>{myforms.orderName}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>電話</span>
-                <span>{myform.orderTel}</span>
+                <span>{myforms.orderTel}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>信箱</span>
-                <span>{myform.orderEmail}</span>
+                <span>{myforms.orderEmail}</span>
               </div>
             </div>
           </div>
@@ -188,15 +212,15 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>收件人姓名</span>
-                <span>{myform.orderRecipient}</span>
+                <span>{myforms.orderRecipient}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>收件人電話</span>
-                <span>{myform.orderRecipientTel}</span>
+                <span>{myforms.orderRecipientTel}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>收件人地址</span>
-                <span>{myform.orderRecipientAddress}</span>
+                <span>{myforms.orderRecipientAddress}</span>
               </div>
             </div>
           </div>
@@ -207,15 +231,15 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>希望到貨日</span>
-                <span>{myform.orderarrivaldate}</span>
+                <span>{myforms.orderarrivaldate}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>希望到貨時間</span>
-                <span>{myform.orderarrivaltime}</span>
+                <span>{myforms.orderarrivaltime}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>地址</span>
-                <span>{myform.orderarrivaladdress}</span>
+                <span>{myforms.orderarrivaladdress}</span>
               </div>
             </div>
           </div>
@@ -236,11 +260,11 @@ function CheckOutP3(props) {
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>信用卡卡號</span>
-                <span>{myform.ordercreditcard}</span>
+                <span>{myforms.ordercreditcard}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>持卡人姓名</span>
-                <span>{myform.ordercreditcardname}</span>
+                <span>{myforms.ordercreditcardname}</span>
               </div>
             </div>
           </div>
@@ -251,19 +275,19 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>發票日期</span>
-                <span>{myform.orderDay}</span>
+                <span>{myforms.orderDay}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>發票類型</span>
-                <span>{myform.orderinvoice}</span>
+                <span>{myforms.orderinvoice}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>載具類型</span>
-                <span>{myform.orderinvoicetype}</span>
+                <span>{myforms.orderinvoicetype}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>訂單備註</span>
-                <span>{myform.orderinvoicearea}</span>
+                <span>{myforms.orderinvoicearea}</span>
               </div>
             </div>
           </div>

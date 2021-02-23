@@ -3,16 +3,6 @@ import { withRouter } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
 
 function Customize(props) {
-  const testData = {
-    sid: 52,
-    product_name: '客製商品',
-    category_id: 6,
-    price: 1080,
-    color: '粉',
-    size: '200mm*200mm',
-    photo: '["52.jpg"]',
-    introduction: '此商品承載著您特製的心意，非常適合作為禮物。',
-  }
   // 加入購物車-----------------------------------------------------------------
   const [mycart, setMycart] = useState([])
   const updateCartToLocalStorage = (item) => {
@@ -28,8 +18,19 @@ function Customize(props) {
   }
   //-----------------------------------------------------------------------------
   const [text, setText] = useState('')
-  const [total, setTotal] = useState(0)
+  const [amount, setAmount] = useState(1)
   const [photo, setPhoto] = useState(52)
+  const testData = {
+    sid: 52,
+    product_name: '客製商品',
+    category_id: 6,
+    price: 1080,
+    color: '粉',
+    size: '200mm*200mm',
+    photo: '["52.jpg"]',
+    customize: text,
+    introduction: '此商品承載著您特製的心意，非常適合作為禮物。',
+  }
   return (
     <>
       {/* hero page */}
@@ -208,16 +209,16 @@ function Customize(props) {
                     <button
                       className="chang-count-btn"
                       onClick={() => {
-                        setTotal(total - 1)
+                        setAmount(amount - 1)
                       }}
                     >
                       -
                     </button>
-                    <button className="chang-count-btn">{total}</button>
+                    <button className="chang-count-btn">{amount}</button>
                     <button
                       className="chang-count-btn"
                       onClick={() => {
-                        setTotal(total + 1)
+                        setAmount(amount + 1)
                       }}
                     >
                       +
@@ -230,8 +231,8 @@ function Customize(props) {
                       onClick={() => {
                         updateCartToLocalStorage({
                           ...testData,
-                          amount: 1,
-                          customize: 'I Love you',
+                          amount: amount,
+                          customize: text,
                         })
                       }}
                     >

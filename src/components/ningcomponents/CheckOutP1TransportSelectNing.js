@@ -10,10 +10,7 @@ function CheckOutTransportSelectNing(props) {
   // 加入表單-----------------------------------------------------------------
   const [myform, setMyform] = useState([])
   const updateFormToLocalStorage = (item) => {
-    // const currentForm =
-    //   JSON.parse(localStorage.getItem('utsuwaformdataning')) || []
     localStorage.setItem('utsuwaformdataning', JSON.stringify(item))
-    // setMyform(currentForm)
   }
   return (
     <>

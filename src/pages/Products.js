@@ -24,6 +24,18 @@ function Products(props) {
   const [sort, setSort] = useState('')
   const [queryReset, setQueryReset] = useState('')
 
+  const [data, setData] = useState([
+    {
+      sid: 0,
+      product_name: '',
+      category_id: 0,
+      price: 0,
+      color: '',
+      size: '',
+      photo: '',
+      introduction: '',
+    },
+  ])
   //方法一：指定分頁位置
   //方法二：app.js(<ScrollToItem>)
   //但不管哪種都會被scrolltop擋住
@@ -67,7 +79,6 @@ function Products(props) {
     setBackPrice('')
     setSort('')
   }
-
   //測試
   useEffect(() => {
     const getDataFromServer = async () => {
@@ -88,9 +99,10 @@ function Products(props) {
         console.log('query', props.location.search)
         const response = await fetch(url, { method: 'GET' })
         const data = await response.json()
-        // console.log('data', data.rows);
+        console.log('data', data.rows)
         setPhotos(data.rows)
         setTotalPage(data.totalPage)
+        setData(data.rows)
         // setSort('priceDESC')
       } catch (error) {
         console.log(error)
@@ -156,7 +168,37 @@ function Products(props) {
       </div>
     </>
   )
-
+  // 加入最近瀏覽-----------------------------------------------------------------
+  const [myrecentview, setRecentView] = useState([])
+  const updateCartToRecentViewLocalStorage = (item) => {
+    const currentRecentview =
+      JSON.parse(localStorage.getItem('utsuwacartrecentView')) || []
+    const index = currentRecentview.findIndex((v) => v.sid === item.sid)
+    if (index > -1) {
+      return
+    } else {
+      currentRecentview.push(item)
+    }
+    localStorage.setItem(
+      'utsuwacartrecentView',
+      JSON.stringify(currentRecentview)
+    )
+    setRecentView(currentRecentview)
+  }
+  // 加入收藏-----------------------------------------------------------------
+  const [myaddheart, setAddHeart] = useState([])
+  const updateCartToAddHeartLocalStorage = (item) => {
+    const currentAddHeart =
+      JSON.parse(localStorage.getItem('utsuwacartaddheart')) || []
+    const index = currentAddHeart.findIndex((v) => v.sid === item.sid)
+    if (index > -1) {
+      return
+    } else {
+      currentAddHeart.push(item)
+    }
+    localStorage.setItem('utsuwacartaddheart', JSON.stringify(currentAddHeart))
+    setAddHeart(currentAddHeart)
+  }
   return (
     <>
       {/* hero page */}
@@ -408,13 +450,29 @@ function Products(props) {
                     <div className="winnie-card-content">
                       <div key={value.sid} className="winnie-card-img">
                         <Link to={`/products/${value.sid}`}>
-                          <img className="w-100" src={p} alt="" />
+                          <img
+                            className="w-100"
+                            src={p}
+                            alt=""
+                            onClick={() => {
+                              updateCartToRecentViewLocalStorage({
+                                ...data[value.sid - 1],
+                              })
+                            }}
+                          />
                         </Link>
                       </div>
                       <div className="winnie-card-name text-justify d-flex justify-content-between">
                         <p>{value.product_name}</p>
                         <div>
-                          <FaRegHeart className="far fa-heart mr-2" />
+                          <FaRegHeart
+                            className="far fa-heart mr-2"
+                            onClick={() => {
+                              updateCartToAddHeartLocalStorage({
+                                ...data[value.sid - 1],
+                              })
+                            }}
+                          />
                           <FaShoppingCart />
                         </div>
                       </div>

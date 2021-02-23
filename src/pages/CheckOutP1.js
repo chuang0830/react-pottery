@@ -6,20 +6,15 @@ import { Link } from 'react-router-dom'
 
 //元件
 import LogoNing from './../components/ningcomponents/LogoNing'
-import CheckOutP1TransportSelectNing from '../components/ningcomponents/CheckOutP1TransportSelectNing'
+import CheckOutP1TableNing from './../components/ningcomponents/CheckOutP1TableNing'
 function CheckOutP1(props) {
   // style ------------------------------------------------------------
   const style = {
     color: 'primary',
     fontSize: 24,
   }
-
-  // 商品--------------------------------------------------------------
-  // State ------------------------------------------------------------
-  // fetch orders
-  const [orders, setOrders] = useState('')
-
   // 購物車
+  const [myform, setMyform] = useState([])
   const [mycart, setMycart] = useState([])
   // const [dataLoading, setDataLoading] = useState(false)
   const [mycartDisplay, setMycartDisplay] = useState([])
@@ -28,54 +23,22 @@ function CheckOutP1(props) {
   const [Total, setTotal] = useState(0)
   const [Shipping, setShipping] = useState(120)
 
-  // function fetch orders-----------------------------------------------
-  // 傳送的資料
-  async function addOrders() {
-    const DataProduct = JSON.parse(localStorage.getItem('utsuwacart'))
-    console.log(DataProduct)
-    const Datasid = DataProduct.sid
-    console.log(Datasid)
-    // const DataProductarray = []
-    // DataProduct.map((v, i) => {
-    //   DataProductarray.push(v.sid)
-
-    //   console.log({ DataProductarray })
-    // })
-
-    // console.log(Datasid)
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:3000/orderdetails/list'
-    // 注意header資料格式要設定，伺服器才知道是json格式
-
-    const request = new Request(url, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(DataProduct),
-      //   // headers: new Headers({
-      //   //   Accept: 'application/json',
-      //   //   'Content-Type': 'appliaction/json',
-      //   // }),
-    })
-    const response = await fetch(request)
-    const data = await response.json()
-    // setOrders(data)
-
-    console.log('伺服器回傳的json資料', data)
-  }
-
-  // 設定傳送資料
-
   // function 購物車-----------------------------------------------------
   function getCartFromLocalStorage() {
+    const newForm = localStorage.getItem('utsuwaformdataningcheck')
+    setMyform(JSON.parse(newForm))
     const newCart = localStorage.getItem('utsuwacart') || '[]'
     setMycart(JSON.parse(newCart))
+  }
+  function total() {
+    setTotal(sum(mycartDisplay) - Shipping - Discount)
   }
   useEffect(() => {
     getCartFromLocalStorage()
   }, [])
+  useEffect(() => {
+    total()
+  })
   useEffect(() => {
     let newMycartDisplay = []
     for (let i = 0; i < mycart.length; i++) {
@@ -90,7 +53,26 @@ function CheckOutP1(props) {
       }
     }
     setMycartDisplay(newMycartDisplay)
-  }, [mycart])
+  }, [mycart, myform])
+  // 計算總價用的函式
+  function sum(items) {
+    let total = 0
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].amount * items[i].price
+    }
+    return total
+  }
+  const index = JSON.parse(localStorage.getItem('utsuwacart')) || []
+  console.log(index)
+  // 加入表單-----------------------------------------------------------------
+  const [seletedTransform, setSeletedTransform] = useState('')
+  const [seletedPay, setSeletedPay] = useState('')
+  const FormDataNing = {
+    selecttransform: seletedTransform,
+    selectpay: seletedPay,
+    total: Total,
+    discount: Discount,
+  }
   // 更新購物車中的商品數量
   function updateCartToLocalStorage(item, isAdded = true) {
     console.log(item, isAdded)
@@ -99,8 +81,6 @@ function CheckOutP1(props) {
     if (index > -1) {
       isAdded ? currentCart[index].amount++ : currentCart[index].amount--
     }
-    // // 計數器bug
-    // if(currentCart[index].amount<1){}
     localStorage.setItem('utsuwacart', JSON.stringify(currentCart))
     setMycart(currentCart)
   }
@@ -128,8 +108,30 @@ function CheckOutP1(props) {
     }
     return total
   }
-  const index = JSON.parse(localStorage.getItem('utsuwacart')) || []
-  console.log(index)
+  const updateFormcheckp1ToLocalStorage = (item) => {
+    // const newItem = { ...myform, ...item }
+    console.log(myform, item)
+    localStorage.setItem('utsuwaformdataningcheck', JSON.stringify(item))
+  }
+  const updateFormcheckp2ToLocalStorage = (item) => {
+    // const newItem = { ...myform, ...item }
+    console.log(myform, item)
+    localStorage.setItem('utsuwaformdataning', JSON.stringify(item))
+  }
+
+  useEffect(() => {
+    updateFormcheckp1ToLocalStorage({
+      ...FormDataNing,
+      discount: Discount,
+      total: Total,
+    })
+  }, [Total, Discount])
+  useEffect(() => {
+    updateFormcheckp2ToLocalStorage({
+      ...FormDataNing,
+      member_sid: 1,
+    })
+  }, [])
   return (
     <>
       <div className="container">
@@ -182,12 +184,9 @@ function CheckOutP1(props) {
                       return (
                         <tr>
                           <img
-                            src={`http://localhost:3008/winnie-images/${
-                              JSON.parse(item.photo)[0]
-                            }`}
+                            src="http://localhost:3008/winnie-images/{JSON.parse(item.photo)[0]}"
                             alt=""
                             srcset=""
-                            width="150"
                           />
                           <td> {item.product_name}</td>
                           <td> {item.price}</td>
@@ -199,9 +198,6 @@ function CheckOutP1(props) {
                                 onClick={() => {
                                   // if (item.amount === 1) return
                                   updateCartToLocalStorage(item, false)
-                                  setTotal(
-                                    sum(mycartDisplay) - Discount - Shipping
-                                  )
                                 }}
                               >
                                 -
@@ -211,13 +207,9 @@ function CheckOutP1(props) {
                               </button>
                               <button
                                 className="chang-count-btn"
-                                onClick={() => {
-                                  // if (item.amount === 1) return
+                                onClick={() =>
                                   updateCartToLocalStorage(item, true)
-                                  setTotal(
-                                    sum(mycartDisplay) - Discount - Shipping
-                                  )
-                                }}
+                                }
                               >
                                 +
                               </button>
@@ -257,7 +249,83 @@ function CheckOutP1(props) {
         </div>
         {/* 選擇運送及付款方式 */}
         <div className="row d-flex justify-content-end mt-9">
-          <CheckOutP1TransportSelectNing />
+          <div className="col-lg-6 col-12">
+            <form className="mt-5">
+              <div className="form-title text-center">
+                <span className="form-title-content">選擇配送及付款方式</span>
+              </div>
+              <div className="form-group">
+                <label
+                  htmlFor="exampleFormControlSelect1"
+                  className="form-text"
+                >
+                  配送方式
+                </label>
+                <select
+                  className="form-control pretty-select"
+                  id="exampleFormControlSelect1"
+                  onChange={(e) => {
+                    const selecttransform = e.target.value
+                    setSeletedTransform(selecttransform)
+                    updateFormcheckp1ToLocalStorage({
+                      ...FormDataNing,
+                      selecttransform,
+                    })
+                  }}
+                >
+                  {/* const [seletedTransform, setSeletedTransform] = useState('') */}
+
+                  <option className="text-success" value="請選擇">
+                    請選擇配送方式
+                  </option>
+                  <option className="text-success" value="宅配到府">
+                    宅配到府
+                  </option>
+                  <option className="text-success" value="超商取貨">
+                    超商取貨
+                  </option>
+                  <option className="text-success" value="海外運送">
+                    海外運送
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label
+                  htmlFor="exampleFormControlSelect1"
+                  className="form-text"
+                >
+                  付款方式
+                </label>
+                <select
+                  className="form-control pretty-select"
+                  id="exampleFormControlSelect1"
+                  onChange={(e) => {
+                    const selectpay = e.target.value
+                    setSeletedPay(selectpay)
+                    updateFormcheckp1ToLocalStorage({
+                      ...FormDataNing,
+                      selectpay,
+                    })
+                  }}
+                >
+                  {/* const [seletedPay, setSeletedPay] = useState('') */}
+
+                  <option className="text-success" value="請選擇">
+                    請選擇付款方式
+                  </option>
+                  <option className="text-success" value="信用卡">
+                    信用卡
+                  </option>
+                  <option className="text-success" value="現金">
+                    現金
+                  </option>
+                  <option className="text-success" value="銀行轉帳">
+                    銀行轉帳
+                  </option>
+                </select>
+              </div>
+            </form>
+          </div>
           <div className="col-lg-6 col-12">
             <div className="form-title text-center mt-5">
               <span className="form-title-content"> 訂單明細 </span>
@@ -279,33 +347,12 @@ function CheckOutP1(props) {
                 <span>總計</span>
                 <span>{Total}</span>
               </div>
-              {/* <form action>
-                <div className="form-group">
-                  <div className="form-row">
-                    <div className="col">
-                      <input
-                        type="text"
-                        className="form-control text-right border-bottom-0"
-                        placeholder="使用優惠卷"
-                      />
-                    </div>
-                    <div className="col">
-                      <input
-                        type="text"
-                        className="form-control text-right"
-                        placeholder
-                      />
-                    </div>
-                  </div>
-                </div>
-              </form> */}
             </div>
-            {/* <div className="row d-flex justify-content-center mb-5">
+            <div className="row d-flex justify-content-center mb-5">
               <button
                 className="cindy-btn"
                 onClick={() => {
                   setDiscount(Discount + 100)
-                  setTotal(sum(mycartDisplay) - Discount - Shipping)
                 }}
               >
                 生日優惠卷
@@ -314,7 +361,6 @@ function CheckOutP1(props) {
                 className="cindy-btn mx-1"
                 onClick={() => {
                   setDiscount(Discount + 60)
-                  setTotal(sum(mycartDisplay) - Discount - Shipping)
                 }}
               >
                 新用戶優惠卷
@@ -323,24 +369,16 @@ function CheckOutP1(props) {
                 className="cindy-btn"
                 onClick={() => {
                   setDiscount(Discount + 60)
-                  setTotal(sum(mycartDisplay) - Discount - Shipping)
                 }}
               >
                 滿額優惠卷
               </button>
-            </div> */}
+            </div>
           </div>
         </div>
         <div className="row d-flex justify-content-end mb-7 mt-5 mt-3">
           <Link to="/CheckOutP2">
-            <button
-              className="ninginfo-btn mx-1"
-              onClick={() => {
-                addOrders()
-              }}
-            >
-              填寫訂單訊息
-            </button>
+            <button className="ninginfo-btn mx-1">填寫訂單訊息</button>
           </Link>
         </div>
       </div>

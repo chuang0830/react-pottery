@@ -15,7 +15,6 @@ function ProductsDetail(props) {
   //   introduction: '希望通過豐富的色彩變化為日常生活著色的日子。',
   // }
   // const [photos, setPhotos] = useState([])
-
   // 加入購物車-----------------------------------------------------------------
   const [mycart, setMycart] = useState([])
   const updateCartToLocalStorage = (item) => {
@@ -33,7 +32,7 @@ function ProductsDetail(props) {
   //async function getPhotosFromServer() {
   // 開啟載入指示
   //setDataLoading(true)
-  const [total, setTotal] = useState(0)
+  const [amount, setAmount] = useState(1)
   const [data, setData] = useState([
     {
       sid: 0,
@@ -261,16 +260,16 @@ function ProductsDetail(props) {
                   <button
                     className="chang-count-btn"
                     onClick={() => {
-                      setTotal(total - 1)
+                      setAmount(amount - 1)
                     }}
                   >
                     -
                   </button>
-                  <button className="chang-count-btn">{total}</button>
+                  <button className="chang-count-btn">{amount}</button>
                   <button
                     className="chang-count-btn"
                     onClick={() => {
-                      setTotal(total + 1)
+                      setAmount(amount + 1)
                     }}
                   >
                     +
@@ -283,7 +282,7 @@ function ProductsDetail(props) {
                     onClick={() => {
                       updateCartToLocalStorage({
                         ...data[0],
-                        amount: 1,
+                        amount: amount,
                       })
                     }}
                   >
