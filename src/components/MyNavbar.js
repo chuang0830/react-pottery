@@ -27,9 +27,9 @@ function MyNavbar(props) {
         <Navbar.Brand href="#home"></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto ml-5 snailbtnline">
-            {/* 用name對應to */}
-            <li className="nav-item snail-button">
+          <Nav className="mr-auto ml-5 snailbtnline" style={{ zIndex: '9999' }}>
+            {/* 用name對應to snail-button*/}
+            <li className="nav-item ">
               <Link
                 href="#coursestyle"
                 to="coursestyle"
@@ -99,12 +99,6 @@ function MyNavbar(props) {
                 課程評價與學員作品
               </Link>
             </li>
-          </Nav>
-          <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

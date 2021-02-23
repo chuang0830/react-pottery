@@ -1,6 +1,6 @@
 import { Link, withRouter } from 'react-router-dom'
 import React, { useState } from 'react'
-//import { withRouter } from 'react-router-dom'
+import { ImEye, ImEyeBlocked } from 'react-icons/im'
 
 function Login(props) {
   let styles = {
@@ -13,6 +13,9 @@ function Login(props) {
   const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
   const [showcss, setShowcss] = useState(false)
+  //eye
+  const [visible, setVisible] = useState(false)
+  
   async function handleSubmit() {
     localStorage.removeItem('member-sid')
     const newData = { account, password }
@@ -79,17 +82,26 @@ function Login(props) {
                     placeholder="請輸入帳號"
                   />
                 </div>
-                <div className="cindy-input">
+                <div className="cindy-input position-relative">
                   <label htmlFor="password1">密碼</label>
                   <br />
                   <input
-                    type="password"
+                    type={`${visible ? 'text' : 'password'}`}
                     name="password"
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="請輸入密碼"
                   />
+                  <button
+                    type="button"
+                    className="position-absolute"
+                    onClick={() => {
+                      setVisible(!visible)
+                    }}
+                  >
+                    {visible ? <ImEyeBlocked /> : <ImEye />}
+                  </button>
                 </div>
                 <Link to="/user-forgetpass" className="forgetpass">
                   忘記密碼？
