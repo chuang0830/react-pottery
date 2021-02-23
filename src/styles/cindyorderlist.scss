@@ -12,35 +12,32 @@
     }
     td {
       button {
-        font-size: $font-size-base;
-        outline: none;
-        color: $primary;
-        background-color: transparent;
-        border: none;
-        border-radius: 5px;
-        &:hover {
-          background-color: transparent;
-          color: $info;
-          outline: none;
-          border: none;
-        }
-        &:active {
-          background-color: transparent;
-          outline: none;
-          border: none;
-        }
-        &:visited {
-          background-color: transparent;
-          outline: none;
-          border: none;
-        }
+        // font-size: $font-size-base;
+        // outline: none;
+        // color: $primary;
+        // background-color: transparent;
+        // border: none;
+        // border-radius: 5px;
+        // &:hover {
+        //   background-color: transparent;
+        //   color: $info;
+        //   outline: none;
+        //   border: none;
+        // }
+        // &:active {
+        //   background-color: transparent;
+        //   outline: none;
+        //   border: none;
+        // }
+        // &:visited {
+        //   background-color: transparent;
+        //   outline: none;
+        //   border: none;
+        // }
         svg {
           margin-left: 3px;
         }
       }
-    }
-    .close-btn {
-      border-radius: 5px;
     }
     label {
       display: block;
@@ -60,14 +57,6 @@
     }
     input {
       display: none;
-    }
-  }
-  .modal-content {
-    .modal-header {
-      border-bottom: 1px solid $primary;
-    }
-    .modal-footer{
-      border-top: 1px solid $primary;
     }
   }
 }

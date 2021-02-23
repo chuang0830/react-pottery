@@ -28,10 +28,10 @@ function MMemberCoupon(props) {
   }, [])
   return (
     <>
-      <div className="cindy-coupon-outer d-flex">
+      <div className="cindy-coupon-outer d-flex flex-wrap">
         {coupon.length &&
           coupon.map((value, index) => {
-            let exp_date = new Date(value.date).toDateString().slice(0, 10)
+            let exp_date = new Date(value.date)
             return (
               <div className="cindy-card d-flex justify-content-center">
                 <div className="cindy-card-left ">
@@ -41,7 +41,10 @@ function MMemberCoupon(props) {
                 </div>
                 <div className="cindy-card-right ">
                   <p>使用期限至</p>
-                  <p className="cindy-card-date">{exp_date}</p>
+                  <p className="cindy-card-date">
+                    {exp_date.getFullYear()}-{exp_date.getMonth() + 1}-
+                    {exp_date.getDate()}
+                  </p>
                   <button>copy</button>
                 </div>
               </div>

@@ -15,7 +15,7 @@ function Login(props) {
   const [showcss, setShowcss] = useState(false)
   //eye
   const [visible, setVisible] = useState(false)
-  //const Icon = visible ? 'ImEyeBlocked' : 'ImEye'
+  
   async function handleSubmit() {
     localStorage.removeItem('member-sid')
     const newData = { account, password }
@@ -100,8 +100,7 @@ function Login(props) {
                       setVisible(!visible)
                     }}
                   >
-                    {`<${visible ? 'ImEyeBlocked' : 'ImEye'}/>`}
-                    <ImEye />
+                    {visible ? <ImEyeBlocked /> : <ImEye />}
                   </button>
                 </div>
                 <Link to="/user-forgetpass" className="forgetpass">
