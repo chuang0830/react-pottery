@@ -254,6 +254,13 @@ window.onscroll = function () {
           '#92b6ba'
         document.getElementById('chien-navbar-icon-cart').style.color =
           '#92b6ba'
+
+        if (document.getElementsByClassName('sticky').length !== 0) {
+          console.log('111')
+          document.getElementById('chien-header').classList.add('d-none')
+        } else {
+          document.getElementById('chien-header').classList.remove('d-none')
+        }
       } else {
         // console.log('up<')
 
