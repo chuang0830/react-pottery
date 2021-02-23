@@ -287,7 +287,7 @@ function Changbiddetail() {
                 {/* col-8 ml-4 */}
                 <div className="">
                   <div
-                    className="chang-cart-btn"
+                    className="chang-cart-btn1"
                     onClick={() => {
                       // localStorage.removeItem('member-sid')
                       // const obj = { ...testData1, qty: 1 }
