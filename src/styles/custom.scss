@@ -602,6 +602,18 @@ text {
   height: 100px;
 }
 
+//近期瀏覽的p
+.winnie-recent-price {
+  font-family: 'Cinzel', serif;
+  display: block;
+  color: $success;
+  font-size: $font-size-base * 0.875;
+  text-align: left;
+  &::before {
+    content: '$';
+  }
+}
+
 //chienpolicycard
 .chien-f-24 {
   font-size: 1.5rem;
