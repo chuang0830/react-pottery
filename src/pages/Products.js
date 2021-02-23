@@ -479,12 +479,16 @@ function Products(props) {
                   <div className="winnie-card-content">
                     <div key={value.sid} className="winnie-card-img">
                       <Link to={`/products/${value.sid}`}>
-                        <img className="w-100" src={p} alt=""
-                         onClick={() => {
-                          updateCartToRecentViewLocalStorage({
-                            ...data[value.sid - 1],
-                          })
-                        }} />
+                        <img
+                          className="w-100"
+                          src={p}
+                          alt=""
+                          onClick={() => {
+                            updateCartToRecentViewLocalStorage({
+                              ...data[value.sid - 1],
+                            })
+                          }}
+                        />
                       </Link>
                     </div>
                     <div className="winnie-card-name text-justify d-flex justify-content-between">

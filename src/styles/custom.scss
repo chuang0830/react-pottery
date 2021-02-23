@@ -5,9 +5,8 @@ $border-radius: 0;
 $input-border-radius: 0;
 $input-box-shadow: 0;
 $input-focus-box-shadow: 0;
-// 覆蓋bootstrap 分頁
-$pagination-focus-box-shadow: 0;
-$pagination-focus-outline:0;
+
+$modal-content-box-shadow-sm-up: none;
 @mixin form-control-focus() {
   &:focus {
     color: $input-focus-color;
@@ -1058,24 +1057,6 @@ chienfooter .chien-social-icon {
     border: 0;
   }
 }
-// 購物車效果
-.remove-btn {
-  margin-right: 0.5rem;
-}
-
-.item-enter {
-  opacity: 0;
-}
-.item-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-.item-exit {
-  opacity: 1;
-}
-.item-exit-active {
-  opacity: 0;
-  transition: opacity 500ms ease-in;
 
 //spinner
 .layer {
