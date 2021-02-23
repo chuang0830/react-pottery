@@ -161,7 +161,7 @@ export const ChienHeader = () => (
               <Nav.Link
                 className="chien-menu-link py-2"
                 as={NavLink}
-                to="/login"
+                to="/member"
                 onClick={ChienClear}
               >
                 會員專區
@@ -197,7 +197,7 @@ export const ChienHeader = () => (
               <Nav.Link
                 className="chien-menu-link py-2"
                 as={NavLink}
-                to="/Experience"
+                to="/CourseCategory"
                 onClick={ChienClear}
               >
                 手作課程

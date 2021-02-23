@@ -43,7 +43,7 @@ $pagination-focus-outline:0;
   background-size: cover;
   background-position: center;
   position: relative;
-  z-index: 1;
+  z-index: -1;
 }
 .img-change-s {
   background-size: cover;
@@ -51,11 +51,12 @@ $pagination-focus-outline:0;
   display: flex;
   position: absolute;
   z-index: 3;
-  left: 175px;
-  top: 373px;
+  left: 145px;
+  top: 385px;
   img {
     margin: 0px 5px;
     border: 3px solid white;
+    transition: 0.2s;
     &:hover {
       cursor: pointer;
       border: 3px solid #77777a;
@@ -321,6 +322,14 @@ text {
     outline: none;
     padding-bottom: 5px;
     width: 100%;
+  }
+  button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    left: 90%;
+    color: $success;
+    //font-size: $font-size-base;
   }
 }
 //cindybtn
@@ -606,8 +615,7 @@ text {
   color: #92b6ba;
   border-bottom: 3px solid #92b6ba;
 }
-//chienfooter
-.chien-social-icon {
+chienfooter .chien-social-icon {
   color: #fcaa3e;
 }
 .chien-f-14 {
@@ -869,6 +877,10 @@ text {
 //snailbtnline
 .snailbtnline {
   border-bottom: 1px solid rgb(235, 233, 233);
+  // 不要連結的底線
+  a {
+    text-decoration: none;
+  }
 }
 .snail-button {
   position: relative;
@@ -971,10 +983,20 @@ text {
   border-radius: 5px;
   border: 2px solid #92b6ba;
 }
-
 .chang-cart-btn:hover {
   color: white;
   background-color: #92b6ba;
+}
+.chang-cart-btn1 {
+  cursor: pointer;
+  border: 0px;
+  background-color: white;
+  background: url('http://localhost:3008/chang-images/bid1.svg') no-repeat;
+}
+
+.chang-cart-btn1:hover {
+  cursor: pointer;
+  background: url('http://localhost:3008/chang-images/bid2.svg') no-repeat;
 }
 
 .chang-count-border-btn {
@@ -1054,6 +1076,130 @@ text {
 .item-exit-active {
   opacity: 0;
   transition: opacity 500ms ease-in;
+
+//spinner
+.layer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  height: 100vh;
+  overflow: hidden;
+}
+.loader {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  transform: scale(3);
+  overflow: hidden;
+  z-index: 1;
+}
+.loader:after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-image: url('http://localhost:3008/loading1.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.progress {
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(
+    circle at 100% 50%,
+    rgba(146, 182, 186, 1) 0%,
+    rgba(146, 182, 186, 1) 100%
+  );
+  // transition: all 0.2s ease;
+  animation: rotate 1.7s linear infinite, moveup 3s linear;
+  position: absolute;
+  border-radius: 32%;
+  top: 4px;
+  right: -15px;
+  overflow: hidden;
+  z-index: -2;
+}
+
+@keyframes moveup {
+  0% {
+    top: 80%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(180deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+//改這裡BS預設
+.cindy {
+  background-color: #fff;
+  color: $primary;
+  border-radius: 5px;
+  &:hover {
+    color: #fff;
+  }
+}
+.cindy-more {
+  font-size: $font-size-base;
+  outline: none;
+  color: $primary;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  &:hover {
+    background-color: transparent;
+    color: $info;
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+  &:active,
+  &:visited,
+  &:focus {
+    background-color: transparent;
+    color: $primary;
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+}
+//改這邊！！！！
+.modal-content {
+  .modal-header {
+    border: none;
+    //padding: 15px;
+  }
+  .modal-footer {
+    border: none;
+  }
+  .modal-body {
+    padding: 0;
+    margin: 15px;
+    border-radius: 5px;
+    border: 1px solid $primary;
+    .tr {
+      border-bottom: 1px solid $primary;
+      padding: 10px;
+    }
+    .tr:last-child {
+      border: none;
+    }
+  }
 }
 
 @import './cindyregister.scss';

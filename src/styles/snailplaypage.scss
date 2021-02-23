@@ -1,20 +1,40 @@
-.onlinepage-video{
-    background-color: rgb(131, 99, 99);
-    height: 300px;
-
+.onlinepage-video {
+  background-color: rgb(131, 99, 99);
+  height: 300px;
 }
-.onlinepage-list{
-    background-color: rgb(216, 76, 76);
-    height: 300px;
-   
+.onlinepage-list {
+  background-color: rgb(216, 76, 76);
+  height: 300px;
+  // margin-top: 70px;
+  Button {
+    color: red;
+    width: 100%;
+    background-color: $primary;
+    border: 1px solid white;
+    color: #615956;
+    font-size: $font-size-base * 0.875; //14px;
+    /* letter-spacing: 100px; */
+    line-height: 33px;
+    padding: 20px;
+  }
 }
 
+// video 將Bootstrap預設padding消除
+.snail-video {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+}
 
-.teacher-chat{
-        position: fixed;
-        height: 50px;
-        width: 50px;
-        background-color: rgb(148, 187, 224);
-        bottom:30px;
-        right: 50px;
-    }
+.teacher-chat {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  background-color: rgb(148, 187, 224);
+  bottom: 30px;
+  right: 50px;
+}
+.videocard {
+  background-color: red;
+  height: 400px;
+}

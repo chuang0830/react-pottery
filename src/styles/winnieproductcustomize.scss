@@ -3,7 +3,7 @@ body {
 }
 
 .winnie-customize-t-bg {
-  height: 605px;
+  height: 80vh;
   background-image: url('http://localhost:3008/winnie-images/bg.png');
   background-repeat: no-repeat;
   background-position: center top;
@@ -125,7 +125,7 @@ body {
 
 .c-plate {
   margin-top: 20px;
-  margin-right: 25px;
+  margin-right: 40px;
   width: 480px;
   height: 350px;
 }
@@ -136,9 +136,10 @@ body {
 }
 
 .winnie-plate-color-wrap {
-  padding: 100px 30px;
+  padding: 100px 30px 100px 5px;//100px 30px
   margin-left: -140px;
   margin-bottom: 50px;
+  z-index:3;
 }
 
 .winnie-c-hover:hover > .winnie-plate-color {
@@ -176,7 +177,7 @@ body {
   background-color: #e2a3ba;
 }
 .winnie-customize-d {
-  padding: 100px;
+  padding: 100px 100px 100px 80px;
   border-left: 1px solid #92b6ba;
 }
 .winnie-customize-price {
@@ -216,10 +217,10 @@ body {
 }
 
 .winnie-customize-f-bg {
-  height: 400px;
+  height: 130vh;
   background-image: url('http://localhost:3008/winnie-images/customize-bg.jpg');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center bottom;
   background-size: cover;
   background-attachment: fixed;
 }

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="73.001" height="73.001" viewBox="0 0 73.001 73.001">
+  <g id="Group_811" data-name="Group 811" transform="translate(-1141 -1114.5)">
+    <path id="Path_175" data-name="Path 175" d="M444.286,475.843l-17.1,16.087a.509.509,0,0,0-.011.728l2.731,2.732a.507.507,0,0,0,.728-.011l16.091-17.093a.508.508,0,0,0-.011-.706l-1.725-1.725A.508.508,0,0,0,444.286,475.843Z" transform="translate(730.23 664.822)" fill="none" stroke="#92b6ba" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="Path_173" data-name="Path 173" d="M551.03,381.719l9.829,9.829,6.731-6.732a2.044,2.044,0,0,1,.215-.176l-9.867-9.868a2.043,2.043,0,0,1-.175.215Z" transform="translate(620.967 753.759)" fill="none" stroke="#92b6ba" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="Path_176" data-name="Path 176" d="M635.483,454.647a2.059,2.059,0,0,0-.215.176l-6.731,6.732-.1.095a2.07,2.07,0,0,0,2.927,2.928l6.827-6.828a2.065,2.065,0,0,0-2.712-3.1Z" transform="translate(553.289 683.753)" fill="none" stroke="#92b6ba" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="Path_174" data-name="Path 174" d="M527.939,347.457l-6.826,6.827a2.07,2.07,0,0,0,2.927,2.928l.095-.1,6.733-6.732a2.039,2.039,0,0,0,.175-.215,2.065,2.065,0,0,0-3.1-2.712Z" transform="translate(647.862 778.363)" fill="none" stroke="#92b6ba" stroke-miterlimit="10" stroke-width="1"/>
+    <rect id="Rectangle_216" data-name="Rectangle 216" width="21.853" height="1.918" transform="translate(1172.334 1156.521)" fill="none" stroke="#92b6ba" stroke-miterlimit="10" stroke-width="1"/>
+    <rect id="Rectangle_217" data-name="Rectangle 217" width="17.606" height="3.083" rx="1.541" transform="translate(1174.458 1153.438)" fill="none" stroke="#92b6ba" stroke-miterlimit="10" stroke-width="1"/>
+    <rect id="Rectangle_218" data-name="Rectangle 218" width="27.745" height="1.781" transform="translate(1169.388 1158.438)" fill="none" stroke="#92b6ba" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="Path_172" data-name="Path 172" d="M36,0A36,36,0,1,1,0,36,36,36,0,0,1,36,0Z" transform="translate(1141.5 1115)" fill="none" stroke="#92b6ba" stroke-width="1"/>
+    <text id="加注" transform="translate(1167.896 1174.234)" fill="#92b6ba" font-size="9" font-family="YuGothicUI-Regular, Yu Gothic UI" letter-spacing="0.1em"><tspan x="0" y="0">加注</tspan></text>
+  </g>
+</svg>

@@ -61,3 +61,46 @@
   /* letter-spacing: 100px; */
   line-height: 33px;
 }
+
+.chang-detail-t-bg {
+  height: 80vh;
+  background-image: url('https://res.klook.com/image/upload/c_fill,w_960,h_460,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/qfkukzhlnkfwio6vtspj.webp');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+.lotzu-title-line {
+  h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 30px;
+    line-height: 33px;
+    color: #77777a;
+    padding: 28px 0px 20px 0px;
+    &::before {
+      content: '$';
+    }
+  }
+  .chang-border-bottom {
+    border-bottom: #92b6ba solid 3px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    h2 {
+      font-size: $font-size-base * 1.25; //20px;
+      line-height: 33px;
+      color: #92b6ba;
+    }
+    p {
+      font-size: $font-size-base * 0.875; //14px;
+      color: $success;
+      line-height: 33px;
+      .i {
+        color: $danger;
+        font-size: $font-size-base * 0.875; //14px;
+      }
+    }
+  }
+}

@@ -11,6 +11,7 @@ import cartHandler from './../utils/CartHandler'
 import SnailButton from '../components/SnailButton'
 import MyNavbar from '../components/MyNavbar'
 import Sticky from 'react-sticky-el'
+import Calendar from '../components/snailcomponents/Calendar'
 
 function Experience() {
   //單選盒
@@ -100,7 +101,7 @@ function Experience() {
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                {/* <Link to="/">首頁</Link> */}
+                <Link to="/">首頁</Link>
               </li>
               <li className="breadcrumb-item">
                 <Link to="/CourseCategory">課程類別</Link>
@@ -110,6 +111,9 @@ function Experience() {
               </li>
             </ol>
           </nav>
+          <div>
+            <Calendar />
+          </div>
           {/* 主標題 */}
           <div className="winnie-title ">
             <h1>DIY課程體驗</h1>
@@ -135,26 +139,6 @@ function Experience() {
           <MyNavbar />
         </Sticky>
         <div className="container EX-container">
-          <div className="row">
-            <div className="col">
-              {/* <SnailButton /> */}
-              {/* <div className="snailbtnline d-flex mb-7">
-                <a href="#" className="snail-button mr-5">
-                  價目表
-                </a>
-                <a href="#" className="snail-button mr-5">
-                  詳細資料
-                </a>
-                <a href="#" className="snail-button mr-5">
-                  更改取消
-                </a>
-                <a href="#" className="snail-button mr-5">
-                  課程評價與學員作品
-                </a>
-              </div> */}
-            </div>
-          </div>
-
           {/* 單選Radio -----------------------------*/}
           <div className="row">
             <div className="col-8">
@@ -168,6 +152,8 @@ function Experience() {
                 </div>
                 <div className="radiobox">
                   <input
+                    id="1"
+                    name="1"
                     type="radio"
                     value="1"
                     checked={radiob === '1'}
@@ -176,11 +162,13 @@ function Experience() {
                       setRadiob('1')
                     }}
                   />{' '}
-                  <label>療癒手捏陶</label>
+                  <label for="1">療癒手捏陶</label>
                 </div>
 
                 <div className="radiobox">
                   <input
+                    id="2"
+                    name="2"
                     type="radio"
                     value="2"
                     checked={radiob === '2'}
@@ -189,10 +177,12 @@ function Experience() {
                       setRadiob('2')
                     }}
                   />{' '}
-                  <label>彩繪陶瓷容器</label>
+                  <label for="2">彩繪陶瓷容器</label>
                 </div>
                 <div className="radiobox">
                   <input
+                    id="3"
+                    name="3"
                     type="radio"
                     value="{radiob}"
                     checked={radiob === '3'}
@@ -201,7 +191,7 @@ function Experience() {
                       setRadiob('3')
                     }}
                   />{' '}
-                  <label>壓紋拓印陶盤</label>
+                  <label for="3">壓紋拓印陶盤</label>
                 </div>
               </div>
 
@@ -209,12 +199,8 @@ function Experience() {
             </div>
             <div className="col-4">
               {/* 月曆 */}
-
               <div className="experience-calendar mt-10">
                 我是日曆框框
-                {/* <div>
-                  <Calendar />
-                </div> */}
                 {/* 資料庫資料 */}
                 <div>
                   {course1.length &&
