@@ -56,13 +56,8 @@ function Changbidindex() {
   return (
     <>
       {/* banner照片 */}
-      <div className="chang-header">
-        <div className="chang-banner">
-          <img
-            src="http://localhost:3008/chang-images/banner.jpeg"
-            alt="bidbanner"
-          />
-        </div>
+      <div>
+        <div className="chang-index-t-bg"></div>
       </div>
 
       {/* winnie(不要動到) 麵包屑 */}
@@ -82,7 +77,7 @@ function Changbidindex() {
         {/* winnie(不要動到) 標題，文字 */}
         <div className="row">
           <div className="winnie-title">
-            <h1>Custormize</h1>
+            <h1>Bidding</h1>
           </div>
           <p className="winnie-text mb-11">
             1926 年許家創業製陶至今近一世紀，「 新旺集瓷
@@ -95,16 +90,16 @@ function Changbidindex() {
 
         {/* chien(不要動到) 照片+文字 */}
         <div className="row py-5 mb-5 chien-prod">
-          <div className="chien-prod-img col-8">
+          <div className="chien-prod-img col-7 chang-photo">
             <img
               className="overflow-hidden w-100"
-              src="http://localhost:3008/chang-images/kid.jpg"
+              src="https://res.klook.com/image/upload/c_fill,w_960,h_460,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/wrwtqkfv8tatrsius8w3.webp"
               alt="bidbanner"
             />
           </div>
-          <div className="chien-prod-cont col-4 my-auto">
+          <div className="chien-prod-cont col-5 my-auto">
             <div className="card-body">
-              <h5 className="pb-4 chien-card-title chien-f-24">商品專區</h5>
+              <h5 className="pb-4 chien-card-title chien-f-24 ">慈善競標</h5>
               <p className="card-text py-4 chien-f-14">
                 克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
               </p>
@@ -364,6 +359,7 @@ function Changbidindex() {
 
       {/* chien(不要動到) 頁尾 */}
       <footer>
+        <div className="chang-product-f-bg"></div>
         <div className="chien-footer-top py-5 container-fluid">
           <div className="ch-footer-top">
             <div className="row p-3">

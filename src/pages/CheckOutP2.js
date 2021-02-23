@@ -221,19 +221,28 @@ function CheckOutP2(props) {
   // 落慈**********************
   // 新增資料*******************************************
   const [dataLoading, setDataLoading] = useState(false)
-  const sid = 1
+  // const sid = 1
   // 測試 取值
   // const product_name = JSON.parse(localStorage.getItem('utsuwacart'));
   // product_name.forEach(function(obj) {
   //   console.log(obj.product_name)
   // })
-  const product_sid = JSON.parse(
-    localStorage.getItem('utsuwacart', 'product_sid')
-  )
-  const product_name = JSON.parse(
-    localStorage.getItem('utsuwacart', 'product_name')
-  )
-  const price = JSON.parse(localStorage.getItem('utsuwacart', 'price'))
+
+  const parse = JSON.parse(localStorage.getItem('utsuwacart'))
+
+  const sid = parse[0].sid
+  // const sid = 1
+  // console.log('product_sid', product_sid)
+  const product_name = parse[0].product_name
+  // console.log('product_name', product_name)
+  const price = parse[0].price
+  // console.log('price', price)
+  // const cart = localStorage.getItem('utsuwacart')
+  // const parse = JSON.parse(cart)
+
+  // const product_sid = 1
+  // const product_name = 1
+  // const price = 1
   // const product_id = 3
   // const [avatar, setAvatar] = useState('')
   // const [account, setAccount] = useState('')
@@ -269,8 +278,8 @@ function CheckOutP2(props) {
     const newData = {
       // avatar,
       // account,
+      // sid,
       sid,
-      product_sid,
       product_name,
       price,
       orderName,
