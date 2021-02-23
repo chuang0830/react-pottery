@@ -40,7 +40,7 @@ $input-focus-box-shadow: 0;
   background-size: cover;
   background-position: center;
   position: relative;
-  z-index: 1;
+  z-index: -1;
 }
 .img-change-s {
   background-size: cover;
@@ -48,11 +48,12 @@ $input-focus-box-shadow: 0;
   display: flex;
   position: absolute;
   z-index: 3;
-  left: 175px;
-  top: 373px;
+  left: 145px;
+  top: 385px;
   img {
     margin: 0px 5px;
     border: 3px solid white;
+    transition: 0.2s;
     &:hover {
       cursor: pointer;
       border: 3px solid #77777a;
@@ -603,8 +604,7 @@ text {
   color: #92b6ba;
   border-bottom: 3px solid #92b6ba;
 }
-//chienfooter
-.chien-social-icon {
+chienfooter .chien-social-icon {
   color: #fcaa3e;
 }
 .chien-f-14 {
@@ -1033,6 +1033,75 @@ text {
     border: 0;
   }
 }
+
+//spinner
+.layer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  height: 100vh;
+  overflow: hidden;
+}
+.loader {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  transform: scale(3);
+  overflow: hidden;
+  z-index: 1;
+}
+.loader:after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-image: url('http://localhost:3008/loading1.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.progress {
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(
+    circle at 100% 50%,
+    rgba(146, 182, 186, 1) 0%,
+    rgba(146, 182, 186, 1) 100%
+  );
+  // transition: all 0.2s ease;
+  animation: rotate 1.7s linear infinite, moveup 3s linear;
+  position: absolute;
+  border-radius: 32%;
+  top: 4px;
+  right: -15px;
+  overflow: hidden;
+  z-index: -2;
+}
+
+@keyframes moveup {
+  0% {
+    top: 80%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(180deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';

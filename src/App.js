@@ -39,6 +39,8 @@ import ChienHomepage from './components/ChienHomepage'
 import ChienPolicycard from './components/ChienPolicycard'
 import ChienFooter from './components/ChienFooter'
 
+import Test from './pages/test'
+
 function App() {
   return (
     // Router只會有一個
@@ -102,6 +104,10 @@ function App() {
             </Route>
             <Route exact path="/products/:id">
               <ProductsDetail />
+            </Route>
+
+            <Route path="/test">
+              <Test />
             </Route>
 
             {/* 課程路由 */}
