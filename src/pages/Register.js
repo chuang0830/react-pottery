@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
+import { ImEye, ImEyeBlocked } from 'react-icons/im'
 function Register(props) {
   let styles = {
     height: '100%',
@@ -14,6 +15,9 @@ function Register(props) {
   const [password2, setPassword2] = useState('')
   const [showcss, setShowcss] = useState(false)
   const [errors, setErrors] = useState([])
+  //eye
+  const [visible1, setVisible1] = useState(false)
+  const [visible2, setVisible2] = useState(false)
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -40,8 +44,8 @@ function Register(props) {
 
     if (newErrors.length === 0) {
       const newData = { account, email, password }
-      const url = 'http://localhost:3000/members/add'
-      const request = new Request(url, {
+      const url_add = 'http://localhost:3000/members/add'
+      const request_add = new Request(url_add, {
         method: 'POST',
         body: JSON.stringify(newData),
         headers: new Headers({
@@ -50,10 +54,28 @@ function Register(props) {
         }),
       })
       console.log(JSON.stringify(newData))
-      const response = await fetch(request)
-      const data = await response.json()
+      const response_add = await fetch(request_add)
+      const data_add = await response_add.json()
+      console.log('伺服器回傳的json資料', data_add)
 
-      console.log('伺服器回傳的json資料', data)
+      const member_sid = data_add.sid
+      const name = '新用戶優惠券'
+      const price = '60'
+      const code = 'NewAccount'
+      const data_cou = { name, price, code, member_sid }
+      const url_cou = 'http://localhost:3000/members/coupon'
+      const request_cou = new Request(url_cou, {
+        method: 'POST',
+        body: JSON.stringify(data_cou),
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      })
+      console.log(JSON.stringify(data_cou))
+      const response_cou = await fetch(request_cou)
+      const data_coupon = await response_cou.json()
+      console.log('伺服器回傳的json資料', data_coupon)
       setShowcss(true)
     }
   }
@@ -117,30 +139,48 @@ function Register(props) {
                   />
                 </div>
                 {errors.includes('email') && <span>Email格式錯誤</span>}
-                <div className="cindy-input">
+                <div className="cindy-input position-relative">
                   <label htmlFor="password">密碼</label>
                   <br />
                   <input
-                    type="password"
+                    type={`${visible1 ? 'text' : 'password'}`}
                     name="password"
                     id="password"
                     placeholder="請輸入密碼"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  <button
+                    type="button"
+                    className="position-absolute"
+                    onClick={() => {
+                      setVisible1(!visible1)
+                    }}
+                  >
+                    {visible1 ? <ImEyeBlocked /> : <ImEye />}
+                  </button>
                 </div>
                 {errors.includes('password') && <span>密碼格式錯誤</span>}
-                <div className="cindy-input">
+                <div className="cindy-input position-relative">
                   <label htmlFor="password2">確認密碼</label>
                   <br />
                   <input
-                    type="password"
+                    type={`${visible2 ? 'text' : 'password'}`}
                     name="password2"
                     id="password2"
                     placeholder="請再次輸入密碼"
                     value={password2}
                     onChange={(e) => setPassword2(e.target.value)}
                   />
+                  <button
+                    type="button"
+                    className="position-absolute"
+                    onClick={() => {
+                      setVisible2(!visible2)
+                    }}
+                  >
+                    {visible2 ? <ImEyeBlocked /> : <ImEye />}
+                  </button>
                 </div>
                 {errors.includes('password2') && (
                   <span>兩次密碼輸入不一致</span>

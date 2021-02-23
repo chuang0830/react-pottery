@@ -5,6 +5,8 @@ $border-radius: 0;
 $input-border-radius: 0;
 $input-box-shadow: 0;
 $input-focus-box-shadow: 0;
+
+$modal-content-box-shadow-sm-up: none;
 @mixin form-control-focus() {
   &:focus {
     color: $input-focus-color;
@@ -318,6 +320,14 @@ text {
     outline: none;
     padding-bottom: 5px;
     width: 100%;
+  }
+  button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    left: 90%;
+    color: $success;
+    //font-size: $font-size-base;
   }
 }
 //cindybtn
@@ -1042,6 +1052,64 @@ text {
     border: 0;
   }
 }
+
+//改這裡BS預設
+.cindy {
+  background-color: #fff;
+  color: $primary;
+  border-radius: 5px;
+  &:hover {
+    color: #fff;
+  }
+}
+.cindy-more {
+  font-size: $font-size-base;
+  outline: none;
+  color: $primary;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  &:hover {
+    background-color: transparent;
+    color: $info;
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+  &:active,
+  &:visited,
+  &:focus {
+    background-color: transparent;
+    color: $primary;
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+}
+//改這邊！！！！
+.modal-content {
+  .modal-header {
+    border: none;
+    //padding: 15px;
+  }
+  .modal-footer {
+    border: none;
+  }
+  .modal-body {
+    padding: 0;
+    margin: 15px;
+    border-radius: 5px;
+    border: 1px solid $primary;
+    .tr {
+      border-bottom: 1px solid $primary;
+      padding: 10px;
+    }
+    .tr:last-child {
+      border: none;
+    }
+  }
+}
+
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';

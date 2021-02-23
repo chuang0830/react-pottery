@@ -6,11 +6,19 @@ import MMemberFav from './MMemberFav'
 import MMemberCoupon from './MMemberCoupon'
 
 function Member(props) {
-  console.log(props.match.pathname)
+  const [light, setLight] = useState('edit')
+  console.log(props.location)
   const url = props.match.url
   const path = props.match.path
+  if (!localStorage.getItem('member-sid')) {
+    props.history.push('/login')
+  }
 
-  const [light, setLight] = useState('account')
+  useEffect(() => {
+    const pathNow = props.location.pathname.split('/')[2]
+    console.log(pathNow)
+    setLight(pathNow)
+  }, [props.location.pathname])
 
   function logoutbtn(e) {
     e.preventDefault()
@@ -53,8 +61,7 @@ function Member(props) {
             <div className="cindy-sec seclectbox1">
               <Link
                 to={`${url}/edit`}
-                className={light === 'account' ? 'active' : ''}
-                onClick={() => setLight('account')}
+                className={light === 'edit' ? 'active' : ''}
               >
                 <img
                   src="http://localhost:3008/cindy-imgs/selectbox1.png"
@@ -67,7 +74,6 @@ function Member(props) {
               <Link
                 to={`${url}/orderlist`}
                 className={light === 'orderlist' ? 'active' : ''}
-                onClick={() => setLight('orderlist')}
               >
                 <img
                   src="http://localhost:3008/cindy-imgs/selectbox2.png"
@@ -80,7 +86,6 @@ function Member(props) {
               <Link
                 to={`${url}/fav`}
                 className={light === 'fav' ? 'active' : ''}
-                onClick={() => setLight('fav')}
               >
                 <img
                   src="http://localhost:3008/cindy-imgs/selectbox3.png"
