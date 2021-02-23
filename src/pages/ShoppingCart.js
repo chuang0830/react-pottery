@@ -22,6 +22,7 @@ function ShoppingCart(props) {
   return (
     <>
       <div className="container">
+        <AddHeart />
         <LogoNing />
         <div className="row">
           <div className="container mt-5">
