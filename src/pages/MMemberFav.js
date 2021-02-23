@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
+import AddHeart from '../components/ningcomponents/AddHeart'
 function MMemberFav(props) {
   return (
     <>
       <div className="cindylike">
         <div className="cindy-table">
-          <table>
+          <AddHeart />
+          {/* <table>
             <thead>
               <tr>
                 <th scope="col"></th>
@@ -74,7 +76,7 @@ function MMemberFav(props) {
                 </td>
               </tr>
             </tbody>
-          </table>
+          </table> */}
         </div>
       </div>
     </>

@@ -18,7 +18,7 @@ function Products(props) {
   //總頁
   const [totalpage, setTotalPage] = useState(0)
   //追蹤愛心
-  const [heart, setHeart] = useState([1, 3])
+  const [heart, setHeart] = useState([])
   //載入圖示
   const [isLoading, setIsLoading] = useState(true)
 
@@ -191,6 +191,27 @@ function Products(props) {
     localStorage.setItem('utsuwacartaddheart', JSON.stringify(currentAddHeart))
     setAddHeart(currentAddHeart)
   }
+  function removeAddHeart(value) {
+    const index = JSON.parse(localStorage.getItem('utsuwacartaddheart')) || []
+    // 拿掉選取的物件
+    const currentRemoveheart = index.filter((v) => v.sid !== value.sid)
+    localStorage.setItem(
+      'utsuwacartaddheart',
+      JSON.stringify(currentRemoveheart)
+    )
+    // 設定資料
+    setAddHeart(currentRemoveheart)
+  }
+  useEffect(() => {}, [heart])
+
+  //監聽愛心
+  function getAddHeartFromLocalStorage() {
+    const newAddCart = localStorage.getItem('utsuwacartaddheart') || '[]'
+    setHeart(JSON.parse(newAddCart))
+  }
+  useEffect(() => {
+    getAddHeartFromLocalStorage()
+  }, [])
 
   if (isLoading) return spinner
 
@@ -502,6 +523,7 @@ function Products(props) {
                                 (v) => v !== value.sid
                               )
                               setHeart(newHeart)
+                              removeAddHeart(value)
                             }}
                             className="far fa-heart mr-2"
                           />
