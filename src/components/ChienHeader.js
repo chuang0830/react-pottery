@@ -173,7 +173,7 @@ export const ChienHeader = () => (
               <Nav.Link
                 className="chien-menu-link py-2"
                 as={NavLink}
-                to="/Products"
+                to="/products"
                 onClick={ChienClear}
               >
                 商品專區
