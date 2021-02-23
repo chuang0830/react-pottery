@@ -1,19 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown,
-} from 'react-bootstrap'
-import ReactDOM from 'react-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faFacebookSquare } from '@fortawesome/free-solid-svg-icons'
-// import { faTwitterSquare } from '@fortawesome/free-solid-svg-icons'
-// import { faInstagramSquare } from '@fortawesome/free-solid-svg-icons'
-// import { faTelegram } from '@fortawesome/free-solid-svg-icons'
 
 export const ChienFooter = () => (
   <>
@@ -23,15 +8,16 @@ export const ChienFooter = () => (
         <div className="ch-footer-top">
           <div className="row p-3">
             <div className="col-6">
-              <a className="chien-f-14 m-4 text-white" href="#">
+              <a className="chien-f-14 m-4 text-white" href="">
                 關於我們
               </a>
               <p className="chien-aboutus-content chien-f-14 mx-5 my-3">
-                克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
+                我們提供台灣在地職人手作具有溫度的商品，以傳承職人陶藝精神。透過這個平台,讓消費者不僅僅只有找到想要購買的商品，更可以在這個平台上購買陶器體驗課程，讓體驗者用雙手的真實勞動，享受創作的幸福感，感受生命的溫度。
+                另外，偏鄉社區的孩子接觸學習的機會較少，因此我們與山上偏鄉學校合作，提供學童免費體驗課程，開啟孩子對陶藝的興趣，並且將競標學童手作商品，所獲取的金額全額捐贈，幫助他們改善學習環境。
               </p>
             </div>
             <div className="col-3">
-              <a className="chien-f-14 m-4 text-white" href="#">
+              <a className="chien-f-14 m-4 text-white" href="">
                 聯絡我們
               </a>
               <p className="chien-contactus-subtitle chien-f-14 mx-5 mt-3 mb-0">
@@ -51,20 +37,20 @@ export const ChienFooter = () => (
               </p>
             </div>
             <div className="col-3">
-              <a className="chien-f-14 m-4 text-white" href="#">
+              <a className="chien-f-14 m-4 text-white" href="">
                 最新消息
               </a>
               <p className="chien-news-content chien-f-14 mx-5 mt-3 mb-1">
-                克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍。
+                【公告】倉庫盤點配送延遲
               </p>
               <p className="chien-f-12 mx-5 text-white">
-                August, 25, 2018 | by Utsuwa
+                Feb, 25, 2021 | by Utsuwa
               </p>
               <p className="chien-news-content chien-f-14 mx-5 mt-3 mb-1">
-                克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍。
+                【公告】2021春節期間實體店舖營業時間
               </p>
               <p className="chien-f-12 mx-5 text-white">
-                August, 25, 2018 | by Utsuwa
+                Feb, 1, 2021 | by Utsuwa
               </p>
             </div>
           </div>
@@ -73,73 +59,9 @@ export const ChienFooter = () => (
       <div className="chien-footer-bottom py-3 container-fluid">
         <div className="ch-footer-bottom">
           <div className="row">
-            <ul className="social-links-area nav">
-              <li>
-                <span className="chien-hidden-icon mx-3">
-                  {/* <iFontAwesomeIcon icon={faFacebookSquare} /> */}
-                </span>
-              </li>
-              <li>
-                <span className="chien-hidden-icon mx-3">
-                  {/* <iFontAwesomeIcon icon={faTwitterSquare} /> */}
-                </span>
-              </li>
-              <li>
-                <span className="chien-hidden-icon mx-3">
-                  {/* <iFontAwesomeIcon icon={faInstagramSquare} /> */}
-                </span>
-              </li>
-              <li>
-                <span className="chien-hidden-icon mx-3">
-                  {/* <iFontAwesomeIcon icon={faTelegram} /> */}
-                </span>
-              </li>
-            </ul>
             <div className="mx-auto text-white copyright social-icon">
               Copyright © 2021 Utsuwa Inc.
             </div>
-            <ul className="social-links-area nav">
-              <li>
-                <Nav.Link
-                  as={NavLink}
-                  to="/Facebook"
-                  className="mx-3 chien-social-icon"
-                  target="_blank"
-                >
-                  {/* <iFontAwesomeIcon icon={faFacebookSquare} /> */}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as={NavLink}
-                  to="/Twitter"
-                  className="mx-3 chien-social-icon"
-                  target="_blank"
-                >
-                  {/* <iFontAwesomeIcon icon={faTwitterSquare} /> */}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as={NavLink}
-                  to="/Instagram"
-                  className="mx-3 chien-social-icon"
-                  target="_blank"
-                >
-                  {/* <iFontAwesomeIcon icon={faInstagramSquare} /> */}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as={NavLink}
-                  to="/Telegram"
-                  className="mx-3 chien-social-icon"
-                  target="_blank"
-                >
-                  {/* <iFontAwesomeIcon icon={faTelegram} /> */}
-                </Nav.Link>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
