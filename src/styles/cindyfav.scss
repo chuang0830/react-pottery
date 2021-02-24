@@ -2,7 +2,9 @@
   tbody {
     td:first-child {
       img {
-        height: 93px;
+        //這裏改
+        object-fit: cover;
+        height: 80px;
         overflow: hidden;
       }
     }

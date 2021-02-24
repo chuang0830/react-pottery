@@ -200,13 +200,21 @@ function Products(props) {
   //監聽愛心
   function getAddHeartFromLocalStorage() {
     const getHeart = localStorage.getItem('utsuwacartaddheart') || '[]'
-    setHeart(JSON.parse(getHeart))
+    // setHeart(JSON.parse(getHeart))
+
+    const heartsData = JSON.parse(getHeart)
+    // heartsData
+    const heartDisplay = []
+    heartsData.forEach((i) => {
+      heartDisplay.push(i.sid)
+    })
+    setHeart(heartDisplay)
   }
   useEffect(() => {
     getAddHeartFromLocalStorage()
   }, [])
   useEffect(() => {}, [heart])
-
+  console.log(heart)
   if (isLoading) return spinner
 
   return (
