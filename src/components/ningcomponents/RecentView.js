@@ -32,6 +32,8 @@ function RecentView(props) {
   return (
     <>
       {myrecentviewDisplay.map((itemrecentviews, index) => {
+        console.log('itemrecentviews:', itemrecentviews)
+        console.log('itemrecentviews.photo:', itemrecentviews.photo)
         return (
           <div className="mt-3 mb-3 col-lg-4 col-xl-4  col-md-6 col-6">
             <div className="winnie-card-content">
@@ -42,7 +44,6 @@ function RecentView(props) {
                     JSON.parse(itemrecentviews.photo)[0]
                   }`}
                   alt=""
-                  srcset=""
                 />
               </div>
               <div className="winnie-card-name text-justify d-flex justify-content-between">
