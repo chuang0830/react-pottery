@@ -99,8 +99,6 @@ function Products(props) {
   useEffect(() => {
     Aos.init({ duration: 2000 })
   }, [])
- 
-
 
   //測試
   useEffect(() => {
@@ -249,7 +247,7 @@ function Products(props) {
         <div className="winnie-title">
           <h1>PRODUCT</h1>
         </div>
-        <div  data-aos="fade-up" className="winnie-text">
+        <div data-aos="fade-up" className="winnie-text">
           <p>
             「用色彩點綴你的日常」讓你的每一天都與、眾、不、同。
             <br />
