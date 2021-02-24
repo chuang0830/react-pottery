@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import { RiDeleteBinFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 //元件
 import LogoNing from './../components/ningcomponents/LogoNing'
 import RecentView from './../components/ningcomponents/RecentView'
@@ -48,6 +49,15 @@ function ShoppingCart(props) {
           <div className="winnie-p-wrap d-flex">
             <RecentView />
           </div>
+        </div>
+      </div>
+      <div className="fixed">
+        <div className="fixed-shop">
+          <FontAwesomeIcon
+            icon={faShoppingCart}
+            className="chien-navbar-icon-cart"
+            id="chien-navbar-icon-cart"
+          />
         </div>
       </div>
     </>
