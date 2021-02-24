@@ -5,9 +5,8 @@ function MMemberFav(props) {
   return (
     <>
       <div className="cindylike">
-        <div className="cindy-table">
-          <AddHeart />
-          {/* <table>
+        <AddHeart />
+        {/* <table>
             <thead>
               <tr>
                 <th scope="col"></th>
@@ -77,7 +76,6 @@ function MMemberFav(props) {
               </tr>
             </tbody>
           </table> */}
-        </div>
       </div>
     </>
   )
