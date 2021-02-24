@@ -40,6 +40,7 @@ function Experience() {
     console.log(data1)
     //設定資料給photos
     setCourse1(data1)
+    setData(data1)
   }
 
   //一開始就會開始載入資料
@@ -64,6 +65,17 @@ function Experience() {
       </div>
     </>
   )
+  const [data, setData] = useState([
+    {
+      sid: 0,
+      product_name: '',
+      category_id: 0,
+      price: 0,
+      photo: '',
+      introduction: '',
+      time: '',
+    },
+  ])
   const testData1 = {
     sid: 1,
     product_name: '拉胚',
@@ -208,12 +220,24 @@ function Experience() {
                       return (
                         <tr key={value.sid}>
                           <td>{value.time}</td>
+                          <button
+                            className="ninginfo-btn"
+                            onClick={() => {
+                              updateCourseCartToLocalStorage({
+                                // ...testData1,
+                                ...data[0],
+                                amount: 1,
+                              })
+                            }}
+                          >
+                            立即結帳
+                          </button>
                         </tr>
                       )
                     })}
                 </div>
-                抓取單選日期項目
-                <div className="snail-radioitem-text">{radiob}</div>
+                {/* 抓取單選日期項目 */}
+                {/* <div className="snail-radioitem-text">{radiob}</div> */}
               </div>
               <button
                 className="ninginfo-btn"
@@ -473,7 +497,20 @@ function Experience() {
               className="ninginfo-btn"
               onClick={() => {
                 updateCourseCartToLocalStorage({
-                  ...testData1,
+                  // ...testData1,
+                  ...data[0],
+                  amount: 1,
+                })
+              }}
+            >
+              立即結帳
+            </button>
+            <button
+              className="ninginfo-btn"
+              onClick={() => {
+                updateCourseCartToLocalStorage({
+                  // ...testData1,
+                  ...data[1],
                   amount: 1,
                 })
               }}

@@ -7,6 +7,7 @@ import Scroll from 'react-scroll'
 import PlayMessage from './PlayMessage'
 import PlayContent from './PlayContent'
 import PlayReview from './PlayReview'
+import { nodeName } from 'jquery'
 
 function PlayPage(props) {
   const [vedio, setVedio] = useState('/coursevedio1.mp4')
@@ -56,6 +57,7 @@ function PlayPage(props) {
                 url={vedio}
                 height="100%"
                 width="100%"
+                style={{ borde: 'none' }}
                 autoplay={false}
                 playing={false}
                 controls={true}
@@ -74,7 +76,7 @@ function PlayPage(props) {
                     position: 'relative',
                     height: '326px',
                     overflow: 'scroll',
-                    // marginBottom: '100px',
+                    marginBottom: '100px',
                   }}
                 >
                   <button
@@ -210,18 +212,21 @@ function PlayPage(props) {
         <div className="row"></div>
         <div className="teacher-chat"></div>
         <Switch>
-          <Route path={`${url}/playmessage`}>
-            <PlayMessage />
+          <Route exact path={path}>
+            <PlayContent />
           </Route>
           <Route path={`${url}/playcontent`}>
             <PlayContent />
+          </Route>
+          <Route path={`${url}/playmessage`}>
+            <PlayMessage />
           </Route>
           <Route path={`${url}/playreview`}>
             <PlayReview />
           </Route>
         </Switch>
       </div>
-    </>
+    </> 
   )
 }
 
