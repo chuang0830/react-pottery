@@ -970,6 +970,9 @@ chienfooter .chien-social-icon {
       .i {
         color: $danger;
         font-size: $font-size-base * 0.875; //14px;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
