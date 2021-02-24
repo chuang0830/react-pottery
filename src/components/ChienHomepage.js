@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ChienMain = () => (
+export const ChienHomepage = () => (
   <>
     {/* banner */}
     <banner>
@@ -97,4 +97,4 @@ export const ChienMain = () => (
   </>
 )
 
-export default ChienMain
+export default ChienHomepage

@@ -33,7 +33,7 @@ function RecentView(props) {
     <>
       {myrecentviewDisplay.map((itemrecentviews, index) => {
         return (
-          <div className="col-lg-4 col-xl-4  col-md-6 col-6">
+          <div className="mt-3 mb-3 col-lg-4 col-xl-4  col-md-6 col-6">
             <div className="winnie-card-content">
               <div className="winnie-card-img">
                 <img
@@ -52,7 +52,7 @@ function RecentView(props) {
                     <FaShoppingCart />
                   </div> */}
               </div>
-              <p className="winnie-card-price">{itemrecentviews.price}</p>
+              <p className="winnie-recent-price">{itemrecentviews.price}</p>
             </div>
           </div>
         )
