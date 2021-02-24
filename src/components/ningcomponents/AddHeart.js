@@ -65,7 +65,7 @@ function AddHeart(props) {
                   <tr>
                     <td>
                       <img
-                        className="w-100"
+                        // className="w-100"
                         src={`http://localhost:3008/winnie-images/${
                           JSON.parse(itemaddheart.photo)[0]
                         }`}

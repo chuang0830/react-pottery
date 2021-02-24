@@ -15,13 +15,19 @@
 .chien-ham-bar,
 .chien-navbar,
 #chien-navbar-icon-member,
-#chien-navbar-icon-cart {
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+#chien-navbar-icon-cart,
+#chien-nav-top0 {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.chien-navbar-1 {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .chien-navbar-logo {
-  width: 10%;
+  width: 7%;
   max-width: 180px;
   position: absolute;
   z-index: 9997;
@@ -30,7 +36,7 @@
 }
 
 .chien-homepage-navbar-logo {
-  width: 10%;
+  width: 7%;
   max-width: 180px;
   position: absolute;
   z-index: 9997;

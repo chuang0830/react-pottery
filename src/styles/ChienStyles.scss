@@ -12,12 +12,13 @@
 .chien-ham-bar,
 .chien-navbar,
 #chien-navbar-icon-member,
-#chien-navbar-icon-cart {
-  transition: 0.3s;
+#chien-navbar-icon-cart,
+#chien-nav-top0 {
+  transition: all 0.5s;
 }
 
 .chien-navbar-logo {
-  width: 10%;
+  width: 7%;
   max-width: 180px;
   position: absolute;
   z-index: 9997;
@@ -26,7 +27,7 @@
 }
 
 .chien-homepage-navbar-logo {
-  width: 10%;
+  width: 7%;
   max-width: 180px;
   position: absolute;
   z-index: 9997;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import Carousel from 'react-bootstrap/Carousel'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 //icon
 import { FaRegHeart, FaHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
@@ -93,6 +95,11 @@ function Products(props) {
     setBackPrice('')
     setSort('')
   }
+  //aos套件
+  useEffect(() => {
+    Aos.init({ duration: 2000 })
+  }, [])
+
   //測試
   useEffect(() => {
     //spinner測試
@@ -203,16 +210,15 @@ function Products(props) {
     // 設定資料
     setAddHeart(currentRemoveheart)
   }
-  useEffect(() => {}, [heart])
-
   //監聽愛心
   function getAddHeartFromLocalStorage() {
-    const newAddCart = localStorage.getItem('utsuwacartaddheart') || '[]'
-    setHeart(JSON.parse(newAddCart))
+    const getHeart = localStorage.getItem('utsuwacartaddheart') || '[]'
+    setHeart(JSON.parse(getHeart))
   }
   useEffect(() => {
     getAddHeartFromLocalStorage()
   }, [])
+  useEffect(() => {}, [heart])
 
   if (isLoading) return spinner
 
@@ -241,7 +247,7 @@ function Products(props) {
         <div className="winnie-title">
           <h1>PRODUCT</h1>
         </div>
-        <div className="winnie-text">
+        <div data-aos="fade-up" className="winnie-text">
           <p>
             「用色彩點綴你的日常」讓你的每一天都與、眾、不、同。
             <br />
@@ -249,7 +255,7 @@ function Products(props) {
           </p>
         </div>
         {/* 輪播 */}
-        <Carousel>
+        <Carousel data-aos="fade-up">
           <Carousel.Item interval={5000}>
             <img
               className="d-block w-100"
@@ -294,7 +300,7 @@ function Products(props) {
         </Carousel>
       </div>
       {/* 分類 */}
-      <div>
+      <div data-aos="fade-up">
         <div className="winnie-classbg">
           <p>商品專區</p>
         </div>
@@ -749,6 +755,10 @@ function Products(props) {
             </div>
           </div>
         </div>
+        {/* 元件但一放product就掛了 */}
+        {/* <div className="row">
+          <RecentView />
+        </div> */}
       </div>
       {/* 測試 */}
       <div>
