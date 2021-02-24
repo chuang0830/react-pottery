@@ -1,7 +1,5 @@
 // import { BrowserRouter as Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import { Container, ListGroup, Button } from 'react-bootstrap'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { RiDeleteBinFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 
@@ -52,25 +50,6 @@ function ShoppingCart(props) {
           </div>
         </div>
       </div>
-      <TransitionGroup>
-        {items.map(({ id, text }) => (
-          <CSSTransition key={id} timeout={500} classNames="item">
-            <ListGroup.Item>
-              <Button
-                className="remove-btn"
-                variant="danger"
-                size="sm"
-                onClick={() =>
-                  setItems((items) => items.filter((item) => item.id !== id))
-                }
-              >
-                &times;
-              </Button>
-              {text}
-            </ListGroup.Item>
-          </CSSTransition>
-        ))}
-      </TransitionGroup>
     </>
   )
 }

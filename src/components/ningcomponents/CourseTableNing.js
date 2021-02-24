@@ -44,7 +44,7 @@ function CourseTableNing(props) {
     if (index > -1) {
       isAdded
         ? currentCourseCart[index].amount++
-        : currentCourseCart[index].amount--
+        : (currentCourseCart[index].amount = 1)
     }
     localStorage.setItem('utsuwacoursecart', JSON.stringify(currentCourseCart))
     setMyCoursecart(currentCourseCart)
