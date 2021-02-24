@@ -690,70 +690,8 @@ function Products(props) {
         {/* [_winnierecentview.scss]recent view title*/}
         <WinnieLogo />
         {/* recent view product*/}
-        <RecentView />
         <div className="row">
-          <div className="winnie-p-wrap d-flex">
-            {/* 第一個 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-            {/* 2 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-            {/* 3 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <FaRegHeart className="far fa-heart mr-2" />
-                    <FaShoppingCart />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-          </div>
+          <RecentView />
         </div>
         {/* 元件但一放product就掛了 */}
         {/* <div className="row">
