@@ -10,7 +10,6 @@ import LogoNing from './../components/ningcomponents/LogoNing'
 import RecentView from './../components/ningcomponents/RecentView'
 import ProductTableNing from './../components/ningcomponents/ProductTableNing'
 import CourseTableNing from './../components/ningcomponents/CourseTableNing'
-import AddHeart from './../components/ningcomponents/AddHeart'
 
 function ShoppingCart(props) {
   const [items, setItems] = useState([
@@ -22,7 +21,6 @@ function ShoppingCart(props) {
   return (
     <>
       <div className="container">
-        <AddHeart />
         <LogoNing />
         <div className="row">
           <div className="container mt-5">

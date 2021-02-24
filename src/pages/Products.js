@@ -7,6 +7,7 @@ import { FaShoppingCart } from 'react-icons/fa'
 //元件
 import WinnieLogo from './../components/winniecomponents/WinnieLogo'
 import ChienFooter from '../components/ChienFooter'
+import RecentView from './../components/ningcomponents/RecentView'
 // import { faTemperatureHigh } from '@fortawesome/free-solid-svg-icons'
 // import ScrollToItem from '../components/winniecomponents/winnieitemscroll'
 
@@ -683,6 +684,7 @@ function Products(props) {
         {/* [_winnierecentview.scss]recent view title*/}
         <WinnieLogo />
         {/* recent view product*/}
+        <RecentView />
         <div className="row">
           <div className="winnie-p-wrap d-flex">
             {/* 第一個 */}
