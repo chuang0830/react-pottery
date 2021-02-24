@@ -38,18 +38,6 @@ function Products(props) {
   const [sort, setSort] = useState('')
   const [queryReset, setQueryReset] = useState('')
 
-  const [data, setData] = useState([
-    {
-      sid: 0,
-      product_name: '',
-      category_id: 0,
-      price: 0,
-      color: '',
-      size: '',
-      photo: '',
-      introduction: '',
-    },
-  ])
   //方法一：指定分頁位置
   //方法二：app.js(<ScrollToItem>)
   //但不管哪種都會被scrolltop擋住
@@ -126,7 +114,6 @@ function Products(props) {
         console.log('data', data.rows)
         setPhotos(data.rows)
         setTotalPage(data.totalPage)
-        setData(data.rows)
         // setSort('priceDESC')
       } catch (error) {
         console.log(error)
@@ -309,7 +296,7 @@ function Products(props) {
       </div>
       {/* 分類 */}
       <div data-aos="fade-up">
-        <div className="winnie-classbg">
+        <div data-aos="fade-up" className="winnie-classbg">
           <p>商品專區</p>
         </div>
       </div>
@@ -472,41 +459,6 @@ function Products(props) {
         <div className="row">
           <div className="winnie-p-wrap d-flex">
             {/* 第一個 */}
-
-            {/* {photos.length &&
-              photos.map((value, index) => {
-                let p = JSON.parse(value.photo)[0]
-                p = 'http://localhost:3008/winnie-images/' + p
-                return (
-                  <div className="col-lg-4 col-md-6">
-                    <div className="winnie-card-content">
-                      <div key={value.sid} className="winnie-card-img">
-                        <Link to={`/products/${value.sid}`}>
-                          <img
-                            className="w-100"
-                            src={p}
-                            alt=""
-                            onClick={() => {
-                              updateCartToRecentViewLocalStorage({
-                                ...data[value.sid - 1],
-                              })
-                            }}
-                          />
-                        </Link>
-                      </div>
-                      <div className="winnie-card-name text-justify d-flex justify-content-between">
-                        <p>{value.product_name}</p>
-                        <div>
-                          <FaRegHeart
-                            className="far fa-heart mr-2"
-                            onClick={() => {
-                              updateCartToAddHeartLocalStorage({
-                                ...data[value.sid - 1],
-                              })
-                            }}
-                          />
-                          <FaShoppingCart />
-                        </div> */}
             {photos.map((value, index) => {
               let p = JSON.parse(value.photo)[0]
               p = 'http://localhost:3008/winnie-images/' + p
@@ -520,9 +472,7 @@ function Products(props) {
                           src={p}
                           alt=""
                           onClick={() => {
-                            updateCartToRecentViewLocalStorage({
-                              ...data[value.sid - 1],
-                            })
+                            updateCartToRecentViewLocalStorage(value)
                           }}
                         />
                       </Link>
@@ -548,15 +498,16 @@ function Products(props) {
                             onClick={() => {
                               const newHeart = [...heart, value.sid]
                               setHeart(newHeart)
-                              updateCartToAddHeartLocalStorage({
-                                ...data[value.sid - 1],
-                              })
+                              updateCartToAddHeartLocalStorage(value)
                             }}
                             className="far fa-heart mr-2"
                           />
                         )}
 
-                        <FaShoppingCart onClick={() => {}} />
+                        <FaShoppingCart
+                          onClick={() => {}}
+                          className="winnie-cart"
+                        />
                       </div>
                     </div>
                     <p className="winnie-card-price">{value.price}</p>
@@ -698,13 +649,10 @@ function Products(props) {
         {/* [_winnierecentview.scss]recent view title*/}
         <WinnieLogo />
         {/* recent view product*/}
+        {/* 元件但一放product就掛了 */}
         <div className="row">
           <RecentView />
         </div>
-        {/* 元件但一放product就掛了 */}
-        {/* <div className="row">
-          <RecentView />
-        </div> */}
       </div>
       {/* 測試 */}
       <div>

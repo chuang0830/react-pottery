@@ -560,6 +560,12 @@ text {
       word-break: break-all;
       .far.fa-heart {
         color: $danger;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .winnie-cart:hover {
+        cursor: pointer;
       }
     }
 

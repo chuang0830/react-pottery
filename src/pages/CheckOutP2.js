@@ -222,33 +222,13 @@ function CheckOutP2(props) {
   // 落慈**********************
   // 新增資料*******************************************
   const [dataLoading, setDataLoading] = useState(false)
-  // const sid = 1
-  // 測試 取值
-  // const product_name = JSON.parse(localStorage.getItem('utsuwacart'));
-  // product_name.forEach(function(obj) {
-  //   console.log(obj.product_name)
-  // })
+
 
   const parse = JSON.parse(localStorage.getItem('utsuwacart'))
 
   const sid = parse[0].sid
-  // const sid = 1
-  // console.log('product_sid', product_sid)
   const product_name = parse[0].product_name
-  // console.log('product_name', product_name)
   const price = parse[0].price
-  // console.log('price', price)
-  // const cart = localStorage.getItem('utsuwacart')
-  // const parse = JSON.parse(cart)
-
-  // const product_sid = 1
-  // const product_name = 1
-  // const price = 1
-  // const product_id = 3
-  // const [avatar, setAvatar] = useState('')
-  // const [account, setAccount] = useState('')
-  // const [bid_product_number, setBid_product_number] = useState('')
-  // const [bid_created_time, setBid_created_time] = useState('')
   const [orderName, setorderName] = useState('')
 
   // 測試抓member資料
@@ -355,58 +335,6 @@ function CheckOutP2(props) {
     <>
       <div className="container">
         <LogoNing />
-        {/* 落慈新增 */}
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">訂單名字</label>
-          <input
-            type="text"
-            className="form-control"
-            value={orderName}
-            onChange={(event) => {
-              setorderName(event.target.value)
-            }}
-          />
-        </div>
-
-        <button
-          onClick={() => {
-            addUserToSever()
-          }}
-          className="btn btn-primary"
-        >
-          新增名字
-        </button>
-        {/* 落慈顯示 */}
-        <Table responsive hover>
-          <thead>
-            <tr className="chang-bid-table-title">
-              {/* <th>account</th> */}
-              <th>產品名稱</th>
-              <th>價錢</th>
-              <th>orderName</th>
-            </tr>
-          </thead>
-          <tbody className="chang-bid-table">
-            {ningphotos.length &&
-              ningphotos.map((value, index) => {
-                //單筆圖片直接value.photo
-                //多筆圖片let p = JSON.parse(value.photo)[0]
-                let p1 = value.avatar
-                p1 = 'http://localhost:3008/chang-images/' + p1
-                return (
-                  <tr>
-                    {/* <td>
-                    <img className="chang-bidding-photo" src={p1} alt="" />
-                  </td> */}
-                    {/* <td className="chang-account-text">{value.account}</td> */}
-                    <td>{value.product_name}</td>
-                    <td>{value.price}</td>
-                    <td>{value.orderName}</td>
-                  </tr>
-                )
-              })}
-          </tbody>
-        </Table>
         {/* 訂單進度程序 */}
         <div className="row d-flex justify-content-center">
           <div className="col-lg-6 d-flex flex-row justify-content-center process">
