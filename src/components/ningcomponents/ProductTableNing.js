@@ -44,7 +44,7 @@ function ProductTableNing(props) {
     const currentCart = JSON.parse(localStorage.getItem('utsuwacart')) || []
     const index = currentCart.findIndex((v) => v.sid === item.sid)
     if (index > -1) {
-      isAdded ? currentCart[index].amount++ : currentCart[index].amount--
+      isAdded ? currentCart[index].amount++ : (currentCart[index].amount = 1)
     }
     localStorage.setItem('utsuwacart', JSON.stringify(currentCart))
     setMycart(currentCart)

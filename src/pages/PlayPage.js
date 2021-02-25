@@ -7,6 +7,7 @@ import Scroll from 'react-scroll'
 import PlayMessage from './PlayMessage'
 import PlayContent from './PlayContent'
 import PlayReview from './PlayReview'
+import ChienFooter from '../components/ChienFooter'
 
 function PlayPage(props) {
   const [vedio, setVedio] = useState('/coursevedio1.mp4')
@@ -48,6 +49,9 @@ function PlayPage(props) {
           </ol>
         </nav>
         {/* 影片 */}
+        <div className="winnie-title ">
+          <h1>線上課程標題</h1>
+        </div>
         <div className="row">
           {/* <div className="col-lg-12"> */}
           <div className="onlinepage d-flex justify-content-start">
@@ -56,6 +60,7 @@ function PlayPage(props) {
                 url={vedio}
                 height="100%"
                 width="100%"
+                style={{ borde: 'none' }}
                 autoplay={false}
                 playing={false}
                 controls={true}
@@ -74,7 +79,7 @@ function PlayPage(props) {
                     position: 'relative',
                     height: '326px',
                     overflow: 'scroll',
-                    // marginBottom: '100px',
+                    marginBottom: '100px',
                   }}
                 >
                   <button
@@ -167,6 +172,7 @@ function PlayPage(props) {
           </div>
           {/* </div> */}
         </div>
+
         {/* 進度條 */}
         <div className="row">
           <div className="col-lg-8">
@@ -185,7 +191,7 @@ function PlayPage(props) {
         {/* 按鈕列 */}
         <div className="row">
           <div className="col">
-            <div className="snailbtnline d-flex mb-7">
+            <div className="snailbtnline d-flex mb-7 mt-7">
               <Link
                 to="/CourseCategory/MyOnlineCourse/PlayPage/playcontent"
                 className="snail-button mr-5"
@@ -210,16 +216,28 @@ function PlayPage(props) {
         <div className="row"></div>
         <div className="teacher-chat"></div>
         <Switch>
-          <Route path={`${url}/playmessage`}>
-            <PlayMessage />
+          <Route exact path={path}>
+            <PlayContent />
           </Route>
           <Route path={`${url}/playcontent`}>
             <PlayContent />
+          </Route>
+          <Route path={`${url}/playmessage`}>
+            <PlayMessage />
           </Route>
           <Route path={`${url}/playreview`}>
             <PlayReview />
           </Route>
         </Switch>
+      </div>
+      {/* Footer背景 */}
+      <div>
+        <div className="snail-f-bg position-relative mt-10">
+          {/* 頁尾 */}
+          <div className="position-absolute fixed-bottom">
+            <ChienFooter />
+          </div>
+        </div>
       </div>
     </>
   )

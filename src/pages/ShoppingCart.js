@@ -1,16 +1,14 @@
 // import { BrowserRouter as Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import { Container, ListGroup, Button } from 'react-bootstrap'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { RiDeleteBinFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 //元件
 import LogoNing from './../components/ningcomponents/LogoNing'
 import RecentView from './../components/ningcomponents/RecentView'
 import ProductTableNing from './../components/ningcomponents/ProductTableNing'
 import CourseTableNing from './../components/ningcomponents/CourseTableNing'
-import AddHeart from './../components/ningcomponents/AddHeart'
 
 function ShoppingCart(props) {
   const [items, setItems] = useState([
@@ -22,7 +20,6 @@ function ShoppingCart(props) {
   return (
     <>
       <div className="container">
-        <AddHeart />
         <LogoNing />
         <div className="row">
           <div className="container mt-5">
@@ -54,25 +51,15 @@ function ShoppingCart(props) {
           </div>
         </div>
       </div>
-      <TransitionGroup>
-        {items.map(({ id, text }) => (
-          <CSSTransition key={id} timeout={500} classNames="item">
-            <ListGroup.Item>
-              <Button
-                className="remove-btn"
-                variant="danger"
-                size="sm"
-                onClick={() =>
-                  setItems((items) => items.filter((item) => item.id !== id))
-                }
-              >
-                &times;
-              </Button>
-              {text}
-            </ListGroup.Item>
-          </CSSTransition>
-        ))}
-      </TransitionGroup>
+      <div className="fixed">
+        <div className="fixed-shop">
+          <FontAwesomeIcon
+            icon={faShoppingCart}
+            className="chien-navbar-icon-cart"
+            id="chien-navbar-icon-cart"
+          />
+        </div>
+      </div>
     </>
   )
 }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 function RecentView(props) {
+  const history = useHistory()
   // 課程--------------------------------------------------------------
   // State ------------------------------------------------------------
   const [myrecentview, setRecentView] = useState([])
@@ -26,26 +28,49 @@ function RecentView(props) {
         newMyrecentviewDisplay = [...newMyrecentviewDisplay, newCourseItem]
       }
     }
-    setMyRecentViewDisplay(newMyrecentviewDisplay.slice(-3))
+    setMyRecentViewDisplay(myrecentview.slice(-3))
   }, [myrecentview])
+  console.log('myrecentview', myrecentviewDisplay)
 
   return (
     <>
       {myrecentviewDisplay.map((itemrecentviews, index) => {
+        console.log('itemrecentviews:', itemrecentviews)
+        console.log('itemrecentviews.photo:', itemrecentviews.photo)
         return (
           <div className="mt-3 mb-3 col-lg-4 col-xl-4  col-md-6 col-6">
-            <div className="winnie-card-content">
-              <div className="winnie-card-img">
-                <img
-                  className="w-100"
-                  src={`http://localhost:3008/winnie-images/${
-                    JSON.parse(itemrecentviews.photo)[0]
-                  }`}
-                  alt=""
-                  srcset=""
-                />
+            <div className="winnie-recent-content">
+              <div
+                // onClick={() => {
+                //   console.log('hhhh')
+                //   setTimeout(() => {
+                //     // history.push(`/products/${itemrecentviews.sid}`)
+                //     window.location.reload()
+                //   }, 100)
+                // }}
+                className="winnie-recent22-img"
+              >
+                <Link
+                  to={`/products`}
+                  onClick={() => {
+                    console.log('hhhh')
+                    console.log('history', history)
+                    setTimeout(() => {
+                      history.push(`/products/${itemrecentviews.sid}`)
+                      // window.location.reload()
+                    }, 100)
+                  }}
+                >
+                  <img
+                    className="w-100"
+                    src={`http://localhost:3008/winnie-images/${
+                      JSON.parse(itemrecentviews.photo)[0]
+                    }`}
+                    alt=""
+                  />
+                </Link>
               </div>
-              <div className="winnie-card-name text-justify d-flex justify-content-between">
+              <div className="winnie-recent-name text-justify d-flex justify-content-between">
                 <p>{itemrecentviews.product_name}</p>
                 {/* <div>
                     <FaRegHeart className="far fa-heart mr-2" />
