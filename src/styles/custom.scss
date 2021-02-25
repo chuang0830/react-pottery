@@ -1202,7 +1202,18 @@ chienfooter .chien-social-icon {
     transform: rotateZ(360deg);
   }
 }
-
+.fixed{
+    position: relative;
+    .fixed-shop{
+      position: absolute;
+      background-color: $primary;
+      border-radius: 50%;
+      right: 0;
+      bottom: 0;
+      width: 60px;
+      height: 60px;
+    }
+}
 //改這裡BS預設
 .cindy {
   background-color: #fff;

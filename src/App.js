@@ -38,7 +38,7 @@ import ChienHeader from './components/ChienHeader'
 import ChienHomepage from './components/ChienHomepage'
 import ChienPolicycard from './components/ChienPolicycard'
 import ChienFooter from './components/ChienFooter'
-import PlayMessage from './pages/PlayMessage'
+
 
 import Test from './pages/test'
 
@@ -50,25 +50,6 @@ function App() {
         {/* 嚴謹的要放上面 */}
         {/* 放連結 */}
         <ChienHeader />
-        {/* <Link to="/CourseCategory">CourseCategory</Link>
-        <Link to="/CourseCategory/Experience">Experience</Link>
-        <Link to="/CourseCategory/OnlineCourse">OnlineCourse</Link>
-        <Link to="/CourseCategory/MyOnlineCourse">MyOnlineCourse</Link>
-        <Link to="/CourseCategory/MyOnlineCourse/PlayPage">PlayPage</Link>
-        <Link to="/CheckOutP1">CheckOutP1</Link>
-        <Link to="/CheckOutP2">CheckOutP2</Link>
-        <Link to="/CheckOutP3">CheckOutP3</Link>
-        <Link to="/ShoppingCart">ShoppingCart</Link>
-        <Link to="/LocalStorageTest">LocalStorageTest</Link>
-        <Link to="/changbidindex">changbidindex</Link>
-        <Link to="/changbidindex/changbiddetail">changbiddetail</Link>
-        <Link to="/products">Products</Link>
-        <Link to="/products/:id">ProductsDetail</Link>
-        <Link to="/customize">Customize</Link> */}
-
-        {/* Switch從上到下找唯一匹配的路由表 */}
-        {/* 測試 */}
-        {/* <ScrollToTop> */}
         {/* Switch從上到下找唯一匹配的路由表 */}
         <Switch>
           <Route exact path="/">

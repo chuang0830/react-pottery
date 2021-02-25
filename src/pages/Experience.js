@@ -1,24 +1,106 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
-// import Calendar from 'rc-calendar'
-// import 'rc-calendar/assets/index.css'
-import { FaRegHeart } from 'react-icons/fa'
-import { FaShoppingCart } from 'react-icons/fa'
-import cartHandler from './../utils/CartHandler'
-import SnailButton from '../components/SnailButton'
+
+import Table from 'react-bootstrap/Table'
 import MyNavbar from '../components/MyNavbar'
 import Sticky from 'react-sticky-el'
 import Calendar from '../components/snailcomponents/Calendar'
+import ChienFooter from '../components/ChienFooter'
 
 function Experience() {
   //單選盒
   const [radiob, setRadiob] = useState('1')
   const [course1, setCourse1] = useState([])
+  const [message1, setMessage1] = useState([])
+  const [amount, setAmount] = useState(0)
   //const [dataLoading, setDataLoding] = useState(false)
+  function load() {
+    window.location.reload()
+  }
+ 
+  //抓Node留言資料
+  async function getMessageFromServer() {
+    // 開啟載入指示
+    //setDataLoading(true)
 
+    // 連接的伺服器資料網址
+    const url = `http://localhost:3000/course/jsonm`
+
+    //header格式設定為json格式
+    const request1 = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    console.log(url)
+    const response = await fetch(request1)
+    const data = await response.json()
+    console.log(data)
+    //設定資料給photos
+    setMessage1(data)
+  }
+
+  //送入留言資料
+  // 新增競標資料*******************************************
+  // const [dataLoading, setDataLoading] = useState(false)
+  // 抓members丟出的sid(localstorage)
+  const sid = localStorage.getItem('member-sid')
+  const category_id = 11
+  const star = 0
+  const [message, setMessage] = useState('')
+  const [message_created_time, setMessage_created_time] = useState(0)
+  console.log('messege', message)
+  // const [bid_refresh, setBid_refresh] = useState('')
+  // function load() {
+  //   window.location.reload()
+  // }
+
+  async function addUserToSever() {
+    // 開啟載入指示
+    // setDataLoading(true)
+
+    const newData = {
+      //message_sid,
+      sid, //會員sid
+      category_id,
+      message,
+      star,
+      message_created_time,
+    }
+
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/course/add1'
+
+    // 注意資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'POST',
+      body: JSON.stringify(newData),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+
+    console.log(JSON.stringify('newdata', newData))
+
+    const response = await fetch(request)
+    const data = await response.json()
+
+    console.log('伺服器回傳的json資料', data)
+
+    // 要等驗証過，再設定資料(簡單的直接設定)
+
+    //直接在一段x秒關掉指示器
+    // setTimeout(() => {
+    //   setDataLoading(false)
+    //   alert('儲存完成')
+    //   props.history.push('/')
+    // }, 500)
+  }
+
+  //抓Node課程資料
   async function getCourse1FromServer1() {
     // 開啟載入指示
     //setDataLoading(true)
@@ -40,12 +122,16 @@ function Experience() {
     console.log(data1)
     //設定資料給photos
     setCourse1(data1)
+    setData(data1)
   }
 
   //一開始就會開始載入資料
   useEffect(() => {
     getCourse1FromServer1()
   }, [radiob])
+  useEffect(() => {
+    getMessageFromServer()
+  }, [])
 
   //每次users資料有變動就會X秒後關掉載入指示
   // useEffect(() => {
@@ -64,6 +150,17 @@ function Experience() {
       </div>
     </>
   )
+  const [data, setData] = useState([
+    {
+      sid: 0,
+      product_name: '',
+      category_id: 0,
+      price: 0,
+      photo: '',
+      introduction: '',
+      time: '',
+    },
+  ])
   const testData1 = {
     sid: 1,
     product_name: '拉胚',
@@ -111,9 +208,10 @@ function Experience() {
               </li>
             </ol>
           </nav>
-          <div>
+          {/* <div>
             <Calendar />
-          </div>
+          </div> */}
+
           {/* 主標題 */}
           <div className="winnie-title ">
             <h1>DIY課程體驗</h1>
@@ -199,22 +297,45 @@ function Experience() {
             </div>
             <div className="col-4">
               {/* 月曆 */}
-              <div className="experience-calendar mt-10">
-                我是日曆框框
-                {/* 資料庫資料 */}
-                <div>
-                  {course1.length &&
-                    course1.map((value, index) => {
-                      return (
-                        <tr key={value.sid}>
-                          <td>{value.time}</td>
-                        </tr>
-                      )
-                    })}
-                </div>
-                抓取單選日期項目
-                <div className="snail-radioitem-text">{radiob}</div>
+              <div className="experience-list mt-10 ">
+                {course1.length &&
+                  course1.map((value, index) => {
+                    return (
+                      <div
+                        className="d-flex experience-list-item"
+                        key={value.sid}
+                      >
+                        <div
+                          className="mr-5"
+                          style={{ height: '50px', lineHeight: '50px' }}
+                        >
+                          {value.time}
+                        </div>
+                        {/* 計數器 */}
+                        <div className="col-4 chang-count-border-btn  d-flex flex-row justify-content-center">
+                          <button
+                            className="chang-count-btn"
+                            onClick={() => {
+                              setAmount(amount - 1)
+                            }}
+                          >
+                            -
+                          </button>
+                          <button className="chang-count-btn">{amount}</button>
+                          <button
+                            className="chang-count-btn"
+                            onClick={() => {
+                              setAmount(amount + 1)
+                            }}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  })}
               </div>
+
               <button
                 className="ninginfo-btn"
                 onClick={() => {
@@ -271,6 +392,7 @@ function Experience() {
                 </div>
               </div>
             </div>
+
             <div className="row">
               <div className="col-lg-8">
                 <div className="course-card-content">
@@ -371,6 +493,7 @@ function Experience() {
               </div>
             </div>
           </div>
+
           {/* 課程評價與學員作品 */}
           <div className="course-title" id="work" name="work">
             課程評價與學員作品
@@ -380,19 +503,26 @@ function Experience() {
             {/* 留言板 */}
             <div className="col-lg-12">
               {/* 留言1 */}
-              <div className="message-card border-buttom">
-                <div className="avatar-photo">{/* <img src alt /> */}</div>
-                <div className="message-card-content d-flex justify-content-start">
-                  <span>PAPAYA</span>&nbsp;&nbsp;
-                  <span>2018-05-19</span>&nbsp;&nbsp;
-                  <span>5star</span>
-                </div>
-                <div className="message-card-content">
-                  <p className="snail-message-text">
-                    插入體驗打造上漲答案物理懂得，完了根本遵守高效，國務院給予最為有一些書記幫助警察自身評論尋求台北百姓消息
-                  </p>
-                </div>
-              </div>
+              {message1.length &&
+                message1.map((value, index) => {
+                  //單筆圖片直接value.photo
+                  //多筆圖片let p = JSON.parse(value.photo)[0]
+                  let p1 = value.avatar
+                  p1 = 'http://localhost:3008/course/' + p1
+                  return (
+                    <div className="message-card border-buttom">
+                      <div className="avatar-photo"></div>
+                      <div className="message-card-content d-flex justify-content-start">
+                        <span>{value.account}</span>&nbsp;&nbsp;
+                        <span>{value.message_created_time}</span>&nbsp;&nbsp;
+                        <span>5star</span>
+                      </div>
+                      <div className="message-card-content">
+                        <p className="snail-message-text">{value.message}</p>
+                      </div>
+                    </div>
+                  )
+                })}
               {/* 留言2 */}
               <div className="message-card border-buttom">
                 <div className="avatar-photo">{/* <img src alt /> */}</div>
@@ -440,6 +570,7 @@ function Experience() {
               </div>
             </div>
           </div>
+
           <div className="course-title-sm">
             留言評價
             <div className="my-message-card">
@@ -450,19 +581,34 @@ function Experience() {
                     <label
                       htmlFor="exampleFormControlTextarea1 "
                       className="snail-inputmessage-text"
+                      for="messagetext"
                     >
                       留言
                     </label>
-                    <textarea
+                    <input
                       className="form-control"
-                      id="exampleFormControlTextarea1"
-                      rows={2}
-                      defaultValue={''}
+                      // id="exampleFormControlTextarea1"
+                      // rows={2}
+                      // defaultValue={''}
+                      type="text"
+                      name="messagetext"
+                      id="messagetext"
+                      value={message}
+                      onChange={(e) => {
+                        setMessage(e.target.value)
+                      }}
                     />
                   </div>
                 </div>
               </div>
-              <button class="cindy-btn">上傳圖片</button>
+              <button
+                class="cindy-btn"
+                onClick={() => {
+                  addUserToSever()
+                }}
+              >
+                送出留言
+              </button>
             </div>
           </div>
         </div>
@@ -473,13 +619,35 @@ function Experience() {
               className="ninginfo-btn"
               onClick={() => {
                 updateCourseCartToLocalStorage({
-                  ...testData1,
+                  // ...testData1,
+                  ...data[0],
                   amount: 1,
                 })
               }}
             >
               立即結帳
             </button>
+            <button
+              className="ninginfo-btn"
+              onClick={() => {
+                updateCourseCartToLocalStorage({
+                  // ...testData1,
+                  ...data[1],
+                  amount: 1,
+                })
+              }}
+            >
+              立即結帳
+            </button>
+          </div>
+        </div>
+        {/* Footer背景 */}
+        <div>
+          <div className="snail-f-bg position-relative mt-10">
+            {/* 頁尾 */}
+            <div className="position-absolute fixed-bottom">
+              <ChienFooter />
+            </div>
           </div>
         </div>
       </>

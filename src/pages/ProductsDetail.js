@@ -45,6 +45,7 @@ function ProductsDetail(props) {
   // 開啟載入指示
   //setDataLoading(true)
   const [amount, setAmount] = useState(1)
+
   //載入圖示
   const [isLoading, setIsLoading] = useState(true)
   //追蹤愛心
@@ -321,7 +322,7 @@ function ProductsDetail(props) {
           <RecentView />
         </div>
       </div>
-      {/* 測試 */}
+      {/* Footer背景 */}
       <div>
         <div className="winnie-detail-f-bg position-relative">
           {/* 頁尾 */}
