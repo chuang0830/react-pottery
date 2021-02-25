@@ -178,10 +178,10 @@ function ProductsDetail(props) {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link to={`/`}>首頁</Link>
+              <Link to="/">首頁</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link to={`/products`}>商品專區</Link>
+              <Link to="/products">商品專區</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               {data[0].product_name}
