@@ -36,8 +36,6 @@ import Changbiddetail from './pages/Changbiddetail'
 // 首頁
 import ChienHeader from './components/ChienHeader'
 import ChienHomepage from './components/ChienHomepage'
-import ChienPolicycard from './components/ChienPolicycard'
-import ChienFooter from './components/ChienFooter'
 
 import Test from './pages/test'
 
@@ -54,8 +52,6 @@ function App() {
           <Switch>
             <Route exact path="/">
               <ChienHomepage />
-              <ChienPolicycard />
-              <ChienFooter />
             </Route>
             {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
             {/* 會員路由 */}
