@@ -263,7 +263,7 @@ function Products(props) {
               alt="First slide"
             />
             <Carousel.Caption>
-              <h3>Utsuwa - Colorful your daily life.</h3>
+              <h3>Utsuwa - Colorful your daily life.</h3>
               {/* <p>Utsuwa / Colorful your daily life.</p> */}
             </Carousel.Caption>
           </Carousel.Item>
@@ -284,7 +284,7 @@ function Products(props) {
               alt="Third slide"
             />
             <Carousel.Caption>
-              <h3>Utsuwa - Colorful your daily life.</h3>
+              <h3>Utsuwa - Colorful your daily life.</h3>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item interval={5000}>
@@ -294,7 +294,7 @@ function Products(props) {
               alt="Third slide"
             />
             <Carousel.Caption>
-              <h3>Utsuwa - Colorful your daily life.</h3>
+              <h3>Utsuwa - Colorful your daily life.</h3>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
