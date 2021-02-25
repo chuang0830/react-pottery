@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 //icon
 import { FaShoppingCart } from 'react-icons/fa'
 //元件
 import WinnieLogo from './../components/winniecomponents/WinnieLogo'
 import ChienFooter from '../components/ChienFooter'
+import RecentView from './../components/ningcomponents/RecentView'
 
 function Customize(props) {
   // 加入購物車-----------------------------------------------------------------
@@ -37,6 +40,11 @@ function Customize(props) {
   }
   //載入圖示
   const [isLoading, setIsLoading] = useState(true)
+
+  //aos套件
+  useEffect(() => {
+    Aos.init({ duration: 2000 })
+  }, [])
 
   //一開始就會開始載入資料
   useEffect(() => {
@@ -84,7 +92,7 @@ function Customize(props) {
         <div className="winnie-title">
           <h1>CUSTOMIZE</h1>
         </div>
-        <div className="winnie-text">
+        <div data-aos="fade-up" className="winnie-text">
           <p>
             「用色彩點綴你的日常」讓你的每一天都與、眾、不、同。
             <br />
@@ -106,7 +114,7 @@ function Customize(props) {
               </div>
             </div>
             {/* 客製化標題 */}
-            <div className="winnie-title-wrap">
+            <div data-aos="fade-up" className="winnie-title-wrap">
               <div className="plate1">
                 <img
                   src="http://localhost:3008/winnie-images/bradley.png"
@@ -279,70 +287,7 @@ function Customize(props) {
         <WinnieLogo />
         {/* recent view product*/}
         <div className="row">
-          <div className="winnie-p-wrap d-flex">
-            {/* 第一個 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-            {/* 2 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
-                  </div>
-                </div>
-                <p href="#" className="winnie-card-price">
-                  690
-                </p>
-              </div>
-            </div>
-            {/* 3 */}
-            <div className="col-lg-4 col-md-6">
-              <div className="winnie-card-content">
-                <div className="winnie-card-img">
-                  <img
-                    className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
-                    alt=""
-                  />
-                </div>
-                <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
-                  <div>
-                    <i className="far fa-heart mr-1" />
-                    <i className="fas fa-shopping-cart" />
-                  </div>
-                </div>
-                <p className="winnie-card-price">690</p>
-              </div>
-            </div>
-          </div>
+          <RecentView />
         </div>
       </div>
       {/* 測試 */}

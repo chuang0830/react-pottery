@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Table from 'react-bootstrap/Table'
+// import Table from 'react-bootstrap/Table'
 import {
   faTruck,
   faUser,
@@ -29,33 +29,17 @@ function CheckOutP2(props) {
   const [Discount, setDiscount] = useState(0)
   const [Total, setTotal] = useState(0)
   const [Shipping, setShipping] = useState(120)
-  // fetch orders
-  const [orders, setOrders] = useState('')
   // function ----------------------------------------------------------
   function getFormToLocalStorage() {
-    const newForm = localStorage.getItem('utsuwaformdataning')
+    const newForm = localStorage.getItem('utsuwaformdataningcheck')
     setMyform(JSON.parse(newForm))
     console.log(newForm)
     const newCart = localStorage.getItem('utsuwacart') || '[]'
     setMycart(JSON.parse(newCart))
   }
-  function total() {
-    setTotal(sum(mycartDisplay) - Shipping - Discount)
-  }
   useEffect(() => {
     getFormToLocalStorage()
   }, [])
-  useEffect(() => {
-    console.log(myform)
-  }, [myform])
-  useEffect(() => {
-    setDiscount(Discount)
-    if (Discount) {
-      total()
-    } else {
-      setTotal(sum(mycartDisplay) - Shipping)
-    }
-  })
   useEffect(() => {
     let newMycartDisplay = []
     for (let i = 0; i < mycart.length; i++) {
@@ -70,8 +54,7 @@ function CheckOutP2(props) {
       }
     }
     setMycartDisplay(newMycartDisplay)
-  }, [mycart])
-
+  }, [mycart, myform])
   // 計算總價用的函式
   function sum(items) {
     let total = 0
@@ -80,88 +63,13 @@ function CheckOutP2(props) {
     }
     return total
   }
-  // function fetch orders-----------------------------------------------
-  // orders_sid, sid(家寧),price,amount
-  // const product_sid = 32
-  // const price = 100
-  // const amount = 5
-
-  async function addOrders() {
-    // 開啟載入指示
-    // setDataLoading(true)
-
-    // avatar,account,bid_product_number,bid_add_money,bid_sum_money
-    const newData = {
-      // product_sid,
-      // price,
-      // amount,
-    }
-
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:3000/orderdetails/add'
-
-    // 注意資料格式要設定，伺服器才知道是json格式
-    const request = new Request(url, {
-      method: 'POST',
-      body: JSON.stringify(newData),
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
-    })
-
-    console.log(JSON.stringify(newData))
-
-    const response = await fetch(request)
-    const data = await response.json()
-
-    console.log('伺服器回傳的json資料', data)
-
-    // 要等驗証過，再設定資料(簡單的直接設定)
-
-    //直接在一段x秒關掉指示器
-    // setTimeout(() => {
-    //   setDataLoading(false)
-    //   alert('儲存完成')
-    //   props.history.push('/')
-    // }, 500)
+  function post(params) {
+    return (
+      <>
+        <CheckPost />
+      </>
+    )
   }
-  // 傳送的資料
-  // async function addOrders() {
-  //   const DataProduct = JSON.parse(localStorage.getItem('utsuwacart'))
-  //   console.log(DataProduct)
-  //   // const Datasid = DataProduct.sid
-  //   // console.log(Datasid)
-  //   // const DataProductarray = []
-  //   // DataProduct.map((v, i) => {
-  //   //   DataProductarray.push(v.sid)
-
-  //   //   console.log({ DataProductarray })
-  //   // })
-
-  //   // console.log(Datasid)
-  //   // 連接的伺服器資料網址
-  //   const url = 'http://localhost:3000/orderdetails/list'
-  //   // 注意header資料格式要設定，伺服器才知道是json格式
-
-  //   const request = new Request(url, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(DataProduct),
-  //     //   // headers: new Headers({
-  //     //   //   Accept: 'application/json',
-  //     //   //   'Content-Type': 'appliaction/json',
-  //     //   // }),
-  //   })
-  //   const response = await fetch(request)
-  //   const data = await response.json()
-  //   // setOrders(data)
-  //   console.log('伺服器回傳的json資料', data)
-  // }
-  // 設定傳送資料
   //--------------------------------------------------------------------
   // CheckOutP2OrderPerson
   const [OrderName, setOrderName] = useState('')
@@ -219,194 +127,11 @@ function CheckOutP2(props) {
     localStorage.setItem('utsuwaformdataning', JSON.stringify(item))
     // setMycart(currentCart)
   }
-  // 落慈**********************
-  // 新增資料*******************************************
-  const [dataLoading, setDataLoading] = useState(false)
-  // const sid = 1
-  // 測試 取值
-  // const product_name = JSON.parse(localStorage.getItem('utsuwacart'));
-  // product_name.forEach(function(obj) {
-  //   console.log(obj.product_name)
-  // })
-
-  const parse = JSON.parse(localStorage.getItem('utsuwacart'))
-
-  const sid = parse[0].sid
-  // const sid = 1
-  // console.log('product_sid', product_sid)
-  const product_name = parse[0].product_name
-  // console.log('product_name', product_name)
-  const price = parse[0].price
-  // console.log('price', price)
-  // const cart = localStorage.getItem('utsuwacart')
-  // const parse = JSON.parse(cart)
-
-  // const product_sid = 1
-  // const product_name = 1
-  // const price = 1
-  // const product_id = 3
-  // const [avatar, setAvatar] = useState('')
-  // const [account, setAccount] = useState('')
-  // const [bid_product_number, setBid_product_number] = useState('')
-  // const [bid_created_time, setBid_created_time] = useState('')
-  const [orderName, setorderName] = useState('')
-
-  // 測試抓member資料
-  const testMemberData1 = {
-    // sid: 34,
-    // avatar: '1.jpg',
-    // account: 'admin',
-    // email: 'asd@',
-    // password: 'admin',
-    // mobile: 'NULL',
-    // address: 'NULL',
-    // birthday: 'NULL',
-    // created_at: '2021-02-04 17:43:55',
-  }
-
-  const testProductData1 = {
-    // product_id: 34,
-    // sid: '1.jpg',
-    // photo: 'admin',
-    // bid_product_number: 'asd@',
-  }
-
-  async function addUserToSever() {
-    // 開啟載入指示
-    setDataLoading(true)
-
-    // avatar,account,bid_product_number,bid_add_money,bid_sum_money
-    const newData = {
-      // avatar,
-      // account,
-      // sid,
-      sid,
-      product_name,
-      price,
-      orderName,
-    }
-
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:3000/orders/add'
-
-    // 注意資料格式要設定，伺服器才知道是json格式
-    const request = new Request(url, {
-      method: 'POST',
-      body: JSON.stringify(newData),
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
-    })
-
-    console.log(JSON.stringify(newData))
-
-    const response = await fetch(request)
-    const data = await response.json()
-
-    console.log('伺服器回傳的json資料', data)
-
-    // 要等驗証過，再設定資料(簡單的直接設定)
-
-    //直接在一段x秒關掉指示器
-    // setTimeout(() => {
-    //   setDataLoading(false)
-    //   alert('儲存完成')
-    //   props.history.push('/')
-    // }, 500)
-  }
-
-  // 落慈顯示
-
-  // 顯示競標資料********************************************
-  const [ningphotos, setningphotos] = useState([])
-  //const [dataLoading, setDataLoding] = useState(false)
-
-  async function getphotos2FromServer1() {
-    // 開啟載入指示
-    //setDataLoading(true)
-
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:3000/orders/json3'
-
-    //header格式設定為json格式
-    const request1 = new Request(url, {
-      method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
-    })
-
-    const response1 = await fetch(request1)
-    const data1 = await response1.json()
-    console.log(data1)
-    //設定資料給photos
-    setningphotos(data1)
-    // localStorage.setItem{'product-sid', data1.product_id}
-  }
-
-  //一開始就會開始載入資料
-  useEffect(() => {
-    getphotos2FromServer1()
-  }, [])
 
   return (
     <>
       <div className="container">
         <LogoNing />
-        {/* 落慈新增 */}
-        <div className="form-group">
-          <label htmlFor="exampleInputPassword1">訂單名字</label>
-          <input
-            type="text"
-            className="form-control"
-            value={orderName}
-            onChange={(event) => {
-              setorderName(event.target.value)
-            }}
-          />
-        </div>
-
-        <button
-          onClick={() => {
-            addUserToSever()
-          }}
-          className="btn btn-primary"
-        >
-          新增名字
-        </button>
-        {/* 落慈顯示 */}
-        <Table responsive hover>
-          <thead>
-            <tr className="chang-bid-table-title">
-              {/* <th>account</th> */}
-              <th>產品名稱</th>
-              <th>價錢</th>
-              <th>orderName</th>
-            </tr>
-          </thead>
-          <tbody className="chang-bid-table">
-            {ningphotos.length &&
-              ningphotos.map((value, index) => {
-                //單筆圖片直接value.photo
-                //多筆圖片let p = JSON.parse(value.photo)[0]
-                let p1 = value.avatar
-                p1 = 'http://localhost:3008/chang-images/' + p1
-                return (
-                  <tr>
-                    {/* <td>
-                    <img className="chang-bidding-photo" src={p1} alt="" />
-                  </td> */}
-                    {/* <td className="chang-account-text">{value.account}</td> */}
-                    <td>{value.product_name}</td>
-                    <td>{value.price}</td>
-                    <td>{value.orderName}</td>
-                  </tr>
-                )
-              })}
-          </tbody>
-        </Table>
         {/* 訂單進度程序 */}
         <div className="row d-flex justify-content-center">
           <div className="col-lg-6 d-flex flex-row justify-content-center process">

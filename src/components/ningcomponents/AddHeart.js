@@ -55,6 +55,7 @@ function AddHeart(props) {
               <tr>
                 <th scope="col"></th>
                 <th scope="col">商品名稱</th>
+                <th scope="col">尺寸</th>
                 <th scope="col">金額</th>
                 <th scope="col">取消收藏</th>
               </tr>
@@ -65,7 +66,7 @@ function AddHeart(props) {
                   <tr>
                     <td>
                       <img
-                        className="w-100"
+                        // className="w-100"
                         src={`http://localhost:3008/winnie-images/${
                           JSON.parse(itemaddheart.photo)[0]
                         }`}
@@ -75,6 +76,7 @@ function AddHeart(props) {
                       />
                     </td>
                     <td> {itemaddheart.product_name}</td>
+                    <td> {itemaddheart.size}</td>
                     <td> {itemaddheart.price}</td>
                     <td>
                       <button

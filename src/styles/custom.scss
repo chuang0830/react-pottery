@@ -560,6 +560,12 @@ text {
       word-break: break-all;
       .far.fa-heart {
         color: $danger;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .winnie-cart:hover {
+        cursor: pointer;
       }
     }
 
@@ -964,6 +970,9 @@ chienfooter .chien-social-icon {
       .i {
         color: $danger;
         font-size: $font-size-base * 0.875; //14px;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -1137,7 +1146,18 @@ chienfooter .chien-social-icon {
     transform: rotateZ(360deg);
   }
 }
-
+.fixed{
+    position: relative;
+    .fixed-shop{
+      position: absolute;
+      background-color: $primary;
+      border-radius: 50%;
+      right: 0;
+      bottom: 0;
+      width: 60px;
+      height: 60px;
+    }
+}
 //改這裡BS預設
 .cindy {
   background-color: #fff;
