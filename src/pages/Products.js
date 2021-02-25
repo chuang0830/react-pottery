@@ -123,7 +123,7 @@ function Products(props) {
     //2秒後關閉指示器
     setTimeout(() => {
       setIsLoading(false)
-    }, 4000)
+    }, 3500)
 
     setTimeout(() => {
       scrollToAnchor('screens')
@@ -162,7 +162,7 @@ function Products(props) {
       JSON.parse(localStorage.getItem('utsuwacartrecentView')) || []
     const index = currentRecentview.findIndex((v) => v.sid === item.sid)
     if (index > -1) {
-      return
+      currentRecentview.push(item) //return
     } else {
       currentRecentview.push(item)
     }
@@ -258,7 +258,7 @@ function Products(props) {
               alt="First slide"
             />
             <Carousel.Caption>
-              <h3>Utsuwa - Colorful your daily life.</h3>
+              <h3 data-aos="fade-right">Utsuwa - Colorful your daily life.</h3>
               {/* <p>Utsuwa / Colorful your daily life.</p> */}
             </Carousel.Caption>
           </Carousel.Item>
@@ -269,7 +269,7 @@ function Products(props) {
               alt="Third slide"
             />
             <Carousel.Caption>
-              <h3>Utsuwa - Colorful your daily life.</h3>
+              <h3 data-aos="fade-right">Utsuwa - Colorful your daily life.</h3>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item interval={2000}>
@@ -279,7 +279,7 @@ function Products(props) {
               alt="Third slide"
             />
             <Carousel.Caption>
-              <h3>Utsuwa - Colorful your daily life.</h3>
+              <h3 data-aos="fade-right">Utsuwa - Colorful your daily life.</h3>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item interval={5000}>
@@ -289,7 +289,7 @@ function Products(props) {
               alt="Third slide"
             />
             <Carousel.Caption>
-              <h3>Utsuwa - Colorful your daily life.</h3>
+              <h3 data-aos="fade-right">Utsuwa - Colorful your daily life.</h3>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>

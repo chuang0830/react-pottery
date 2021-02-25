@@ -43,15 +43,15 @@ function Customize(props) {
 
   //aos套件
   useEffect(() => {
-    Aos.init({ duration: 2000 })
+    Aos.init({ duration: 3000 })
   }, [])
 
   //一開始就會開始載入資料
   useEffect(() => {
-    //2秒後關閉指示器
+    //4秒後關閉指示器
     setTimeout(() => {
       setIsLoading(false)
-    }, 4000)
+    }, 3500)
   }, [])
 
   //載入圖示

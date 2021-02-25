@@ -608,17 +608,73 @@ text {
   height: 100px;
 }
 
-//近期瀏覽的p
-.winnie-recent-price {
-  font-family: 'Cinzel', serif;
-  display: block;
-  color: $success;
-  font-size: $font-size-base * 0.875;
-  text-align: left;
-  &::before {
-    content: '$';
+//近期瀏覽card
+.winnie-recent-content {
+  margin: 70px 0 70px 0;
+  display: flex;
+  flex-direction: column;
+  .winnie-recent22-img {
+    font-size: $font-size-base * 3/2;
+    padding: 10px 0 20px 0;
+    margin-bottom: 20px;
+    color: $primary;
+    animation-fill-mode: forwards;
+    &:hover {
+      opacity: 0.1;
+      overflow: hidden;
+
+      /* IE10、Firefox and Opera，IE9以及更早的版本不支持 */
+      animation-name: light;
+      animation-duration: 700ms;
+      animation-timing-function: ease-in-out;
+
+      /* Safari and Chrome */
+      -webkit-animation-name: light;
+      -webkit-animation-duration: 700ms;
+      -webkit-animation-timing-function: ease-in-out;
+    }
+
+    @keyframes light {
+      from {
+        opacity: 0.1;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes light {
+      from {
+        opacity: 0.1;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+
+  .winnie-recent-name {
+    color: $primary;
+    font-size: $font-size-base * 1.25;
+    padding: 10px 0 10px 0;
+    word-break: break-all;
+    
+  }
+
+  .winnie-recent-price {
+    font-family: 'Cinzel', serif;
+    display: block;
+    color: $success;
+    font-size: $font-size-base * 0.875;
+    text-align: left;
+    &::before {
+      content: '$';
+    }
   }
 }
+
+
+
 
 //chienpolicycard
 .chien-f-24 {

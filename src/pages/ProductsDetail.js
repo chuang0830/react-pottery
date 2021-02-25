@@ -141,7 +141,7 @@ function ProductsDetail(props) {
     //2秒後關閉指示器
     setTimeout(() => {
       setIsLoading(false)
-    }, 4000)
+    }, 3500)
   }
 
   //一開始就會開始載入資料
