@@ -374,7 +374,7 @@ function ProductsDetail(props) {
           </div>
         </div>
       </div>
-      {/* 測試 */}
+      {/* Footer背景 */}
       <div>
         <div className="winnie-detail-f-bg position-relative">
           {/* 頁尾 */}

@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom'
 import { Accordion, Card, Button } from 'react-bootstrap'
 import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
+import PlayPage from './PlayPage'
+import ChienFooter from '../components/ChienFooter'
 
 function OnlineCourse(props) {
   const [photos, setPhotos] = useState([])
@@ -112,31 +114,43 @@ function OnlineCourse(props) {
           {/* 課程卡片 */}
           <div className="row">
             {/* 第一個 */}
-
-            {photos.length &&
-              photos.map((value, index) => {
-                //單筆圖片直接value.photo
-                //多筆圖片let p = JSON.parse(value.photo)[0]
-                let p = value.photo
-                p = 'http://localhost:3008/snail-imgs/' + p
-                return (
-                  <div className="col-lg-4 col-md-6">
-                    <div className="winnie-card-content">
-                      <div key={value.sid} className="winnie-card-img">
-                        <img className="w-100" src={p} alt="" />
-                      </div>
-                      <div className="winnie-card-name text-justify d-flex justify-content-between">
-                        <p>{value.product_name}</p>
-                        <div>
-                          <FaRegHeart className="far fa-heart mr-2" />
-                          <FaShoppingCart />
+            <div className="winnie-p-wrap d-flex">
+              {photos.length &&
+                photos.map((value, index) => {
+                  //單筆圖片直接value.photo
+                  //多筆圖片let p = JSON.parse(value.photo)[0]
+                  let p = value.photo
+                  p = 'http://localhost:3008/snail-imgs/' + p
+                  return (
+                    <div className="col-lg-4 col-md-6">
+                      <div className="winnie-card-content">
+                        <div key={value.sid} className="winnie-card-img">
+                          <Link to={`/CourseCategory/MyOnlineCourse/PlayPage`}>
+                            <img className="w-100" src={p} alt="" />
+                          </Link>
                         </div>
+                        <div className="winnie-card-name text-justify d-flex justify-content-between">
+                          <p>{value.product_name}</p>
+                          <div>
+                            <FaRegHeart className="far fa-heart mr-2" />
+                            <FaShoppingCart />
+                          </div>
+                        </div>
+                        <p className="winnie-card-price">{value.price}</p>
                       </div>
-                      <p className="winnie-card-price">{value.price}</p>
                     </div>
-                  </div>
-                )
-              })}
+                  )
+                })}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Footer背景 */}
+      <div>
+        <div className="snail-f-bg position-relative mt-10">
+          {/* 頁尾 */}
+          <div className="position-absolute fixed-bottom">
+            <ChienFooter />
           </div>
         </div>
       </div>

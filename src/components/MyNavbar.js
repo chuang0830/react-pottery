@@ -27,7 +27,7 @@ function MyNavbar(props) {
         <Navbar.Brand href="#home"></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto ml-5 snailbtnline" style={{ zIndex: '9999' }}>
+          <Nav className="mr-auto ml-5 " style={{ zIndex: '9999' }}>
             {/* 用name對應to snail-button*/}
             <li className="nav-item ">
               <Link
