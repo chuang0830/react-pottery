@@ -39,7 +39,6 @@ import ChienHomepage from './components/ChienHomepage'
 import ChienPolicycard from './components/ChienPolicycard'
 import ChienFooter from './components/ChienFooter'
 
-
 import Test from './pages/test'
 
 function App() {
@@ -50,85 +49,81 @@ function App() {
         {/* 嚴謹的要放上面 */}
         {/* 放連結 */}
         <ChienHeader />
-        {/* Switch從上到下找唯一匹配的路由表 */}
-        <Switch>
-          <Route exact path="/">
-            <ChienHomepage />
-            <ChienPolicycard />
-            <ChienFooter />
-          </Route>
-          {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
-          {/* 會員路由 */}
-          <Route exact path="/user-forgetpass">
-            <ForgetPass />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/member">
-            <Member />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
+        <ScrollToTop>
+          {/* Switch從上到下找唯一匹配的路由表 */}
+          <Switch>
+            <Route exact path="/">
+              <ChienHomepage />
+              <ChienPolicycard />
+              <ChienFooter />
+            </Route>
+            {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
+            {/* 會員路由 */}
+            <Route exact path="/user-forgetpass">
+              <ForgetPass />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/member">
+              <Member />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
 
-          {/* 商品路由 */}
-          {/* <ScrollToItem> */}
-          {/* <Route exact path="/products/:pageNumber">
+            {/* 商品路由 */}
+            <Route exact path="/customize">
+              <Customize />
+            </Route>
+            <Route exact path="/products">
               <Products />
-            </Route> */}
-          {/* </ScrollToItem> */}
-          <Route exact path="/customize">
-            <Customize />
-          </Route>
-          <Route exact path="/products">
-            <Products />
-          </Route>
-          <Route exact path="/products/:id">
-            <ProductsDetail />
-          </Route>
+            </Route>
+            <Route exact path="/products/:id">
+              <ProductsDetail />
+            </Route>
 
-          {/* 課程路由 */}
+            {/* 課程路由 */}
 
-          <Route path="/CourseCategory/MyOnlineCourse/PlayPage">
-            <PlayPage />
-          </Route>
-          <Route path="/CourseCategory/Experience">
-            <Experience />
-          </Route>
-          <Route path="/CourseCategory/OnlineCourse">
-            <OnlineCourse />
-          </Route>
-          <Route path="/CourseCategory/MyOnlineCourse">
-            <MyOnlineCourse />
-          </Route>
-          <Route path="/CourseCategory">
-            <CourseCategory />
-          </Route>
+            <Route path="/CourseCategory/MyOnlineCourse/PlayPage">
+              <PlayPage />
+            </Route>
+            <Route path="/CourseCategory/Experience">
+              <Experience />
+            </Route>
+            <Route path="/CourseCategory/OnlineCourse">
+              <OnlineCourse />
+            </Route>
+            <Route path="/CourseCategory/MyOnlineCourse">
+              <MyOnlineCourse />
+            </Route>
+            <Route path="/CourseCategory">
+              <CourseCategory />
+            </Route>
 
-          {/* 購物車路由 */}
-          <Route exact path="/CheckOutP1">
-            <CheckOutP1 />
-          </Route>
-          <Route exact path="/CheckOutP2">
-            <CheckOutP2 />
-          </Route>
-          <Route exact path="/CheckOutP3">
-            <CheckOutP3 />
-          </Route>
-          <Route exact path="/ShoppingCart">
-            <ShoppingCart />
-          </Route>
+            {/* 購物車路由 */}
+            <Route exact path="/CheckOutP1">
+              <CheckOutP1 />
+            </Route>
+            <Route exact path="/CheckOutP2">
+              <CheckOutP2 />
+            </Route>
+            <Route exact path="/CheckOutP3">
+              <CheckOutP3 />
+            </Route>
+            <Route exact path="/ShoppingCart">
+              <ShoppingCart />
+            </Route>
 
-          {/* 競標路由 */}
-          <Route exact path="/Changbidindex/Changbiddetail">
-            <Changbiddetail />
-          </Route>
-          <Route exact path="/Changbidindex">
-            <Changbidindex />
-          </Route>
-        </Switch>
-        {/* </ScrollToTop> */}
+            {/* 競標路由 */}
+            <Route exact path="/Changbidindex/Changbiddetail">
+              <Changbiddetail />
+            </Route>
+            <Route exact path="/Changbidindex">
+              <Changbidindex />
+            </Route>
+          </Switch>
+        </ScrollToTop>
       </>
     </Router>
   )

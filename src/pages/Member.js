@@ -8,7 +8,9 @@ import ChienFooter from '../components/ChienFooter'
 
 function Member(props) {
   const [light, setLight] = useState('edit')
-  console.log(props.location)
+  console.log('history:', props.history)
+  console.log('location:', props.location)
+  console.log('pathname:', props.location.pathname)
   const url = props.match.url
   const path = props.match.path
   if (!localStorage.getItem('member-sid')) {

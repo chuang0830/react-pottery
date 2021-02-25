@@ -127,7 +127,7 @@ function Products(props) {
 
     setTimeout(() => {
       scrollToAnchor('screens')
-    }, 2000)
+    }, 1000)
     console.log('spinner off')
   }, [page, detailCate, search, sort, frontPrice, backPrice, queryReset])
 

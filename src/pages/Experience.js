@@ -7,17 +7,27 @@ import Sticky from 'react-sticky-el'
 import Calendar from '../components/snailcomponents/Calendar'
 import ChienFooter from '../components/ChienFooter'
 
-function Experience() {
+function Experience(props) {
   //單選盒
   const [radiob, setRadiob] = useState('1')
   const [course1, setCourse1] = useState([])
   const [message1, setMessage1] = useState([])
   const [amount, setAmount] = useState(0)
+
+  const [classtitle, setClasstitle] = useState({
+    //key是sid
+    5: 0,
+    11: 0,
+    6: 0,
+    7: 0,
+    12: 0,
+    13: 0,
+  })
   //const [dataLoading, setDataLoding] = useState(false)
   function load() {
     window.location.reload()
   }
- 
+
   //抓Node留言資料
   async function getMessageFromServer() {
     // 開啟載入指示
@@ -43,7 +53,7 @@ function Experience() {
   }
 
   //送入留言資料
-  // 新增競標資料*******************************************
+  // 新增留言資料*******************************************
   // const [dataLoading, setDataLoading] = useState(false)
   // 抓members丟出的sid(localstorage)
   const sid = localStorage.getItem('member-sid')
@@ -51,6 +61,7 @@ function Experience() {
   const star = 0
   const [message, setMessage] = useState('')
   const [message_created_time, setMessage_created_time] = useState(0)
+
   console.log('messege', message)
   // const [bid_refresh, setBid_refresh] = useState('')
   // function load() {
@@ -161,15 +172,15 @@ function Experience() {
       time: '',
     },
   ])
-  const testData1 = {
-    sid: 1,
-    product_name: '拉胚',
-    category_id: 7,
-    price: 5800,
-    photo: '',
-    introduction: '',
-    time: '2021-03-20T16:00:00.000Z',
-  }
+  // const testData1 = {
+  //   sid: 1,
+  //   product_name: '拉胚',
+  //   category_id: 7,
+  //   price: 5800,
+  //   photo: '',
+  //   introduction: '',
+  //   time: '2021-03-20T16:00:00.000Z',
+  // }
   // 立即結帳-----------------------------------------------------------------
   const [mycoursecart, setMyCoursecart] = useState([])
   const updateCourseCartToLocalStorage = (item) => {
@@ -297,51 +308,77 @@ function Experience() {
             </div>
             <div className="col-4">
               {/* 月曆 */}
+              {console.log('course', course1[0])}
               <div className="experience-list mt-10 ">
+                <div className="d-flex experience-list-item">
+                  <div className="mr-10">上課日期</div>
+                  <div>數量</div>
+                </div>
+
                 {course1.length &&
                   course1.map((value, index) => {
                     return (
-                      <div
-                        className="d-flex experience-list-item"
-                        key={value.sid}
-                      >
+                      <>
                         <div
-                          className="mr-5"
-                          style={{ height: '50px', lineHeight: '50px' }}
+                          className="d-flex experience-list-item"
+                          key={value.sid}
                         >
-                          {value.time}
-                        </div>
-                        {/* 計數器 */}
-                        <div className="col-4 chang-count-border-btn  d-flex flex-row justify-content-center">
-                          <button
-                            className="chang-count-btn"
-                            onClick={() => {
-                              setAmount(amount - 1)
-                            }}
+                          <div
+                            className="mr-5"
+                            style={{ height: '50px', lineHeight: '50px' }}
                           >
-                            -
-                          </button>
-                          <button className="chang-count-btn">{amount}</button>
-                          <button
-                            className="chang-count-btn"
-                            onClick={() => {
-                              setAmount(amount + 1)
-                            }}
-                          >
-                            +
-                          </button>
+                            {value.time}
+                          </div>
+                          {/* 計數器 */}
+
+                          <div className="col-4 chang-count-border-btn  d-flex flex-row justify-content-center">
+                            <button
+                              className="chang-count-btn"
+                              onClick={() => {
+                                const newaa = [value.sid]
+
+                                console.log('newaa', newaa)
+                                setAmount(amount - 1)
+                                console.log(value)
+                                setClasstitle({
+                                  ...classtitle,
+                                  [newaa]: classtitle[newaa] - 1,
+                                })
+                              }}
+                            >
+                              -
+                            </button>
+
+                            {classtitle[value.sid]}
+
+                            <button
+                              className="chang-count-btn"
+                              onClick={() => {
+                                const newaa = [value.sid]
+
+                                setAmount(amount + 1)
+                                console.log(value)
+                                setClasstitle({
+                                  ...classtitle,
+                                  [newaa]: classtitle[newaa] + 1,
+                                })
+                              }}
+                            >
+                              +
+                            </button>
+                          </div>
                         </div>
-                      </div>
+                      </>
                     )
                   })}
               </div>
 
               <button
-                className="ninginfo-btn"
+                className="ninginfo-btn mt-5"
                 onClick={() => {
                   updateCourseCartToLocalStorage({
-                    ...testData1,
-                    amount: 1,
+                    ...data[0],
+                    amount: amount,
                   })
                 }}
               >
@@ -513,8 +550,10 @@ function Experience() {
                     <div className="message-card border-buttom">
                       <div className="avatar-photo"></div>
                       <div className="message-card-content d-flex justify-content-start">
-                        <span>{value.account}</span>&nbsp;&nbsp;
-                        <span>{value.message_created_time}</span>&nbsp;&nbsp;
+                        <span>{value.account}</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>{value.message_created_time}</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span>5star</span>
                       </div>
                       <div className="message-card-content">
@@ -523,20 +562,7 @@ function Experience() {
                     </div>
                   )
                 })}
-              {/* 留言2 */}
-              <div className="message-card border-buttom">
-                <div className="avatar-photo">{/* <img src alt /> */}</div>
-                <div className="message-card-content d-flex justify-content-start">
-                  <span>PAPAYA</span>&nbsp;&nbsp;
-                  <span>2018-05-19</span>&nbsp;&nbsp;
-                  <span>5star</span>
-                </div>
-                <div className="message-card-content">
-                  <p className="snail-message-text">
-                    插入體驗打造上漲答案物理懂得，完了根本遵守高效，國務院給予最為有一些書記幫助警察自身評論尋求台北百姓消息插入體驗打造上漲答案物理懂得，完了根本遵守高效，國務院給予最為有一些書記幫助警察自身評論尋求台北百姓消息
-                  </p>
-                </div>
-              </div>
+
               {/* 更多按鈕 */}
               <button className="cindy-check" href="#">
                 查看更多
@@ -550,22 +576,34 @@ function Experience() {
             <div className="row">
               <div className="col-lg-3 col-md-6 col-sm-12">
                 <div className="portfolio-box">
-                  {/* <img src="./img/course-work1.jpg" alt /> */}
+                  <img
+                    src={`http://localhost:3008/snail-imgs/course-work1.jpg`}
+                    alt=""
+                  />
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 col-sm-12">
                 <div className="portfolio-box">
-                  {/* <img src="./img/course-work2.jpg" alt /> */}
+                  <img
+                    src={`http://localhost:3008/snail-imgs/course-work2.jpg`}
+                    alt=""
+                  />
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 col-sm-12">
                 <div className="portfolio-box">
-                  {/* <img src="./img/course-work1.jpg" alt /> */}
+                  <img
+                    src={`http://localhost:3008/snail-imgs/course-work1.jpg`}
+                    alt=""
+                  />
                 </div>
               </div>
               <div className="col-lg-3 col-md-6 col-sm-12">
                 <div className="portfolio-box">
-                  {/* <img src="./img/course-work2.jpg" alt /> */}
+                  <img
+                    src={`http://localhost:3008/snail-imgs/course-work2.jpg`}
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
@@ -605,6 +643,10 @@ function Experience() {
                 class="cindy-btn"
                 onClick={() => {
                   addUserToSever()
+                  //按下按鈕刷新頁面
+                  setTimeout(() => {
+                    load()
+                  }, 0)
                 }}
               >
                 送出留言
@@ -613,34 +655,6 @@ function Experience() {
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-3">
-            <button
-              className="ninginfo-btn"
-              onClick={() => {
-                updateCourseCartToLocalStorage({
-                  // ...testData1,
-                  ...data[0],
-                  amount: 1,
-                })
-              }}
-            >
-              立即結帳
-            </button>
-            <button
-              className="ninginfo-btn"
-              onClick={() => {
-                updateCourseCartToLocalStorage({
-                  // ...testData1,
-                  ...data[1],
-                  amount: 1,
-                })
-              }}
-            >
-              立即結帳
-            </button>
-          </div>
-        </div>
         {/* Footer背景 */}
         <div>
           <div className="snail-f-bg position-relative mt-10">
