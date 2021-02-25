@@ -658,7 +658,6 @@ text {
     font-size: $font-size-base * 1.25;
     padding: 10px 0 10px 0;
     word-break: break-all;
-    
   }
 
   .winnie-recent-price {
@@ -672,9 +671,6 @@ text {
     }
   }
 }
-
-
-
 
 //chienpolicycard
 .chien-f-24 {
@@ -1202,17 +1198,17 @@ chienfooter .chien-social-icon {
     transform: rotateZ(360deg);
   }
 }
-.fixed{
-    position: relative;
-    .fixed-shop{
-      position: absolute;
-      background-color: $primary;
-      border-radius: 50%;
-      right: 0;
-      bottom: 0;
-      width: 60px;
-      height: 60px;
-    }
+.fixed {
+  position: relative;
+  .fixed-shop {
+    position: absolute;
+    background-color: $primary;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    width: 60px;
+    height: 60px;
+  }
 }
 //改這裡BS預設
 .cindy {
@@ -1269,6 +1265,10 @@ chienfooter .chien-social-icon {
       border: none;
     }
   }
+}
+
+.breadcrumb-item {
+  z-index: 3;
 }
 
 @import './cindyregister.scss';
