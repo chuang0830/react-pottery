@@ -71,7 +71,6 @@
   background-attachment: fixed;
 }
 
-
 .lotzu-title-line {
   h3 {
     font-family: 'Cinzel', serif;
@@ -101,6 +100,37 @@
         color: $danger;
         font-size: $font-size-base * 0.875; //14px;
       }
+    }
+  }
+}
+
+.chang-text {
+  margin-bottom: 20px;
+  color: #615956;
+  font-size: $font-size-base * 0.875; //14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
+}
+
+.hammer {
+  margin-right: 10px;
+}
+
+.chang-img-change-s {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  position: absolute;
+  z-index: 3;
+  left: 57px;
+  top: 385px;
+  img {
+    margin: 0px 5px;
+    border: 3px solid white;
+    transition: 0.2s;
+    &:hover {
+      cursor: pointer;
+      border: 3px solid #77777a;
     }
   }
 }
