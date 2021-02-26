@@ -13,6 +13,12 @@ class ScrollToTop extends React.Component {
     )
       return
     if (
+      //如果網址列變為this則直接return，不觸發scrollTo
+      this.props.location.pathname === '/CheckOutP3'
+    ) {
+      window.scrollTo(0, 1500)
+    }
+    if (
       this.props.location.pathname ===
       '/CourseCategory/MyOnlineCourse/PlayPage/playmessage'
     )
