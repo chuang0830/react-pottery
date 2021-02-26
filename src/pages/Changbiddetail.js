@@ -8,6 +8,8 @@ import Table from 'react-bootstrap/Table'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 import ChienFooter from '../components/ChienFooter'
+import Alert from 'react-bootstrap/Alert'
+import Button from 'react-bootstrap/Button'
 function Changbiddetail() {
   // 新增競標資料*******************************************
   const [dataLoading, setDataLoading] = useState(false)
@@ -187,6 +189,11 @@ function Changbiddetail() {
   useEffect(() => {
     Aos.init({ duration: 2000 })
   }, [])
+
+  //alert
+
+  const [show, setShow] = useState(true)
+
   return (
     <>
       {/* hero page */}
@@ -213,7 +220,7 @@ function Changbiddetail() {
         </nav>
         {/* title */}
         <div data-aos="fade-up" className="winnie-title">
-          <h1>PRODUCT</h1>
+          <h1>Bidding</h1>
         </div>
         <div data-aos="fade-up" className="winnie-text">
           <p>
@@ -279,9 +286,37 @@ function Changbiddetail() {
               </div>
               <p className="chang-text">倒數3天</p>
               <p className="chang-text">競標開始日:2021/02/17</p>
+              <p className="chang-text">購買金額:1000</p>
               <p className="chang-text">
                 目前金額:{changphotos.length && changphotos[0].bid_sum_money}元
               </p>
+              <p>
+                {changphotos.length &&
+                  changphotos[0].bid_sum_money > 1000 && (
+                    <Alert show={show} variant="success">
+                      <Alert.Heading></Alert.Heading>
+                      您已達到最低購買價格，可以直接購買。
+                      <hr />
+                      <div className="d-flex justify-content-end">
+                        <Button
+                          onClick={() => setShow(false)}
+                          variant="outline-success"
+                        >
+                          close
+                        </Button>
+                      </div>
+                    </Alert>
+                  )}{' '}
+                {!show && (
+                  <Button
+                    style={{ display: 'none' }}
+                    onClick={() => setShow(true)}
+                  >
+                    Show Alert
+                  </Button>
+                )}
+              </p>
+              <Button variant="success">直接購買</Button>
               <p className="chang-text">出價金額</p>
               <div className="d-flex justify-content chang-button-box">
                 {/* 計數器 */}
@@ -345,7 +380,7 @@ function Changbiddetail() {
                   //單筆圖片直接value.photo
                   //多筆圖片let p = JSON.parse(value.photo)[0]
                   let p1 = value.avatar
-                  p1 = 'http://localhost:3008/chang-images/' + p1
+                  p1 = 'http://localhost:3000/imgs/' + p1
                   return (
                     <tr>
                       <td>
