@@ -14,7 +14,12 @@ function FixedCart(props) {
     setMycart(JSON.parse(newCart))
   }
   useEffect(() => {
-    getCartFromLocalStorage()
+    const interval = setInterval(() => {
+      getCartFromLocalStorage()
+      getCourseCartFromLocalStorage()
+      getAddHeartFromLocalStorage()
+    }, 700)
+    return () => clearInterval(interval)
   }, [])
   useEffect(() => {
     let newMycartDisplay = []
@@ -43,9 +48,6 @@ function FixedCart(props) {
     setMyCoursecart(JSON.parse(newCourseCart))
   }
   useEffect(() => {
-    getCourseCartFromLocalStorage()
-  }, [])
-  useEffect(() => {
     let newMycoursecartDisplay = []
     for (let i = 0; i < mycoursecart.length; i++) {
       const index = newMycoursecartDisplay.findIndex(
@@ -70,9 +72,6 @@ function FixedCart(props) {
     const newAddCart = localStorage.getItem('utsuwacartaddheart') || '[]'
     setAddHeart(JSON.parse(newAddCart))
   }
-  useEffect(() => {
-    getAddHeartFromLocalStorage()
-  }, [])
   useEffect(() => {
     let newMyaddheartDisplay = []
     for (let i = 0; i < myaddheart.length; i++) {
