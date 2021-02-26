@@ -286,6 +286,7 @@ function Changbiddetail() {
               </div>
               <p className="chang-text">倒數3天</p>
               <p className="chang-text">競標開始日:2021/02/17</p>
+              <p className="chang-text">購買金額:1000</p>
               <p className="chang-text">
                 目前金額:{changphotos.length && changphotos[0].bid_sum_money}元
               </p>
