@@ -12,7 +12,8 @@
 
 .experience-list{
   padding: 5px;
-  // background-color: red;
+  //高度寫死就不影響其他div
+  // height: 100px;
   .experience-list-item{
     border-bottom: 1px solid $info;
     padding: 35px;
@@ -125,14 +126,16 @@
 }
 // 學員作品照片
 .portfolio-box {
-  height: 200px;
-  //   background-color: rgb(204, 89, 166);
+  height: 20vh;
+    background-color: rgb(204, 89, 166);
   //   border: 1px solid;
   margin: 10px;
   display: flex;
   overflow: hidden;
   img {
     object-fit: cover;
+    width: 100%;
+    
   }
 }
 

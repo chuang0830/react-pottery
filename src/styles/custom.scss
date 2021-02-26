@@ -608,15 +608,67 @@ text {
   height: 100px;
 }
 
-//近期瀏覽的p
-.winnie-recent-price {
-  font-family: 'Cinzel', serif;
-  display: block;
-  color: $success;
-  font-size: $font-size-base * 0.875;
-  text-align: left;
-  &::before {
-    content: '$';
+//近期瀏覽card
+.winnie-recent-content {
+  margin: 70px 0 70px 0;
+  display: flex;
+  flex-direction: column;
+  .winnie-recent22-img {
+    font-size: $font-size-base * 3/2;
+    padding: 10px 0 20px 0;
+    margin-bottom: 20px;
+    color: $primary;
+    animation-fill-mode: forwards;
+    &:hover {
+      opacity: 0.1;
+      overflow: hidden;
+
+      /* IE10、Firefox and Opera，IE9以及更早的版本不支持 */
+      animation-name: light;
+      animation-duration: 700ms;
+      animation-timing-function: ease-in-out;
+
+      /* Safari and Chrome */
+      -webkit-animation-name: light;
+      -webkit-animation-duration: 700ms;
+      -webkit-animation-timing-function: ease-in-out;
+    }
+
+    @keyframes light {
+      from {
+        opacity: 0.1;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes light {
+      from {
+        opacity: 0.1;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+
+  .winnie-recent-name {
+    color: $primary;
+    font-size: $font-size-base * 1.25;
+    padding: 10px 0 10px 0;
+    word-break: break-all;
+  }
+
+  .winnie-recent-price {
+    font-family: 'Cinzel', serif;
+    display: block;
+    color: $success;
+    font-size: $font-size-base * 0.875;
+    text-align: left;
+    &::before {
+      content: '$';
+    }
   }
 }
 
@@ -1012,6 +1064,7 @@ chienfooter .chien-social-icon {
   border: 0px;
   background-color: white;
   background: url('http://localhost:3008/chang-images/bid1.svg') no-repeat;
+  margin-left: 20px;
 }
 
 .chang-cart-btn1:hover {
@@ -1268,6 +1321,17 @@ chienfooter .chien-social-icon {
     .ning-heart{
       @include ning-heart;
     }
+.fixed {
+  position: relative;
+  .fixed-shop {
+    position: absolute;
+    background-color: $primary;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    width: 60px;
+    height: 60px;
+  }
 }
 //改這裡BS預設
 .cindy {
@@ -1302,16 +1366,16 @@ chienfooter .chien-social-icon {
     box-shadow: none;
   }
 }
-//改這邊！！！！
-.modal-content {
-  .modal-header {
+//orderlist modal style
+.corder-content {
+  .corder-header {
     border: none;
     //padding: 15px;
   }
-  .modal-footer {
+  .corder-footer {
     border: none;
   }
-  .modal-body {
+  .corder-body {
     padding: 0;
     margin: 15px;
     border-radius: 5px;
@@ -1325,9 +1389,83 @@ chienfooter .chien-social-icon {
     }
   }
 }
-.hidden {
-  display: none;
+// forget-pass modal style
+.cindy-forgetbtn {
+  background-color: transparent;
+  color: $info;
+  border: none;
+  font-size: $font-size-base * 0.8;
+  margin: 0 auto;
+  &:hover {
+    background-color: transparent;
+    color: $info;
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
 }
+.forget-pass {
+  border: none;
+  .forget-pass-header {
+    border: none;
+    border-bottom: 1px solid $primary;
+  }
+  .forget-pass-body {
+    label {
+      color: $primary;
+      margin: 10px 0 8px 0;
+    }
+    input {
+      border: none;
+      font-size: $font-size-base * 0.8;
+      border-bottom: 1px solid $primary;
+      background-color: transparent;
+      outline: none;
+      padding-bottom: 5px;
+      width: 100%;
+    }
+    .cindy-confrim-btn {
+      margin: 0 auto;
+      width: 40%;
+    }
+  }
+  .forget-pass-footer {
+    border: none;
+  }
+}
+.pass-reset {
+  border: none;
+  .pass-reset-header {
+    border: none;
+    border-bottom: 1px solid $primary;
+  }
+  .pass-reset-body {
+    label {
+      color: $primary;
+      margin: 10px 0 8px 0;
+    }
+    input {
+      border: none;
+      font-size: $font-size-base * 0.8;
+      border-bottom: 1px solid $primary;
+      background-color: transparent;
+      outline: none;
+      padding-bottom: 5px;
+      width: 100%;
+    }
+    .cindy-pass-btn {
+      width: 40%;
+    }
+  }
+  .pass-reset-footer {
+    border: none;
+  }
+}
+
+.breadcrumb-item {
+  z-index: 3;
+}
+
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';
