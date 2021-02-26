@@ -1,22 +1,18 @@
 // import { BrowserRouter as Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import { RiDeleteBinFill } from 'react-icons/ri'
+// import { RiDeleteBinFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 //元件
 import LogoNing from './../components/ningcomponents/LogoNing'
 import RecentView from './../components/ningcomponents/RecentView'
 import ProductTableNing from './../components/ningcomponents/ProductTableNing'
 import CourseTableNing from './../components/ningcomponents/CourseTableNing'
+import ChienFooter from './../components/ChienFooter'
+import ChienPolicycard from './../components/ChienPolicycard'
 
 function ShoppingCart(props) {
-  const [items, setItems] = useState([
-    { id: 1, text: 'Buy eggs' },
-    { id: 2, text: 'Pay bills' },
-    { id: 3, text: 'Invite friends over' },
-    { id: 4, text: 'Fix the TV' },
-  ])
   return (
     <>
       <div className="container">
@@ -46,20 +42,11 @@ function ShoppingCart(props) {
 
         {/* recent view product*/}
         <div className="row">
-          <div className="winnie-p-wrap d-flex">
-            <RecentView />
-          </div>
+          <RecentView />
         </div>
       </div>
-      <div className="fixed">
-        <div className="fixed-shop">
-          <FontAwesomeIcon
-            icon={faShoppingCart}
-            className="chien-navbar-icon-cart"
-            id="chien-navbar-icon-cart"
-          />
-        </div>
-      </div>
+      <ChienPolicycard />
+      <ChienFooter />
     </>
   )
 }

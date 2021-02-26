@@ -48,20 +48,25 @@ function CheckPost(props) {
   const orderinvoicetype = checkform.orderinvoicetype
 
   const shippingStatus = '準備中'
-  const member_sid = 1
+  //const member_sid = 1
+  const ordernum = 1
+
+  // ordertime
+  // const orderyear = new Date().getFullYear()
+  // const orderdate = new Date().getDate()
+  const ordermonth = new Date().getMinutes()
+  console.log('11')
+  const ordersec = new Date().getSeconds()
+  console.log('22', ordersec)
+
+  console.log(member_sid)
+  console.log(ordernum)
   async function addOrders() {
     // 開啟載入指示
     // setDataLoading(true)
     const newData = {
       // 商品
-      sid,
-      product_name,
-      price,
-      amount,
-      color,
-      size,
-      introduction,
-      customize,
+      ordercart,
       // CheckoutP1
       discount,
       totals,
@@ -72,7 +77,6 @@ function CheckPost(props) {
       orderName,
       orderTel,
       orderEmail,
-
       orderRecipient,
       orderRecipientAddress,
       orderRecipientTel,
@@ -88,6 +92,7 @@ function CheckPost(props) {
       orderarrivaldate,
       orderarrivaltime,
       shippingStatus,
+      ordernum,
       member_sid,
     }
 

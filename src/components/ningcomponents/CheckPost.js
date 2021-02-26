@@ -3,31 +3,16 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function CheckPost(props) {
-  // 新增資料*******************************************
-  // 測試 取值
   // 商品
   const ordercart = JSON.parse(localStorage.getItem('utsuwacart'))
-
-  const sid = ordercart[0].sid
-  const product_name = ordercart[0].product_name
-  const price = ordercart[0].price
-  const amount = ordercart[0].amount
-  const color = ordercart[0].color
-  const size = ordercart[0].size
-  const introduction = ordercart[0].introduction
-  const customize = ordercart[0].customize
-
   // CheckoutP1
   const check = JSON.parse(localStorage.getItem('utsuwaformdataningcheck'))
-
   const discount = check.discount
   const totals = check.total
   const selectpay = check.selectpay
   const selecttransform = check.selecttransform
-
   // CheckoutP2
   const checkform = JSON.parse(localStorage.getItem('utsuwaformdataning'))
-
   const orderDay = checkform.orderDay
   const orderEmail = checkform.orderEmail
   const orderName = checkform.orderName
@@ -49,19 +34,12 @@ function CheckPost(props) {
 
   const shippingStatus = '準備中'
   const member_sid = 1
+  const ordermonth = new Date().getMinutes()
+  const ordersec = new Date().getSeconds()
+  const ordernum = ordermonth + ordersec
   async function addOrders() {
-    // 開啟載入指示
-    // setDataLoading(true)
-    const newData = {
-      // 商品
-      sid,
-      product_name,
-      price,
-      amount,
-      color,
-      size,
-      introduction,
-      customize,
+    const obj = {
+      ordercart,
       // CheckoutP1
       discount,
       totals,
@@ -72,7 +50,6 @@ function CheckPost(props) {
       orderName,
       orderTel,
       orderEmail,
-
       orderRecipient,
       orderRecipientAddress,
       orderRecipientTel,
@@ -89,6 +66,7 @@ function CheckPost(props) {
       orderarrivaltime,
       shippingStatus,
       member_sid,
+      ordernum,
     }
 
     // 連接的伺服器資料網址
@@ -97,13 +75,12 @@ function CheckPost(props) {
     // 注意資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'POST',
-      body: JSON.stringify(newData),
+      body: JSON.stringify(obj),
       headers: new Headers({
         Accept: 'application/json',
         'Content-Type': 'application/json',
       }),
     })
-    console.log(JSON.stringify(newData))
     const response = await fetch(request)
     const data = await response.json()
     console.log('伺服器回傳的json資料', data)
