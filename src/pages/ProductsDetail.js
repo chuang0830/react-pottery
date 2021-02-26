@@ -150,6 +150,50 @@ function ProductsDetail(props) {
     handleGetdata()
   }, [])
 
+  // 加入收藏-----------------------------------------------------------------
+  const [myaddheart, setAddHeart] = useState([])
+  const updateCartToAddHeartLocalStorage = (item) => {
+    const currentAddHeart =
+      JSON.parse(localStorage.getItem('utsuwacartaddheart')) || []
+    const index = currentAddHeart.findIndex((v) => v.sid === item.sid)
+    if (index > -1) {
+      return
+    } else {
+      currentAddHeart.push(item)
+    }
+    localStorage.setItem('utsuwacartaddheart', JSON.stringify(currentAddHeart))
+    setAddHeart(currentAddHeart)
+  }
+  function removeAddHeart(value) {
+    const index = JSON.parse(localStorage.getItem('utsuwacartaddheart')) || []
+    // 拿掉選取的物件
+    const currentRemoveheart = index.filter((v) => v.sid !== value.sid)
+    localStorage.setItem(
+      'utsuwacartaddheart',
+      JSON.stringify(currentRemoveheart)
+    )
+    // 設定資料
+    setAddHeart(currentRemoveheart)
+  }
+  //監聽愛心
+  function getAddHeartFromLocalStorage() {
+    const getHeart = localStorage.getItem('utsuwacartaddheart') || '[]'
+    // setHeart(JSON.parse(getHeart))
+
+    const heartsData = JSON.parse(getHeart)
+    // heartsData
+    const heartDisplay = []
+    heartsData.forEach((i) => {
+      heartDisplay.push(i.sid)
+    })
+    setHeart(heartDisplay)
+  }
+  useEffect(() => {
+    getAddHeartFromLocalStorage()
+  }, [])
+  useEffect(() => {}, [heart])
+  console.log(heart)
+
   //載入圖示
   const spinner = (
     <>
@@ -247,6 +291,7 @@ function ProductsDetail(props) {
                       onClick={() => {
                         const newHeart = heart.filter((v) => v !== data[0].sid)
                         setHeart(newHeart)
+                        removeAddHeart(data[0])
                       }}
                       className="i mb-1 ml-1"
                     />
@@ -255,6 +300,7 @@ function ProductsDetail(props) {
                       onClick={() => {
                         const newHeart = [...heart, data[0].sid]
                         setHeart(newHeart)
+                        updateCartToAddHeartLocalStorage(data[0])
                       }}
                       className="i mb-1 ml-1"
                     />
