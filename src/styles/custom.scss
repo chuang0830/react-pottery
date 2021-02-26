@@ -608,67 +608,15 @@ text {
   height: 100px;
 }
 
-//近期瀏覽card
-.winnie-recent-content {
-  margin: 70px 0 70px 0;
-  display: flex;
-  flex-direction: column;
-  .winnie-recent22-img {
-    font-size: $font-size-base * 3/2;
-    padding: 10px 0 20px 0;
-    margin-bottom: 20px;
-    color: $primary;
-    animation-fill-mode: forwards;
-    &:hover {
-      opacity: 0.1;
-      overflow: hidden;
-
-      /* IE10、Firefox and Opera，IE9以及更早的版本不支持 */
-      animation-name: light;
-      animation-duration: 700ms;
-      animation-timing-function: ease-in-out;
-
-      /* Safari and Chrome */
-      -webkit-animation-name: light;
-      -webkit-animation-duration: 700ms;
-      -webkit-animation-timing-function: ease-in-out;
-    }
-
-    @keyframes light {
-      from {
-        opacity: 0.1;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    @-webkit-keyframes light {
-      from {
-        opacity: 0.1;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-  }
-
-  .winnie-recent-name {
-    color: $primary;
-    font-size: $font-size-base * 1.25;
-    padding: 10px 0 10px 0;
-    word-break: break-all;
-  }
-
-  .winnie-recent-price {
-    font-family: 'Cinzel', serif;
-    display: block;
-    color: $success;
-    font-size: $font-size-base * 0.875;
-    text-align: left;
-    &::before {
-      content: '$';
-    }
+//近期瀏覽的p
+.winnie-recent-price {
+  font-family: 'Cinzel', serif;
+  display: block;
+  color: $success;
+  font-size: $font-size-base * 0.875;
+  text-align: left;
+  &::before {
+    content: '$';
   }
 }
 
@@ -1064,7 +1012,6 @@ chienfooter .chien-social-icon {
   border: 0px;
   background-color: white;
   background: url('http://localhost:3008/chang-images/bid1.svg') no-repeat;
-  margin-left: 20px;
 }
 
 .chang-cart-btn1:hover {
@@ -1199,17 +1146,128 @@ chienfooter .chien-social-icon {
     transform: rotateZ(360deg);
   }
 }
-.fixed {
-  position: relative;
-  .fixed-shop {
+// fixed-btn 
+@mixin fixed-btn {
+  position: fixed;
+  border-radius: 50%;
+  right: 30px;
+  bottom: 30px;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  border: 0;
+  .plus{
     position: absolute;
-    background-color: $primary;
-    border-radius: 50%;
-    right: 0;
-    bottom: 0;
-    width: 60px;
-    height: 60px;
+    left: 13px;
+    bottom: 0px;
+    margin-top: 10px;
+    color: $white;
   }
+}
+@mixin fixed-shop{
+  display: flex;
+  position: absolute;
+  background-color: rgba($white,.5);
+  color: $success;
+  border-radius: 50%;
+  right: 0;
+  bottom: 45px;
+  width: 40px;
+  height: 40px;
+}
+@mixin fixed-heart {
+  display: flex;
+  position: absolute;
+  background-color: rgba($white,.5);
+  color: $success;
+  border-radius: 50%;
+  right: 0;
+  bottom: 90px;
+  width: 40px;
+  height: 40px;
+}
+@mixin fixed-title{
+  position: absolute;
+  left: 25px;
+  bottom: 20px;
+  font-size: 12px;
+  font-weight: 900;
+  color: $success;
+}
+@mixin ning-cart{
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  color: $primary;
+  font-size: 20px;
+}
+@mixin ning-heart {
+  position: absolute;
+  top: 14px;
+  left: 10px;
+  color: $danger;
+  font-size: 20px;
+}
+.ning-fixed{
+    @include  fixed-btn;
+    background: $warning;
+    .plus{
+      font-size: 30px;
+    }
+    .fixed-shop{
+      display: none;
+    }
+    .fixed-heart{
+      display: none;
+    }
+    .fixed-hover{
+      .fixed-shop{
+        @include fixed-shop;
+      }
+      .fixed-heart{
+        @include fixed-heart;
+      }
+      .fixed-title{
+        @include fixed-title;
+      }
+      .ning-cart{
+        @include ning-cart;
+      }
+      .ning-heart{
+        @include ning-heart;
+      }
+    }
+}
+
+.ning-fixed-toggle{
+  @include  fixed-btn;
+  background: rgba($success,.5);
+  .plus{
+    font-size: 32px;
+    position: absolute;
+    left: 13px;
+    bottom: -2px;
+    margin-top: 10px;
+    color: $white;
+    transform: rotate(45deg);
+  }
+    .fixed-shop{
+      @include fixed-shop;
+      border: 1px solid rgba($success,.5);
+    }
+    .fixed-heart{
+      @include fixed-heart;
+      border: 1px solid rgba($success,.5);
+    }
+    .fixed-title{ 
+      @include fixed-title;
+    }
+    .ning-cart{
+      @include ning-cart;
+    }
+    .ning-heart{
+      @include ning-heart;
+    }
 }
 //改這裡BS預設
 .cindy {
@@ -1281,6 +1339,20 @@ chienfooter .chien-social-icon {
     border: none;
     box-shadow: none;
   }
+  &:active {
+    background-color: transparent !important;
+    color: $info !important;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  &:focus {
+    background-color: transparent;
+    color: $info;
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
 }
 .forget-pass {
   border: none;
@@ -1343,7 +1415,9 @@ chienfooter .chien-social-icon {
 .breadcrumb-item {
   z-index: 3;
 }
-
+.hidden {
+  display: none;
+}
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';

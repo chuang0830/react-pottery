@@ -36,6 +36,10 @@ import Changbiddetail from './pages/Changbiddetail'
 // 首頁
 import ChienHeader from './components/ChienHeader'
 import ChienHomepage from './components/ChienHomepage'
+import ChienPolicycard from './components/ChienPolicycard'
+import ChienFooter from './components/ChienFooter'
+
+import FixedCart from './components/ningcomponents/FixedCart'
 
 import Test from './pages/test'
 
@@ -121,6 +125,7 @@ function App() {
           </Switch>
         </ScrollToTop>
       </>
+      <FixedCart />
     </Router>
   )
 }

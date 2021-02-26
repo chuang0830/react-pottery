@@ -1,12 +1,14 @@
 // import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { RiDeleteBinFill } from 'react-icons/ri'
-
 import { Link } from 'react-router-dom'
+import uuid from 'uuid'
 
 //元件
 import LogoNing from './../components/ningcomponents/LogoNing'
 import CheckOutP1TableNing from './../components/ningcomponents/CheckOutP1TableNing'
+import ChienFooter from './../components/ChienFooter'
+import ChienPolicycard from './../components/ChienPolicycard'
 function CheckOutP1(props) {
   // style ------------------------------------------------------------
   const style = {
@@ -18,6 +20,7 @@ function CheckOutP1(props) {
   const [mycart, setMycart] = useState([])
   // const [dataLoading, setDataLoading] = useState(false)
   const [mycartDisplay, setMycartDisplay] = useState([])
+  const [myformDisplay, setMyformDisplay] = useState([])
   // 優惠卷
   const [Discount, setDiscount] = useState(0)
   const [Total, setTotal] = useState(0)
@@ -27,6 +30,7 @@ function CheckOutP1(props) {
   function getCartFromLocalStorage() {
     const newForm = localStorage.getItem('utsuwaformdataningcheck')
     setMyform(JSON.parse(newForm))
+
     const newCart = localStorage.getItem('utsuwacart') || '[]'
     setMycart(JSON.parse(newCart))
   }
@@ -79,7 +83,7 @@ function CheckOutP1(props) {
     const currentCart = JSON.parse(localStorage.getItem('utsuwacart')) || []
     const index = currentCart.findIndex((v) => v.sid === item.sid)
     if (index > -1) {
-      isAdded ? currentCart[index].amount++ : currentCart[index].amount--
+      isAdded ? currentCart[index].amount++ : (currentCart[index].amount = 1)
     }
     localStorage.setItem('utsuwacart', JSON.stringify(currentCart))
     setMycart(currentCart)
@@ -184,9 +188,12 @@ function CheckOutP1(props) {
                       return (
                         <tr>
                           <img
-                            src="http://localhost:3008/winnie-images/{JSON.parse(item.photo)[0]}"
+                            src={`http://localhost:3008/winnie-images/${
+                              JSON.parse(item.photo)[0]
+                            }`}
                             alt=""
                             srcset=""
+                            width="150"
                           />
                           <td> {item.product_name}</td>
                           <td> {item.price}</td>
@@ -376,12 +383,14 @@ function CheckOutP1(props) {
             </div>
           </div>
         </div>
-        <div className="row d-flex justify-content-end mb-7 mt-5 mt-3">
+        <div className="row d-flex justify-content-end mb-9 mt-5 mt-3">
           <Link to="/CheckOutP2">
             <button className="ninginfo-btn mx-1">填寫訂單訊息</button>
           </Link>
         </div>
       </div>
+      <ChienPolicycard />
+      <ChienFooter />
     </>
   )
 }
