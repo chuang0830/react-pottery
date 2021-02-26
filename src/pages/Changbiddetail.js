@@ -291,7 +291,7 @@ function Changbiddetail() {
               </p>
               <p>
                 {changphotos.length &&
-                  changphotos[0].bid_sum_money > 1100 && (
+                  changphotos[0].bid_sum_money > 1000 && (
                     <Alert show={show} variant="success">
                       <Alert.Heading></Alert.Heading>
                       您已達到最低購買價格，可以直接購買。
