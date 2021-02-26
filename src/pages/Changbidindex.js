@@ -3,15 +3,17 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
+import ChienFooter from '../components/ChienFooter'
 
 function Changbidindex() {
   const [photos2, setphotos2] = useState([])
   //const [dataLoading, setDataLoding] = useState(false)
+  //載入圖示
+  const [isLoading, setIsLoading] = useState(true)
 
   async function getphotos2FromServer1() {
-    // 開啟載入指示
-    //setDataLoading(true)
-
     // 連接的伺服器資料網址
     const url = 'http://localhost:3000/address-book/json'
 
@@ -26,35 +28,44 @@ function Changbidindex() {
 
     const response1 = await fetch(request1)
     const data1 = await response1.json()
-    console.log(data1)
+    console.log('data1', data1)
     //設定資料給photos
     setphotos2(data1)
   }
 
+  // aos套件
+  useEffect(() => {
+    Aos.init({ duration: 2000 })
+  }, [])
+
   //一開始就會開始載入資料
   useEffect(() => {
     getphotos2FromServer1()
+
+    //2秒後關閉指示器(LOADING..)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 4000)
   }, [])
 
-  //每次users資料有變動就會X秒後關掉載入指示
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setDataLoading(false)
-  //   }, 1000)
-  // }, [photos2])
-
-  //載入圖示
-  const loading = (
+  //載入圖示(LOADING..)
+  const spinner = (
     <>
-      <div className="d-flex justify-content-center">
-        <div className="spinner-border" role="status">
-          <span className="sr-only">Loading...</span>
+      <div className="layer">
+        <div className="loader">
+          <div className="progress"></div>
         </div>
       </div>
     </>
   )
+
+  if (isLoading) return spinner
   return (
     <>
+      {/* 一進頁面漸變(LOADING..) */}
+      {/* winnieproduct.scss */}
+      <div class="winnie-transition-bg"></div>
+
       {/* banner照片 */}
       <div>
         <div className="chang-index-t-bg"></div>
@@ -74,30 +85,28 @@ function Changbidindex() {
             </ol>
           </nav>
         </div>
+
         {/* winnie(不要動到) 標題，文字 */}
         <div className="row">
-          <div className="winnie-title">
+          <div data-aos="fade-up" className="winnie-title">
             <h1>Bidding</h1>
           </div>
-          <p className="winnie-text mb-11">
-            1926 年許家創業製陶至今近一世紀，「 新旺集瓷
-            」是以創辦人許新旺先生的名字作為品牌命名，揉合了第四代新創陶瓷品牌「
-            集瓷 Cocera 」之總合體，因此，新旺代表傳承，集瓷代表創新「
-            傳承創新‧傳遞美好Keep going forward
-            」正是品牌傳達的理念。堅持保留古文化，以知性、人文，現代、創新的方式，傳承製陶技藝，推廣陶藝普及化，讓現代人一探古陶奧妙之旅。博物館有寬廣明亮的廣場式展覽中心，休閒、教育性質兼具，做陶、玩陶，賞陶、創陶，邀您親自一探陶之靈魂，體驗陶之樂趣。新旺集瓷陶藝教室是個以知性人文的心、現代創新的方式，並以傳承鶯歌傳統技藝文化自許的地方。
+          <p data-aos="fade-up" className="winnie-text mb-11">
+            我們邀請了40多位公眾小朋友設計陶器，於期間進行競標義賣活動。義賣收入不扣除成本幫助國內資源不足的中小型社福單位！
+            無論您是粉絲、喜愛藝術、熱心公益都別錯過這次的機會。有您一起行動力挺，我們就有更多力量，讓愛閃耀在中小型社福單位閃耀
           </p>
         </div>
 
         {/* chien(不要動到) 照片+文字 */}
         <div className="row py-5 mb-5 chien-prod">
-          <div className="chien-prod-img col-7 chang-photo">
+          <div data-aos="fade-up" className="chien-prod-img col-7 chang-photo">
             <img
               className="overflow-hidden w-100"
               src="https://res.klook.com/image/upload/c_fill,w_960,h_460,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/wrwtqkfv8tatrsius8w3.webp"
               alt="bidbanner"
             />
           </div>
-          <div className="chien-prod-cont col-5 my-auto">
+          <div data-aos="fade-up" className="chien-prod-cont col-5 my-auto">
             <div className="card-body">
               <h5 className="pb-4 chien-card-title chien-f-24 ">慈善競標</h5>
               <p className="card-text py-4 chien-f-14">
@@ -106,21 +115,20 @@ function Changbidindex() {
             </div>
           </div>
         </div>
-        <div className="winnie-title">
+        <div data-aos="fade-up" className="winnie-title">
           <h1>Product</h1>
         </div>
+
         {/* winnie(不要動到) Card() */}
         <div className="row">
-          {/* Card-抓商品資料 */}
-
-          <div className="winnie-p-wrap d-flex">
-            {/* 第一個 */}
-
+          <div data-aos="fade-up" className="winnie-p-wrap d-flex">
+            {/* Card-抓商品資料 */}
             {photos2.length &&
               photos2.map((value, index) => {
                 //單筆圖片直接value.photo
                 //多筆圖片let p = JSON.parse(value.photo)[0]
                 let p1 = value.photo
+
                 p1 = 'http://localhost:3008/chang-images/' + p1
                 return (
                   <div className="col-lg-4 col-md-6">
@@ -145,7 +153,7 @@ function Changbidindex() {
           </div>
         </div>
         {/* [_winniepage.scss] 頁籤 bootstrap:pagination */}
-        <div className="winnie-page">
+        <div data-aos="fade-up" className="winnie-page">
           <div className="row">
             <div className="mx-auto">
               <nav aria-label="Page navigation example ">
@@ -293,7 +301,7 @@ function Changbidindex() {
           </div>
         </div>
         {/* recent view product*/}
-        <div className="row">
+        <div data-aos="fade-up" className="row">
           <div className="winnie-p-wrap d-flex">
             {/* 第一個 */}
             <div className="col-lg-4 col-md-6">
@@ -301,19 +309,19 @@ function Changbidindex() {
                 <div className="winnie-card-img">
                   <img
                     className="w-100"
-                    src="./winnie-images/test.png"
+                    src="http://localhost:3008/chang-images/1.jpeg"
                     alt=""
                   />
                 </div>
                 <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
+                  <p>pro001</p>
                   <div>
                     <i className="far fa-heart mr-1" />
                     <i className="fas fa-shopping-cart" />
                   </div>
                 </div>
                 <a href="#" className="winnie-card-price">
-                  690
+                  100
                 </a>
               </div>
             </div>
@@ -321,17 +329,21 @@ function Changbidindex() {
             <div className="col-lg-4 col-md-6">
               <div className="winnie-card-content">
                 <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
+                  <img
+                    className="w-100"
+                    src="http://localhost:3008/chang-images/2.jpeg"
+                    alt
+                  />
                 </div>
                 <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
+                  <p>pro004</p>
                   <div>
                     <i className="far fa-heart mr-1" />
                     <i className="fas fa-shopping-cart" />
                   </div>
                 </div>
                 <a href="#" className="winnie-card-price">
-                  690
+                  200
                 </a>
               </div>
             </div>
@@ -339,17 +351,21 @@ function Changbidindex() {
             <div className="col-lg-4 col-md-6">
               <div className="winnie-card-content">
                 <div className="winnie-card-img">
-                  <img className="w-100" src="./winnie-images/test.png" alt />
+                  <img
+                    className="w-100"
+                    src="http://localhost:3008/chang-images/3.jpeg"
+                    alt
+                  />
                 </div>
                 <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
+                  <p>pro005</p>
                   <div>
                     <i className="far fa-heart mr-1" />
                     <i className="fas fa-shopping-cart" />
                   </div>
                 </div>
                 <a href="#" className="winnie-card-price">
-                  690
+                  300
                 </a>
               </div>
             </div>
@@ -358,129 +374,14 @@ function Changbidindex() {
       </div>
 
       {/* chien(不要動到) 頁尾 */}
-      <footer>
-        <div className="chang-product-f-bg"></div>
-        <div className="chien-footer-top py-5 container-fluid">
-          <div className="ch-footer-top">
-            <div className="row p-3">
-              <div className="col-6">
-                <a className="chien-f-14 m-4 text-white" href="#">
-                  關於我們
-                </a>
-                <p className="chien-aboutus-content chien-f-14 mx-5 my-3">
-                  克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
-                </p>
-              </div>
-              <div className="col-3">
-                <a className="chien-f-14 m-4 text-white" href="#">
-                  聯絡我們
-                </a>
-                <p className="chien-contactus-subtitle chien-f-14 mx-5 mt-3 mb-0">
-                  E-Mail
-                </p>
-                <p className="chien-f-14 mx-5 text-white">contact@utsuwa.com</p>
-                <p className="chien-contactus-subtitle chien-f-14 mx-5 mt-3 mb-0">
-                  Telephone
-                </p>
-                <p className="chien-f-14 mx-5 text-white">+886-908-000-000</p>
-                <p className="chien-contactus-subtitle chien-f-14 mx-5 mt-3 mb-0">
-                  Office Address
-                </p>
-                <p className="chien-f-14 mx-5 text-white">
-                  2F., No. 390, Sec. 1, Fuxing S. Rd., Da’an Dist., Taipei City
-                  106, Taiwan (R.O.C.)
-                </p>
-              </div>
-              <div className="col-3">
-                <a className="chien-f-14 m-4 text-white" href="#">
-                  最新消息
-                </a>
-                <p className="chien-news-content chien-f-14 mx-5 mt-3 mb-1">
-                  克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍。
-                </p>
-                <p className="chien-f-12 mx-5 text-white">
-                  August, 25, 2018 | by Utsuwa
-                </p>
-                <p className="chien-news-content chien-f-14 mx-5 mt-3 mb-1">
-                  克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍。
-                </p>
-                <p className="chien-f-12 mx-5 text-white">
-                  August, 25, 2018 | by Utsuwa
-                </p>
-              </div>
-            </div>
+      <div>
+        <div className="chang-product-f-bg position-relative">
+          {/* 頁尾 */}
+          <div className="position-absolute fixed-bottom">
+            <ChienFooter />
           </div>
         </div>
-        <div className="chien-footer-bottom py-3 container-fluid">
-          <div className="ch-footer-bottom">
-            <div className="row">
-              <ul className="social-links-area nav">
-                <li>
-                  <span className="chien-hidden-icon mx-3">
-                    <i className="fab fa-facebook-square" />
-                  </span>
-                </li>
-                <li>
-                  <span className="chien-hidden-icon mx-3">
-                    <i className="fab fa-twitter-square" />
-                  </span>
-                </li>
-                <li>
-                  <span className="chien-hidden-icon mx-3">
-                    <i className="fab fa-instagram-square" />
-                  </span>
-                </li>
-                <li>
-                  <span className="chien-hidden-icon mx-3">
-                    <i className="fab fa-telegram" />
-                  </span>
-                </li>
-              </ul>
-              <div className="mx-auto text-white copyright social-icon">
-                Copyright © 2021 Utsuwa Inc.
-              </div>
-              <ul className="social-links-area nav">
-                <li>
-                  <a
-                    className="mx-3 chien-social-icon"
-                    href="#"
-                    target="_blank"
-                  >
-                    <i className="fab fa-facebook-square" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="mx-3 chien-social-icon"
-                    href="#"
-                    target="_blank"
-                  >
-                    <i className="fab fa-twitter-square" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="mx-3 chien-social-icon"
-                    href="#"
-                    target="_blank"
-                  >
-                    <i className="fab fa-instagram-square" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="mx-3 chien-social-icon"
-                    href="#"
-                    target="_blank"
-                  >
-                    <i className="fab fa-telegram" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
+      </div>
     </>
   )
 }

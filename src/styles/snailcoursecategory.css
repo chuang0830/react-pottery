@@ -43,12 +43,48 @@
   color: black;
 }
 
-.catbackground {
+.catbackground1 {
   height: 80vh;
-  background-image: url("http://localhost:3008/snail-imgs/course-banner1.jpg");
+  background-image: url("http://localhost:3008/snail-imgs/catbackground1.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-position: 100% 50%;
+  background-position: 50;
+}
+
+.catbackground2 {
+  height: 80vh;
+  background-image: url("http://localhost:3008/snail-imgs/catbackground2.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-position: 50%;
+}
+
+.catbackground3 {
+  height: 80vh;
+  background-image: url("http://localhost:3008/snail-imgs/catbackground3.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-position: 35%;
+}
+
+.catbackground4 {
+  height: 80vh;
+  background-image: url("http://localhost:3008/snail-imgs/catbackground4.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-position: 50%;
+}
+
+.snail-foot-bg {
+  height: 130vh;
+  background-image: url("http://localhost:3008/snail-imgs/snail-footer-bg1.jpg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  background-attachment: fixed;
 }
 /*# sourceMappingURL=snailcoursecategory.css.map */

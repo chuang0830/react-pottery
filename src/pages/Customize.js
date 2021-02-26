@@ -34,7 +34,7 @@ function Customize(props) {
     price: 1080,
     color: '粉',
     size: '200mm*200mm',
-    photo: '["52.jpg"]',
+    photo: '["52.png"]',
     customize: text,
     introduction: '此商品承載著您特製的心意，非常適合作為禮物。',
   }
@@ -43,15 +43,15 @@ function Customize(props) {
 
   //aos套件
   useEffect(() => {
-    Aos.init({ duration: 2000 })
+    Aos.init({ duration: 3000 })
   }, [])
 
   //一開始就會開始載入資料
   useEffect(() => {
-    //2秒後關閉指示器
+    //4秒後關閉指示器
     setTimeout(() => {
       setIsLoading(false)
-    }, 4000)
+    }, 3500)
   }, [])
 
   //載入圖示
@@ -81,7 +81,7 @@ function Customize(props) {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link to={`/`}>首頁</Link>
+              <Link to="/">首頁</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               客製化商品

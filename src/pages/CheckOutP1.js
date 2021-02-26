@@ -35,7 +35,7 @@ function CheckOutP1(props) {
     setMycart(JSON.parse(newCart))
   }
   function total() {
-    setTotal(sum(mycartDisplay) - Shipping - Discount)
+    setTotal(sum(mycartDisplay) + Shipping - Discount)
   }
   useEffect(() => {
     getCartFromLocalStorage()
