@@ -7,15 +7,13 @@ import cartHandler from './../utils/CartHandler'
 import Table from 'react-bootstrap/Table'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import ChienFooter from '../components/ChienFooter'
 function Changbiddetail() {
   // 新增競標資料*******************************************
   const [dataLoading, setDataLoading] = useState(false)
+  // 抓members丟出的sid(localstorage)
   const sid = localStorage.getItem('member-sid')
-  const product_id = 3
-  // const [avatar, setAvatar] = useState('')
-  // const [account, setAccount] = useState('')
-  // const [bid_product_number, setBid_product_number] = useState('')
-  // const [bid_created_time, setBid_created_time] = useState('')
+  const product_id = 1
   const [bid_add_money, setBid_add_money] = useState('')
   const [bid_sum_money, setBid_sum_money] = useState(0)
   console.log('bid_sum_money', bid_sum_money)
@@ -157,7 +155,7 @@ function Changbiddetail() {
   const testData1 = {}
 
   //localStorage.setItem('member-sid', testData1.sid)
-  const [photos, setPhotos] = useState([])
+  const [photos, setPhotos] = useState(1)
   //const [dataLoading, setDataLoding] = useState(false)
 
   async function getPhotosFromServer() {
@@ -193,7 +191,7 @@ function Changbiddetail() {
     <>
       {/* hero page */}
       <div>
-        <div className="chang-detail-t-bg"></div>
+        <div className="chang-index-t-bg"></div>
       </div>
       {/* 麵包屑 */}
       <div className="container">
@@ -230,26 +228,38 @@ function Changbiddetail() {
             <div className="wrapper col-lg-8 col-md-12">
               <div className="img-change-l">
                 <img
-                  src="http://localhost:3008/chang-images/1.jpg"
-                  width={680}
+                  src={`http://localhost:3008/chang-images/${photos}.jpeg`}
+                  width={440}
                   height={440}
                   alt=""
                 />
               </div>
-              <div className="img-change-s">
+              <div className="chang-img-change-s">
                 <img
-                  src="http://localhost:3008/chang-images/2.jpg"
+                  onClick={() => {
+                    setPhotos(1)
+                  }}
+                  src="http://localhost:3008/chang-images/1.jpeg"
                   height={110}
+                  width={110}
                   alt=""
                 />
                 <img
-                  src="http://localhost:3008/chang-images/3.jpg"
+                  onClick={() => {
+                    setPhotos(2)
+                  }}
+                  src="http://localhost:3008/chang-images/2.jpeg"
                   height={110}
+                  width={110}
                   alt=""
                 />
                 <img
-                  src="http://localhost:3008/chang-images/4.jpg"
+                  onClick={() => {
+                    setPhotos(3)
+                  }}
+                  src="http://localhost:3008/chang-images/3.jpeg"
                   height={110}
+                  width={110}
                   alt=""
                 />
               </div>
@@ -267,10 +277,12 @@ function Changbiddetail() {
                   })} */}
                 <p>已出價{changphotos.length && changphotos[0].bid_id}次</p>
               </div>
-              <p className="winnie-text">倒數3天</p>
-              <p>競標開始日</p>
-              <p>目前金額</p>
-              <p>出價金額</p>
+              <p className="chang-text">倒數3天</p>
+              <p className="chang-text">競標開始日:2021/02/17</p>
+              <p className="chang-text">
+                目前金額:{changphotos.length && changphotos[0].bid_sum_money}元
+              </p>
+              <p className="chang-text">出價金額</p>
               <div className="d-flex justify-content chang-button-box">
                 {/* 計數器 */}
                 <div className="form-group">
@@ -300,7 +312,12 @@ function Changbiddetail() {
                   >
                     {/* 競標按鈕 */}
                     {/* className="rosebit-btn" */}
-                    <svg style={{ width: '100px', height: '100px' }}></svg>
+                    <svg
+                      style={{
+                        width: '100px',
+                        height: '100px',
+                      }}
+                    ></svg>
                   </div>
                 </div>
               </div>
@@ -335,7 +352,7 @@ function Changbiddetail() {
                         <img className="chang-bidding-photo" src={p1} alt="" />
                       </td>
                       <td className="chang-account-text">{value.account}</td>
-                      <td>{value.bid_product_number}</td>
+                      <td>pro001</td>
                       <td>{value.bid_created_time}</td>
                       <td>{value.bid_add_money}</td>
                       <td>{value.bid_sum_money}</td>
@@ -392,13 +409,13 @@ function Changbiddetail() {
                   />
                 </div>
                 <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
+                  <p>pro001</p>
                   <div>
                     <FaRegHeart className="far fa-heart mr-2" />
                     <FaShoppingCart />
                   </div>
                 </div>
-                <p className="winnie-card-price">690</p>
+                <p className="winnie-card-price">100</p>
               </div>
             </div>
             {/* 2 */}
@@ -412,13 +429,13 @@ function Changbiddetail() {
                   />
                 </div>
                 <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
+                  <p>pro001</p>
                   <div>
                     <FaRegHeart className="far fa-heart mr-2" />
                     <FaShoppingCart />
                   </div>
                 </div>
-                <p className="winnie-card-price">690</p>
+                <p className="winnie-card-price">300</p>
               </div>
             </div>
             {/* 3 */}
@@ -432,15 +449,24 @@ function Changbiddetail() {
                   />
                 </div>
                 <div className="winnie-card-name text-justify d-flex justify-content-between">
-                  <p>小巧的花瓶瓷器</p>
+                  <p>pro001</p>
                   <div>
                     <FaRegHeart className="far fa-heart mr-2" />
                     <FaShoppingCart />
                   </div>
                 </div>
-                <p className="winnie-card-price">690</p>
+                <p className="winnie-card-price">400</p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      {/* chien(不要動到) 頁尾 */}
+      <div>
+        <div className="chang-product-f-bg position-relative">
+          {/* 頁尾 */}
+          <div className="position-absolute fixed-bottom">
+            <ChienFooter />
           </div>
         </div>
       </div>

@@ -142,7 +142,7 @@ function ProductsDetail(props) {
     //2秒後關閉指示器
     setTimeout(() => {
       setIsLoading(false)
-    }, 4000)
+    }, 3500)
   }
 
   //一開始就會開始載入資料
@@ -178,10 +178,10 @@ function ProductsDetail(props) {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link to={`/`}>首頁</Link>
+              <Link to="/">首頁</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link to={`/products`}>商品專區</Link>
+              <Link to="/products">商品專區</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               {data[0].product_name}
@@ -322,7 +322,7 @@ function ProductsDetail(props) {
           <RecentView />
         </div>
       </div>
-      {/* 測試 */}
+      {/* Footer背景 */}
       <div>
         <div className="winnie-detail-f-bg position-relative">
           {/* 頁尾 */}

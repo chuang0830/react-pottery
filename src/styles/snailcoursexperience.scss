@@ -10,17 +10,14 @@
   // background-color: red;
 }
 
-// 日曆框框
-.experience-calendar {
-  // position: fixed;
-  height: 300px;
-  width: 300px;
-  background-color: rgb(221, 152, 152);
-  top: 100px;
-  right: 80px;
-  // z-index:99;
-
-  
+.experience-list{
+  padding: 5px;
+  //高度寫死就不影響其他div
+  // height: 100px;
+  .experience-list-item{
+    border-bottom: 1px solid $info;
+    padding: 35px;
+  }
 }
 
 // 體驗課程標題文字
@@ -129,14 +126,16 @@
 }
 // 學員作品照片
 .portfolio-box {
-  height: 200px;
-  //   background-color: rgb(204, 89, 166);
+  height: 20vh;
+    background-color: rgb(204, 89, 166);
   //   border: 1px solid;
   margin: 10px;
   display: flex;
   overflow: hidden;
   img {
     object-fit: cover;
+    width: 100%;
+    
   }
 }
 
@@ -186,4 +185,14 @@
 .snail-cart-btn:hover {
   color: white;
   background-color: #92b6ba;
+}
+
+//FOOTer背景
+.snail-f-bg {
+  height: 130vh;
+  background-image: url('http://localhost:3008/snail-imgs/snail-footer-bg3.jpg');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  background-attachment: fixed;
 }

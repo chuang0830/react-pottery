@@ -36,9 +36,6 @@ import Changbiddetail from './pages/Changbiddetail'
 // 首頁
 import ChienHeader from './components/ChienHeader'
 import ChienHomepage from './components/ChienHomepage'
-import ChienPolicycard from './components/ChienPolicycard'
-import ChienFooter from './components/ChienFooter'
-import PlayMessage from './pages/PlayMessage'
 
 import Test from './pages/test'
 
@@ -50,104 +47,77 @@ function App() {
         {/* 嚴謹的要放上面 */}
         {/* 放連結 */}
         <ChienHeader />
-        {/* <Link to="/CourseCategory">CourseCategory</Link>
-        <Link to="/CourseCategory/Experience">Experience</Link>
-        <Link to="/CourseCategory/OnlineCourse">OnlineCourse</Link>
-        <Link to="/CourseCategory/MyOnlineCourse">MyOnlineCourse</Link>
-        <Link to="/CourseCategory/MyOnlineCourse/PlayPage">PlayPage</Link>
-        <Link to="/CheckOutP1">CheckOutP1</Link>
-        <Link to="/CheckOutP2">CheckOutP2</Link>
-        <Link to="/CheckOutP3">CheckOutP3</Link>
-        <Link to="/ShoppingCart">ShoppingCart</Link>
-        <Link to="/LocalStorageTest">LocalStorageTest</Link>
-        <Link to="/changbidindex">changbidindex</Link>
-        <Link to="/changbidindex/changbiddetail">changbiddetail</Link>
-        <Link to="/products">Products</Link>
-        <Link to="/products/:id">ProductsDetail</Link>
-        <Link to="/customize">Customize</Link> */}
+        <ScrollToTop>
+          {/* Switch從上到下找唯一匹配的路由表 */}
+          <Switch>
+            <Route exact path="/">
+              <ChienHomepage />
+            </Route>
+            {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
+            {/* 會員路由 */}
+            <Route exact path="/forgetpass">
+              <ForgetPass />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/member">
+              <Member />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
 
-        {/* Switch從上到下找唯一匹配的路由表 */}
-        {/* 測試 */}
-        {/* <ScrollToTop> */}
-        {/* Switch從上到下找唯一匹配的路由表 */}
-        <Switch>
-          <Route exact path="/">
-            <ChienHomepage />
-            <ChienPolicycard />
-            <ChienFooter />
-          </Route>
-          {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
-          {/* 會員路由 */}
-          <Route exact path="/forgetpass">
-            <ForgetPass />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/member">
-            <Member />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-
-          {/* 商品路由 */}
-          {/* <ScrollToItem> */}
-          {/* <Route exact path="/products/:pageNumber">
+            {/* 商品路由 */}
+            {/* <ScrollToItem> */}
+            {/* <Route exact path="/products/:pageNumber">
               <Products />
-            </Route> */}
-          {/* </ScrollToItem> */}
-          <Route exact path="/customize">
-            <Customize />
-          </Route>
-          <Route exact path="/products">
-            <Products />
-          </Route>
-          <Route exact path="/products/:id">
-            <ProductsDetail />
-          </Route>
+            </Route>
+            <Route exact path="/products/:id">
+              <ProductsDetail />
+            </Route>
 
-          {/* 課程路由 */}
+            {/* 課程路由 */}
 
-          <Route path="/CourseCategory/MyOnlineCourse/PlayPage">
-            <PlayPage />
-          </Route>
-          <Route path="/CourseCategory/Experience">
-            <Experience />
-          </Route>
-          <Route path="/CourseCategory/OnlineCourse">
-            <OnlineCourse />
-          </Route>
-          <Route path="/CourseCategory/MyOnlineCourse">
-            <MyOnlineCourse />
-          </Route>
-          <Route path="/CourseCategory">
-            <CourseCategory />
-          </Route>
+            <Route path="/CourseCategory/MyOnlineCourse/PlayPage">
+              <PlayPage />
+            </Route>
+            <Route path="/CourseCategory/Experience">
+              <Experience />
+            </Route>
+            <Route path="/CourseCategory/OnlineCourse">
+              <OnlineCourse />
+            </Route>
+            <Route path="/CourseCategory/MyOnlineCourse">
+              <MyOnlineCourse />
+            </Route>
+            <Route path="/CourseCategory">
+              <CourseCategory />
+            </Route>
 
-          {/* 購物車路由 */}
-          <Route exact path="/CheckOutP1">
-            <CheckOutP1 />
-          </Route>
-          <Route exact path="/CheckOutP2">
-            <CheckOutP2 />
-          </Route>
-          <Route exact path="/CheckOutP3">
-            <CheckOutP3 />
-          </Route>
-          <Route exact path="/ShoppingCart">
-            <ShoppingCart />
-          </Route>
+            {/* 購物車路由 */}
+            <Route exact path="/CheckOutP1">
+              <CheckOutP1 />
+            </Route>
+            <Route exact path="/CheckOutP2">
+              <CheckOutP2 />
+            </Route>
+            <Route exact path="/CheckOutP3">
+              <CheckOutP3 />
+            </Route>
+            <Route exact path="/ShoppingCart">
+              <ShoppingCart />
+            </Route>
 
-          {/* 競標路由 */}
-          <Route exact path="/Changbidindex/Changbiddetail">
-            <Changbiddetail />
-          </Route>
-          <Route exact path="/Changbidindex">
-            <Changbidindex />
-          </Route>
-        </Switch>
-        {/* </ScrollToTop> */}
+            {/* 競標路由 */}
+            <Route exact path="/Changbidindex/Changbiddetail">
+              <Changbiddetail />
+            </Route>
+            <Route exact path="/Changbidindex">
+              <Changbidindex />
+            </Route>
+          </Switch>
+        </ScrollToTop>
       </>
     </Router>
   )
