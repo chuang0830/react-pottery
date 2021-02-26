@@ -69,8 +69,10 @@ function App() {
             </Route>
 
             {/* 商品路由 */}
-            {/* <ScrollToItem> */}
-            {/* <Route exact path="/products/:pageNumber">
+            <Route exact path="/customize">
+              <Customize />
+            </Route>
+            <Route exact path="/products">
               <Products />
             </Route>
             <Route exact path="/products/:id">
