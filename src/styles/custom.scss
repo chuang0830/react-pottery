@@ -658,7 +658,6 @@ text {
     font-size: $font-size-base * 1.25;
     padding: 10px 0 10px 0;
     word-break: break-all;
-    
   }
 
   .winnie-recent-price {
@@ -672,9 +671,6 @@ text {
     }
   }
 }
-
-
-
 
 //chienpolicycard
 .chien-f-24 {
@@ -1203,17 +1199,17 @@ chienfooter .chien-social-icon {
     transform: rotateZ(360deg);
   }
 }
-.fixed{
-    position: relative;
-    .fixed-shop{
-      position: absolute;
-      background-color: $primary;
-      border-radius: 50%;
-      right: 0;
-      bottom: 0;
-      width: 60px;
-      height: 60px;
-    }
+.fixed {
+  position: relative;
+  .fixed-shop {
+    position: absolute;
+    background-color: $primary;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    width: 60px;
+    height: 60px;
+  }
 }
 //改這裡BS預設
 .cindy {
@@ -1248,16 +1244,16 @@ chienfooter .chien-social-icon {
     box-shadow: none;
   }
 }
-//改這邊！！！！
-.modal-content {
-  .modal-header {
+//orderlist modal style
+.corder-content {
+  .corder-header {
     border: none;
     //padding: 15px;
   }
-  .modal-footer {
+  .corder-footer {
     border: none;
   }
-  .modal-body {
+  .corder-body {
     padding: 0;
     margin: 15px;
     border-radius: 5px;
@@ -1270,6 +1266,82 @@ chienfooter .chien-social-icon {
       border: none;
     }
   }
+}
+// forget-pass modal style
+.cindy-forgetbtn {
+  background-color: transparent;
+  color: $info;
+  border: none;
+  font-size: $font-size-base * 0.8;
+  margin: 0 auto;
+  &:hover {
+    background-color: transparent;
+    color: $info;
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+}
+.forget-pass {
+  border: none;
+  .forget-pass-header {
+    border: none;
+    border-bottom: 1px solid $primary;
+  }
+  .forget-pass-body {
+    label {
+      color: $primary;
+      margin: 10px 0 8px 0;
+    }
+    input {
+      border: none;
+      font-size: $font-size-base * 0.8;
+      border-bottom: 1px solid $primary;
+      background-color: transparent;
+      outline: none;
+      padding-bottom: 5px;
+      width: 100%;
+    }
+    .cindy-confrim-btn {
+      margin: 0 auto;
+      width: 40%;
+    }
+  }
+  .forget-pass-footer {
+    border: none;
+  }
+}
+.pass-reset {
+  border: none;
+  .pass-reset-header {
+    border: none;
+    border-bottom: 1px solid $primary;
+  }
+  .pass-reset-body {
+    label {
+      color: $primary;
+      margin: 10px 0 8px 0;
+    }
+    input {
+      border: none;
+      font-size: $font-size-base * 0.8;
+      border-bottom: 1px solid $primary;
+      background-color: transparent;
+      outline: none;
+      padding-bottom: 5px;
+      width: 100%;
+    }
+    .cindy-pass-btn {
+      width: 40%;
+    }
+  }
+  .pass-reset-footer {
+    border: none;
+  }
+}
+
+.breadcrumb-item {
+  z-index: 3;
 }
 
 @import './cindyregister.scss';

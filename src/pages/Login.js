@@ -1,6 +1,7 @@
 import { Link, withRouter } from 'react-router-dom'
 import React, { useState } from 'react'
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
+import { Modal, Button } from 'react-bootstrap'
 
 function Login(props) {
   let styles = {
@@ -12,10 +13,11 @@ function Login(props) {
   }
   const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('')
   const [showcss, setShowcss] = useState(false)
+  const [modalShow, setModalShow] = React.useState(false)
   //eye
   const [visible, setVisible] = useState(false)
-  
   async function handleSubmit() {
     localStorage.removeItem('member-sid')
     const newData = { account, password }
@@ -40,9 +42,74 @@ function Login(props) {
       setShowcss(true)
     }
   }
+  async function forget() {
+    localStorage.setItem('email', email)
+    const newData = { email }
+    const url = 'http://localhost:3000/members/email'
+    const request = new Request(url, {
+      method: 'POST',
+      body: JSON.stringify(newData),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    console.log(JSON.stringify(newData))
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('伺服器回傳的json資料', data)
+  }
 
   return (
     <>
+      <Modal
+        className="forget-pass mx-auto"
+        {...props}
+        size="sm"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      >
+        <Modal.Header closeButton className="forget-pass-header">
+          <Modal.Title id="contained-modal-title-vcenter">忘記密碼</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="forget-pass-body">
+          <div className="">
+            <label htmlFor="email">Email</label>
+            <br />
+            <input
+              type="text"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="請輸入Email"
+            />
+          </div>
+
+          <Button
+            type="button"
+            className="cindy mt-5 cindy-confrim-btn d-block"
+            onClick={() => {
+              forget()
+              alert('請到您的信箱收信！')
+              setModalShow(false)
+            }}
+          >
+            確定
+          </Button>
+        </Modal.Body>
+        <Modal.Footer className="forget-pass-footer">
+          {/* <Button
+            type="button"
+            className="cindy"
+            onClick={() => setModalShow(false)}
+          >
+            關閉
+          </Button> */}
+        </Modal.Footer>
+      </Modal>
       <div className="container-fluid" style={styles}>
         <div className="row d-flex justify-content-end ">
           <div className="cindy-boxtag">
@@ -103,9 +170,15 @@ function Login(props) {
                     {visible ? <ImEyeBlocked /> : <ImEye />}
                   </button>
                 </div>
-                <Link to="/user-forgetpass" className="forgetpass">
-                  忘記密碼？
-                </Link>
+                <Button
+                  variant="primary"
+                  className="cindy-forgetbtn float-right"
+                  onClick={() => {
+                    setModalShow(true)
+                  }}
+                >
+                  忘記密碼&nbsp;?
+                </Button>
                 <button
                   type="button"
                   className="loginbtn"

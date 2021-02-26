@@ -34,7 +34,7 @@ function Customize(props) {
     price: 1080,
     color: '粉',
     size: '200mm*200mm',
-    photo: '["52.jpg"]',
+    photo: '["52.png"]',
     customize: text,
     introduction: '此商品承載著您特製的心意，非常適合作為禮物。',
   }
@@ -81,7 +81,7 @@ function Customize(props) {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link to={`/`}>首頁</Link>
+              <Link to="/">首頁</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               客製化商品
