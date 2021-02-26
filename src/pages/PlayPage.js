@@ -1,5 +1,5 @@
 import { Route, withRouter, Link, Switch } from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaCaretRight } from 'react-icons/fa'
 // import OnlinePlayer from '../components/OnlinePlayer'
 import ReactPlayer from 'react-player'
@@ -9,25 +9,13 @@ import PlayContent from './PlayContent'
 import PlayReview from './PlayReview'
 import ChienFooter from '../components/ChienFooter'
 
+// import ScrollToItem from '../components/winniecomponents/winnieitemscroll'
+
 function PlayPage(props) {
   const [vedio, setVedio] = useState('/coursevedio1.mp4')
   var Element = Scroll.Element
   const url = props.match.url
   const path = props.match.path
-
- 
-
-  let scrollToAnchor = (anchorName) => {
-    if (anchorName) {
-      // 找到锚点
-      let anchorElement = document.getElementById(anchorName)
-      // 如果对应id的锚点存在，就跳转到锚点
-      if (anchorElement) {
-        anchorElement.scrollIntoView({ behavior: 'smooth' })
-        console.log(anchorName)
-      }
-    }
-  }
 
   console.log('url', props.match.url)
   return (
@@ -68,7 +56,7 @@ function PlayPage(props) {
         </div>
         <div className="row">
           {/* <div className="col-lg-12"> */}
-          <div className="onlinepage d-flex justify-content-start">
+          <div className="onlinepage d-flex justify-content-center">
             <div className="col-6 snail-video">
               <ReactPlayer
                 url={vedio}
@@ -209,27 +197,21 @@ function PlayPage(props) {
               <Link
                 to="/CourseCategory/MyOnlineCourse/PlayPage/playcontent"
                 className="snail-button mr-5"
-                onClick={() => {
-                  scrollToAnchor('screens')
-                }}
+                onClick={() => {}}
               >
                 課程內容
               </Link>
               <Link
                 to={`/CourseCategory/MyOnlineCourse/PlayPage/playmessage`}
                 className="snail-button mr-5"
-                onClick={() => {
-                  scrollToAnchor('screens')
-                }}
+                onClick={() => {}}
               >
                 課程留言
               </Link>
               <Link
                 to={`/CourseCategory/MyOnlineCourse/PlayPage/playreview`}
                 className="snail-button mr-5"
-                onClick={() => {
-                  scrollToAnchor('screens')
-                }}
+                onClick={() => {}}
               >
                 課程評價
               </Link>
@@ -238,6 +220,7 @@ function PlayPage(props) {
         </div>
         <div className="row"></div>
         <div className="teacher-chat"></div>
+        {/* <ScrollToItem> */}
         <Switch>
           <Route exact path={path}>
             <PlayContent />
@@ -252,6 +235,7 @@ function PlayPage(props) {
             <PlayReview />
           </Route>
         </Switch>
+        {/* </ScrollToItem> */}
       </div>
       {/* Footer背景 */}
       <div>
