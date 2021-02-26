@@ -15,7 +15,14 @@ export const ChienHeader = () => (
     <header id="chien-header">
       <div className="container-fluid fixed-top" id="chien-nav-top0">
         <div className="chien-navbar row">
-          <Nav.Link as={NavLink} to="/">
+          <Nav.Link
+            as={NavLink}
+            to="/"
+            onClick={function (event) {
+              ChienClear()
+              Chiencolor()
+            }}
+          >
             <svg
               className="chien-navbar-logo chien-homepage-navbar-logo"
               xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +116,15 @@ export const ChienHeader = () => (
               </a>
             </li>
             <li className="nav-item chien-navbar-item-member">
-              <Nav.Link as={NavLink} to="/login" className="nav-link">
+              <Nav.Link
+                as={NavLink}
+                to="/login"
+                className="nav-link"
+                onClick={function (event) {
+                  ChienClear()
+                  Chiennocolor()
+                }}
+              >
                 <FontAwesomeIcon
                   icon={faUser}
                   className="chien-navbar-icon-member"
@@ -118,7 +133,15 @@ export const ChienHeader = () => (
               </Nav.Link>
             </li>
             <li className="nav-item chien-navbar-item-cart">
-              <Nav.Link as={NavLink} to="/ShoppingCart" className="nav-link">
+              <Nav.Link
+                as={NavLink}
+                to="/ShoppingCart"
+                className="nav-link"
+                onClick={function (event) {
+                  ChienClear()
+                  Chiennocolor()
+                }}
+              >
                 <FontAwesomeIcon
                   icon={faShoppingCart}
                   className="chien-navbar-icon-cart"
@@ -155,7 +178,10 @@ export const ChienHeader = () => (
                 className="chien-menu-link py-2"
                 as={NavLink}
                 to="/member"
-                onClick={ChienClear}
+                onClick={function (event) {
+                  ChienClear()
+                  Chiennocolor()
+                }}
               >
                 會員專區
               </Nav.Link>
@@ -167,7 +193,10 @@ export const ChienHeader = () => (
                 className="chien-menu-link py-2"
                 as={NavLink}
                 to="/products"
-                onClick={ChienClear}
+                onClick={function (event) {
+                  ChienClear()
+                  Chiencolor()
+                }}
               >
                 商品專區
               </Nav.Link>
@@ -179,7 +208,10 @@ export const ChienHeader = () => (
                 className="chien-menu-link py-2"
                 as={NavLink}
                 to="/Customize"
-                onClick={ChienClear}
+                onClick={function (event) {
+                  ChienClear()
+                  Chiencolor()
+                }}
               >
                 客製化商品
               </Nav.Link>
@@ -191,7 +223,10 @@ export const ChienHeader = () => (
                 className="chien-menu-link py-2"
                 as={NavLink}
                 to="/CourseCategory"
-                onClick={ChienClear}
+                onClick={function (event) {
+                  ChienClear()
+                  Chiencolor()
+                }}
               >
                 手作課程
               </Nav.Link>
@@ -203,7 +238,10 @@ export const ChienHeader = () => (
                 className="chien-menu-link py-2"
                 as={NavLink}
                 to="/Changbidindex"
-                onClick={ChienClear}
+                onClick={function (event) {
+                  ChienClear()
+                  Chiencolor()
+                }}
               >
                 慈善競標
               </Nav.Link>
@@ -220,6 +258,32 @@ function ChienClear() {
   document
     .querySelectorAll('input[id=chien-nav-toggle]')
     .forEach((el) => (el.checked = false))
+}
+
+function Chiennocolor() {
+  var logopath = document.getElementsByClassName('cls-2')
+  for (var i = 0; i < logopath.length; i++) {
+    logopath[i].classList.add('d-none')
+  }
+  var chienhambar = document.getElementsByClassName('chien-ham-bar')
+  for (var i = 0; i < chienhambar.length; i++) {
+    chienhambar[i].style.background = '#92b6ba'
+  }
+  document.getElementById('chien-navbar-icon-member').style.color = '#92b6ba'
+  document.getElementById('chien-navbar-icon-cart').style.color = '#92b6ba'
+}
+
+function Chiencolor() {
+  var logopath = document.getElementsByClassName('cls-2')
+  for (var i = 0; i < logopath.length; i++) {
+    logopath[i].classList.remove('d-none')
+  }
+  var chienhambar = document.getElementsByClassName('chien-ham-bar')
+  for (var i = 0; i < chienhambar.length; i++) {
+    chienhambar[i].style.background = '#fff'
+  }
+  document.getElementById('chien-navbar-icon-member').style.color = '#fff'
+  document.getElementById('chien-navbar-icon-cart').style.color = '#fff'
 }
 
 var prevScrollpos = window.pageYOffset
