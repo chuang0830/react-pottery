@@ -41,6 +41,7 @@ function MMemberOrderList(props) {
   return (
     <>
       <Modal
+        className="corder-content"
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -49,12 +50,13 @@ function MMemberOrderList(props) {
         onHide={() => setModalShow(false)}
       >
         <Modal.Header
+          className="corder-header"
           closeButton
           style={{ borderBottom: '1px solid $primary' }}
         >
           <Modal.Title id="contained-modal-title-vcenter">訂單詳細</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="corder-body">
           <div className="cindy-control-tb">
             <div className="tr d-flex justify-content-around">
               <div className="td">{data.product_name}</div>
@@ -64,7 +66,7 @@ function MMemberOrderList(props) {
             </div>
           </div>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="corder-footer">
           <Button className="cindy" onClick={() => setModalShow(false)}>
             關閉
           </Button>
