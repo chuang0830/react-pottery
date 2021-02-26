@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 
 //元件
 import LogoNing from '../components/ningcomponents/LogoNing'
+import ChienFooter from './../components/ChienFooter'
+import ChienPolicycard from './../components/ChienPolicycard'
 
 function CheckOutP3(props) {
   // 購物車 表單
@@ -244,7 +246,7 @@ function CheckOutP3(props) {
             </div>
           </div>
         </div>
-        <div className="row mt-7">
+        <div className="row mt-7 mb-7">
           <div className="col-lg-6 col-12">
             <div className="form-title text-left mt-5">
               <span className="form-title-content"> 付款 </span>
@@ -293,6 +295,8 @@ function CheckOutP3(props) {
           </div>
         </div>
       </div>
+      <ChienPolicycard />
+      <ChienFooter />
     </>
   )
 }

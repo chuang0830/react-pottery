@@ -39,6 +39,7 @@ import ChienHomepage from './components/ChienHomepage'
 import ChienPolicycard from './components/ChienPolicycard'
 import ChienFooter from './components/ChienFooter'
 
+import FixedCart from './components/ningcomponents/FixedCart'
 
 import Test from './pages/test'
 
@@ -130,6 +131,7 @@ function App() {
         </Switch>
         {/* </ScrollToTop> */}
       </>
+      <FixedCart />
     </Router>
   )
 }

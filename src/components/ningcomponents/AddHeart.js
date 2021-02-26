@@ -8,7 +8,7 @@ function AddHeart(props) {
     fontSize: 24,
   }
 
-  // 課程--------------------------------------------------------------
+  // 收藏--------------------------------------------------------------
   // State ------------------------------------------------------------
   const [myaddheart, setAddHeart] = useState([])
   // const [dataLoading, setDataLoading] = useState(false)
