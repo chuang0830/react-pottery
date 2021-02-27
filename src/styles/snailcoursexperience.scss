@@ -16,8 +16,16 @@
   // height: 100px;
   .experience-list-item{
     border-bottom: 1px solid $info;
-    padding: 35px;
+    padding: 20px;
+  
   }
+}
+.snail-list-text{
+  // margin-bottom: 100px;
+  color: #615956;
+  font-size: $font-size-base * 0.875; //14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
 }
 
 // 體驗課程標題文字

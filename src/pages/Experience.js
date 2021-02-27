@@ -330,7 +330,7 @@ function Experience(props) {
                           key={value.sid}
                         >
                           <div
-                            className="mr-5"
+                            className="mr-5 snail-list-text"
                             style={{ height: '50px', lineHeight: '50px' }}
                           >
                             {value.time}
@@ -441,16 +441,16 @@ function Experience(props) {
                   活動對象：13 歲以上
                   <br />
                   活動地點：台北市開封街 2 段 62 - 5 號<br />
-                  {/* <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d903.7512789200542!2d121.5430113679021!3d25.033900457895346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abd379a5ec97%3A0xedc006d25a9e35df!2z6LOH562W5pyDIOaVuOS9jeaVmeiCsueglOeptuaJgCDmlbjkvY3kurrmiY3ln7nogrLkuK3lv4M!5e0!3m2!1szh-TW!2stw!4v1604021636624!5m2!1szh-TW!2stw"
-                      width="100%"
-                      height={200}
-                      frameBorder={5}
-                      style={{ border: 5 }}
-                      allowFullScreen
-                      aria-hidden="false"
-                      tabIndex={0}
-                    /> */}
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.631066174829!2d121.50443051500639!3d25.04659148396645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a90ee9fb4ef5%3A0x7fb9fd1ef2ed96d8!2zMTA45Y-w5YyX5biC6JCs6I-v5Y2A6ZaL5bCB6KGX5LqM5q61NjItNeiZnw!5e0!3m2!1szh-TW!2stw!4v1614400689588!5m2!1szh-TW!2stw"
+                    width="100%"
+                    height={200}
+                    frameBorder={5}
+                    style={{ border: 5 }}
+                    allowFullScreen
+                    aria-hidden="false"
+                    tabIndex={0}
+                  />
                   <br />
                   交通方式： 【大眾運輸】捷運西門町站 6 號出口，步行約 8 分鐘
                   <br />
@@ -474,7 +474,13 @@ function Experience(props) {
                   <br />
                   5. 作品燒製完成後將另行通知體驗者自行前往領取，通知後請於 2
                   個月內領取；若超過 2 個月未領回者，作品將以福利品售出
-                  <br />
+                  <br />{' '}
+                  <div className="ex-img w-100">
+                    <img
+                      src="http://localhost:3008/snail-imgs/EX4.jpg"
+                      alt=""
+                    />
+                  </div>
                 </div>
               </div>
             </div>
