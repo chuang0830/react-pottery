@@ -354,8 +354,9 @@ function Experience(props) {
                             >
                               -
                             </button>
-
-                            {classtitle[value.sid]}
+                            <button className="chang-count-btn">
+                              {classtitle[value.sid]}
+                            </button>
 
                             <button
                               className="chang-count-btn"
