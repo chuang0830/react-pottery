@@ -100,7 +100,10 @@ function Changbiddetail() {
 
   //一開始就會開始載入資料
   useEffect(() => {
-    getphotos2FromServer1()
+    const interval = setInterval(() => {
+      getphotos2FromServer1()
+    }, 1000)
+    return () => clearInterval(interval)
   }, [])
 
   //每次users資料有變動就會X秒後關掉載入指示
@@ -151,6 +154,9 @@ function Changbiddetail() {
   //一開始就會開始載入資料
   useEffect(() => {
     getproductidFromServer()
+    // setInterval(() => {
+    //   window.location.reload()
+    // }, 1000)
   }, [])
 
   // 測試-----------------------------------------
@@ -208,27 +214,13 @@ function Changbiddetail() {
               <a href="#">首頁</a>
             </li>
             <li className="breadcrumb-item">
-              <a href="#">商品專區</a>
-            </li>
-            <li className="breadcrumb-item">
-              <a href="#">餐盤</a>
+              <a href="#">競標專區</a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              天空藍手作圓盤
+              Pro001
             </li>
           </ol>
         </nav>
-        {/* title */}
-        <div data-aos="fade-up" className="winnie-title">
-          <h1>Bidding</h1>
-        </div>
-        <div data-aos="fade-up" className="winnie-text">
-          <p>
-            克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
-            <br />
-            克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
-          </p>
-        </div>
         {/* 商品區 */}
         <div data-aos="fade-up" className="winnie-detail-margin">
           <div className="row">
@@ -276,7 +268,7 @@ function Changbiddetail() {
               className="col-lg-4 col-md-12 lotzu-title-line"
             >
               <div className="d-flex chang-border-bottom justify-content-between">
-                <h2>天空藍手作圓盤</h2>
+                <h2>Bowl Dog Siberian husky</h2>
                 {/* {changphotos.length &&
                   changphotos.map((value, index) => {
                     if (index > 0) return
@@ -293,18 +285,16 @@ function Changbiddetail() {
               <p>
                 {changphotos.length &&
                   changphotos[0].bid_sum_money > 1000 && (
-                    <Alert show={show} variant="success">
-                      <Alert.Heading></Alert.Heading>
-                      您已達到最低購買價格，可以直接購買。
+                    <Alert show={show} variant="success" className="bidlowbuy">
+                      您已達到購買價格，可以直接購買。
                       <hr />
-                      <div className="d-flex justify-content-end">
-                        <Button
-                          onClick={() => setShow(false)}
-                          variant="outline-success"
-                        >
-                          close
-                        </Button>
-                      </div>
+                      <button
+                        variant="success"
+                        className="chang-cart-btn bidbuy"
+                      >
+                        直接購買
+                      </button>
+                      <div className="d-flex justify-content-end"></div>
                     </Alert>
                   )}{' '}
                 {!show && (
@@ -316,7 +306,7 @@ function Changbiddetail() {
                   </Button>
                 )}
               </p>
-              <Button variant="success">直接購買</Button>
+
               <p className="chang-text">出價金額</p>
               <div className="d-flex justify-content chang-button-box">
                 {/* 計數器 */}
@@ -439,7 +429,7 @@ function Changbiddetail() {
                 <div className="winnie-card-img">
                   <img
                     className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
+                    src="http://localhost:3008/chang-images/1.jpeg"
                     alt=""
                   />
                 </div>
@@ -459,7 +449,7 @@ function Changbiddetail() {
                 <div className="winnie-card-img">
                   <img
                     className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
+                    src="http://localhost:3008/chang-images/2.jpeg"
                     alt=""
                   />
                 </div>
@@ -479,7 +469,7 @@ function Changbiddetail() {
                 <div className="winnie-card-img">
                   <img
                     className="w-100"
-                    src="http://localhost:3008/winnie-images/test.png"
+                    src="http://localhost:3008/chang-images/3.jpeg"
                     alt=""
                   />
                 </div>
