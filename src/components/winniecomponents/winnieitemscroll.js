@@ -6,8 +6,7 @@ class ScrollToItem extends React.Component {
   componentDidUpdate(prevProps) {
     console.log(this.props.location, prevProps.location)
     if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 1950)
-      
+      // window.scrollTo(0, 1000)
     }
   }
 

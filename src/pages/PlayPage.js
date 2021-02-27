@@ -1,5 +1,5 @@
 import { Route, withRouter, Link, Switch } from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaCaretRight } from 'react-icons/fa'
 // import OnlinePlayer from '../components/OnlinePlayer'
 import ReactPlayer from 'react-player'
@@ -8,6 +8,8 @@ import PlayMessage from './PlayMessage'
 import PlayContent from './PlayContent'
 import PlayReview from './PlayReview'
 import ChienFooter from '../components/ChienFooter'
+
+// import ScrollToItem from '../components/winniecomponents/winnieitemscroll'
 
 function PlayPage(props) {
   const [vedio, setVedio] = useState('/coursevedio1.mp4')
@@ -50,11 +52,11 @@ function PlayPage(props) {
         </nav>
         {/* 影片 */}
         <div className="winnie-title ">
-          <h1>線上課程標題</h1>
+          <h1>拉坯課程</h1>
         </div>
         <div className="row">
           {/* <div className="col-lg-12"> */}
-          <div className="onlinepage d-flex justify-content-start">
+          <div className="onlinepage d-flex justify-content-center">
             <div className="col-6 snail-video">
               <ReactPlayer
                 url={vedio}
@@ -98,7 +100,7 @@ function PlayPage(props) {
                     id="video1"
                     className="snail-vedio-button"
                     onClick={() => {
-                      setVedio('/coursevedio2.mp4')
+                      setVedio('/coursevedio1.mp4')
                     }}
                   >
                     單元2 - 捏陶塑型
@@ -109,7 +111,7 @@ function PlayPage(props) {
                     id="video1"
                     className="snail-vedio-button"
                     onClick={() => {
-                      setVedio('/coursevedio1.mp4')
+                      setVedio('/coursevedio2.mp4')
                     }}
                   >
                     單元1 - 捏陶塑型
@@ -174,7 +176,7 @@ function PlayPage(props) {
         </div>
 
         {/* 進度條 */}
-        <div className="row">
+        <div className="row" id={'screens'}>
           <div className="col-lg-8">
             <div className="progress">
               <div
@@ -195,18 +197,21 @@ function PlayPage(props) {
               <Link
                 to="/CourseCategory/MyOnlineCourse/PlayPage/playcontent"
                 className="snail-button mr-5"
+                onClick={() => {}}
               >
                 課程內容
               </Link>
               <Link
                 to={`/CourseCategory/MyOnlineCourse/PlayPage/playmessage`}
                 className="snail-button mr-5"
+                onClick={() => {}}
               >
                 課程留言
               </Link>
               <Link
                 to={`/CourseCategory/MyOnlineCourse/PlayPage/playreview`}
                 className="snail-button mr-5"
+                onClick={() => {}}
               >
                 課程評價
               </Link>
@@ -215,6 +220,7 @@ function PlayPage(props) {
         </div>
         <div className="row"></div>
         <div className="teacher-chat"></div>
+        {/* <ScrollToItem> */}
         <Switch>
           <Route exact path={path}>
             <PlayContent />
@@ -229,6 +235,7 @@ function PlayPage(props) {
             <PlayReview />
           </Route>
         </Switch>
+        {/* </ScrollToItem> */}
       </div>
       {/* Footer背景 */}
       <div>

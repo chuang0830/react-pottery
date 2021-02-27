@@ -39,7 +39,7 @@ function CourseCategory() {
         <div className="container">
           <div className="row">
             {/* 標題文字 */}
-            <div className="winnie-title ">
+            <div className="winnie-title" data-aos="fade-up">
               <h1>DIY課程體驗</h1>
             </div>
             <div className="winnie-text mb-11 " data-aos="fade-up">

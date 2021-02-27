@@ -5,10 +5,33 @@ import { withRouter } from 'react-router-dom'
 class ScrollToTop extends React.Component {
   componentDidUpdate(prevProps) {
     console.log(this.props.location.pathname, prevProps.location.pathname)
-    console.log(this.props.location.pathname !== prevProps.location.pathname)
+    //console.log(this.props.location.pathname !== prevProps.location.pathname)
+    if (
+      //如果網址列變為this則直接return，不觸發scrollTo
+      this.props.location.pathname ===
+      '/CourseCategory/MyOnlineCourse/PlayPage/playcontent'
+    )
+      return
+    if (
+      //如果網址列變為this則直接return，不觸發scrollTo
+      this.props.location.pathname === '/CheckOutP3'
+    ) {
+      window.scrollTo(0, 1500)
+    }
+    if (
+      this.props.location.pathname ===
+      '/CourseCategory/MyOnlineCourse/PlayPage/playmessage'
+    )
+      return
+    if (
+      this.props.location.pathname ===
+      '/CourseCategory/MyOnlineCourse/PlayPage/playreview'
+    )
+      return
     if (this.props.location.pathname !== prevProps.location.pathname) {
+      //如果跳轉頁面則scrollTo(0, 0)
       window.scrollTo(0, 0)
-      console.log(1111)
+      console.log(1111111)
     }
   }
 
