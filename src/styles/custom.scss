@@ -1175,7 +1175,7 @@ chienfooter .chien-social-icon {
   width: 40px;
   height: 40px;
 }
-@mixin fixed-heart {
+@mixin fixed-heart{
   display: flex;
   position: absolute;
   background-color: rgba($white,.5);
@@ -1186,10 +1186,20 @@ chienfooter .chien-social-icon {
   width: 40px;
   height: 40px;
 }
+@mixin fixed-top {
+  display: flex;
+  position: absolute;
+  color: $success;
+  border-radius: 50%;
+  right: 0;
+  top: 0px;
+  width: 40px;
+  height: 40px;
+}
 @mixin fixed-title{
   position: absolute;
   left: 25px;
-  bottom: 20px;
+  bottom: 24px;
   font-size: 12px;
   font-weight: 900;
   color: $success;
@@ -1208,11 +1218,21 @@ chienfooter .chien-social-icon {
   color: $danger;
   font-size: 20px;
 }
+@mixin ning-top {
+  position: absolute;
+  bottom: 140px;
+  left: 8px;
+  color: $danger;
+  font-size: 24px;
+}
 .ning-fixed{
     @include  fixed-btn;
     background: $warning;
     .plus{
       font-size: 30px;
+    }
+    .fixed-top{
+      display: none;
     }
     .fixed-shop{
       display: none;
@@ -1220,27 +1240,10 @@ chienfooter .chien-social-icon {
     .fixed-heart{
       display: none;
     }
-    .fixed-hover{
-      .fixed-shop{
-        @include fixed-shop;
-      }
-      .fixed-heart{
-        @include fixed-heart;
-      }
-      .fixed-title{
-        @include fixed-title;
-      }
-      .ning-cart{
-        @include ning-cart;
-      }
-      .ning-heart{
-        @include ning-heart;
-      }
-    }
 }
 
 .ning-fixed-toggle{
-  @include  fixed-btn;
+  @include fixed-btn;
   background: rgba($success,.5);
   .plus{
     font-size: 32px;
@@ -1251,13 +1254,16 @@ chienfooter .chien-social-icon {
     color: $white;
     transform: rotate(45deg);
   }
+    .fixed-top{
+      @include fixed-top;
+    }
     .fixed-shop{
       @include fixed-shop;
-      border: 1px solid rgba($success,.5);
+      // border: 1px solid rgba($success,.5);
     }
     .fixed-heart{
       @include fixed-heart;
-      border: 1px solid rgba($success,.5);
+      // border: 1px solid rgba($success,.5);
     }
     .fixed-title{ 
       @include fixed-title;
@@ -1267,6 +1273,17 @@ chienfooter .chien-social-icon {
     }
     .ning-heart{
       @include ning-heart;
+    }
+    .ning-top{
+      @include ning-top;
+    }
+    .fixed-top-title{
+      position: absolute;
+      left: 25px;
+      bottom: 160px;
+      font-size: 12px;
+      font-weight: 900;
+      color: $success;
     }
 }
 //改這裡BS預設
@@ -1415,9 +1432,31 @@ chienfooter .chien-social-icon {
 .breadcrumb-item {
   z-index: 3;
 }
-.hidden {
-  display: none;
+
+// 覆蓋瀏覽器預設 scrollbar
+::-webkit-scrollbar {
+  width: 15px;
+  background-color: rgba($primary,0.5);
 }
+::-webkit-scrollbar-track {
+  background: rgba($warning, 0.5);
+  box-shadow: inset 0 0 10px $warning;
+  // border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $primary;
+}
+
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';
