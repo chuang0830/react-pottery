@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import { FaHeart } from 'react-icons/fa'
+import { FaHeart, FaArrowUp } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 function FixedCart(props) {
   //style
@@ -87,7 +87,7 @@ function FixedCart(props) {
     }
     setAddHeartDisplay(newMyaddheartDisplay)
   }, [myaddheart])
-
+  // 按鈕切換
   const [Toggled, setToggled] = useState(false)
   const toggleTrueFalse = () => setToggled(!Toggled)
   return (
@@ -111,10 +111,18 @@ function FixedCart(props) {
         </Link>
         <Link to="/member/fav">
           <div className="fixed-heart">
-            <FaHeart className="far fa-heart mr-2" className="ning-heart" />
+            <FaHeart className="far fa-heart mr-2 ning-heart" />
             <span className="fixed-title">{myaddheart.length}</span>
           </div>
         </Link>
+        <div
+          className="fixed-top"
+          onClick={() => {
+            window.scrollTo(0, 0)
+          }}
+        >
+          <FaArrowUp className="far fa-heart mr-2 ning-top" />
+        </div>
       </button>
     </>
   )
