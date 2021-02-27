@@ -3,8 +3,11 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
+// 文字套件
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+// mouse
+import ReactDOM from 'react-dom'
 import ChienFooter from '../components/ChienFooter'
 
 function Changbidindex() {

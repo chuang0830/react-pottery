@@ -36,6 +36,7 @@ import Changbiddetail from './pages/Changbiddetail'
 // 首頁
 import ChienHeader from './components/ChienHeader'
 import ChienHomepage from './components/ChienHomepage'
+import Cursor from './components/changcomonents/Cursor'
 
 import Test from './pages/test'
 
@@ -44,6 +45,7 @@ function App() {
     // Router只會有一個
     <Router>
       <>
+        <Cursor />
         {/* 嚴謹的要放上面 */}
         {/* 放連結 */}
         <ChienHeader />
