@@ -2,6 +2,7 @@ import { Link, withRouter } from 'react-router-dom'
 import React, { useState } from 'react'
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
 import { Modal, Button } from 'react-bootstrap'
+//import Swal from 'sweetalert2'
 
 function Login(props) {
   let styles = {

@@ -134,7 +134,10 @@ function MMemberEdit(props) {
 
   return (
     <>
-      <div className="cindy-accountouter w-100 mt-5 d-flex justify-content-center">
+      <div
+        className="cindy-accountouter w-100 mt-5 d-flex justify-content-center"
+        data-aos="fade-up"
+      >
         <div className="cindy-account-left">
           <div className="position-relative img-outer">
             <img src={profileImg} alt="" />

@@ -5,6 +5,8 @@ import MMemberOrderList from './MMemberOrderList'
 import MMemberFav from './MMemberFav'
 import MMemberCoupon from './MMemberCoupon'
 import ChienFooter from '../components/ChienFooter'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 
 function Member(props) {
   const [light, setLight] = useState('edit')
@@ -30,6 +32,9 @@ function Member(props) {
     console.log('remove sid')
     props.history.push('/login')
   }
+  useEffect(() => {
+    Aos.init({ duration: 1500 })
+  }, [])
   return (
     <>
       <div className="container mt-5 mb-5">
@@ -62,7 +67,10 @@ function Member(props) {
               </svg>
             </Link>
           </div>
-          <div className="cindy-seclectbox d-flex justify-content-center w-100">
+          <div
+            className="cindy-seclectbox d-flex justify-content-center w-100"
+            data-aos="fade-down"
+          >
             <div className="cindy-sec seclectbox1">
               <Link
                 to={`${url}/edit`}
