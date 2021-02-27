@@ -174,7 +174,7 @@ function CheckOutP2(props) {
                           }`}
                           alt=""
                           srcset=""
-                          width="150"
+                          width="100"
                         />
                         <td colSpan="2"> {item.product_name}</td>
                         <td colSpan="2"> {item.price}</td>

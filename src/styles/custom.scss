@@ -1273,11 +1273,25 @@ chienfooter .chien-social-icon {
   position: absolute;
   bottom: 140px;
   left: 8px;
-  color: $danger;
+  color: $info;
   font-size: 24px;
 }
 .ning-fixed{
-    @include  fixed-btn;
+  position: fixed;
+  border-radius: 50%;
+  right: 30px;
+  bottom: 30px;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  border: 0;
+  .plus {
+    position: absolute;
+    left: 12px;
+    bottom: 0px;
+    margin-top: 10px;
+    color: $white;
+  }
     background: $warning;
     .plus{
       font-size: 30px;

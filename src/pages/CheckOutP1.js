@@ -359,7 +359,7 @@ function CheckOutP1(props) {
               <button
                 className="cindy-btn"
                 onClick={() => {
-                  setDiscount(Discount + 100)
+                  setDiscount(Discount + 60)
                 }}
               >
                 生日優惠卷
