@@ -6,14 +6,12 @@ function MMemberOrderList(props) {
   const sid = localStorage.getItem('member-sid')
   const [modalShow, setModalShow] = React.useState(false)
   const [order, setOrder] = useState('')
-  const [ordernumber, setOrdernumber] = useState([])
-  const [detail, setDetail] = useState('')
-  // const [tabledetail, setTabledetail] = useState({
-  //   product_name: '',
-  //   color: '',
-  //   amount: '',
-  //   price: '',
-  // })
+  const [data, setData] = useState({
+    product_name: '',
+    color: '',
+    amount: '',
+    price: '',
+  })
 
   async function getUserFromServer(sid) {
     // 連接的伺服器資料網址
@@ -31,38 +29,15 @@ function MMemberOrderList(props) {
     const response = await fetch(request)
     const data = await response.json()
     console.log(data)
-    setOrder(data)
     // 設定資料
-    const newdata = []
-    data.forEach((i) => {
-      newdata.push(i.ordernum)
-    })
-    setOrdernumber(newdata)
-  }
-  async function getsmalltable(ordernum) {
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:3000/orders/orderdetail/' + ordernum
 
-    // 注意header資料格式要設定，伺服器才知道是json格式
-    const request = new Request(url, {
-      //拿資料
-      method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
-      }),
-    })
-    const response = await fetch(request)
-    const data = await response.json()
+    setOrder(data)
     console.log(data)
-    setDetail(data)
-    // 設定資料
   }
   useEffect(() => {
     getUserFromServer(sid)
   }, [])
-  useEffect(() => {}, [ordernumber])
-  console.log(ordernumber)
+
   return (
     <>
       <Modal
@@ -83,17 +58,12 @@ function MMemberOrderList(props) {
         </Modal.Header>
         <Modal.Body className="corder-body">
           <div className="cindy-control-tb">
-            {detail.length &&
-              detail.map((v, i) => {
-                return (
-                  <div className="tr d-flex justify-content-around">
-                    <div className="td">{v.product_name}</div>
-                    <div className="td">{v.color}</div>
-                    <div className="td">{v.amount}</div>
-                    <div className="td">{v.price}</div>
-                  </div>
-                )
-              })}
+            <div className="tr d-flex justify-content-around">
+              <div className="td">{data.product_name}</div>
+              <div className="td">{data.color}</div>
+              <div className="td">{data.amount}</div>
+              <div className="td">{data.price}</div>
+            </div>
           </div>
         </Modal.Body>
         <Modal.Footer className="corder-footer">
@@ -131,7 +101,12 @@ function MMemberOrderList(props) {
                             variant="primary"
                             className="cindy-more"
                             onClick={() => {
-                              getsmalltable(v.ordernum)
+                              setData({
+                                product_name: v.product_name,
+                                color: v.color,
+                                amount: v.amount,
+                                price: v.price,
+                              })
                               setModalShow(true)
                             }}
                           >
