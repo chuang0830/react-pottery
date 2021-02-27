@@ -72,7 +72,7 @@ function MMemberOrderList(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-      <div className="cindyorder">
+      <div className="cindyorder" data-aos="fade-up">
         <div className="cindy-table">
           <table>
             <thead>

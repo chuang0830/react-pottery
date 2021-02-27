@@ -1,8 +1,11 @@
 // import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
+import { withRouter, Link } from 'react-router-dom'
 
 //元件
 import LogoNing from '../components/ningcomponents/LogoNing'
+import ChienFooter from './../components/ChienFooter'
+import ChienPolicycard from './../components/ChienPolicycard'
 
 function CheckOutP3(props) {
   // 購物車 表單
@@ -15,6 +18,34 @@ function CheckOutP3(props) {
   const [mycartDisplay, setMycartDisplay] = useState([])
   // const [dataLoading, setDataLoading] = useState(false)
   // const [myformDisplay, setMyformDisplay] = useState([])
+
+  //跳轉至打勾勾-----------------------------------------------------------
+  //方法一：指定分頁位置
+  //方法二：app.js(<ScrollToItem>)
+  //但不管哪種都會被scrolltop擋住
+  //指定分頁位置
+  let scrollToAnchor = (anchorName) => {
+    if (anchorName) {
+      // 找到锚点
+      let anchorElement = document.getElementById(anchorName)
+      // 如果对应id的锚点存在，就跳转到锚点
+      if (anchorElement) {
+        anchorElement.scrollIntoView({ behavior: 'smooth' })
+        console.log(anchorName)
+      }
+    }
+  }
+  //跳進來0秒至id={'screens'}
+  setTimeout(() => {
+    scrollToAnchor('screens')
+  }, 0)
+  //
+  function removeLocalStorge() {
+    localStorage.removeItem('utsuwaformdataningcheck')
+    localStorage.removeItem('utsuwaformdataning')
+    localStorage.removeItem('utsuwacart')
+    localStorage.removeItem('utsuwacoursecart')
+  }
   // function ----------------------------------------------------------
   function getFormToLocalStorage() {
     const newForm = localStorage.getItem('utsuwaformdataningcheck')
@@ -54,6 +85,7 @@ function CheckOutP3(props) {
     }
     return total
   }
+  console.log(props.location.pathname)
   return (
     <>
       <div className="container">
@@ -99,7 +131,7 @@ function CheckOutP3(props) {
                           }`}
                           alt=""
                           srcset=""
-                          width="150"
+                          width="100"
                         />
                         <td colSpan="2"> {item.product_name}</td>
                         <td colSpan="2"> {item.price}</td>
@@ -136,7 +168,7 @@ function CheckOutP3(props) {
           </div>
         </div>
         {/* 訂單成功icon*/}
-        <div className="row d-flex justify-content-center mt-7">
+        <div className="row d-flex justify-content-center mt-7" id={'screens'}>
           <div className="col-lg-2 col-4">
             <svg viewBox="0 0 400 400">
               <circle
@@ -160,7 +192,14 @@ function CheckOutP3(props) {
               />
             </svg>
             <div className="d-flex justify-content-center mt-3">
-              <span className="svg-title">感謝您的購買</span>
+              <Link
+                to="/"
+                onClick={() => {
+                  removeLocalStorge()
+                }}
+              >
+                <span className="svg-title">感謝您的購買</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -244,7 +283,7 @@ function CheckOutP3(props) {
             </div>
           </div>
         </div>
-        <div className="row mt-7">
+        <div className="row mt-7 mb-7">
           <div className="col-lg-6 col-12">
             <div className="form-title text-left mt-5">
               <span className="form-title-content"> 付款 </span>
@@ -293,7 +332,9 @@ function CheckOutP3(props) {
           </div>
         </div>
       </div>
+      <ChienPolicycard />
+      <ChienFooter />
     </>
   )
 }
-export default CheckOutP3
+export default withRouter(CheckOutP3)

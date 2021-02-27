@@ -12,6 +12,8 @@ import {
 //元件
 import LogoNing from '../components/ningcomponents/LogoNing'
 import CheckPost from '../components/ningcomponents/CheckPost'
+import ChienFooter from './../components/ChienFooter'
+import ChienPolicycard from './../components/ChienPolicycard'
 function CheckOutP2(props) {
   // icon-style
   const iconstyletruck = {
@@ -63,13 +65,13 @@ function CheckOutP2(props) {
     }
     return total
   }
-  function post(params) {
-    return (
-      <>
-        <CheckPost />
-      </>
-    )
-  }
+  // function post(params) {
+  //   return (
+  //     <>
+  //       <CheckPost />
+  //     </>
+  //   )
+  // }
   //--------------------------------------------------------------------
   // CheckOutP2OrderPerson
   const [OrderName, setOrderName] = useState('')
@@ -172,7 +174,7 @@ function CheckOutP2(props) {
                           }`}
                           alt=""
                           srcset=""
-                          width="150"
+                          width="100"
                         />
                         <td colSpan="2"> {item.product_name}</td>
                         <td colSpan="2"> {item.price}</td>
@@ -747,6 +749,8 @@ function CheckOutP2(props) {
           </div>
         </div>
       </div>
+      <ChienPolicycard />
+      <ChienFooter />
     </>
   )
 }

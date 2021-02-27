@@ -4,7 +4,7 @@ import AddHeart from '../components/ningcomponents/AddHeart'
 function MMemberFav(props) {
   return (
     <>
-      <div className="cindylike">
+      <div className="cindylike" data-aos="fade-up">
         <AddHeart />
         {/* <table>
             <thead>

@@ -37,6 +37,10 @@ import Changbiddetail from './pages/Changbiddetail'
 import ChienHeader from './components/ChienHeader'
 import ChienHomepage from './components/ChienHomepage'
 import Cursor from './components/changcomonents/Cursor'
+import ChienPolicycard from './components/ChienPolicycard'
+import ChienFooter from './components/ChienFooter'
+
+import FixedCart from './components/ningcomponents/FixedCart'
 
 import Test from './pages/test'
 
@@ -123,6 +127,7 @@ function App() {
           </Switch>
         </ScrollToTop>
       </>
+      <FixedCart />
     </Router>
   )
 }
