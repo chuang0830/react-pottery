@@ -7,7 +7,6 @@
   height: 300px;
   // margin-top: 70px;
   Button {
-    color: red;
     width: 100%;
     background-color: $primary;
     border: 1px solid white;
@@ -16,9 +15,26 @@
     /* letter-spacing: 100px; */
     line-height: 33px;
     padding: 20px;
+    text-align: left;
+  }
+  Button:hover {
+    width: 100%;
+    background-color: $primary;
+    border: 1px solid white;
+    color: #615956;
+    font-size: $font-size-base * 0.875; //14px;
+    /* letter-spacing: 100px; */
+    line-height: 33px;
+    padding: 20px;
+    text-align: left;
   }
 }
-
+.snail-vedio-Button {
+  background-color: $primary;
+  height: 60px;
+  line-height: 50px;
+  text-align: center;
+}
 // video 將Bootstrap預設padding消除
 .snail-video {
   padding-left: 0px;
