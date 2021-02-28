@@ -499,6 +499,9 @@ text {
     color: $success;
     border-bottom: 2px solid $info;
   }
+  .page-item > a {
+    text-decoration: none;
+  }
 }
 
 //winnieproductcard
@@ -862,7 +865,7 @@ chienfooter .chien-social-icon {
   border-radius: 20px;
   background-color: $primary;
   position: relative;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .creditcardning {
   @include creditcard;
@@ -1229,7 +1232,7 @@ chienfooter .chien-social-icon {
   width: 40px;
   height: 40px;
 }
-@mixin fixed-heart{
+@mixin fixed-heart {
   display: flex;
   position: absolute;
   background-color: rgba($white, 0.5);
@@ -1279,7 +1282,7 @@ chienfooter .chien-social-icon {
   color: $info;
   font-size: 24px;
 }
-.ning-fixed{
+.ning-fixed {
   position: fixed;
   border-radius: 50%;
   right: 30px;
@@ -1295,28 +1298,28 @@ chienfooter .chien-social-icon {
     margin-top: 10px;
     color: $white;
   }
-    background: $warning;
-    .plus{
-      font-size: 30px;
-    }
-    .fixed-top{
-      display: none;
-    }
-    .fixed-shop{
-      display: none;
-    }
-    .fixed-heart{
-      display: none;
-    }
-    .ning-cart {
-      @include ning-cart;
-    }
+  background: $warning;
+  .plus {
+    font-size: 30px;
+  }
+  .fixed-top {
+    display: none;
+  }
+  .fixed-shop {
+    display: none;
+  }
+  .fixed-heart {
+    display: none;
+  }
+  .ning-cart {
+    @include ning-cart;
+  }
 }
 
-.ning-fixed-toggle{
+.ning-fixed-toggle {
   @include fixed-btn;
-  background: rgba($success,.5);
-  .plus{
+  background: rgba($success, 0.5);
+  .plus {
     font-size: 32px;
     position: absolute;
     left: 13px;
@@ -1325,37 +1328,37 @@ chienfooter .chien-social-icon {
     color: $white;
     transform: rotate(45deg);
   }
-    .fixed-top{
-      @include fixed-top;
-    }
-    .fixed-shop{
-      @include fixed-shop;
-      // border: 1px solid rgba($success,.5);
-    }
-    .fixed-heart{
-      @include fixed-heart;
-      // border: 1px solid rgba($success,.5);
-    }
-    .fixed-title{ 
-      @include fixed-title;
-    }
-    .ning-cart{
-      @include ning-cart;
-    }
-    .ning-heart{
-      @include ning-heart;
-    }
-    .ning-top{
-      @include ning-top;
-    }
-    .fixed-top-title{
-      position: absolute;
-      left: 25px;
-      bottom: 160px;
-      font-size: 12px;
-      font-weight: 900;
-      color: $success;
-    }
+  .fixed-top {
+    @include fixed-top;
+  }
+  .fixed-shop {
+    @include fixed-shop;
+    // border: 1px solid rgba($success,.5);
+  }
+  .fixed-heart {
+    @include fixed-heart;
+    // border: 1px solid rgba($success,.5);
+  }
+  .fixed-title {
+    @include fixed-title;
+  }
+  .ning-cart {
+    @include ning-cart;
+  }
+  .ning-heart {
+    @include ning-heart;
+  }
+  .ning-top {
+    @include ning-top;
+  }
+  .fixed-top-title {
+    position: absolute;
+    left: 25px;
+    bottom: 160px;
+    font-size: 12px;
+    font-weight: 900;
+    color: $success;
+  }
 }
 //改這裡BS預設
 .cindy {
@@ -1507,7 +1510,7 @@ chienfooter .chien-social-icon {
 // 覆蓋瀏覽器預設 scrollbar
 ::-webkit-scrollbar {
   width: 15px;
-  background-color: rgba($primary,0.5);
+  background-color: rgba($primary, 0.5);
 }
 ::-webkit-scrollbar-track {
   background: rgba($warning, 0.5);
