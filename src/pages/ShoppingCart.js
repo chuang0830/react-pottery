@@ -12,6 +12,7 @@ import CourseTableNing from './../components/ningcomponents/CourseTableNing'
 import ChienFooter from './../components/ChienFooter'
 import ChienPolicycard from './../components/ChienPolicycard'
 
+
 function ShoppingCart(props) {
   return (
     <>
