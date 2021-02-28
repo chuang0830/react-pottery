@@ -92,7 +92,7 @@ function MMemberOrderList(props) {
                     <>
                       <tr>
                         <td></td>
-                        <td>{v.order_id}</td>
+                        <td>{v.ordernum}</td>
                         <td>{v.orderDay}</td>
                         <td>{v.totals}</td>
                         <td>{v.shippingStatus}</td>

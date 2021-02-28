@@ -211,7 +211,7 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>訂單編號</span>
-                <span>1</span>
+                <span>{myforms.orderNum}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>訂單日期</span>
@@ -291,7 +291,7 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>付款方式</span>
-                <span>信用卡(線上刷卡)</span>
+                <span>{myform.selectpay}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>付款狀態</span>
