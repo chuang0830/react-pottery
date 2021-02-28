@@ -14,6 +14,8 @@ import LogoNing from '../components/ningcomponents/LogoNing'
 import CheckPost from '../components/ningcomponents/CheckPost'
 import ChienFooter from './../components/ChienFooter'
 import ChienPolicycard from './../components/ChienPolicycard'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 function CheckOutP2(props) {
   // icon-style
   const iconstyletruck = {
@@ -137,7 +139,7 @@ function CheckOutP2(props) {
       <div className="container">
         <LogoNing />
         {/* 訂單進度程序 */}
-        <div className="row d-flex justify-content-center">
+        <div className="row d-flex justify-content-center" data-aos="fade-down">
           <div className="col-lg-6 d-flex flex-row justify-content-center process">
             <div className="d-flex justify-content-between">
               <div className="processball-none">
@@ -159,7 +161,7 @@ function CheckOutP2(props) {
             </div>
           </div>
         </div>
-        <div className="container mt-5">
+        <div className="container mt-5" data-aos="fade-up">
           <div className="row">
             <div className="cindy-table col-12 col-lg-8 border-bottom-0">
               <div className="tablestyle-title text-center">

@@ -10,6 +10,8 @@ import CheckOutP1TableNing from './../components/ningcomponents/CheckOutP1TableN
 import ChienFooter from './../components/ChienFooter'
 import ChienPolicycard from './../components/ChienPolicycard'
 import { func } from 'prop-types'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 function CheckOutP1(props) {
   // style ------------------------------------------------------------
   const style = {
@@ -156,12 +158,16 @@ function CheckOutP1(props) {
       props.history.push('/CheckOutP2')
     }
   }
+  // aos
+  useEffect(() => {
+    Aos.init({ duration: 1500 })
+  }, [])
   return (
     <>
       <div className="container">
         <LogoNing />
         {/* 訂單進度程序 */}
-        <div className="row d-flex justify-content-center">
+        <div className="row d-flex justify-content-center" data-aos="fade-down">
           <div className="col-lg-6 d-flex flex-row justify-content-center process">
             <div className="d-flex justify-content-between">
               <div className="processball">
@@ -184,7 +190,7 @@ function CheckOutP1(props) {
           </div>
         </div>
         {/* table */}
-        <div className="row">
+        <div className="row" data-aos="fade-up">
           <div className="container mt-5">
             <div className="row">
               <div className="cindy-table col border-bottom-0">
