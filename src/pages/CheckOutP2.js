@@ -96,6 +96,7 @@ function CheckOutP2(props) {
   const [OrderInvoiceArea, setOrderInvoiceArea] = useState('')
   // Orders
   const [OrderDay, setOrderDay] = useState('')
+  const [OrderNum, setOrderNum] = useState('')
   const FormDataNing = {
     // CheckOutP2OrderPerson
     orderName: OrderName,
@@ -120,6 +121,7 @@ function CheckOutP2(props) {
     orderinvoicearea: OrderInvoiceArea,
     // Orders
     orderDay: OrderDay,
+    orderNum: OrderNum,
   }
   // 加入表單-----------------------------------------------------------------
   // const [mycart, setMycart] = useState([])
@@ -174,7 +176,7 @@ function CheckOutP2(props) {
                           }`}
                           alt=""
                           srcset=""
-                          width="150"
+                          width="100"
                         />
                         <td colSpan="2"> {item.product_name}</td>
                         <td colSpan="2"> {item.price}</td>
@@ -251,12 +253,18 @@ function CheckOutP2(props) {
                     const ordermonth = new Date().getMonth() + 1
                     const orderDay =
                       orderyear + '/' + ordermonth + '/' + orderdate
+                    // orderNum
+                    const ordermonths = new Date().getMinutes()
+                    const ordersec = new Date().getSeconds()
+                    const orderNum = ordermonths + ordersec
                     setOrderName(orderName)
                     setOrderDay(orderDay)
+                    setOrderNum(orderNum)
                     updateFormToLocalStorage({
                       ...FormDataNing,
                       orderName,
                       orderDay,
+                      orderNum,
                     })
                   }}
                 />

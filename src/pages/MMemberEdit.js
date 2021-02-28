@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect, useRef } from 'react'
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
+import Swal from 'sweetalert2'
 
 function MMemberEdit(props) {
   const sid = localStorage.getItem('member-sid')
@@ -124,7 +125,12 @@ function MMemberEdit(props) {
         console.log('伺服器回傳的json資料', data_coupon)
         alert('生日快樂！快去領取生日優惠券吧！！！')
       }
-      alert('修改成功！')
+      Swal.fire({
+        icon: 'success',
+        title: '修改成功！',
+        showConfirmButton: false,
+        timer: 2000,
+      })
     }
   }
   useEffect(() => {
@@ -134,7 +140,10 @@ function MMemberEdit(props) {
 
   return (
     <>
-      <div className="cindy-accountouter w-100 mt-5 d-flex justify-content-center">
+      <div
+        className="cindy-accountouter w-100 mt-5 d-flex justify-content-center"
+        data-aos="fade-up"
+      >
         <div className="cindy-account-left">
           <div className="position-relative img-outer">
             <img src={profileImg} alt="" />
@@ -165,8 +174,8 @@ function MMemberEdit(props) {
               <button onClick={onButtonClick}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="50"
-                  height="50"
+                  width="35"
+                  height="35"
                   viewBox="0 0 50 50"
                 >
                   <g

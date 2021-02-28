@@ -39,7 +39,13 @@ function CheckOutP3(props) {
   setTimeout(() => {
     scrollToAnchor('screens')
   }, 0)
-
+  //
+  function removeLocalStorge() {
+    localStorage.removeItem('utsuwaformdataningcheck')
+    localStorage.removeItem('utsuwaformdataning')
+    localStorage.removeItem('utsuwacart')
+    localStorage.removeItem('utsuwacoursecart')
+  }
   // function ----------------------------------------------------------
   function getFormToLocalStorage() {
     const newForm = localStorage.getItem('utsuwaformdataningcheck')
@@ -125,7 +131,7 @@ function CheckOutP3(props) {
                           }`}
                           alt=""
                           srcset=""
-                          width="150"
+                          width="100"
                         />
                         <td colSpan="2"> {item.product_name}</td>
                         <td colSpan="2"> {item.price}</td>
@@ -186,7 +192,14 @@ function CheckOutP3(props) {
               />
             </svg>
             <div className="d-flex justify-content-center mt-3">
-              <span className="svg-title">感謝您的購買</span>
+              <Link
+                to="/"
+                onClick={() => {
+                  removeLocalStorge()
+                }}
+              >
+                <span className="svg-title">感謝您的購買</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -198,7 +211,7 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>訂單編號</span>
-                <span>1</span>
+                <span>{myforms.orderNum}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>訂單日期</span>
@@ -278,7 +291,7 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>付款方式</span>
-                <span>信用卡(線上刷卡)</span>
+                <span>{myform.selectpay}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>付款狀態</span>

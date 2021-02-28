@@ -28,7 +28,7 @@ function MMemberCoupon(props) {
   }, [])
   return (
     <>
-      <div className="cindy-coupon-outer d-flex flex-wrap">
+      <div className="cindy-coupon-outer d-flex flex-wrap" data-aos="fade-up">
         {coupon.length &&
           coupon.map((value, index) => {
             let exp_date = new Date(value.date)

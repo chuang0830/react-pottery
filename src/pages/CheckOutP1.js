@@ -281,7 +281,6 @@ function CheckOutP1(props) {
                   }}
                 >
                   {/* const [seletedTransform, setSeletedTransform] = useState('') */}
-
                   <option className="text-success" value="請選擇">
                     請選擇配送方式
                   </option>
@@ -300,12 +299,15 @@ function CheckOutP1(props) {
                 <label
                   htmlFor="exampleFormControlSelect1"
                   className="form-text"
+                  for="validationCustom04"
                 >
                   付款方式
                 </label>
                 <select
                   className="form-control pretty-select"
                   id="exampleFormControlSelect1"
+                  id="validationCustom04"
+                  required
                   onChange={(e) => {
                     const selectpay = e.target.value
                     setSeletedPay(selectpay)
@@ -330,6 +332,7 @@ function CheckOutP1(props) {
                     銀行轉帳
                   </option>
                 </select>
+                <div class="invalid-feedback">Please select a valid state.</div>
               </div>
             </form>
           </div>
@@ -359,7 +362,7 @@ function CheckOutP1(props) {
               <button
                 className="cindy-btn"
                 onClick={() => {
-                  setDiscount(Discount + 100)
+                  setDiscount(Discount + 60)
                 }}
               >
                 生日優惠卷
@@ -367,7 +370,7 @@ function CheckOutP1(props) {
               <button
                 className="cindy-btn mx-1"
                 onClick={() => {
-                  setDiscount(Discount + 60)
+                  setDiscount(Discount + 0)
                 }}
               >
                 新用戶優惠卷
@@ -375,7 +378,7 @@ function CheckOutP1(props) {
               <button
                 className="cindy-btn"
                 onClick={() => {
-                  setDiscount(Discount + 60)
+                  setDiscount(Discount + 0)
                 }}
               >
                 滿額優惠卷

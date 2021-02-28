@@ -405,7 +405,6 @@ function Experience(props) {
                               -
                             </button>
                             <button className="chang-count-btn">
-                              {' '}
                               {classtitle[value.sid]}
                             </button>
 
