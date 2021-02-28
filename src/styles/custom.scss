@@ -1531,8 +1531,24 @@ chienfooter .chien-social-icon {
   background: $primary;
 }
 
-
-
+// .cardheader-button {
+//   background-color: #4e757a !important;
+// }
+.ning-bg {
+  border-top: 1px solid $warning;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  .ning {
+    background-color: #fff;
+  }
+}
+.ning-more {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  // margin-left: 40px;
+}
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';

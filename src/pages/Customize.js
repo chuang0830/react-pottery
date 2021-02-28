@@ -32,7 +32,7 @@ function Customize(props) {
     product_name: '客製商品',
     category_id: 6,
     price: 1080,
-    color: '粉',
+    color: '藍',
     size: '200mm*200mm',
     photo: '["52.png"]',
     customize: text,

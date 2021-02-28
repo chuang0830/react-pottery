@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 //元件
-import { Accordion, Card, useAccordionToggle } from 'react-bootstrap'
 import LogoNing from './../components/ningcomponents/LogoNing'
 import RecentView from './../components/ningcomponents/RecentView'
 import ProductTableNing from './../components/ningcomponents/ProductTableNing'
@@ -13,27 +12,9 @@ import CourseTableNing from './../components/ningcomponents/CourseTableNing'
 import ChienFooter from './../components/ChienFooter'
 import ChienPolicycard from './../components/ChienPolicycard'
 
-//展開商品詳細
-function CustomToggle({ children, eventKey }) {
-  const decoratedOnClick = useAccordionToggle(eventKey, () =>
-    console.log('totally custom!')
-  )
-
-  return (
-    <button
-      type="button"
-      style={{ backgroundColor: 'pink' }}
-      onClick={decoratedOnClick}
-    >
-      {children}
-    </button>
-  )
-}
-
 function ShoppingCart(props) {
   return (
     <>
-      return (
       <div className="container">
         <LogoNing />
         <div className="row">
