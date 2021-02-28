@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import Swal from 'sweetalert2'
-import Star from '../components/snailcomponents/StarRatingDemo'
 
 import Table from 'react-bootstrap/Table'
 import MyNavbar from '../components/MyNavbar'
@@ -12,59 +10,13 @@ import ChienFooter from '../components/ChienFooter'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 
-//星等---------------------------------------------------------
-function StarRating({
-  count,
-  value,
-  inactiveColor = '#ddd',
-  size = 24,
-  activeColor = '#f00',
-  onChange,
-}) {
-  // short trick
-  const stars = Array.from({ length: count }, () => '🟊')
-
-  // Internal handle change function
-  const handleChange = (value) => {
-    onChange(value + 1)
-  }
-
-  return (
-    <div>
-      {stars.map((s, index) => {
-        let style = inactiveColor
-        if (index < value) {
-          style = activeColor
-        }
-        return (
-          <div
-            className={'star'}
-            key={index}
-            style={{ color: style, width: size, height: size, fontSize: size }}
-            onClick={() => handleChange(index)}
-          >
-            {s}
-          </div>
-        )
-      })}
-      {/* {value} */}
-    </div>
-  )
-}
-
-function Experience(props) {
-  //星等
-  const [rating, setRating] = useState(3)
-  const handleChange = (value) => {
-    setRating(value)
-    setStar(value)
-  }
-
+function Eelementary(props) {
   //單選盒
   const [radiob, setRadiob] = useState('1')
   const [course1, setCourse1] = useState([])
   const [message1, setMessage1] = useState([])
   const [amount, setAmount] = useState(0)
+
   const [classtitle, setClasstitle] = useState({
     //key是sid
     5: 0,
@@ -99,16 +51,17 @@ function Experience(props) {
     const response = await fetch(request1)
     const data = await response.json()
     console.log(data)
-    //設定資料給留言
+    //設定資料給photos
     setMessage1(data)
   }
 
+  //送入留言資料
   // 新增留言資料*******************************************
   // const [dataLoading, setDataLoading] = useState(false)
   // 抓members丟出的sid(localstorage)
   const sid = localStorage.getItem('member-sid')
   const category_id = 11
-  const [star, setStar] = useState(0)
+  const star = 0
   const [message, setMessage] = useState('')
   const [message_created_time, setMessage_created_time] = useState(0)
 
@@ -278,7 +231,7 @@ function Experience(props) {
 
           {/* 主標題 */}
           <div className="winnie-title " data-aos="fade-up">
-            <h1>DIY課程體驗</h1>
+            <h1>初階課程</h1>
           </div>
           <div className="winnie-text mb-11" data-aos="fade-up">
             <p>
@@ -359,15 +312,12 @@ function Experience(props) {
 
               {/* 單選Radio -----------------------------*/}
             </div>
-            <div
-              className="col-4"
-              style={{ hight: '300px', position: 'absolute', right: '10px' }}
-            >
+            <div className="col-4" style={{ hight: '300px' }}>
               {/* 月曆 */}
               {console.log('course', course1[0])}
               <div className="experience-list mt-10 ">
-                <div className="d-flex experience-list-item justify-content-around">
-                  <div className="">上課日期</div>
+                <div className="d-flex experience-list-item">
+                  <div className="mr-10">上課日期</div>
                   <div>數量</div>
                 </div>
 
@@ -376,11 +326,11 @@ function Experience(props) {
                     return (
                       <>
                         <div
-                          className="d-flex experience-list-item justify-content-around"
+                          className="d-flex experience-list-item"
                           key={value.sid}
                         >
                           <div
-                            className="snail-list-text"
+                            className="mr-5 snail-list-text"
                             style={{ height: '50px', lineHeight: '50px' }}
                           >
                             {value.time}
@@ -432,16 +382,15 @@ function Experience(props) {
               </div>
 
               <button
-                className="ninginfo-btn mt-1   w-100"
+                className="ninginfo-btn mt-5"
                 onClick={() => {
-                  Swal.fire('提示文字')
                   updateCourseCartToLocalStorage({
                     ...data[0],
                     amount: amount,
                   })
                 }}
               >
-                加入購物車
+                立即結帳
               </button>
             </div>
           </div>
@@ -610,14 +559,7 @@ function Experience(props) {
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span>{value.message_created_time}</span>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <StarRating
-                          count={5}
-                          size={20}
-                          value={value.star}
-                          activeColor={'#fcaa3e'}
-                          inactiveColor={'#ddd'}
-                          style={{ verticalAlign: 'top' }}
-                        />
+                        <span>5star</span>
                       </div>
                       <div className="message-card-content">
                         <p className="snail-message-text">{value.message}</p>
@@ -678,18 +620,6 @@ function Experience(props) {
               <div className="course-title-t">DIY體驗</div>
               <div className="row">
                 <div className="col-12">
-                  {' '}
-                  <div>
-                    <StarRating
-                      count={5}
-                      size={20}
-                      value={rating}
-                      activeColor={'#fcaa3e'}
-                      inactiveColor={'#ddd'}
-                      onChange={handleChange}
-                      style={{ lineHeight: '20', textAlign: 'center' }}
-                    />
-                  </div>
                   <div className="form-group">
                     <label
                       htmlFor="exampleFormControlTextarea1 "
@@ -744,4 +674,4 @@ function Experience(props) {
   )
 }
 
-export default Experience
+export default Eelementary

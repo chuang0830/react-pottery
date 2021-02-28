@@ -67,19 +67,23 @@ function CourseCategory() {
           </div>
           <div className="row">
             <div className="col-lg-3">
-              <div className="categorycard-pic catbackground1">
-                <p className="categorycard-Entitle">Elementary</p>
-                <p className="categorycard-Chtitle">初階課程</p>
-              </div>
+              <Link to="/CourseCategory/EMiddle">
+                <div className="categorycard-pic catbackground1" id="card">
+                  <p className="categorycard-Entitle">Elementary</p>
+                  <p className="categorycard-Chtitle">初階課程</p>
+                </div>
+              </Link>
             </div>
             <div className="col-lg-3">
-              <div
-                className="categorycard-pic catbackground2"
-                data-aos="fade-right"
-              >
-                <p className="categorycard-Entitle">Middle-level</p>
-                <p className="categorycard-Chtitle">中階課程</p>
-              </div>
+              <Link to="/CourseCategory/EMiddle">
+                <div
+                  className="categorycard-pic catbackground2"
+                  data-aos="fade-right"
+                >
+                  <p className="categorycard-Entitle">Middle-level</p>
+                  <p className="categorycard-Chtitle">中階課程</p>
+                </div>
+              </Link>
             </div>
             <div className="col-lg-3">
               <Link to="/CourseCategory/Experience">

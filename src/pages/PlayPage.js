@@ -74,7 +74,7 @@ function PlayPage(props) {
               <div className="onlinepage-list">
                 {/* 滾動軸 */}
                 <div className="snail-vedio-Button" id="video1">
-                  3 個章節，7 段單元、1 項作業，共 48 分鐘
+                  <p className="course-title-sm">7 段單元，共 48 分鐘</p>
                 </div>
                 <Element
                   name="test7"
@@ -91,7 +91,6 @@ function PlayPage(props) {
                   <button
                     className="snail-vedio-Button"
                     id="video1"
-                    className="snail-vedio-button"
                     onClick={() => {
                       setVedio('https://www.youtube.com/watch?v=9WRv0bnY6ks')
                     }}
@@ -100,9 +99,7 @@ function PlayPage(props) {
                     單元0 - 課程介紹
                   </button>
                   <button
-                    className="snail-vedio-Button"
                     id="video1"
-                    className="snail-vedio-button"
                     onClick={() => {
                       setVedio('/coursevedio1.mp4')
                     }}
@@ -113,13 +110,12 @@ function PlayPage(props) {
                   <button
                     className="snail-vedio-Button"
                     id="video1"
-                    className="snail-vedio-button"
                     onClick={() => {
                       setVedio('/coursevedio2.mp4')
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
-                    單元2 - 手捏和風茶碗 >
+                    單元2 - 手捏和風茶碗
                   </button>
                   <button
                     id="video2"
@@ -128,10 +124,19 @@ function PlayPage(props) {
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
-                    單元3 - 拉坯技法說明 >
+                    單元3 - 拉坯技法說明
                   </button>
                   <button
                     className="snail-vedio-Button"
+                    id="video1"
+                    onClick={() => {
+                      setVedio('/coursevedio1.mp4')
+                    }}
+                  >
+                    <FaCaretRight className="mr-3 mb-1" />
+                    單元4 - 壓印技法：雅逸長方盤
+                  </button>
+                  <button
                     id="video1"
                     className="snail-vedio-button"
                     onClick={() => {
@@ -139,29 +144,17 @@ function PlayPage(props) {
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
-                    單元4 - 壓印技法：雅逸長方盤 >
+                    單元5 - 手捏陶魚技法：年年有魚
                   </button>
                   <button
                     className="snail-vedio-Button"
                     id="video1"
-                    className="snail-vedio-button"
                     onClick={() => {
                       setVedio('/coursevedio1.mp4')
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
-                    單元5 - 手捏陶魚技法：年年有魚 >
-                  </button>
-                  <button
-                    className="snail-vedio-Button"
-                    id="video1"
-                    className="snail-vedio-button"
-                    onClick={() => {
-                      setVedio('/coursevedio1.mp4')
-                    }}
-                  >
-                    <FaCaretRight className="mr-3 mb-1" />
-                    單元6 - 軟土板成形技法 >
+                    單元6 - 軟土板成形技法
                   </button>
                   <button
                     id="video2"
@@ -170,7 +163,7 @@ function PlayPage(props) {
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
-                    單元7 - 化妝土技法 >
+                    單元7 - 化妝土技法
                   </button>
                 </Element>
               </div>

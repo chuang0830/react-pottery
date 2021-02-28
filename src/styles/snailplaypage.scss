@@ -19,7 +19,7 @@
   }
   Button:hover {
     width: 100%;
-    background-color: $primary;
+    background-color: #a6cace;
     border: 1px solid white;
     color: #615956;
     font-size: $font-size-base * 0.875; //14px;
@@ -29,11 +29,14 @@
     text-align: left;
   }
 }
+//list標題欄
 .snail-vedio-Button {
   background-color: $primary;
   height: 60px;
-  line-height: 50px;
-  text-align: center;
+  line-height: 60px;
+  text-align: left;
+  border-bottom: 1px solid #73989c;
+  padding-left: 10px 0 10px 20px;
 }
 // video 將Bootstrap預設padding消除
 .snail-video {
@@ -51,6 +54,6 @@
   right: 50px;
 }
 .videocard {
-  background-color: red;
+  background-color: rgb(250, 250, 250);
   height: 400px;
 }
