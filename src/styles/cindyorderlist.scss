@@ -11,51 +11,10 @@
     }
     td {
       button {
-        // font-size: $font-size-base;
-        // outline: none;
-        // color: $primary;
-        // background-color: transparent;
-        // border: none;
-        // border-radius: 5px;
-        // &:hover {
-        //   background-color: transparent;
-        //   color: $info;
-        //   outline: none;
-        //   border: none;
-        // }
-        // &:active {
-        //   background-color: transparent;
-        //   outline: none;
-        //   border: none;
-        // }
-        // &:visited {
-        //   background-color: transparent;
-        //   outline: none;
-        //   border: none;
-        // }
         svg {
           margin-left: 3px;
         }
       }
-    }
-    label {
-      display: block;
-    }
-    label:hover {
-      cursor: pointer;
-    }
-    input[type='checkbox']:checked + div {
-      opacity: 0;
-      max-height: 0;
-    }
-    .toggle-box {
-      display: inline-block;
-      padding: 10px;
-      opacity: 1;
-      overflow: hidden;
-    }
-    input {
-      display: none;
     }
   }
 }

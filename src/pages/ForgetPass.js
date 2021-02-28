@@ -2,6 +2,7 @@ import { Link, withRouter } from 'react-router-dom'
 import React, { useState } from 'react'
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
 import { Modal, Button } from 'react-bootstrap'
+import Swal from 'sweetalert2'
 
 function ForgetPass(props) {
   let styles = {
@@ -31,7 +32,12 @@ function ForgetPass(props) {
     const data = await response.json()
     console.log('伺服器回傳的json資料', data)
     localStorage.removeItem('email')
-    alert('修改成功！請重新登入')
+    Swal.fire({
+      icon: 'success',
+      title: '修改成功！',
+      showConfirmButton: false,
+      timer: 2000,
+    })
   }
   return (
     <>
@@ -45,14 +51,19 @@ function ForgetPass(props) {
         onHide={() => setModalShow(true)}
       >
         <Modal.Header closeButton className="pass-reset-header">
-          <Modal.Title id="contained-modal-title-vcenter">密碼重置</Modal.Title>
+          <Modal.Title
+            id="contained-modal-title-vcenter"
+            className="pass-reset-title"
+          >
+            密碼重置
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body className="pass-reset-body">
           <div className="">
             <label htmlFor="password">新密碼</label>
             <br />
             <input
-              type="text"
+              type="password"
               name="password"
               id="password"
               value={password}
@@ -64,7 +75,7 @@ function ForgetPass(props) {
             <label htmlFor="password">請再次輸入新密碼</label>
             <br />
             <input
-              type="text"
+              type="password"
               name="password2"
               id="password2"
               value={password2}

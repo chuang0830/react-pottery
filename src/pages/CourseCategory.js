@@ -51,32 +51,39 @@ function CourseCategory() {
                 概念也能透過陶土捏塑學習，捏陶還可以直接的引導孩子感受數量、形體和造形的變化，更可以訓練孩子手部的各種大小肌肉、手眼協調和創造力。
                 <br />
               </p>
-              {/* 更多按鈕 */}
-              <button className="cindy-check more" href="#">
-                查看更多
-                <i className="fas fa-angle-double-down" />
-              </button>
             </div>
           </div>
         </div>
         <div className="container">
-          <div className="row">
-            <div className="chien-card-title mb-10">
+          <div className="row ">
+            <div className="chien-card-title mb-5">
               <h2>課程類別</h2>
+              <div className="snail-list-text">
+                我們深知創作的快樂，於是我們特別重視，如何讓陶藝創作，更容易被一般人所接觸、學習。
+                <br />
+                除了實體課程，也特別推出許多鼓勵人們「在家做陶藝」的線上課程，與大家分享！
+              </div>
             </div>
           </div>
           <div className="row">
             <div className="col-lg-3">
-              <div className="categorycard-pic catbackground1">
-                <p className="categorycard-Entitle">Elementary</p>
-                <p className="categorycard-Chtitle">初階課程</p>
-              </div>
+              <Link to="/CourseCategory/EMiddle">
+                <div className="categorycard-pic catbackground1" id="card">
+                  <p className="categorycard-Entitle">Elementary</p>
+                  <p className="categorycard-Chtitle">初階課程</p>
+                </div>
+              </Link>
             </div>
             <div className="col-lg-3">
-              <div className="categorycard-pic catbackground2">
-                <p className="categorycard-Entitle">Middle-level</p>
-                <p className="categorycard-Chtitle">中階課程</p>
-              </div>
+              <Link to="/CourseCategory/EMiddle">
+                <div
+                  className="categorycard-pic catbackground2"
+                  data-aos="fade-right"
+                >
+                  <p className="categorycard-Entitle">Middle-level</p>
+                  <p className="categorycard-Chtitle">中階課程</p>
+                </div>
+              </Link>
             </div>
             <div className="col-lg-3">
               <Link to="/CourseCategory/Experience">
@@ -88,7 +95,10 @@ function CourseCategory() {
             </div>
             <div className="col-lg-3">
               <Link to="/CourseCategory/OnlineCourse">
-                <div className="categorycard-pic catbackground4">
+                <div
+                  className="categorycard-pic catbackground4"
+                  data-aos="fade-right"
+                >
                   <p className="categorycard-Entitle">Online course</p>
                   <p className="categorycard-Chtitle">線上課程</p>
                 </div>

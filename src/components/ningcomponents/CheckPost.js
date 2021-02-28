@@ -14,6 +14,7 @@ function CheckPost(props) {
   // CheckoutP2
   const checkform = JSON.parse(localStorage.getItem('utsuwaformdataning'))
   const orderDay = checkform.orderDay
+  const ordernum = checkform.orderNum
   const orderEmail = checkform.orderEmail
   const orderName = checkform.orderName
   const orderRecipient = checkform.orderRecipient
@@ -33,10 +34,8 @@ function CheckPost(props) {
   const orderinvoicetype = checkform.orderinvoicetype
 
   const shippingStatus = '準備中'
-  const member_sid = 1
-  const ordermonth = new Date().getMinutes()
-  const ordersec = new Date().getSeconds()
-  const ordernum = ordermonth + ordersec
+  const member_sid = localStorage.getItem('member-sid')
+
   async function addOrders() {
     const obj = {
       ordercart,
