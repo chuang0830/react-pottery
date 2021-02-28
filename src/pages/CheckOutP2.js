@@ -131,6 +131,37 @@ function CheckOutP2(props) {
     localStorage.setItem('utsuwaformdataning', JSON.stringify(item))
     // setMycart(currentCart)
   }
+  //訂購人資訊
+  const [name, setName] = useState('')
+  const [mobile, setMobile] = useState('')
+  const [email, setEmail] = useState('')
+  async function getUserFromServer() {
+    //const sid = localStorage.getItem('member-sid')
+    const sid = 1
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/members/edit/' + sid
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      //拿資料
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log(data)
+    // 設定資料
+
+    setName(data.name)
+    setMobile(data.mobile)
+    setEmail(data.email)
+  }
+  useEffect(() => {
+    getUserFromServer()
+  }, [])
 
   return (
     <>
@@ -241,10 +272,10 @@ function CheckOutP2(props) {
                 <input
                   type="text"
                   className="form-control"
-                  id=""
-                  name=""
-                  placeholder="王小明"
+                  id="name"
+                  name="name"
                   minlength="1"
+                  value={name}
                   onChange={(e) => {
                     const orderName = e.target.value
                     // ordertime
@@ -276,9 +307,10 @@ function CheckOutP2(props) {
                 <input
                   type="tel"
                   className="form-control"
-                  id=""
+                  id="moblie"
+                  name="moblie"
+                  value={mobile}
                   minlength="1"
-                  placeholder="09123456789"
                   onChange={(e) => {
                     const orderTel = e.target.value
                     setOrderTel(orderTel)
@@ -296,9 +328,10 @@ function CheckOutP2(props) {
                 <input
                   type="email"
                   className="form-control"
-                  id=""
+                  id="email"
+                  name="email"
+                  value={email}
                   minlength="1"
-                  placeholder="name@example.com"
                   onChange={(e) => {
                     const orderEmail = e.target.value
                     setOrderEmail(orderEmail)
@@ -315,6 +348,7 @@ function CheckOutP2(props) {
             <form className="mt-5">
               <div className="form-title">
                 <span className="form-title-content">收件人資訊</span>
+                <input type="checkbox" />
               </div>
               <div className="form-group">
                 <label htmlFor="" className="form-text">
