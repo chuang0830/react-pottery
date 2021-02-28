@@ -76,14 +76,14 @@
 .cursor {
   width: 40px;
   height: 40px;
-  // border: 1.5px solid #dbdbdb;
+  border: 1.5px solid #dbdbdb;
   background-color: #92b6ba9a;
   border-radius: 100%;
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: color-dodge;
+  mix-blend-mode: luminosity;
   transition: all 150ms ease;
   transition-property: opacity, background-color, transform, mix-blend-mode;
 }

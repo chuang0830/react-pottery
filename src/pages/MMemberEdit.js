@@ -97,6 +97,7 @@ function MMemberEdit(props) {
       const response = await fetch(request)
       const data = await response.json()
       console.log('伺服器回傳的json資料', data)
+      localStorage.setItem('member-email', data.email)
       console.log(data.birth)
       const birthday = new Date(data.birth)
       const birth_month = birthday.getMonth() + 1
