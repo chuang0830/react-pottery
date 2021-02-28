@@ -73,49 +73,49 @@ function PlayPage(props) {
             <div className="col-4 snail-video">
               <div className="onlinepage-list">
                 {/* 滾動軸 */}
+                <div className="snail-vedio-Button" id="video1">
+                  <p className="course-title-sm">7 段單元，共 48 分鐘</p>
+                </div>
                 <Element
                   name="test7"
                   className="element"
                   id="containerElement"
                   style={{
                     position: 'relative',
-                    height: '326px',
+                    height: '268px',
                     overflow: 'scroll',
                     marginBottom: '100px',
+                    overflowX: 'hidden',
                   }}
                 >
                   <button
                     className="snail-vedio-Button"
                     id="video1"
-                    className="snail-vedio-button"
                     onClick={() => {
                       setVedio('https://www.youtube.com/watch?v=9WRv0bnY6ks')
                     }}
                   >
-                    單元1 - 捏陶塑型
-                    <FaCaretRight className="ml-5 md-5" />
+                    <FaCaretRight className="mr-3 mb-1" />
+                    單元0 - 課程介紹
                   </button>
                   <button
-                    className="snail-vedio-Button"
                     id="video1"
-                    className="snail-vedio-button"
                     onClick={() => {
                       setVedio('/coursevedio1.mp4')
                     }}
                   >
-                    單元2 - 捏陶塑型
-                    <FaCaretRight className="ml-5 md-5" />
+                    <FaCaretRight className="mr-3 mb-1" />
+                    單元1 - 暖身動動手：練土
                   </button>
                   <button
                     className="snail-vedio-Button"
                     id="video1"
-                    className="snail-vedio-button"
                     onClick={() => {
                       setVedio('/coursevedio2.mp4')
                     }}
                   >
-                    單元1 - 捏陶塑型
-                    <FaCaretRight className="ml-5 md-5" />
+                    <FaCaretRight className="mr-3 mb-1" />
+                    單元2 - 手捏和風茶碗
                   </button>
                   <button
                     id="video2"
@@ -123,41 +123,38 @@ function PlayPage(props) {
                       setVedio('/coursevedio2.mp4')
                     }}
                   >
-                    單元1 - 捏陶塑型
-                    <FaCaretRight className="ml-5 md-5" />
+                    <FaCaretRight className="mr-3 mb-1" />
+                    單元3 - 拉坯技法說明
                   </button>
                   <button
                     className="snail-vedio-Button"
+                    id="video1"
+                    onClick={() => {
+                      setVedio('/coursevedio1.mp4')
+                    }}
+                  >
+                    <FaCaretRight className="mr-3 mb-1" />
+                    單元4 - 壓印技法：雅逸長方盤
+                  </button>
+                  <button
                     id="video1"
                     className="snail-vedio-button"
                     onClick={() => {
                       setVedio('/coursevedio1.mp4')
                     }}
                   >
-                    單元1 - 捏陶塑型
-                    <FaCaretRight className="ml-5 md-5" />
+                    <FaCaretRight className="mr-3 mb-1" />
+                    單元5 - 手捏陶魚技法：年年有魚
                   </button>
                   <button
                     className="snail-vedio-Button"
                     id="video1"
-                    className="snail-vedio-button"
                     onClick={() => {
                       setVedio('/coursevedio1.mp4')
                     }}
                   >
-                    單元1 - 捏陶塑型
-                    <FaCaretRight className="ml-5 md-5" />
-                  </button>
-                  <button
-                    className="snail-vedio-Button"
-                    id="video1"
-                    className="snail-vedio-button"
-                    onClick={() => {
-                      setVedio('/coursevedio1.mp4')
-                    }}
-                  >
-                    單元1 - 捏陶塑型
-                    <FaCaretRight className="ml-5 md-5" />
+                    <FaCaretRight className="mr-3 mb-1" />
+                    單元6 - 軟土板成形技法
                   </button>
                   <button
                     id="video2"
@@ -165,8 +162,8 @@ function PlayPage(props) {
                       setVedio('/coursevedio2.mp4')
                     }}
                   >
-                    單元1 - 捏陶塑型
-                    <FaCaretRight className="ml-5 md-5" />
+                    <FaCaretRight className="mr-3 mb-1" />
+                    單元7 - 化妝土技法
                   </button>
                 </Element>
               </div>
