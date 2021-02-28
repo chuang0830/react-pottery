@@ -103,12 +103,16 @@ function Changbiddetail() {
     // localStorage.setItem{'product-sid', data1.product_id}
   }
 
+  //cindy改這裡先測試email
   //一開始就會開始載入資料
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     getphotos2FromServer1()
+  //   }, 1000)
+  //   return () => clearInterval(interval)
+  // }, [])
   useEffect(() => {
-    const interval = setInterval(() => {
-      getphotos2FromServer1()
-    }, 1000)
-    return () => clearInterval(interval)
+    getphotos2FromServer1()
   }, [])
 
   //每次users資料有變動就會X秒後關掉載入指示
@@ -204,8 +208,7 @@ function Changbiddetail() {
   //alert
   //寄送郵件
   async function sendemail() {
-    // const email = localStorage.getItem('member-email')
-    const email = 'judy8210276834@gmail.com'
+    const email = localStorage.getItem('member-email')
     const newData = { email }
     const url = 'http://localhost:3000/address-book/email'
     const request = new Request(url, {
@@ -220,6 +223,7 @@ function Changbiddetail() {
     const response = await fetch(request)
     const data = await response.json()
     console.log('伺服器回傳的json資料', data)
+    localStorage.removeItem('member-email')
   }
   const [show, setShow] = useState(true)
 
