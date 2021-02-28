@@ -1226,7 +1226,7 @@ chienfooter .chien-social-icon {
   width: 40px;
   height: 40px;
 }
-@mixin fixed-heart{
+@mixin fixed-heart {
   display: flex;
   position: absolute;
   background-color: rgba($white, 0.5);
@@ -1276,7 +1276,7 @@ chienfooter .chien-social-icon {
   color: $info;
   font-size: 24px;
 }
-.ning-fixed{
+.ning-fixed {
   position: fixed;
   border-radius: 50%;
   right: 30px;
@@ -1292,28 +1292,28 @@ chienfooter .chien-social-icon {
     margin-top: 10px;
     color: $white;
   }
-    background: $warning;
-    .plus{
-      font-size: 30px;
-    }
-    .fixed-top{
-      display: none;
-    }
-    .fixed-shop{
-      display: none;
-    }
-    .fixed-heart{
-      display: none;
-    }
-    .ning-cart {
-      @include ning-cart;
-    }
+  background: $warning;
+  .plus {
+    font-size: 30px;
+  }
+  .fixed-top {
+    display: none;
+  }
+  .fixed-shop {
+    display: none;
+  }
+  .fixed-heart {
+    display: none;
+  }
+  .ning-cart {
+    @include ning-cart;
+  }
 }
 
-.ning-fixed-toggle{
+.ning-fixed-toggle {
   @include fixed-btn;
-  background: rgba($success,.5);
-  .plus{
+  background: rgba($success, 0.5);
+  .plus {
     font-size: 32px;
     position: absolute;
     left: 13px;
@@ -1322,37 +1322,37 @@ chienfooter .chien-social-icon {
     color: $white;
     transform: rotate(45deg);
   }
-    .fixed-top{
-      @include fixed-top;
-    }
-    .fixed-shop{
-      @include fixed-shop;
-      // border: 1px solid rgba($success,.5);
-    }
-    .fixed-heart{
-      @include fixed-heart;
-      // border: 1px solid rgba($success,.5);
-    }
-    .fixed-title{ 
-      @include fixed-title;
-    }
-    .ning-cart{
-      @include ning-cart;
-    }
-    .ning-heart{
-      @include ning-heart;
-    }
-    .ning-top{
-      @include ning-top;
-    }
-    .fixed-top-title{
-      position: absolute;
-      left: 25px;
-      bottom: 160px;
-      font-size: 12px;
-      font-weight: 900;
-      color: $success;
-    }
+  .fixed-top {
+    @include fixed-top;
+  }
+  .fixed-shop {
+    @include fixed-shop;
+    // border: 1px solid rgba($success,.5);
+  }
+  .fixed-heart {
+    @include fixed-heart;
+    // border: 1px solid rgba($success,.5);
+  }
+  .fixed-title {
+    @include fixed-title;
+  }
+  .ning-cart {
+    @include ning-cart;
+  }
+  .ning-heart {
+    @include ning-heart;
+  }
+  .ning-top {
+    @include ning-top;
+  }
+  .fixed-top-title {
+    position: absolute;
+    left: 25px;
+    bottom: 160px;
+    font-size: 12px;
+    font-weight: 900;
+    color: $success;
+  }
 }
 //改這裡BS預設
 .cindy {
@@ -1377,8 +1377,13 @@ chienfooter .chien-social-icon {
     border: none;
     box-shadow: none;
   }
-  &:active,
-  &:visited,
+  &:active {
+    background-color: transparent !important;
+    color: $primary !important;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
   &:focus {
     background-color: transparent;
     color: $primary;
@@ -1397,16 +1402,20 @@ chienfooter .chien-social-icon {
     border: none;
   }
   .corder-body {
-    padding: 0;
+    padding: 0 20px 0 20px;
     margin: 15px;
     border-radius: 5px;
     border: 1px solid $primary;
     .tr {
       border-bottom: 1px solid $primary;
-      padding: 10px;
+      padding: 10px 0;
     }
     .tr:last-child {
       border: none;
+    }
+    .td {
+      width: 150px;
+      text-align: center;
     }
   }
 }
@@ -1439,11 +1448,15 @@ chienfooter .chien-social-icon {
     box-shadow: none;
   }
 }
-.forget-pass {
+.modal-content {
   border: none;
+  padding: 10px;
   .forget-pass-header {
     border: none;
     border-bottom: 1px solid $primary;
+    .forget-pass-title {
+      color: $success;
+    }
   }
   .forget-pass-body {
     label {
@@ -1466,6 +1479,7 @@ chienfooter .chien-social-icon {
   }
   .forget-pass-footer {
     border: none;
+    padding: 0;
   }
 }
 .pass-reset {
@@ -1473,6 +1487,9 @@ chienfooter .chien-social-icon {
   .pass-reset-header {
     border: none;
     border-bottom: 1px solid $primary;
+    .pass-reset-title {
+      color: $success;
+    }
   }
   .pass-reset-body {
     label {
@@ -1504,7 +1521,7 @@ chienfooter .chien-social-icon {
 // 覆蓋瀏覽器預設 scrollbar
 ::-webkit-scrollbar {
   width: 15px;
-  background-color: rgba($primary,0.5);
+  background-color: rgba($primary, 0.5);
 }
 ::-webkit-scrollbar-track {
   background: rgba($warning, 0.5);

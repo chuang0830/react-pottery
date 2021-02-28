@@ -2,7 +2,7 @@ import { Link, withRouter } from 'react-router-dom'
 import React, { useState } from 'react'
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
 import { Modal, Button } from 'react-bootstrap'
-//import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 function Login(props) {
   let styles = {
@@ -73,7 +73,12 @@ function Login(props) {
         onHide={() => setModalShow(false)}
       >
         <Modal.Header closeButton className="forget-pass-header">
-          <Modal.Title id="contained-modal-title-vcenter">忘記密碼</Modal.Title>
+          <Modal.Title
+            id="contained-modal-title-vcenter"
+            className="forget-pass-title"
+          >
+            忘記密碼
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body className="forget-pass-body">
           <div className="">
@@ -94,7 +99,12 @@ function Login(props) {
             className="cindy mt-5 cindy-confrim-btn d-block"
             onClick={() => {
               forget()
-              alert('請到您的信箱收信！')
+              Swal.fire({
+                icon: 'success',
+                title: '請至信箱收信',
+                showConfirmButton: false,
+                timer: 2000,
+              })
               setModalShow(false)
             }}
           >
