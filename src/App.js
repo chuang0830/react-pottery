@@ -20,6 +20,8 @@ import ProductsDetail from './pages/ProductsDetail'
 import Customize from './pages/Customize'
 // 課程
 import Experience from './pages/Experience'
+import Eelementary from './pages/Eelementary'
+import Emiddle from './pages/Emiddle'
 import CourseCategory from './pages/CourseCategory'
 import OnlineCourse from './pages/OnlineCourse'
 import MyOnlineCourse from './pages/MyOnlineCourse'
@@ -92,6 +94,12 @@ function App() {
             </Route>
             <Route path="/CourseCategory/Experience">
               <Experience />
+            </Route>
+            <Route path="/CourseCategory/Emiddle">
+              <Emiddle />
+            </Route>
+            <Route path="/CourseCategory/Eelementary">
+              <Eelementary />
             </Route>
             <Route path="/CourseCategory/OnlineCourse">
               <OnlineCourse />
