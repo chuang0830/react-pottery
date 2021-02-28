@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 function LogoNing(props) {
+  useEffect(() => {
+    Aos.init({ duration: 1500 })
+  }, [])
   return (
     <>
-      <div className="row d-flex justify-content-center logobox">
+      <div
+        className="row d-flex justify-content-center logobox"
+        data-aos="fade-down"
+      >
         <div className="logo">
           <Link to="/">
             <svg
