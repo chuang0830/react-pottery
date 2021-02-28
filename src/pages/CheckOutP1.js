@@ -1,7 +1,7 @@
 // import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { RiDeleteBinFill } from 'react-icons/ri'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import uuid from 'uuid'
 
 //元件
@@ -9,6 +9,7 @@ import LogoNing from './../components/ningcomponents/LogoNing'
 import CheckOutP1TableNing from './../components/ningcomponents/CheckOutP1TableNing'
 import ChienFooter from './../components/ChienFooter'
 import ChienPolicycard from './../components/ChienPolicycard'
+import { func } from 'prop-types'
 function CheckOutP1(props) {
   // style ------------------------------------------------------------
   const style = {
@@ -25,6 +26,7 @@ function CheckOutP1(props) {
   const [Discount, setDiscount] = useState(0)
   const [Total, setTotal] = useState(0)
   const [Shipping, setShipping] = useState(120)
+  const [errors, setErrors] = useState([])
 
   // function 購物車-----------------------------------------------------
   function getCartFromLocalStorage() {
@@ -69,8 +71,8 @@ function CheckOutP1(props) {
   const index = JSON.parse(localStorage.getItem('utsuwacart')) || []
   console.log(index)
   // 加入表單-----------------------------------------------------------------
-  const [seletedTransform, setSeletedTransform] = useState('')
-  const [seletedPay, setSeletedPay] = useState('')
+  const [seletedTransform, setSeletedTransform] = useState('請選擇')
+  const [seletedPay, setSeletedPay] = useState('請選擇')
   const FormDataNing = {
     selecttransform: seletedTransform,
     selectpay: seletedPay,
@@ -130,12 +132,30 @@ function CheckOutP1(props) {
       total: Total,
     })
   }, [Total, Discount])
+  // 防止checkoutP2 crash
   useEffect(() => {
     updateFormcheckp2ToLocalStorage({
       ...FormDataNing,
       member_sid: 1,
     })
   }, [])
+  //檢查表單
+  function confirm(e) {
+    e.preventDefault()
+    const newErrors = []
+    if (seletedTransform === '請選擇') {
+      newErrors.push('seletedTransform')
+    }
+    if (seletedPay === '請選擇') {
+      newErrors.push('seletedPay')
+    }
+    setErrors(newErrors)
+    console.log(newErrors)
+
+    if (newErrors.length === 0) {
+      props.history.push('/CheckOutP2')
+    }
+  }
   return (
     <>
       <div className="container">
@@ -271,6 +291,7 @@ function CheckOutP1(props) {
                 <select
                   className="form-control pretty-select"
                   id="exampleFormControlSelect1"
+                  value={seletedTransform}
                   onChange={(e) => {
                     const selecttransform = e.target.value
                     setSeletedTransform(selecttransform)
@@ -294,20 +315,23 @@ function CheckOutP1(props) {
                     海外運送
                   </option>
                 </select>
+                {errors.includes('seletedTransform') && (
+                  <span style={{ color: 'red', paddingLeft: '15px' }}>
+                    請選擇配送方式
+                  </span>
+                )}
               </div>
               <div>
                 <label
                   htmlFor="exampleFormControlSelect1"
                   className="form-text"
-                  for="validationCustom04"
                 >
                   付款方式
                 </label>
                 <select
                   className="form-control pretty-select"
                   id="exampleFormControlSelect1"
-                  id="validationCustom04"
-                  required
+                  value={seletedPay}
                   onChange={(e) => {
                     const selectpay = e.target.value
                     setSeletedPay(selectpay)
@@ -332,7 +356,11 @@ function CheckOutP1(props) {
                     銀行轉帳
                   </option>
                 </select>
-                <div class="invalid-feedback">Please select a valid state.</div>
+                {errors.includes('seletedPay') && (
+                  <span style={{ color: 'red', paddingLeft: '15px' }}>
+                    請選擇付款方式
+                  </span>
+                )}
               </div>
             </form>
           </div>
@@ -387,9 +415,11 @@ function CheckOutP1(props) {
           </div>
         </div>
         <div className="row d-flex justify-content-end mb-9 mt-5 mt-3">
-          <Link to="/CheckOutP2">
-            <button className="ninginfo-btn mx-1">填寫訂單訊息</button>
-          </Link>
+          {/* <Link to="/CheckOutP2"> */}
+          <button className="ninginfo-btn mx-1" type="submit" onClick={confirm}>
+            填寫訂單訊息
+          </button>
+          {/* </Link> */}
         </div>
       </div>
       <ChienPolicycard />
@@ -397,4 +427,5 @@ function CheckOutP1(props) {
     </>
   )
 }
-export default CheckOutP1
+//export default CheckOutP1
+export default withRouter(CheckOutP1)
