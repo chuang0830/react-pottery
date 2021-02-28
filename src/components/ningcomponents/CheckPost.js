@@ -34,7 +34,7 @@ function CheckPost(props) {
   const orderinvoicetype = checkform.orderinvoicetype
 
   const shippingStatus = '準備中'
-  const member_sid = 1
+  const member_sid = localStorage.getItem('member-sid')
 
   async function addOrders() {
     const obj = {
