@@ -16,20 +16,20 @@ import Countdown from 'react-countdown'
 function Changbidindex() {
   // 倒數，結標
   // Random component
-  const Completionist = () => <span>You are good to go!</span>
+  const Completionist = () => <span>已結標</span>
   const [photos2, setphotos2] = useState([])
   //const [dataLoading, setDataLoding] = useState(false)
   //載入圖示
   const [isLoading, setIsLoading] = useState(true)
 
   // 結標時間
-  function bidDeadLine() {
-    for (var i = 1; i < 10000; i++) {
-      var biddate = Date.now() + 123456 * i
-      i++
-      return biddate
-    }
-  }
+  // function bidDeadLine() {
+  //   for (var i = 1; i < 10000; i++) {
+  //     var biddate = Date.now() + 123456 * i
+  //     i++
+  //     return biddate
+  //   }
+  // }
 
   async function getphotos2FromServer1() {
     // 連接的伺服器資料網址
@@ -170,7 +170,7 @@ function Changbidindex() {
                       }
                       } */}
                       <div style={{ display: 'inline' }}>
-                        <Countdown date={bidDeadLine()}>
+                        <Countdown date={Date.now() + value.bid_deadline}>
                           <Completionist />
                         </Countdown>
                       </div>

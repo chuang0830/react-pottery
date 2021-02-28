@@ -10,7 +10,10 @@ import 'aos/dist/aos.css'
 import ChienFooter from '../components/ChienFooter'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
+import Countdown from 'react-countdown'
+import Swal from 'sweetalert2'
 function Changbiddetail() {
+  const Completionist = () => <span>已結標</span>
   // 新增競標資料*******************************************
   const [dataLoading, setDataLoading] = useState(false)
   // 抓members丟出的sid(localstorage)
@@ -276,6 +279,11 @@ function Changbiddetail() {
                   })} */}
                 <p>已出價{changphotos.length && changphotos[0].bid_id}次</p>
               </div>
+              <p>
+                <Countdown date={Date.now() + 100000}>
+                  <Completionist />
+                </Countdown>
+              </p>
               <p className="chang-text">倒數3天</p>
               <p className="chang-text">競標開始日:2021/02/17</p>
               <p className="chang-text">購買金額:1000</p>
@@ -291,6 +299,24 @@ function Changbiddetail() {
                       <button
                         variant="success"
                         className="chang-cart-btn bidbuy"
+                        onClick={() => {
+                          Swal.fire({
+                            title: '您已得標',
+                            text:
+                              '拍賣物品結標後，系統將會自動寄出得標者通知信函，告訴您關於您的得標價格、數量以及物品的相關訊息。請務必與賣方確定付款與交貨的方式，以順利完成此筆交易！',
+                            showDenyButton: true,
+                            showCancelButton: true,
+                            confirmButtonText: `Save`,
+                            denyButtonText: `Don't save`,
+                          }).then((result) => {
+                            /* Read more about isConfirmed, isDenied below */
+                            if (result.isConfirmed) {
+                              Swal.fire('Saved!', '', 'success')
+                            } else if (result.isDenied) {
+                              Swal.fire('Changes are not saved', '', 'info')
+                            }
+                          })
+                        }}
                       >
                         直接購買
                       </button>
