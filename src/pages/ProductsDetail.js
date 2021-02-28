@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
+//套件
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import Swal from 'sweetalert2'
 //icon
 import { FaRegHeart, FaHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
@@ -292,6 +294,7 @@ function ProductsDetail(props) {
                         const newHeart = heart.filter((v) => v !== data[0].sid)
                         setHeart(newHeart)
                         removeAddHeart(data[0])
+                        Swal.fire('', '已從收藏清單中移除')
                       }}
                       className="i mb-1 ml-1"
                     />
@@ -301,6 +304,7 @@ function ProductsDetail(props) {
                         const newHeart = [...heart, data[0].sid]
                         setHeart(newHeart)
                         updateCartToAddHeartLocalStorage(data[0])
+                        Swal.fire('', '已加入至收藏清單')
                       }}
                       className="i mb-1 ml-1"
                     />
@@ -338,6 +342,7 @@ function ProductsDetail(props) {
                         ...data[0],
                         amount: amount,
                       })
+                      Swal.fire('', '已加入至購物車')
                     }}
                   >
                     加入購物車 <FaShoppingCart className="mb-1" />

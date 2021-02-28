@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
+import { FaAngleDoubleRight } from 'react-icons/fa'
 
 function MMemberOrderList(props) {
   const sid = localStorage.getItem('member-sid')
@@ -136,6 +137,7 @@ function MMemberOrderList(props) {
                             }}
                           >
                             查看更多
+                            <FaAngleDoubleRight />
                           </Button>
                         </td>
                       </tr>

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
+//套件
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import Swal from 'sweetalert2'
 //icon
 import { FaShoppingCart } from 'react-icons/fa'
 //元件
@@ -273,6 +275,7 @@ function Customize(props) {
                           amount: amount,
                           customize: text,
                         })
+                        Swal.fire('', '已加入至購物車')
                       }}
                     >
                       加入購物車 <FaShoppingCart className="mb-1" />

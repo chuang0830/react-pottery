@@ -1066,6 +1066,7 @@ chienfooter .chien-social-icon {
 }
 .chang-cart-btn1 {
   cursor: pointer;
+  margin-left: 20px;
   border: 0px;
   background-color: white;
   background: url('http://localhost:3008/chang-images/bid1.svg') no-repeat;
@@ -1383,8 +1384,13 @@ chienfooter .chien-social-icon {
     border: none;
     box-shadow: none;
   }
-  &:active,
-  &:visited,
+  &:active {
+    background-color: transparent !important;
+    color: $primary !important;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
   &:focus {
     background-color: transparent;
     color: $primary;
@@ -1403,16 +1409,20 @@ chienfooter .chien-social-icon {
     border: none;
   }
   .corder-body {
-    padding: 0;
+    padding: 0 20px 0 20px;
     margin: 15px;
     border-radius: 5px;
     border: 1px solid $primary;
     .tr {
       border-bottom: 1px solid $primary;
-      padding: 10px;
+      padding: 10px 0;
     }
     .tr:last-child {
       border: none;
+    }
+    .td {
+      width: 150px;
+      text-align: center;
     }
   }
 }
@@ -1445,11 +1455,15 @@ chienfooter .chien-social-icon {
     box-shadow: none;
   }
 }
-.forget-pass {
+.modal-content {
   border: none;
+  padding: 10px;
   .forget-pass-header {
     border: none;
     border-bottom: 1px solid $primary;
+    .forget-pass-title {
+      color: $success;
+    }
   }
   .forget-pass-body {
     label {
@@ -1472,6 +1486,7 @@ chienfooter .chien-social-icon {
   }
   .forget-pass-footer {
     border: none;
+    padding: 0;
   }
 }
 .pass-reset {
@@ -1479,6 +1494,9 @@ chienfooter .chien-social-icon {
   .pass-reset-header {
     border: none;
     border-bottom: 1px solid $primary;
+    .pass-reset-title {
+      color: $success;
+    }
   }
   .pass-reset-body {
     label {
@@ -1549,6 +1567,18 @@ chienfooter .chien-social-icon {
   justify-content: start;
   // margin-left: 40px;
 }
+//覆蓋sweet alert
+.swal2-styled.swal2-confirm {
+  background-color: $success !important;
+}
+.swal2-content {
+  padding: 1.6em !important;
+}
+.swal2-popup {
+  width: 20em !important;
+  background-color: hsla(195, 100%, 99%, 0.9) !important;
+}
+
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';
