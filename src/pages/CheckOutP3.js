@@ -191,14 +191,15 @@ function CheckOutP3(props) {
                 className="tick active"
               />
             </svg>
-            <div className="d-flex justify-content-center mt-3">
+            <div className="d-flex justify-content-center mt-3 flex-column text-center">
+              <span className="svg-title">感謝您的購買</span>
               <Link
                 to="/"
                 onClick={() => {
                   removeLocalStorge()
                 }}
               >
-                <span className="svg-title">感謝您的購買</span>
+                <span className="svg-title">繼續購買</span>
               </Link>
             </div>
           </div>
