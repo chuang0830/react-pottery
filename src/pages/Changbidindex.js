@@ -9,12 +9,27 @@ import 'aos/dist/aos.css'
 // mouse
 import ReactDOM from 'react-dom'
 import ChienFooter from '../components/ChienFooter'
+// import React from "react";
+// import ReactDOM from "react-dom";
+import Countdown from 'react-countdown'
 
 function Changbidindex() {
+  // 倒數，結標
+  // Random component
+  const Completionist = () => <span>You are good to go!</span>
   const [photos2, setphotos2] = useState([])
   //const [dataLoading, setDataLoding] = useState(false)
   //載入圖示
   const [isLoading, setIsLoading] = useState(true)
+
+  // 結標時間
+  function bidDeadLine() {
+    for (var i = 1; i < 10000; i++) {
+      var biddate = Date.now() + 123456 * i
+      i++
+      return biddate
+    }
+  }
 
   async function getphotos2FromServer1() {
     // 連接的伺服器資料網址
@@ -68,12 +83,10 @@ function Changbidindex() {
       {/* 一進頁面漸變(LOADING..) */}
       {/* winnieproduct.scss */}
       <div class="winnie-transition-bg"></div>
-
       {/* banner照片 */}
       <div>
         <div className="chang-index-t-bg"></div>
       </div>
-
       {/* winnie(不要動到) 麵包屑 */}
       <div className="container">
         <div className="row">
@@ -105,7 +118,7 @@ function Changbidindex() {
           <div data-aos="fade-up" className="chien-prod-img col-7 chang-photo">
             <img
               className="overflow-hidden w-100"
-              src="https://res.klook.com/image/upload/c_fill,w_960,h_460,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/wrwtqkfv8tatrsius8w3.webp"
+              src="http://localhost:3008/chang-images/learn.jpg"
               alt="bidbanner"
             />
           </div>
@@ -113,7 +126,7 @@ function Changbidindex() {
             <div className="card-body">
               <h5 className="pb-4 chien-card-title chien-f-24 ">慈善競標</h5>
               <p className="card-text py-4 chien-f-14">
-                克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
+                希望提供陶藝教學，一個方便、溫暖的創作空間，採取自由創作模式，不限定課程主題與作品數量，只要心裡有想法，老師都會指導適合的成型方式，協助學員完成自己作品！
               </p>
             </div>
           </div>
@@ -148,7 +161,25 @@ function Changbidindex() {
                           <FaShoppingCart />
                         </div>
                       </div>
-                      <p className="winnie-card-price">{value.bid_sum_money}</p>
+                      {/* // 結標時間
+                      function bidDeadLine() {
+                      for (var i = 1; i < 10000; i++) {
+                      var biddate = Date.now() + 123456 * i
+                      i++
+                      return biddate
+                      }
+                      } */}
+                      <div style={{ display: 'inline' }}>
+                        <Countdown date={bidDeadLine()}>
+                          <Completionist />
+                        </Countdown>
+                      </div>
+                      <div
+                        className="winnie-card-price"
+                        style={{ display: 'inline' }}
+                      >
+                        {value.bid_sum_money}
+                      </div>
                     </div>
                   </div>
                 )
@@ -375,7 +406,6 @@ function Changbidindex() {
           </div>
         </div>
       </div>
-
       {/* chien(不要動到) 頁尾 */}
       <div>
         <div className="chang-product-f-bg position-relative">

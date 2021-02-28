@@ -1066,6 +1066,7 @@ chienfooter .chien-social-icon {
 }
 .chang-cart-btn1 {
   cursor: pointer;
+  margin-left: 20px;
   border: 0px;
   background-color: white;
   background: url('http://localhost:3008/chang-images/bid1.svg') no-repeat;
@@ -1548,7 +1549,35 @@ chienfooter .chien-social-icon {
   background: $primary;
 }
 
-
+// .cardheader-button {
+//   background-color: #4e757a !important;
+// }
+.ning-bg {
+  border-top: 1px solid $warning;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  .ning {
+    background-color: #fff;
+  }
+}
+.ning-more {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  // margin-left: 40px;
+}
+//覆蓋sweet alert
+.swal2-styled.swal2-confirm {
+  background-color: $success !important;
+}
+.swal2-content {
+  padding: 1.6em !important;
+}
+.swal2-popup {
+  width: 20em !important;
+  background-color: hsla(195, 100%, 99%, 0.9) !important;
+}
 
 @import './cindyregister.scss';
 @import './cindylogin.scss';

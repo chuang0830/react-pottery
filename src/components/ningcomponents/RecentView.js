@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 function RecentView(props) {
   const history = useHistory()
   // 課程--------------------------------------------------------------
@@ -32,13 +34,21 @@ function RecentView(props) {
   }, [myrecentview])
   console.log('myrecentview', myrecentviewDisplay)
 
+  //aos套件
+  useEffect(() => {
+    Aos.init({ duration: 2000 })
+  }, [])
+
   return (
     <>
       {myrecentviewDisplay.map((itemrecentviews, index) => {
         console.log('itemrecentviews:', itemrecentviews)
         console.log('itemrecentviews.photo:', itemrecentviews.photo)
         return (
-          <div className="mt-3 mb-3 col-lg-4 col-xl-4  col-md-6 col-6">
+          <div
+            data-aos="zoom-in"
+            className="mt-3 mb-3 col-lg-4 col-xl-4  col-md-6 col-6"
+          >
             <div className="winnie-recent-content">
               <div
                 // onClick={() => {

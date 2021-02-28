@@ -358,10 +358,10 @@ function Changbiddetail() {
               <tr className="chang-bid-table-title">
                 <th></th>
                 <th></th>
-                <th>產品編號</th>
-                <th>出價時間</th>
-                <th>出價金額</th>
-                <th>目前金額</th>
+                <th style={{ color: '#615956' }}>產品編號</th>
+                <th style={{ color: '#615956' }}>出價時間</th>
+                <th style={{ color: '#615956' }}>出價金額</th>
+                <th style={{ color: '#615956' }}>目前金額</th>
               </tr>
             </thead>
             <tbody className="chang-bid-table">

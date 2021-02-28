@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
-import Star from '../components/snailcomponents/StarRatingDemo'
 
 import Table from 'react-bootstrap/Table'
 import MyNavbar from '../components/MyNavbar'
