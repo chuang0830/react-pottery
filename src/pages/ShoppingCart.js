@@ -11,23 +11,31 @@ import ProductTableNing from './../components/ningcomponents/ProductTableNing'
 import CourseTableNing from './../components/ningcomponents/CourseTableNing'
 import ChienFooter from './../components/ChienFooter'
 import ChienPolicycard from './../components/ChienPolicycard'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
+
 
 function ShoppingCart(props) {
+  useEffect(() => {
+    Aos.init({ duration: 1500 })
+  }, [])
   return (
     <>
       <div className="container">
         <LogoNing />
         <div className="row">
-          <div className="container mt-5">
+          <div className="container mt-5" data-aos="fade-up">
             {/* 商品購物車 */}
             <ProductTableNing />
           </div>
         </div>
         {/* 課程購物車 */}
-        <CourseTableNing />
+        <CourseTableNing data-aos="fade-up" />
         <div className="row d-flex justify-content-end mb-7">
           <Link to="/CheckOutP1">
-            <button className="ninginfo-btn">前往結帳</button>
+            <button className="ninginfo-btn" data-aos="fade-up">
+              前往結帳
+            </button>
           </Link>
         </div>
 
