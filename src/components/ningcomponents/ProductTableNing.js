@@ -3,6 +3,10 @@ import { RiDeleteBinFill } from 'react-icons/ri'
 import { Container, ListGroup, Button } from 'react-bootstrap'
 import { Accordion, Card, useAccordionToggle } from 'react-bootstrap'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+
+//套件
+import Swal from 'sweetalert2'
+
 // 購物車移除效果
 
 function CustomToggle({ children, eventKey }) {
@@ -108,7 +112,9 @@ function ProductTableNing(props) {
                   <th scope="col">
                     <RiDeleteBinFill
                       style={style}
-                      onClick={() => removeCartALL()}
+                      onClick={() => {
+                        removeCartALL()
+                      }}
                     />
                   </th>
                 </tr>
@@ -163,6 +169,7 @@ function ProductTableNing(props) {
                                   className="removecartning"
                                   onClick={() => {
                                     removeCart(item)
+                                    Swal.fire('', '已從購物車刪除')
                                   }}
                                 >
                                   <svg

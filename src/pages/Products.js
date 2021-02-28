@@ -57,7 +57,6 @@ function Products(props) {
   }
 
   //設定頁碼
-
   let items = []
   for (let number = 1; number <= totalpage; number++) {
     items.push(
@@ -90,7 +89,7 @@ function Products(props) {
     Aos.init({ duration: 2000 })
   }, [])
 
-  //測試
+  //spinner
   useEffect(() => {
     //spinner測試
     console.log('spinner on')
@@ -217,6 +216,22 @@ function Products(props) {
   }, [])
   useEffect(() => {}, [heart])
   console.log(heart)
+
+  // 加入購物車-----------------------------------------------------------------
+  const [mycart, setMycart] = useState([])
+  const updateCartToLocalStorage = (item) => {
+    const currentCart = JSON.parse(localStorage.getItem('utsuwacart')) || []
+    const index = currentCart.findIndex((v) => v.sid === item.sid)
+    if (index > -1) {
+      return
+    } else {
+      currentCart.push(item)
+    }
+    localStorage.setItem('utsuwacart', JSON.stringify(currentCart))
+    setMycart(currentCart)
+  }
+  //-----------------------------------------------------------------------------
+
   if (isLoading) return spinner
 
   return (
@@ -509,7 +524,13 @@ function Products(props) {
                         )}
 
                         <FaShoppingCart
-                          onClick={() => {}}
+                          onClick={() => {
+                            updateCartToLocalStorage({
+                              ...value,
+                              amount: 1,
+                            })
+                            Swal.fire('', '已加入至購物車')
+                          }}
                           className="winnie-cart"
                         />
                       </div>
