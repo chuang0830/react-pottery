@@ -133,9 +133,9 @@ function App() {
               <Changbidindex />
             </Route>
           </Switch>
+          <FixedCart />
         </ScrollToTop>
       </>
-      <FixedCart />
     </Router>
   )
 }
