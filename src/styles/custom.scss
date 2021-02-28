@@ -1531,6 +1531,18 @@ chienfooter .chien-social-icon {
   background: $primary;
 }
 
+//覆蓋sweet alert
+.swal2-styled.swal2-confirm {
+  background-color: $success !important;
+}
+.swal2-content {
+  padding: 1.6em !important;
+}
+.swal2-popup {
+  width: 20em !important;
+  background-color: hsla(195, 100%, 99%, 0.9) !important;
+}
+
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';

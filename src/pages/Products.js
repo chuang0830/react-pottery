@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
+//套件
 import Carousel from 'react-bootstrap/Carousel'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import Swal from 'sweetalert2'
 //icon
 import { FaRegHeart, FaHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
@@ -463,7 +465,7 @@ function Products(props) {
               let p = JSON.parse(value.photo)[0]
               p = 'http://localhost:3008/winnie-images/' + p
               return (
-                <div className="col-lg-4 col-md-6">
+                <div data-aos="zoom-in" className="col-lg-4 col-md-6">
                   <div className="winnie-card-content">
                     <div key={value.sid} className="winnie-card-img">
                       <Link to={`/products/${value.sid}`}>
@@ -489,6 +491,7 @@ function Products(props) {
                               )
                               setHeart(newHeart)
                               removeAddHeart(value)
+                              Swal.fire('', '已從收藏清單中移除')
                             }}
                             className="far fa-heart mr-2"
                           />
@@ -499,6 +502,7 @@ function Products(props) {
                               const newHeart = [...heart, value.sid]
                               setHeart(newHeart)
                               updateCartToAddHeartLocalStorage(value)
+                              Swal.fire('', '已加入至收藏清單')
                             }}
                             className="far fa-heart mr-2"
                           />
