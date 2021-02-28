@@ -1,23 +1,31 @@
-.EX-container{
-  position:relative;
-  z-index:-1;
+.EX-container {
+  position: relative;
+  z-index: -1;
 }
 .snail-banner {
   // height: 605px;
-  background: url("http://localhost:3008/snail-imgs/course-banner1.jpg") center center no-repeat;
+  background: url('http://localhost:3008/snail-imgs/course-banner1.jpg') center
+    center no-repeat;
   background-size: cover; //background-attachment: fixed;
   padding-top: 605px;
   // background-color: red;
 }
 
-.experience-list{
+.experience-list {
   padding: 5px;
   //高度寫死就不影響其他div
   // height: 100px;
-  .experience-list-item{
+  .experience-list-item {
     border-bottom: 1px solid $info;
-    padding: 35px;
+    padding: 20px;
   }
+}
+.snail-list-text {
+  // margin-bottom: 100px;
+  color: #615956;
+  font-size: $font-size-base * 0.875; //14px;
+  /* letter-spacing: 100px; */
+  line-height: 33px;
 }
 
 // 體驗課程標題文字
@@ -32,7 +40,7 @@
       padding-bottom: 20px;
       border-bottom: 1px solid gray;
       margin-top: 20px;
-      label{
+      label {
         margin-left: 20px;
       }
     }
@@ -68,11 +76,10 @@
   color: #615956;
   margin: 44px 0;
   font-size: 20px;
-  
 }
 
 //課程日期文字
-.snail-radioitem-text{
+.snail-radioitem-text {
   margin-bottom: 20px;
   color: #615956;
   font-size: $font-size-base * 0.875; //14px;
@@ -82,8 +89,8 @@
 }
 
 //內容圖片
-.ex-img{
-  margin: 25px 0 ;
+.ex-img {
+  margin: 25px 0;
 }
 
 .avatar-photo {
@@ -117,7 +124,7 @@
   line-height: 33px;
   border-bottom: 1px solid #dbd7d6;
 }
-.snail-inputmessage-text{
+.snail-inputmessage-text {
   margin-bottom: 20px;
   color: #615956;
   font-size: $font-size-base * 0.875; //14px;
@@ -127,7 +134,7 @@
 // 學員作品照片
 .portfolio-box {
   height: 20vh;
-    background-color: rgb(204, 89, 166);
+  background-color: rgb(204, 89, 166);
   //   border: 1px solid;
   margin: 10px;
   display: flex;
@@ -135,7 +142,6 @@
   img {
     object-fit: cover;
     width: 100%;
-    
   }
 }
 
@@ -155,20 +161,19 @@
   margin: 30px;
 }
 
-.radiobox{
+.radiobox {
   height: 50px;
   background-color: $warning;
   padding-left: 20px;
   //高度與行高相同則上下置中
-  line-height:50px;
+  line-height: 50px;
   //左右置中
   // text-align:center;
   margin: 10px 0 0 50px;
-  label{
+  label {
     padding-left: 20px;
   }
 }
-
 
 //購物車
 .snail-cart-btn {
@@ -195,4 +200,22 @@
   background-position: center bottom;
   background-size: cover;
   background-attachment: fixed;
+}
+//星星
+.star {
+  display: inline-block;  
+  cursor: pointer;
+}
+
+.inactive, .active {
+  background: transparent;
+  user-select: none;
+}
+
+.inactive {
+  color: #f1f1e8;
+}
+
+.active {
+  color: red;
 }

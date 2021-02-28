@@ -191,14 +191,15 @@ function CheckOutP3(props) {
                 className="tick active"
               />
             </svg>
-            <div className="d-flex justify-content-center mt-3">
+            <div className="d-flex justify-content-center mt-3 flex-column text-center">
+              <span className="svg-title">感謝您的購買</span>
               <Link
                 to="/"
                 onClick={() => {
                   removeLocalStorge()
                 }}
               >
-                <span className="svg-title">感謝您的購買</span>
+                <span className="svg-title">繼續購買</span>
               </Link>
             </div>
           </div>
@@ -211,7 +212,7 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>訂單編號</span>
-                <span>1</span>
+                <span>{myforms.orderNum}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>訂單日期</span>
@@ -291,7 +292,7 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>付款方式</span>
-                <span>信用卡(線上刷卡)</span>
+                <span>{myform.selectpay}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>付款狀態</span>

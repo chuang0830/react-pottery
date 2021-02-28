@@ -499,6 +499,9 @@ text {
     color: $success;
     border-bottom: 2px solid $info;
   }
+  .page-item > a {
+    text-decoration: none;
+  }
 }
 
 //winnieproductcard
@@ -862,6 +865,49 @@ chienfooter .chien-social-icon {
   border-radius: 20px;
   background-color: $primary;
   position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.creditcardning {
+  @include creditcard;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  .creditcardning-yellow {
+    position: absolute;
+    background-color: $info;
+    height: 30px;
+    width: 50px;
+    top: 20px;
+    left: 25px;
+    border-radius: 10px;
+  }
+  .creditcardning-gray-title {
+    position: absolute;
+    margin-left: 30px;
+    margin-top: -2px;
+    height: 30px;
+    color: $success;
+    top: 30px;
+    border-bottom: 1px solid $white;
+  }
+  .creditcardning-gray-name {
+    position: absolute;
+    margin-left: 30px;
+    margin-top: -2px;
+    height: 30px;
+    color: $success;
+    top: 105px;
+    border-bottom: 1px solid $white;
+  }
+  .creditcardning-gray-date {
+    position: absolute;
+    margin-left: 50px;
+    margin-top: -2px;
+    height: 30px;
+    color: $success;
+    top: 105px;
+    left: 110px;
+    border-bottom: 1px solid $white;
+  }
 }
 .creditcardbackning {
   @include creditcard;
@@ -900,46 +946,6 @@ chienfooter .chien-social-icon {
     top: 105px;
     left: 20px;
     border-radius: 10px;
-  }
-}
-.creditcardning {
-  @include creditcard;
-  .creditcardning-yellow {
-    position: absolute;
-    background-color: $info;
-    height: 30px;
-    width: 50px;
-    top: 20px;
-    left: 25px;
-    border-radius: 10px;
-  }
-  .creditcardning-gray-title {
-    position: absolute;
-    margin-left: 30px;
-    margin-top: -2px;
-    height: 30px;
-    color: $success;
-    top: 30px;
-    border-bottom: 1px solid $white;
-  }
-  .creditcardning-gray-name {
-    position: absolute;
-    margin-left: 30px;
-    margin-top: -2px;
-    height: 30px;
-    color: $success;
-    top: 105px;
-    border-bottom: 1px solid $white;
-  }
-  .creditcardning-gray-date {
-    position: absolute;
-    margin-left: 50px;
-    margin-top: -2px;
-    height: 30px;
-    color: $success;
-    top: 105px;
-    left: 110px;
-    border-bottom: 1px solid $white;
   }
 }
 //snailbtnline
@@ -1542,13 +1548,14 @@ chienfooter .chien-social-icon {
   background: $primary;
 }
 
+
+
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';
 @import './cindycoupon.scss';
 @import './cindyfav.scss';
 @import './cindyorderlist.scss';
-
 @import './winnieproduct.scss';
 @import './winnieproductcustomize.scss';
 @import './winnieproductdetail.scss';
