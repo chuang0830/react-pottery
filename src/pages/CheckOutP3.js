@@ -93,8 +93,7 @@ function CheckOutP3(props) {
       <div className="container">
         <LogoNing />
         {/* 訂單進度程序 */}
-        <div className="row d-flex justify-content-center"
-        data-aos="fade-down">
+        <div className="row d-flex justify-content-center" data-aos="fade-down">
           <div className="col-lg-6 d-flex flex-row justify-content-center process">
             <div className="d-flex justify-content-between">
               <div className="processball-none">
