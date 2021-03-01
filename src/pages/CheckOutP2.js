@@ -159,6 +159,8 @@ function CheckOutP2(props) {
     setName(data.name)
     setMobile(data.mobile)
     setEmail(data.email)
+    localStorage.setItem('member-name', data.name)
+    localStorage.setItem('member-mobile', data.mobile)
     localStorage.setItem('member-email', data.email)
   }
   useEffect(() => {
@@ -231,7 +233,7 @@ function CheckOutP2(props) {
                 </div>
                 <div className="d-flex justify-content-between">
                   <span>折扣</span>
-                  <span>{myform.discount}</span>
+                  <span>-{myform.discount}</span>
                 </div>
                 <div className="d-flex justify-content-between">
                   <span>運費</span>
@@ -294,14 +296,6 @@ function CheckOutP2(props) {
                   name="moblie"
                   value={mobile}
                   minlength="1"
-                  onChange={(e) => {
-                    const orderTel = e.target.value
-                    setOrderTel(orderTel)
-                    updateFormToLocalStorage({
-                      ...FormDataNing,
-                      orderTel,
-                    })
-                  }}
                 />
               </div>
               <div className="form-group">
@@ -315,14 +309,13 @@ function CheckOutP2(props) {
                   name="email"
                   value={email}
                   minlength="1"
-                  onChange={(e) => {
-                    const orderEmail = e.target.value
-                    setOrderEmail(orderEmail)
-                    updateFormToLocalStorage({
-                      ...FormDataNing,
-                      orderEmail,
-                    })
-                  }}
+                  // onChange={(e) => {
+
+                  //   updateFormToLocalStorage({
+                  //     ...FormDataNing,
+                  //     orderEmail,
+                  //   })
+                  // }}
                 />
               </div>
             </form>
@@ -535,7 +528,6 @@ function CheckOutP2(props) {
                       minlength="1"
                       maxlength="16"
                       onChange={(e) => {
-                        const orderName = e.target.value
                         // ordertime
                         const orderyear = new Date().getFullYear()
                         const orderdate = new Date().getDate()
@@ -552,12 +544,11 @@ function CheckOutP2(props) {
                           '0' +
                           orderdate +
                           (orderminutes + ordersec)
-                        setOrderName(orderName)
+
                         setOrderDay(orderDay)
                         setOrderNum(orderNum)
                         updateFormToLocalStorage({
                           ...FormDataNing,
-                          orderName,
                           orderDay,
                           orderNum,
                         })
@@ -567,6 +558,21 @@ function CheckOutP2(props) {
                           ...FormDataNing,
                           ordercreditcard,
                         })
+                        const orderName = localStorage.getItem(
+                          'member-name',
+                          name
+                        )
+                        setOrderName(orderName)
+                        const orderTel = localStorage.getItem(
+                          'member-mobile',
+                          mobile
+                        )
+                        setOrderTel(orderTel)
+                        const orderEmail = localStorage.getItem(
+                          'member-email',
+                          email
+                        )
+                        setOrderEmail(orderEmail)
                       }}
                     />
                   </div>
