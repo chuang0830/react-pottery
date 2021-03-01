@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import Table from 'react-bootstrap/Table'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 import {
   faTruck,
   faUser,
@@ -14,6 +15,7 @@ import LogoNing from '../components/ningcomponents/LogoNing'
 import CheckPost from '../components/ningcomponents/CheckPost'
 import ChienFooter from './../components/ChienFooter'
 import ChienPolicycard from './../components/ChienPolicycard'
+
 function CheckOutP2(props) {
   // icon-style
   const iconstyletruck = {
@@ -131,13 +133,44 @@ function CheckOutP2(props) {
     localStorage.setItem('utsuwaformdataning', JSON.stringify(item))
     // setMycart(currentCart)
   }
+  //訂購人資訊
+  const [name, setName] = useState('')
+  const [mobile, setMobile] = useState('')
+  const [email, setEmail] = useState('')
+  async function getUserFromServer() {
+    const sid = localStorage.getItem('member-sid')
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/members/edit/' + sid
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      //拿資料
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log(data)
+    // 設定資料
+
+    setName(data.name)
+    setMobile(data.mobile)
+    setEmail(data.email)
+    localStorage.setItem('member-email', data.email)
+  }
+  useEffect(() => {
+    getUserFromServer()
+  }, [])
 
   return (
     <>
       <div className="container">
         <LogoNing />
         {/* 訂單進度程序 */}
-        <div className="row d-flex justify-content-center">
+        <div className="row d-flex justify-content-center" data-aos="fade-down">
           <div className="col-lg-6 d-flex flex-row justify-content-center process">
             <div className="d-flex justify-content-between">
               <div className="processball-none">
@@ -159,7 +192,7 @@ function CheckOutP2(props) {
             </div>
           </div>
         </div>
-        <div className="container mt-5">
+        <div className="container mt-5" data-aos="fade-up">
           <div className="row">
             <div className="cindy-table col-12 col-lg-8 border-bottom-0">
               <div className="tablestyle-title text-center">
@@ -241,32 +274,13 @@ function CheckOutP2(props) {
                 <input
                   type="text"
                   className="form-control"
-                  id=""
-                  name=""
-                  placeholder="王小明"
+                  id="name"
+                  name="name"
                   minlength="1"
-                  onChange={(e) => {
-                    const orderName = e.target.value
-                    // ordertime
-                    const orderyear = new Date().getFullYear()
-                    const orderdate = new Date().getDate()
-                    const ordermonth = new Date().getMonth() + 1
-                    const orderDay =
-                      orderyear + '/' + ordermonth + '/' + orderdate
-                    // orderNum
-                    const ordermonths = new Date().getMinutes()
-                    const ordersec = new Date().getSeconds()
-                    const orderNum = ordermonths + ordersec
-                    setOrderName(orderName)
-                    setOrderDay(orderDay)
-                    setOrderNum(orderNum)
-                    updateFormToLocalStorage({
-                      ...FormDataNing,
-                      orderName,
-                      orderDay,
-                      orderNum,
-                    })
-                  }}
+                  value={name}
+                  // onChange={(e) => {
+
+                  // }}
                 />
               </div>
               <div className="form-group">
@@ -276,9 +290,10 @@ function CheckOutP2(props) {
                 <input
                   type="tel"
                   className="form-control"
-                  id=""
+                  id="moblie"
+                  name="moblie"
+                  value={mobile}
                   minlength="1"
-                  placeholder="09123456789"
                   onChange={(e) => {
                     const orderTel = e.target.value
                     setOrderTel(orderTel)
@@ -296,9 +311,10 @@ function CheckOutP2(props) {
                 <input
                   type="email"
                   className="form-control"
-                  id=""
+                  id="email"
+                  name="email"
+                  value={email}
                   minlength="1"
-                  placeholder="name@example.com"
                   onChange={(e) => {
                     const orderEmail = e.target.value
                     setOrderEmail(orderEmail)
@@ -315,6 +331,7 @@ function CheckOutP2(props) {
             <form className="mt-5">
               <div className="form-title">
                 <span className="form-title-content">收件人資訊</span>
+                <input type="checkbox" />
               </div>
               <div className="form-group">
                 <label htmlFor="" className="form-text">
@@ -518,6 +535,32 @@ function CheckOutP2(props) {
                       minlength="1"
                       maxlength="16"
                       onChange={(e) => {
+                        const orderName = e.target.value
+                        // ordertime
+                        const orderyear = new Date().getFullYear()
+                        const orderdate = new Date().getDate()
+                        const ordermonth = new Date().getMonth() + 1
+                        const orderDay =
+                          orderyear + '/' + ordermonth + '/' + orderdate
+                        // orderNum
+                        const orderminutes = new Date().getMinutes()
+                        const ordersec = new Date().getSeconds()
+                        const orderNum =
+                          orderyear +
+                          '0' +
+                          ordermonth +
+                          '0' +
+                          orderdate +
+                          (orderminutes + ordersec)
+                        setOrderName(orderName)
+                        setOrderDay(orderDay)
+                        setOrderNum(orderNum)
+                        updateFormToLocalStorage({
+                          ...FormDataNing,
+                          orderName,
+                          orderDay,
+                          orderNum,
+                        })
                         const ordercreditcard = e.target.value
                         setOrderCreditcard(ordercreditcard)
                         updateFormToLocalStorage({

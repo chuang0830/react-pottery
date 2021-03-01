@@ -35,7 +35,8 @@ function CheckPost(props) {
 
   const shippingStatus = '準備中'
   const member_sid = localStorage.getItem('member-sid')
-
+  const member_email = localStorage.getItem('member-email')
+  console.log('email', member_email)
   async function addOrders() {
     const obj = {
       ordercart,
@@ -84,6 +85,22 @@ function CheckPost(props) {
     const data = await response.json()
     console.log('伺服器回傳的json資料', data)
   }
+  async function email() {
+    const newData = { member_email }
+    const url = 'http://localhost:3000/orders/email'
+    const request = new Request(url, {
+      method: 'POST',
+      body: JSON.stringify(newData),
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    console.log(JSON.stringify(newData))
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('伺服器回傳的json資料', data)
+  }
   return (
     <>
       <div className="row d-flex justify-content-end mb-7 mt-5 mr-1">
@@ -92,6 +109,7 @@ function CheckPost(props) {
             className="ninginfo-btn"
             onClick={() => {
               addOrders()
+              email()
             }}
           >
             提交訂單
