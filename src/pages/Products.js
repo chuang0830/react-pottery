@@ -480,7 +480,7 @@ function Products(props) {
               let p = JSON.parse(value.photo)[0]
               p = 'http://localhost:3008/winnie-images/' + p
               return (
-                <div data-aos="zoom-in" className="col-lg-4 col-md-6">
+                <div className="col-lg-4 col-md-6">
                   <div className="winnie-card-content">
                     <div key={value.sid} className="winnie-card-img">
                       <Link to={`/products/${value.sid}`}>

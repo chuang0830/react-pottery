@@ -83,7 +83,7 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 9988 !important;
-  mix-blend-mode: color-dodge;
+  mix-blend-mode: luminosity;
   transition: all 150ms ease;
   transition-property: opacity, background-color, transform, mix-blend-mode;
 }
