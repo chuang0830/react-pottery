@@ -138,8 +138,7 @@ function CheckOutP2(props) {
   const [mobile, setMobile] = useState('')
   const [email, setEmail] = useState('')
   async function getUserFromServer() {
-    //const sid = localStorage.getItem('member-sid')
-    const sid = 1
+    const sid = localStorage.getItem('member-sid')
     // 連接的伺服器資料網址
     const url = 'http://localhost:3000/members/edit/' + sid
 
@@ -160,6 +159,7 @@ function CheckOutP2(props) {
     setName(data.name)
     setMobile(data.mobile)
     setEmail(data.email)
+    localStorage.setItem('member-email', data.email)
   }
   useEffect(() => {
     getUserFromServer()
