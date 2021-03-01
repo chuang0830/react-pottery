@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Swal from 'sweetalert2'
 
 import Table from 'react-bootstrap/Table'
@@ -110,6 +110,20 @@ function Experience(props) {
   const [star, setStar] = useState(0)
   const [message, setMessage] = useState('')
   const [message_created_time, setMessage_created_time] = useState(0)
+  const [profileImg, setProfileImg] = useState('')
+  const inputFile = useRef(null)
+  const onButtonClick = () => {
+    inputFile.current.click()
+  }
+  function fileChange(e) {
+    const reader = new FileReader()
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setProfileImg(reader.result)
+      }
+    }
+    reader.readAsDataURL(e.target.files[0])
+  }
 
   console.log('messege', message)
   // const [bid_refresh, setBid_refresh] = useState('')
@@ -120,33 +134,31 @@ function Experience(props) {
   useEffect(() => {
     Aos.init({ duration: 2000 })
   }, [])
+
   async function addUserToSever() {
     // 開啟載入指示
     // setDataLoading(true)
 
-    const newData = {
-      //message_sid,
-      sid, //會員sid
-      category_id,
-      message,
-      star,
-      message_created_time,
-    }
+    // const newData = {
+    //   //message_sid,
+    //   sid, //會員sid
+    //   category_id,
+    //   message,
+    //   star,
+    //   message_created_time,
 
+    // }
+    const formData = new FormData(document.formmessage)
     // 連接的伺服器資料網址
     const url = 'http://localhost:3000/course/add1'
 
     // 注意資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'POST',
-      body: JSON.stringify(newData),
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
+      body: formData,
     })
 
-    console.log(JSON.stringify('newdata', newData))
+    // console.log(JSON.stringify('newdata', newData))
 
     const response = await fetch(request)
     const data = await response.json()
@@ -192,6 +204,7 @@ function Experience(props) {
   useEffect(() => {
     getCourse1FromServer1()
   }, [radiob])
+
   useEffect(() => {
     getMessageFromServer()
   }, [])
@@ -590,7 +603,7 @@ function Experience(props) {
           <div className="course-title-sm">課程評價</div>
           <div className="row">
             {/* 留言板 */}
-            <div className="col-lg-12">
+            <div className="col-lg-10">
               {/* 留言1 */}
               {message1.length &&
                 message1.map((value, index) => {
@@ -598,6 +611,8 @@ function Experience(props) {
                   //多筆圖片let p = JSON.parse(value.photo)[0]
                   let p1 = value.avatar
                   p1 = 'http://localhost:3000/imgs/' + p1
+                  let p2 = value.message_photo
+                  p2 = 'http://localhost:3000/imgs/' + p2
                   return (
                     <div className="message-card border-buttom">
                       <div className="avatar-photo">
@@ -619,6 +634,10 @@ function Experience(props) {
                       </div>
                       <div className="message-card-content">
                         <p className="snail-message-text">{value.message}</p>
+
+                        <div className="message-pic-content">
+                          <img className="message-pic-photo" src={p2} alt="" />
+                        </div>
                       </div>
                     </div>
                   )
@@ -673,57 +692,152 @@ function Experience(props) {
           <div className="course-title-sm">
             留言評價
             <div className="my-message-card">
-              <div className="course-title-t">DIY體驗</div>
-              <div className="row">
-                <div className="col-12">
-                  {' '}
-                  <div>
-                    <StarRating
-                      count={5}
-                      size={20}
-                      value={rating}
-                      activeColor={'#fcaa3e'}
-                      inactiveColor={'#ddd'}
-                      onChange={handleChange}
-                      style={{ lineHeight: '20', textAlign: 'center' }}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label
-                      htmlFor="exampleFormControlTextarea1 "
-                      className="snail-inputmessage-text"
-                      for="messagetext"
-                    >
-                      留言
-                    </label>
+              <form
+                action=""
+                autoComplete="off"
+                className="cindy-form"
+                name="formmessage"
+                onSubmit={(event) => {
+                  event.preventDefault()
+                  addUserToSever()
+                }}
+              >
+                <input
+                  className="form-control"
+                  type="text"
+                  name="sid"
+                  id="sid"
+                  value={sid}
+                  style={{ display: 'none' }}
+                />
+                <input
+                  className="form-control"
+                  type="text"
+                  name="category_id"
+                  id="category_id"
+                  value="11"
+                  style={{ display: 'none' }}
+                />
+                <input
+                  className="form-control"
+                  type="text"
+                  name="star"
+                  id="star"
+                  value={rating}
+                  style={{ display: 'none' }}
+                />
+                <div className="course-title-t">DIY體驗</div>
+                <div className="row">
+                  <div className="col-12">
+                    {' '}
+                    <div>
+                      <StarRating
+                        count={5}
+                        size={20}
+                        value={rating}
+                        activeColor={'#fcaa3e'}
+                        inactiveColor={'#ddd'}
+                        onChange={handleChange}
+                        style={{ lineHeight: '20', textAlign: 'center' }}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label
+                        htmlFor="exampleFormControlTextarea1 "
+                        className="snail-inputmessage-text"
+                        for="message"
+                      >
+                        留言
+                      </label>
+                      <input
+                        className="form-control"
+                        // id="exampleFormControlTextarea1"
+                        // rows={2}
+                        // defaultValue={''}
+                        type="text"
+                        name="message"
+                        id="message"
+                        value={message}
+                        onChange={(e) => {
+                          setMessage(e.target.value)
+                        }}
+                      />
+                    </div>
                     <input
-                      className="form-control"
-                      // id="exampleFormControlTextarea1"
-                      // rows={2}
-                      // defaultValue={''}
-                      type="text"
-                      name="messagetext"
-                      id="messagetext"
-                      value={message}
-                      onChange={(e) => {
-                        setMessage(e.target.value)
-                      }}
+                      type="file"
+                      name="message_photo"
+                      id="message_photo"
+                      accept="image/*"
+                      onChange={fileChange}
+                      ref={inputFile}
+                      style={{ display: 'none' }}
                     />
                   </div>
                 </div>
-              </div>
-              <button
-                class="cindy-btn"
-                onClick={() => {
-                  addUserToSever()
-                  //按下按鈕刷新頁面
-                  setTimeout(() => {
-                    load()
-                  }, 0)
-                }}
-              >
-                送出留言
-              </button>
+                <button
+                  type="submit"
+                  class="cindy-btn"
+                  onClick={() => {
+                    // addUserToSever()
+                    // 按下按鈕刷新頁面
+                    setTimeout(() => {
+                      load()
+                    }, 0)
+                  }}
+                >
+                  送出留言
+                </button>
+                {/* <button className="cindy-btn">送出圖片</button> */}
+                <div className="position-absolute cindy-camera">
+                  <button onClick={onButtonClick}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="35"
+                      height="35"
+                      viewBox="0 0 50 50"
+                    >
+                      <g
+                        id="Group_811"
+                        data-name="Group 811"
+                        transform="translate(-620 -614)"
+                      >
+                        <path
+                          id="Path_97"
+                          data-name="Path 97"
+                          d="M25,0A25,25,0,1,1,0,25,25,25,0,0,1,25,0Z"
+                          transform="translate(620 614)"
+                          fill="#fcaa3e"
+                        />
+                        <path
+                          id="Union_6"
+                          data-name="Union 6"
+                          d="M2993,1330v-17.25h8.537V1307h17.927v5.75H3028V1330Z"
+                          transform="translate(-2365 -679)"
+                          fill="#fff"
+                        />
+                        <circle
+                          id="Ellipse_38"
+                          data-name="Ellipse 38"
+                          cx="7.5"
+                          cy="7.5"
+                          r="7.5"
+                          transform="translate(638 634)"
+                          fill="#fcaa3e"
+                        />
+                        <circle
+                          id="Ellipse_39"
+                          data-name="Ellipse 39"
+                          cx="4.5"
+                          cy="4.5"
+                          r="4.5"
+                          transform="translate(641 637)"
+                          fill="#fff"
+                        />
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
