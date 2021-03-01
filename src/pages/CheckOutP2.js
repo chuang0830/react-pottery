@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import Table from 'react-bootstrap/Table'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 import {
   faTruck,
   faUser,
@@ -14,8 +15,7 @@ import LogoNing from '../components/ningcomponents/LogoNing'
 import CheckPost from '../components/ningcomponents/CheckPost'
 import ChienFooter from './../components/ChienFooter'
 import ChienPolicycard from './../components/ChienPolicycard'
-import Aos from 'aos'
-import 'aos/dist/aos.css'
+
 function CheckOutP2(props) {
   // icon-style
   const iconstyletruck = {
@@ -278,28 +278,9 @@ function CheckOutP2(props) {
                   name="name"
                   minlength="1"
                   value={name}
-                  onChange={(e) => {
-                    const orderName = e.target.value
-                    // ordertime
-                    const orderyear = new Date().getFullYear()
-                    const orderdate = new Date().getDate()
-                    const ordermonth = new Date().getMonth() + 1
-                    const orderDay =
-                      orderyear + '/' + ordermonth + '/' + orderdate
-                    // orderNum
-                    const ordermonths = new Date().getMinutes()
-                    const ordersec = new Date().getSeconds()
-                    const orderNum = ordermonths + ordersec
-                    setOrderName(orderName)
-                    setOrderDay(orderDay)
-                    setOrderNum(orderNum)
-                    updateFormToLocalStorage({
-                      ...FormDataNing,
-                      orderName,
-                      orderDay,
-                      orderNum,
-                    })
-                  }}
+                  // onChange={(e) => {
+
+                  // }}
                 />
               </div>
               <div className="form-group">
@@ -554,6 +535,32 @@ function CheckOutP2(props) {
                       minlength="1"
                       maxlength="16"
                       onChange={(e) => {
+                        const orderName = e.target.value
+                        // ordertime
+                        const orderyear = new Date().getFullYear()
+                        const orderdate = new Date().getDate()
+                        const ordermonth = new Date().getMonth() + 1
+                        const orderDay =
+                          orderyear + '/' + ordermonth + '/' + orderdate
+                        // orderNum
+                        const orderminutes = new Date().getMinutes()
+                        const ordersec = new Date().getSeconds()
+                        const orderNum =
+                          orderyear +
+                          '0' +
+                          ordermonth +
+                          '0' +
+                          orderdate +
+                          (orderminutes + ordersec)
+                        setOrderName(orderName)
+                        setOrderDay(orderDay)
+                        setOrderNum(orderNum)
+                        updateFormToLocalStorage({
+                          ...FormDataNing,
+                          orderName,
+                          orderDay,
+                          orderNum,
+                        })
                         const ordercreditcard = e.target.value
                         setOrderCreditcard(ordercreditcard)
                         updateFormToLocalStorage({
