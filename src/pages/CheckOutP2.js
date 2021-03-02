@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Aos from 'aos'
@@ -166,6 +166,34 @@ function CheckOutP2(props) {
     localStorage.setItem('utsuwaformdataning', JSON.stringify(item))
     // setMycart(currentCart)
   }
+  // 按鈕切換
+  const [Toggled, setToggled] = useState(false)
+  const toggleTrueFalse = () => setToggled(!Toggled)
+  const creditfont = (
+    <div className="creditcardning">
+      <div className="creditcardning-yellow" />
+      <div className="creditcardning-gray-title">{OrderCreditcard}</div>
+      <div className="creditcardning-gray-name">{OrderCreditcardName}</div>
+      <div className="creditcardning-gray-date">
+        {OrderCreditcardMonth}/{OrderCreditcardYear}
+      </div>
+    </div>
+  )
+  const creditback = (
+    <div className="creditcardbackning">
+      <div className="creditcardning-black" />
+      <div className="creditcardning-graybg">
+        <div className="creditcardning-gray" />
+        <div className="creditcardning-gray-title">{OrderCreditcardCheck}</div>
+      </div>
+      <div className="creditcardning-yellow" />
+    </div>
+  )
+
+  const ningcard = useRef(null)
+  const onButtonClick = () => {
+    ningcard.current.click()
+  }
 
   return (
     <>
@@ -233,7 +261,7 @@ function CheckOutP2(props) {
                 </div>
                 <div className="d-flex justify-content-between">
                   <span>折扣</span>
-                  <span>-{myform.discount}</span>
+                  <span>{myform.discount}</span>
                 </div>
                 <div className="d-flex justify-content-between">
                   <span>運費</span>
@@ -646,6 +674,9 @@ function CheckOutP2(props) {
                       minlength="1"
                       maxLength="3"
                       placeholder="xxx"
+                      onClick={() => {
+                        onButtonClick()
+                      }}
                       onChange={(e) => {
                         const ordercreditcardcheck = e.target.value
                         setOrderCreditcardCheck(ordercreditcardcheck)
@@ -658,29 +689,12 @@ function CheckOutP2(props) {
                   </div>
                 </form>
               </div>
-              <div className="col-lg-4 col-12 mt-5 creditcard">
-                <div className="creditcardning">
-                  <div className="creditcardning-yellow" />
-                  <div className="creditcardning-gray-title">
-                    {OrderCreditcard}
-                  </div>
-                  <div className="creditcardning-gray-name">
-                    {OrderCreditcardName}
-                  </div>
-                  <div className="creditcardning-gray-date">
-                    {OrderCreditcardMonth}/{OrderCreditcardYear}
-                  </div>
-                </div>
-                <div className="creditcardbackning">
-                  <div className="creditcardning-black" />
-                  <div className="creditcardning-graybg">
-                    <div className="creditcardning-gray" />
-                    <div className="creditcardning-gray-title">
-                      {OrderCreditcardCheck}
-                    </div>
-                  </div>
-                  <div className="creditcardning-yellow" />
-                </div>
+              <div
+                className="col-lg-4 col-12 mt-5"
+                onClick={toggleTrueFalse}
+                ref={ningcard}
+              >
+                {Toggled ? creditback : creditfont}
               </div>
             </div>
           </div>
