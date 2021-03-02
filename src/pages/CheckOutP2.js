@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Aos from 'aos'
@@ -189,6 +189,11 @@ function CheckOutP2(props) {
       <div className="creditcardning-yellow" />
     </div>
   )
+
+  const ningcard = useRef(null)
+  const onButtonClick = () => {
+    ningcard.current.click()
+  }
 
   return (
     <>
@@ -669,6 +674,9 @@ function CheckOutP2(props) {
                       minlength="1"
                       maxLength="3"
                       placeholder="xxx"
+                      onClick={() => {
+                        onButtonClick()
+                      }}
                       onChange={(e) => {
                         const ordercreditcardcheck = e.target.value
                         setOrderCreditcardCheck(ordercreditcardcheck)
@@ -681,8 +689,12 @@ function CheckOutP2(props) {
                   </div>
                 </form>
               </div>
-              <div className="col-lg-4 col-12 mt-5" onClick={toggleTrueFalse}>
-                {Toggled ? creditfont : creditback}
+              <div
+                className="col-lg-4 col-12 mt-5"
+                onClick={toggleTrueFalse}
+                ref={ningcard}
+              >
+                {Toggled ? creditback : creditfont}
               </div>
             </div>
           </div>
