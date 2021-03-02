@@ -12,8 +12,31 @@ import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import Countdown from 'react-countdown'
 import Swal from 'sweetalert2'
+
+async function sendemail() {
+  const email = localStorage.getItem('member-email')
+  const newData = { email }
+  const url = 'http://localhost:3000/address-book/email'
+  const request = new Request(url, {
+    method: 'POST',
+    body: JSON.stringify(newData),
+    headers: new Headers({
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    }),
+  })
+  console.log(JSON.stringify(newData))
+  const response = await fetch(request)
+  const data = await response.json()
+  console.log('伺服器回傳的json資料', data)
+  localStorage.removeItem('member-email')
+}
+
 function Changbiddetail() {
-  const Completionist = () => <span>已結標</span>
+  const Completionist = () => {
+    sendemail()
+    return <span>已結標</span>
+  }
   // 新增競標資料*******************************************
   const [dataLoading, setDataLoading] = useState(false)
   // 抓members丟出的sid(localstorage)
@@ -105,12 +128,12 @@ function Changbiddetail() {
 
   //cindy改這裡先測試email
   //一開始就會開始載入資料
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     getphotos2FromServer1()
-  //   }, 1000)
-  //   return () => clearInterval(interval)
-  // }, [])
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // getphotos2FromServer1()
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
   useEffect(() => {
     getphotos2FromServer1()
   }, [])
@@ -207,24 +230,7 @@ function Changbiddetail() {
 
   //alert
   //寄送郵件
-  async function sendemail() {
-    const email = localStorage.getItem('member-email')
-    const newData = { email }
-    const url = 'http://localhost:3000/address-book/email'
-    const request = new Request(url, {
-      method: 'POST',
-      body: JSON.stringify(newData),
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
-    })
-    console.log(JSON.stringify(newData))
-    const response = await fetch(request)
-    const data = await response.json()
-    console.log('伺服器回傳的json資料', data)
-    localStorage.removeItem('member-email')
-  }
+
   const [show, setShow] = useState(true)
 
   return (
@@ -304,7 +310,12 @@ function Changbiddetail() {
                 <p>已出價{changphotos.length && changphotos[0].bid_id}次</p>
               </div>
               <p>
-                <Countdown date={Date.now() + 100000}>
+                <Countdown
+                  date={new Date(2021, 2, 2, 17, 15, 10)}
+                  onComplete={() => {
+                    document.querySelector('.chang-cart-btn.bidbuy').click()
+                  }}
+                >
                   <Completionist />
                 </Countdown>
               </p>
@@ -324,21 +335,26 @@ function Changbiddetail() {
                         variant="success"
                         className="chang-cart-btn bidbuy"
                         onClick={() => {
-                          sendemail()
-                          Swal.fire({
-                            title: '您已得標',
-                            text:
-                              '拍賣物品結標後，系統將會自動寄出得標者通知信函，告訴您關於您的得標價格、數量以及物品的相關訊息。請務必與賣方確定付款與交貨的方式，以順利完成此筆交易！',
-
-                            confirmButtonText: `確認`,
-                          }).then((result) => {
-                            /* Read more about isConfirmed, isDenied below */
-                            // if (result.isConfirmed) {
-                            //   Swal.fire('Saved!', '', 'success')
-                            // } else if (result.isDenied) {
-                            //   Swal.fire('Changes are not saved', '', 'info')
-                            // }
-                          })
+                          // sendemail()
+                          // Swal.fire(
+                          //   {
+                          //     title: '您已得標',
+                          //     text:
+                          //       '拍賣物品結標後，系統將會自動寄出得標者通知信函，告訴您關於您的得標價格、數量以及物品的相關訊息。請務必與賣方確定付款與交貨的方式，以順利完成此筆交易！',
+                          //     confirmButtonText: `確認`,
+                          //   }
+                          //   // function (ans) {
+                          //   //   console.log('answer:-------------------', ans)
+                          //   // }
+                          // ).then(async (result) => {
+                          //   console.log('result:-------------------', result)
+                          //   /* Read more about isConfirmed, isDenied below */
+                          //   // if (result.isConfirmed) {
+                          //   //   Swal.fire('Saved!', '', 'success')
+                          //   // } else if (result.isDenied) {
+                          //   //   Swal.fire('Changes are not saved', '', 'info')
+                          //   // }
+                          // })
                         }}
                       >
                         直接購買
