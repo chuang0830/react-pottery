@@ -39,7 +39,7 @@ function CheckOutP1(props) {
     setMycart(JSON.parse(newCart))
   }
   function total() {
-    setTotal(sum(mycartDisplay) + Shipping - Discount)
+    setTotal(sum(mycartDisplay) + Shipping + Discount)
   }
   useEffect(() => {
     getCartFromLocalStorage()
@@ -388,7 +388,7 @@ function CheckOutP1(props) {
               <button
                 className="cindy-btn"
                 onClick={() => {
-                  setDiscount(Discount + 60)
+                  setDiscount(Discount - 60)
                 }}
               >
                 生日優惠卷
