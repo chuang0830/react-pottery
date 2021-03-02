@@ -11,6 +11,8 @@ import 'aos/dist/aos.css'
 
 function CheckOutP3(props) {
   localStorage.removeItem('member-email')
+  localStorage.removeItem('member-name')
+  localStorage.removeItem('member-mobile')
   console.log('delete')
   // 購物車 表單
   const [myform, setMyform] = useState([])
