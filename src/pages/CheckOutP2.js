@@ -166,6 +166,24 @@ function CheckOutP2(props) {
     localStorage.setItem('utsuwaformdataning', JSON.stringify(item))
     // setMycart(currentCart)
   }
+  const [rename, setRename] = useState('')
+  const [retel, setRetel] = useState('')
+  const [readdress, setReaddress] = useState('')
+  const [checked, setChecked] = useState(false)
+  function same() {
+    setChecked(!checked)
+    console.log(checked)
+    if (!checked) {
+      setRename(name)
+      setRetel(mobile)
+      setReaddress(email)
+    } else {
+      setRename('')
+      setRetel('')
+      setReaddress('')
+    }
+  }
+  useEffect(() => {}, [checked])
   // 按鈕切換
   const [Toggled, setToggled] = useState(false)
   const toggleTrueFalse = () => setToggled(!Toggled)
@@ -350,20 +368,31 @@ function CheckOutP2(props) {
           </div>
           <div className="col-lg-4 col-12">
             <form className="mt-5">
-              <div className="form-title">
+              <div className="form-title d-flex justify-content-between">
                 <span className="form-title-content">收件人資訊</span>
-                <input type="checkbox" />
+                <div className="">
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onClick={() => {
+                      same()
+                    }}
+                  />
+                  <span style={{ color: '#615956' }}>收件人同訂購人資訊</span>
+                </div>
               </div>
               <div className="form-group">
                 <label htmlFor="" className="form-text">
                   收件人姓名
                 </label>
                 <input
+                  name="rename"
                   type="text"
                   className="form-control"
-                  id=""
+                  id="rename"
                   placeholder="王小明"
                   minlength="1"
+                  value={rename}
                   onChange={(e) => {
                     const orderRecipient = e.target.value
                     setOrderRecipient(orderRecipient)
@@ -379,9 +408,11 @@ function CheckOutP2(props) {
                   電話
                 </label>
                 <input
+                  value={retel}
                   type="tel"
                   className="form-control"
-                  id=""
+                  id="retel"
+                  name="retel"
                   minlength="1"
                   placeholder="09123456789"
                   onChange={(e) => {
@@ -399,9 +430,11 @@ function CheckOutP2(props) {
                   收件人地址
                 </label>
                 <input
+                  value={readdress}
                   type="text"
                   className="form-control"
-                  id=""
+                  id="readdress"
+                  name="readdress"
                   minlength="1"
                   placeholder="台灣"
                   onChange={(e) => {
@@ -676,6 +709,9 @@ function CheckOutP2(props) {
                       placeholder="xxx"
                       onClick={() => {
                         onButtonClick()
+                        setTimeout(() => {
+                          onButtonClick()
+                        }, 1500)
                       }}
                       onChange={(e) => {
                         const ordercreditcardcheck = e.target.value
@@ -735,6 +771,7 @@ function CheckOutP2(props) {
                       onChange={(e) => {
                         const orderinvoice = e.target.value
                         setOrderInvoice(orderinvoice)
+                        onButtonClick()
                         updateFormToLocalStorage({
                           ...FormDataNing,
                           orderinvoice,
