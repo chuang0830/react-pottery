@@ -31,7 +31,7 @@ class ScrollToTop extends React.Component {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       //如果跳轉頁面則scrollTo(0, 0)
       window.scrollTo(0, 0)
-      console.log(1111111)
+      console.log('scrollToTOP測試')
     }
   }
 
