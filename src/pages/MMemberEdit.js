@@ -124,7 +124,12 @@ function MMemberEdit(props) {
         const response_cou = await fetch(request_cou)
         const data_coupon = await response_cou.json()
         console.log('伺服器回傳的json資料', data_coupon)
-        alert('生日快樂！快去領取生日優惠券吧！！！')
+        Swal.fire({
+          icon: 'success',
+          title: '生日快樂！快去領取生日優惠券吧！',
+          showConfirmButton: false,
+          timer: 2000,
+        })
       }
       Swal.fire({
         icon: 'success',

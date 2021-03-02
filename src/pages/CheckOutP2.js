@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Aos from 'aos'
@@ -25,6 +25,39 @@ function CheckOutP2(props) {
     marginLeft: '-1px',
     marginTop: '2px',
   }
+  //訂購人資訊
+  const [name, setName] = useState('')
+  const [mobile, setMobile] = useState('')
+  const [email, setEmail] = useState('')
+  const sid = localStorage.getItem('member-sid')
+  async function getUserFromServer() {
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:3000/members/edit/' + sid
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      //拿資料
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log(data)
+    // 設定資料
+
+    setName(data.name)
+    setMobile(data.mobile)
+    setEmail(data.email)
+    localStorage.setItem('member-name', data.name)
+    localStorage.setItem('member-mobile', data.mobile)
+    localStorage.setItem('member-email', data.email)
+  }
+  useEffect(() => {
+    getUserFromServer()
+  }, [])
   // 購物車 表單
   const [myform, setMyform] = useState([])
   const [mycart, setMycart] = useState([])
@@ -133,37 +166,34 @@ function CheckOutP2(props) {
     localStorage.setItem('utsuwaformdataning', JSON.stringify(item))
     // setMycart(currentCart)
   }
-  //訂購人資訊
-  const [name, setName] = useState('')
-  const [mobile, setMobile] = useState('')
-  const [email, setEmail] = useState('')
-  async function getUserFromServer() {
-    const sid = localStorage.getItem('member-sid')
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:3000/members/edit/' + sid
+  // 按鈕切換
+  const [Toggled, setToggled] = useState(false)
+  const toggleTrueFalse = () => setToggled(!Toggled)
+  const creditfont = (
+    <div className="creditcardning">
+      <div className="creditcardning-yellow" />
+      <div className="creditcardning-gray-title">{OrderCreditcard}</div>
+      <div className="creditcardning-gray-name">{OrderCreditcardName}</div>
+      <div className="creditcardning-gray-date">
+        {OrderCreditcardMonth}/{OrderCreditcardYear}
+      </div>
+    </div>
+  )
+  const creditback = (
+    <div className="creditcardbackning">
+      <div className="creditcardning-black" />
+      <div className="creditcardning-graybg">
+        <div className="creditcardning-gray" />
+        <div className="creditcardning-gray-title">{OrderCreditcardCheck}</div>
+      </div>
+      <div className="creditcardning-yellow" />
+    </div>
+  )
 
-    // 注意header資料格式要設定，伺服器才知道是json格式
-    const request = new Request(url, {
-      //拿資料
-      method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
-      }),
-    })
-    const response = await fetch(request)
-    const data = await response.json()
-    console.log(data)
-    // 設定資料
-
-    setName(data.name)
-    setMobile(data.mobile)
-    setEmail(data.email)
-    localStorage.setItem('member-email', data.email)
+  const ningcard = useRef(null)
+  const onButtonClick = () => {
+    ningcard.current.click()
   }
-  useEffect(() => {
-    getUserFromServer()
-  }, [])
 
   return (
     <>
@@ -294,14 +324,6 @@ function CheckOutP2(props) {
                   name="moblie"
                   value={mobile}
                   minlength="1"
-                  onChange={(e) => {
-                    const orderTel = e.target.value
-                    setOrderTel(orderTel)
-                    updateFormToLocalStorage({
-                      ...FormDataNing,
-                      orderTel,
-                    })
-                  }}
                 />
               </div>
               <div className="form-group">
@@ -315,14 +337,13 @@ function CheckOutP2(props) {
                   name="email"
                   value={email}
                   minlength="1"
-                  onChange={(e) => {
-                    const orderEmail = e.target.value
-                    setOrderEmail(orderEmail)
-                    updateFormToLocalStorage({
-                      ...FormDataNing,
-                      orderEmail,
-                    })
-                  }}
+                  // onChange={(e) => {
+
+                  //   updateFormToLocalStorage({
+                  //     ...FormDataNing,
+                  //     orderEmail,
+                  //   })
+                  // }}
                 />
               </div>
             </form>
@@ -535,7 +556,6 @@ function CheckOutP2(props) {
                       minlength="1"
                       maxlength="16"
                       onChange={(e) => {
-                        const orderName = e.target.value
                         // ordertime
                         const orderyear = new Date().getFullYear()
                         const orderdate = new Date().getDate()
@@ -552,12 +572,11 @@ function CheckOutP2(props) {
                           '0' +
                           orderdate +
                           (orderminutes + ordersec)
-                        setOrderName(orderName)
+
                         setOrderDay(orderDay)
                         setOrderNum(orderNum)
                         updateFormToLocalStorage({
                           ...FormDataNing,
-                          orderName,
                           orderDay,
                           orderNum,
                         })
@@ -567,6 +586,21 @@ function CheckOutP2(props) {
                           ...FormDataNing,
                           ordercreditcard,
                         })
+                        const orderName = localStorage.getItem(
+                          'member-name',
+                          name
+                        )
+                        setOrderName(orderName)
+                        const orderTel = localStorage.getItem(
+                          'member-mobile',
+                          mobile
+                        )
+                        setOrderTel(orderTel)
+                        const orderEmail = localStorage.getItem(
+                          'member-email',
+                          email
+                        )
+                        setOrderEmail(orderEmail)
                       }}
                     />
                   </div>
@@ -640,6 +674,12 @@ function CheckOutP2(props) {
                       minlength="1"
                       maxLength="3"
                       placeholder="xxx"
+                      onClick={() => {
+                        onButtonClick()
+                        setTimeout(() => {
+                          onButtonClick()
+                        }, 1500)
+                      }}
                       onChange={(e) => {
                         const ordercreditcardcheck = e.target.value
                         setOrderCreditcardCheck(ordercreditcardcheck)
@@ -652,29 +692,12 @@ function CheckOutP2(props) {
                   </div>
                 </form>
               </div>
-              <div className="col-lg-4 col-12 mt-5 creditcard">
-                <div className="creditcardning">
-                  <div className="creditcardning-yellow" />
-                  <div className="creditcardning-gray-title">
-                    {OrderCreditcard}
-                  </div>
-                  <div className="creditcardning-gray-name">
-                    {OrderCreditcardName}
-                  </div>
-                  <div className="creditcardning-gray-date">
-                    {OrderCreditcardMonth}/{OrderCreditcardYear}
-                  </div>
-                </div>
-                <div className="creditcardbackning">
-                  <div className="creditcardning-black" />
-                  <div className="creditcardning-graybg">
-                    <div className="creditcardning-gray" />
-                    <div className="creditcardning-gray-title">
-                      {OrderCreditcardCheck}
-                    </div>
-                  </div>
-                  <div className="creditcardning-yellow" />
-                </div>
+              <div
+                className="col-lg-4 col-12 mt-5"
+                onClick={toggleTrueFalse}
+                ref={ningcard}
+              >
+                {Toggled ? creditback : creditfont}
               </div>
             </div>
           </div>
@@ -715,6 +738,7 @@ function CheckOutP2(props) {
                       onChange={(e) => {
                         const orderinvoice = e.target.value
                         setOrderInvoice(orderinvoice)
+                        onButtonClick()
                         updateFormToLocalStorage({
                           ...FormDataNing,
                           orderinvoice,

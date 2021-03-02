@@ -63,7 +63,7 @@ function App() {
             </Route>
             {/* 嚴謹要放上面!!!!!!!!!!!!!!!!!! */}
             {/* 會員路由 */}
-            <Route exact path="/forgetpass">
+            <Route path="/forgetpass/:uuid">
               <ForgetPass />
             </Route>
             <Route path="/register">
