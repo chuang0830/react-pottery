@@ -301,10 +301,6 @@ function CheckOutP1(props) {
                   onChange={(e) => {
                     const selecttransform = e.target.value
                     setSeletedTransform(selecttransform)
-                    updateFormcheckp1ToLocalStorage({
-                      ...FormDataNing,
-                      selecttransform,
-                    })
                   }}
                 >
                   {/* const [seletedTransform, setSeletedTransform] = useState('') */}
@@ -341,10 +337,6 @@ function CheckOutP1(props) {
                   onChange={(e) => {
                     const selectpay = e.target.value
                     setSeletedPay(selectpay)
-                    updateFormcheckp1ToLocalStorage({
-                      ...FormDataNing,
-                      selectpay,
-                    })
                   }}
                 >
                   {/* const [seletedPay, setSeletedPay] = useState('') */}

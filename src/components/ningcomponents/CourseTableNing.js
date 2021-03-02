@@ -89,6 +89,7 @@ function CourseTableNing(props) {
               <thead>
                 <tr>
                   <th scope="col">課程名稱</th>
+                  <th scope="col">課程時間</th>
                   <th scope="col">金額</th>
                   <th scope="col">數量</th>
                   <th scope="col">
@@ -104,6 +105,7 @@ function CourseTableNing(props) {
                   return (
                     <tr>
                       <td> {itemcourse.product_name}</td>
+                      <td>{itemcourse.time}</td>
                       <td> {itemcourse.price}</td>
                       <td className="d-flex justify-content-center">
                         {/* 計數器 */}
