@@ -635,15 +635,38 @@ function Experience(props) {
                       <div className="message-card-content">
                         <p className="snail-message-text">{value.message}</p>
                         {message1.length &&
-                          message1[0].message_photo === !null && (
-                            <div className="message-pic-content">
-                              <img
-                                className="message-pic-photo"
-                                src={p2}
-                                alt=""
-                              />
-                            </div>
-                          )}
+                        message1[0].message_photo === null ? (
+                          <div></div>
+                        ) : (
+                          <div className="message-pic-content">
+                            <img
+                              className="message-pic-photo"
+                              src={p2}
+                              alt=""
+                            />
+                          </div>
+                        )}
+                        {message1.length &&
+                        message1[1].message_photo === null ? (
+                          <div></div>
+                        ) : (
+                          <div className="message-pic-content">
+                            <img
+                              className="message-pic-photo"
+                              src={p2}
+                              alt=""
+                            />
+                          </div>
+                        )}
+                        {/* {message1.length && message1[0].message_photo !== null && (
+                          <div className="message-pic-content">
+                            <img
+                              className="message-pic-photo"
+                              src={p2}
+                              alt=""
+                            />
+                          </div>
+                        )} */}
                       </div>
                     </div>
                   )
