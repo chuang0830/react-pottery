@@ -166,6 +166,29 @@ function CheckOutP2(props) {
     localStorage.setItem('utsuwaformdataning', JSON.stringify(item))
     // setMycart(currentCart)
   }
+  // 按鈕切換
+  const [Toggled, setToggled] = useState(false)
+  const toggleTrueFalse = () => setToggled(!Toggled)
+  const creditfont = (
+    <div className="creditcardning">
+      <div className="creditcardning-yellow" />
+      <div className="creditcardning-gray-title">{OrderCreditcard}</div>
+      <div className="creditcardning-gray-name">{OrderCreditcardName}</div>
+      <div className="creditcardning-gray-date">
+        {OrderCreditcardMonth}/{OrderCreditcardYear}
+      </div>
+    </div>
+  )
+  const creditback = (
+    <div className="creditcardbackning">
+      <div className="creditcardning-black" />
+      <div className="creditcardning-graybg">
+        <div className="creditcardning-gray" />
+        <div className="creditcardning-gray-title">{OrderCreditcardCheck}</div>
+      </div>
+      <div className="creditcardning-yellow" />
+    </div>
+  )
 
   return (
     <>
@@ -658,29 +681,8 @@ function CheckOutP2(props) {
                   </div>
                 </form>
               </div>
-              <div className="col-lg-4 col-12 mt-5 creditcard">
-                <div className="creditcardning">
-                  <div className="creditcardning-yellow" />
-                  <div className="creditcardning-gray-title">
-                    {OrderCreditcard}
-                  </div>
-                  <div className="creditcardning-gray-name">
-                    {OrderCreditcardName}
-                  </div>
-                  <div className="creditcardning-gray-date">
-                    {OrderCreditcardMonth}/{OrderCreditcardYear}
-                  </div>
-                </div>
-                <div className="creditcardbackning">
-                  <div className="creditcardning-black" />
-                  <div className="creditcardning-graybg">
-                    <div className="creditcardning-gray" />
-                    <div className="creditcardning-gray-title">
-                      {OrderCreditcardCheck}
-                    </div>
-                  </div>
-                  <div className="creditcardning-yellow" />
-                </div>
+              <div className="col-lg-4 col-12 mt-5" onClick={toggleTrueFalse}>
+                {Toggled ? creditfont : creditback}
               </div>
             </div>
           </div>

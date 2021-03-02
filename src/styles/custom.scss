@@ -865,7 +865,16 @@ chienfooter .chien-social-icon {
   }
 }
 //creditcard
-@mixin creditcard {
+// @mixin creditcard {
+//   letter-spacing: 3px;
+//   height: 150px;
+//   width: 250px;
+//   border-radius: 20px;
+//   background-color: $primary;
+//   position: relative;
+//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+// }
+.creditcardning {
   letter-spacing: 3px;
   height: 150px;
   width: 250px;
@@ -873,11 +882,9 @@ chienfooter .chien-social-icon {
   background-color: $primary;
   position: relative;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-.creditcardning {
-  @include creditcard;
   transition: transform 0.6s;
   transform-style: preserve-3d;
+  transform: rotateY(360deg);
   .creditcardning-yellow {
     position: absolute;
     background-color: $info;
@@ -893,7 +900,7 @@ chienfooter .chien-social-icon {
     margin-top: -2px;
     height: 30px;
     color: $success;
-    top: 30px;
+    top: 60px;
     border-bottom: 1px solid $white;
   }
   .creditcardning-gray-name {
@@ -917,7 +924,16 @@ chienfooter .chien-social-icon {
   }
 }
 .creditcardbackning {
-  @include creditcard;
+  letter-spacing: 3px;
+  height: 150px;
+  width: 250px;
+  border-radius: 20px;
+  background-color: $primary;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
   .creditcardning-black {
     position: absolute;
     top: 20px;
@@ -927,7 +943,7 @@ chienfooter .chien-social-icon {
   }
   .creditcardning-graybg {
     position: absolute;
-    top: 35px;
+    top: 60px;
     left: 20px;
     display: flex;
     justify-content: center;
