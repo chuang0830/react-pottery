@@ -939,7 +939,7 @@ chienfooter .chien-social-icon {
     justify-content: center;
     transform: rotateY(180deg);
     .creditcardning-gray {
-    position: absolute;
+      position: absolute;
       right: 58px;
       background-color: $warning;
       width: 160px;
@@ -1445,17 +1445,17 @@ chienfooter .chien-social-icon {
   }
 }
 // 修正商品table跑版
-.ning-td-pic{
+.ning-td-pic {
   width: 135px;
 }
-.ning-td-price{
+.ning-td-price {
   width: 80px;
   margin-left: 30px;
 }
-.ning-td-amount{
+.ning-td-amount {
   width: 220px;
 }
-.ning-td-remove{
+.ning-td-remove {
   width: 40px;
 }
 // forget-pass modal style
@@ -1609,6 +1609,15 @@ chienfooter .chien-social-icon {
 .swal2-popup {
   width: 20em !important;
   //background-color: hsla(195, 100%, 99%, 0.9) !important;
+}
+
+//麵包屑的a連結底線
+.breadcrumb {
+  .breadcrumb-item {
+    a {
+      text-decoration: none;
+    }
+  }
 }
 
 @import './cindyregister.scss';

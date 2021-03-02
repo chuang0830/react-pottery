@@ -46,7 +46,7 @@ function PlayPage(props) {
               <Link to="/CourseCategory">課程類別</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              DIY體驗課程
+              線上課程
             </li>
           </ol>
         </nav>
@@ -82,7 +82,7 @@ function PlayPage(props) {
                   id="containerElement"
                   style={{
                     position: 'relative',
-                    height: '268px',
+                    height: '309px',
                     overflow: 'scroll',
                     marginBottom: '100px',
                     overflowX: 'hidden',

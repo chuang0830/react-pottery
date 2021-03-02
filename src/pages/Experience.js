@@ -494,10 +494,10 @@ function Experience(props) {
                 <br />
                 <div className></div>
                 <br />
-                <div className="ex-img " data-aos="zoom-in">
+                <div className="ex-img " data-aos="fade-up">
                   <img src="http://localhost:3008/snail-imgs/EX2.jpg" alt="" />
                 </div>
-                <div className="ex-img" data-aos="zoom-in">
+                <div className="ex-img" data-aos="fade-up">
                   <img src="http://localhost:3008/snail-imgs/EX3.jpg" alt="" />
                 </div>
               </div>
@@ -555,7 +555,7 @@ function Experience(props) {
                   5. 作品燒製完成後將另行通知體驗者自行前往領取，通知後請於 2
                   個月內領取；若超過 2 個月未領回者，作品將以福利品售出
                   <br />{' '}
-                  <div className="ex-img w-100" data-aos="zoom-in">
+                  <div className="ex-img w-100" data-aos="fade-up">
                     <img
                       src="http://localhost:3008/snail-imgs/EX4.jpg"
                       alt=""
@@ -770,7 +770,7 @@ function Experience(props) {
                       accept="image/*"
                       onChange={fileChange}
                       ref={inputFile}
-                      style={{ display: 'none' ,}}
+                      style={{ display: 'none' }}
                     />
                   </div>
                 </div>
