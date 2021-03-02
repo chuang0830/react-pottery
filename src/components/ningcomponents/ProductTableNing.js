@@ -25,10 +25,10 @@ function CustomToggle({ children, eventKey }) {
 
 function ProductTableNing(props) {
   // style ------------------------------------------------------------
-  const style = {
-    color: 'primary',
-    fontSize: 24,
-  }
+  // const style = {
+  //   color: 'primary',
+  //   fontSize: 24,
+  // }
   // 商品--------------------------------------------------------------
   // State ------------------------------------------------------------
   const [mycart, setMycart] = useState([])
@@ -142,9 +142,7 @@ function ProductTableNing(props) {
                                 {item.product_name}
                               </td>
                               <td className="ning-td-price"> {item.price}</td>
-                              <td
-                                className="d-flex justify-content-center ning-td-amount"
-                              >
+                              <td className="d-flex justify-content-center ning-td-amount">
                                 {/* 計數器 */}
                                 <div className="chang-count-border-btn col-4 d-flex flex-row justify-content-center">
                                   <button
