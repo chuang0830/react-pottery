@@ -492,6 +492,13 @@ text {
     svg {
       font-family: 'Cinzel', serif;
     }
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
+    &:hover {
+      background-color: transparent;
+    }
   }
 
   .page-item.active .page-link {
