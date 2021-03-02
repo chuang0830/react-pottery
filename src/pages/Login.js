@@ -44,7 +44,6 @@ function Login(props) {
     }
   }
   async function forget() {
-    localStorage.setItem('email', email)
     const newData = { email }
     const url = 'http://localhost:3000/members/email'
     const request = new Request(url, {
@@ -183,6 +182,7 @@ function Login(props) {
                 </div>
                 <Button
                   variant="primary"
+                  type="button"
                   className="cindy-forgetbtn float-right"
                   onClick={() => {
                     setModalShow(true)

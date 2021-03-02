@@ -15,10 +15,12 @@ function ForgetPass(props) {
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')
   const [modalShow, setModalShow] = React.useState(true)
-  const email = localStorage.getItem('email')
+
+  const uuid = props.match.url.split('/')[2]
+  console.log('uuid', uuid)
   async function ResetPass() {
-    const newData = { email, password }
-    const url = 'http://localhost:3000/members/forget'
+    const newData = { uuid, password }
+    const url = 'http://localhost:3000/members/forget/' + uuid
     const request = new Request(url, {
       method: 'POST',
       body: JSON.stringify(newData),
@@ -31,7 +33,6 @@ function ForgetPass(props) {
     const response = await fetch(request)
     const data = await response.json()
     console.log('伺服器回傳的json資料', data)
-    localStorage.removeItem('email')
     Swal.fire({
       icon: 'success',
       title: '修改成功！',
