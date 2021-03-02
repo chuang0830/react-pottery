@@ -676,6 +676,9 @@ function CheckOutP2(props) {
                       placeholder="xxx"
                       onClick={() => {
                         onButtonClick()
+                        setTimeout(() => {
+                          onButtonClick()
+                        }, 1500)
                       }}
                       onChange={(e) => {
                         const ordercreditcardcheck = e.target.value
