@@ -735,6 +735,7 @@ function CheckOutP2(props) {
                       onChange={(e) => {
                         const orderinvoice = e.target.value
                         setOrderInvoice(orderinvoice)
+                        onButtonClick()
                         updateFormToLocalStorage({
                           ...FormDataNing,
                           orderinvoice,
