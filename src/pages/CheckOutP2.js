@@ -233,7 +233,7 @@ function CheckOutP2(props) {
                 </div>
                 <div className="d-flex justify-content-between">
                   <span>折扣</span>
-                  <span>-{myform.discount}</span>
+                  <span>{myform.discount}</span>
                 </div>
                 <div className="d-flex justify-content-between">
                   <span>運費</span>

@@ -445,10 +445,20 @@ function Experience(props) {
               <button
                 className="ninginfo-btn mt-1   w-100"
                 onClick={() => {
-                  Swal.fire('提示文字')
-                  updateCourseCartToLocalStorage({
-                    ...data[0],
-                    amount: amount,
+                  Swal.fire('', '已加入至購物車')
+                  // updateCourseCartToLocalStorage({
+                  //   ...data[0],
+                  //   amount: amount,
+                  // })
+                  //課程sid存在classtitle的物件裡
+                  console.log('classtitle:', classtitle)
+                  //在寫入購物車時再用迴圈印出來，總數amount去找對應的sid要
+                  data.forEach((d) => {
+                    console.log('ddd: ', d)
+                    updateCourseCartToLocalStorage({
+                      ...d,
+                      amount: classtitle[d.sid],
+                    })
                   })
                 }}
               >
@@ -612,7 +622,9 @@ function Experience(props) {
                   let p1 = value.avatar
                   p1 = 'http://localhost:3000/imgs/' + p1
                   let p2 = value.message_photo
-                  p2 = 'http://localhost:3000/imgs/' + p2
+                    ? 'http://localhost:3000/imgs/' + value.message_photo
+                    : null
+                  // p2 = p2 ? 'http://localhost:3000/imgs/' + p2
                   return (
                     <div className="message-card border-buttom">
                       <div className="avatar-photo">
@@ -634,8 +646,7 @@ function Experience(props) {
                       </div>
                       <div className="message-card-content">
                         <p className="snail-message-text">{value.message}</p>
-                        {message1.length &&
-                        message1[0].message_photo === null ? (
+                        {message1.length && p2 === null ? (
                           <div></div>
                         ) : (
                           <div className="message-pic-content">
@@ -646,18 +657,7 @@ function Experience(props) {
                             />
                           </div>
                         )}
-                        {message1.length &&
-                        message1[1].message_photo === null ? (
-                          <div></div>
-                        ) : (
-                          <div className="message-pic-content">
-                            <img
-                              className="message-pic-photo"
-                              src={p2}
-                              alt=""
-                            />
-                          </div>
-                        )}
+
                         {/* {message1.length && message1[0].message_photo !== null && (
                           <div className="message-pic-content">
                             <img
@@ -818,7 +818,7 @@ function Experience(props) {
                 </button>
                 {/* <button className="cindy-btn">送出圖片</button> */}
                 <div className="position-absolute cindy-camera">
-                  <button onClick={onButtonClick}>
+                  <button type="button" onClick={onButtonClick}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="35"

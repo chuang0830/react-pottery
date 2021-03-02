@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { RiDeleteBinFill } from 'react-icons/ri'
-import { Container, ListGroup, Button } from 'react-bootstrap'
 import { Accordion, Card, useAccordionToggle } from 'react-bootstrap'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 //套件
 import Swal from 'sweetalert2'
@@ -27,10 +25,10 @@ function CustomToggle({ children, eventKey }) {
 
 function ProductTableNing(props) {
   // style ------------------------------------------------------------
-  const style = {
-    color: 'primary',
-    fontSize: 24,
-  }
+  // const style = {
+  //   color: 'primary',
+  //   fontSize: 24,
+  // }
   // 商品--------------------------------------------------------------
   // State ------------------------------------------------------------
   const [mycart, setMycart] = useState([])
@@ -98,10 +96,13 @@ function ProductTableNing(props) {
   if (currentCart === null) {
     return <></>
   } else {
+    const style = {
+      margin: '8px',
+    }
     return (
       <>
         <div className="row">
-          <div className="cindy-table col border-bottom-0">
+          <div className="cindy-table border-bottom-0">
             <table>
               <thead>
                 <tr>
@@ -127,7 +128,7 @@ function ProductTableNing(props) {
                         <Card style={{ width: '69.5rem' }} className="ning-bg">
                           <Card.Header className="ning">
                             <tr className="d-flex justify-content-around ">
-                              <td>
+                              <td className="ning-td-pic">
                                 <img
                                   src={`http://localhost:3008/winnie-images/${
                                     JSON.parse(item.photo)[0]
@@ -137,9 +138,11 @@ function ProductTableNing(props) {
                                   width="150"
                                 />
                               </td>
-                              <td>{item.product_name}</td>
-                              <td> {item.price}</td>
-                              <td className="d-flex justify-content-center">
+                              <td className="ning-td-price">
+                                {item.product_name}
+                              </td>
+                              <td className="ning-td-price"> {item.price}</td>
+                              <td className="d-flex justify-content-center ning-td-amount">
                                 {/* 計數器 */}
                                 <div className="chang-count-border-btn col-4 d-flex flex-row justify-content-center">
                                   <button
@@ -166,7 +169,7 @@ function ProductTableNing(props) {
                               </td>
                               <td>
                                 <button
-                                  className="removecartning"
+                                  className="removecartning ning-td-remove"
                                   onClick={() => {
                                     removeCart(item)
                                     Swal.fire('', '已從購物車刪除')
