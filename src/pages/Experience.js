@@ -385,7 +385,7 @@ function Experience(props) {
               {console.log('course', course1[0])}
               <div className="experience-list mt-10 ">
                 <div className="d-flex experience-list-item justify-content-around">
-                  <div className="">上課日期</div>
+                  <div className="">上課時間</div>
                   <div>數量</div>
                 </div>
 

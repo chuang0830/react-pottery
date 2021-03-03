@@ -89,7 +89,7 @@ function App() {
 
             {/* 課程路由 */}
 
-            <Route path="/CourseCategory/MyOnlineCourse/PlayPage">
+            <Route path="/CourseCategory/OnlineCourse/PlayPage">
               <PlayPage />
             </Route>
             <Route path="/CourseCategory/Experience">

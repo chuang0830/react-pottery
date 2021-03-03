@@ -125,7 +125,7 @@ function OnlineCourse(props) {
                     <div className="col-lg-4 col-md-6">
                       <div className="winnie-card-content">
                         <div key={value.sid} className="winnie-card-img">
-                          <Link to={`/CourseCategory/MyOnlineCourse/PlayPage`}>
+                          <Link to={`/CourseCategory/OnlineCourse/PlayPage`}>
                             <img className="w-100" src={p} alt="" />
                           </Link>
                         </div>
