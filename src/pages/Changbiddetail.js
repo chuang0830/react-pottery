@@ -130,7 +130,7 @@ function Changbiddetail() {
   //一開始就會開始載入資料
   useEffect(() => {
     const interval = setInterval(() => {
-      // getphotos2FromServer1()
+      getphotos2FromServer1()
     }, 1000)
     return () => clearInterval(interval)
   }, [])
@@ -311,7 +311,7 @@ function Changbiddetail() {
               </div>
               <p>
                 <Countdown
-                  date={new Date(2021, 2, 2, 17, 15, 10)}
+                  date={new Date(2021, 2, 2, 18, 51, 10)}
                   onComplete={() => {
                     document.querySelector('.chang-cart-btn.bidbuy').click()
                   }}
