@@ -145,10 +145,9 @@
   }
 }
 //作品
-.message-pic-photo{
+.message-pic-photo {
   height: 80px;
   width: 80px;
-
 }
 
 //會員留言輸入
@@ -209,11 +208,12 @@
 }
 //星星
 .star {
-  display: inline-block;  
+  display: inline-block;
   cursor: pointer;
 }
 
-.inactive, .active {
+.inactive,
+.active {
   background: transparent;
   user-select: none;
 }
@@ -224,4 +224,12 @@
 
 .active {
   color: red;
+}
+
+.snail-nav {
+  li {
+    a {
+      text-decoration: none;
+    }
+  }
 }

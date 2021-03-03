@@ -9,7 +9,7 @@ class ScrollToTop extends React.Component {
     if (
       //如果網址列變為this則直接return，不觸發scrollTo
       this.props.location.pathname ===
-      '/CourseCategory/MyOnlineCourse/PlayPage/playcontent'
+      '/CourseCategory/OnlineCourse/PlayPage/playcontent'
     )
       return
     if (
@@ -20,12 +20,12 @@ class ScrollToTop extends React.Component {
     }
     if (
       this.props.location.pathname ===
-      '/CourseCategory/MyOnlineCourse/PlayPage/playmessage'
+      '/CourseCategory/OnlineCourse/PlayPage/playmessage'
     )
       return
     if (
       this.props.location.pathname ===
-      '/CourseCategory/MyOnlineCourse/PlayPage/playreview'
+      '/CourseCategory/OnlineCourse/PlayPage/playreview'
     )
       return
     if (this.props.location.pathname !== prevProps.location.pathname) {
