@@ -122,21 +122,26 @@ function MMemberEdit(props) {
         })
         console.log(JSON.stringify(data_cou))
         const response_cou = await fetch(request_cou)
+        console.log('res')
         const data_coupon = await response_cou.json()
+        console.log('data')
         console.log('伺服器回傳的json資料', data_coupon)
         Swal.fire({
           icon: 'success',
-          title: '生日快樂！快去領取生日優惠券吧！',
+          title: '修改成功！',
+          html:
+            '<span>生日快樂！</span><br/><span>快去領取生日優惠券吧～</span>',
+          showConfirmButton: false,
+          timer: 2000,
+        })
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: '修改成功！',
           showConfirmButton: false,
           timer: 2000,
         })
       }
-      Swal.fire({
-        icon: 'success',
-        title: '修改成功！',
-        showConfirmButton: false,
-        timer: 2000,
-      })
     }
   }
   useEffect(() => {
