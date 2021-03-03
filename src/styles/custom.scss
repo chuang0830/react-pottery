@@ -1511,6 +1511,7 @@ chienfooter .chien-social-icon {
       padding-bottom: 5px;
       width: 100%;
     }
+
     .cindy-confrim-btn {
       margin: 0 auto;
       width: 40%;
@@ -1543,6 +1544,13 @@ chienfooter .chien-social-icon {
       outline: none;
       padding-bottom: 5px;
       width: 100%;
+    }
+    .eye {
+      background-color: transparent;
+      outline: none;
+      border: none;
+      left: 90%;
+      color: $success;
     }
     .cindy-pass-btn {
       width: 40%;

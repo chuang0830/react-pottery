@@ -17,9 +17,9 @@ function CheckPost(props) {
   const ordernum = checkform.orderNum
   const orderEmail = checkform.orderEmail
   const orderName = checkform.orderName
-  const orderRecipient = checkform.orderRecipient
-  const orderRecipientAddress = checkform.orderRecipientAddress
-  const orderRecipientTel = checkform.orderRecipientTel
+  const orderRecipient = checkform.orderName
+  const orderRecipientAddress = checkform.orderEmail
+  const orderRecipientTel = checkform.orderTel
   const orderTel = checkform.orderTel
   const orderarrivaladdress = checkform.orderarrivaladdress
   const orderarrivaldate = checkform.orderarrivaldate

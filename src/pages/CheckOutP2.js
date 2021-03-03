@@ -378,7 +378,9 @@ function CheckOutP2(props) {
                       same()
                     }}
                   />
-                  <span style={{ color: '#615956' }}>收件人同訂購人資訊</span>
+                  <span style={{ color: '#615956' }} className="mt-4">
+                    收件人同訂購人資訊
+                  </span>
                 </div>
               </div>
               <div className="form-group">
@@ -427,7 +429,7 @@ function CheckOutP2(props) {
               </div>
               <div className="form-group">
                 <label htmlFor="" className="form-text">
-                  收件人地址
+                  收件人信箱
                 </label>
                 <input
                   value={readdress}
