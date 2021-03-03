@@ -49,7 +49,7 @@ function Changbiddetail() {
   function load() {
     window.location.reload()
   }
-  const [startTime, setStartTimer] = useState(Date.now() + 30000)
+  const [startTime, setStartTimer] = useState(Date.now() + 55000)
   const [timer, setTimer] = useState(null)
 
   async function addUserToSever() {
