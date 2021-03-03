@@ -49,7 +49,8 @@ function Changbiddetail() {
   function load() {
     window.location.reload()
   }
-  const [startTime, setStartTimer] = useState(Date.now() + 55000)
+  // const [startTime, setStartTimer] = useState(Date.now() + 55000)
+  const [startTime, setStartTimer] = useState(Date.now() + 260000000)
   const [timer, setTimer] = useState(null)
 
   async function addUserToSever() {
@@ -314,6 +315,14 @@ function Changbiddetail() {
                   })} */}
                 <p>已出價{changphotos.length && changphotos[0].bid_id}次</p>
               </div>
+              <button
+                className="chang-demo-button"
+                onClick={() => {
+                  setStartTimer(Date.now() + 10000)
+                }}
+              >
+                demo
+              </button>
               <p>
                 <Countdown
                   // date={new Date(2021, 2, 3, 15, 7, 10)}
