@@ -200,7 +200,7 @@ function CheckOutP3(props) {
             <div className="d-flex justify-content-center mt-3 flex-column text-center">
               <span className="svg-title">感謝您的購買</span>
               <Link
-                to="/"
+                to="/products"
                 onClick={() => {
                   removeLocalStorge()
                 }}

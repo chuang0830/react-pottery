@@ -171,9 +171,10 @@ function CheckOutP2(props) {
   const [readdress, setReaddress] = useState('')
   const [checked, setChecked] = useState(false)
   function same() {
-    setChecked(!checked)
+    const newChecked = !checked
+    setChecked(newChecked)
     console.log(checked)
-    if (!checked) {
+    if (newChecked === true) {
       setRename(name)
       setRetel(mobile)
       setReaddress(email)
@@ -183,7 +184,6 @@ function CheckOutP2(props) {
       setReaddress('')
     }
   }
-  useEffect(() => {}, [checked])
   // 按鈕切換
   const [Toggled, setToggled] = useState(false)
   const toggleTrueFalse = () => setToggled(!Toggled)
@@ -370,17 +370,16 @@ function CheckOutP2(props) {
             <form className="mt-5">
               <div className="form-title d-flex justify-content-between">
                 <span className="form-title-content">收件人資訊</span>
-                <div className="">
+                <div className="mt-1">
                   <input
                     type="checkbox"
+                    className="mr-1 ning-check"
                     checked={checked}
                     onClick={() => {
                       same()
                     }}
                   />
-                  <span style={{ color: '#615956' }} className="mt-4">
-                    收件人同訂購人資訊
-                  </span>
+                  <span style={{ color: '#615956' }}>收件人同訂購人資訊</span>
                 </div>
               </div>
               <div className="form-group">
@@ -713,7 +712,7 @@ function CheckOutP2(props) {
                         onButtonClick()
                         setTimeout(() => {
                           onButtonClick()
-                        }, 1500)
+                        }, 2000)
                       }}
                       onChange={(e) => {
                         const ordercreditcardcheck = e.target.value
