@@ -10,28 +10,4 @@
 .cindyorder tbody td button svg {
   margin-left: 3px;
 }
-
-.cindyorder tbody label {
-  display: block;
-}
-
-.cindyorder tbody label:hover {
-  cursor: pointer;
-}
-
-.cindyorder tbody input[type='checkbox']:checked + div {
-  opacity: 0;
-  max-height: 0;
-}
-
-.cindyorder tbody .toggle-box {
-  display: inline-block;
-  padding: 10px;
-  opacity: 1;
-  overflow: hidden;
-}
-
-.cindyorder tbody input {
-  display: none;
-}
 /*# sourceMappingURL=cindyorderlist.css.map */
