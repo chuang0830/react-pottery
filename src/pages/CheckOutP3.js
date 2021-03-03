@@ -258,15 +258,15 @@ function CheckOutP3(props) {
             <div className="orderstyle">
               <div className="d-flex justify-content-between align-items-center">
                 <span>收件人姓名</span>
-                <span>{myforms.orderRecipient}</span>
+                <span>{myforms.orderName}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <span>收件人電話</span>
-                <span>{myforms.orderRecipientTel}</span>
+                <span>{myforms.orderTel}</span>
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                <span>收件人地址</span>
-                <span>{myforms.orderRecipientAddress}</span>
+                <span>收件人信箱</span>
+                <span>{myforms.orderEmail}</span>
               </div>
             </div>
           </div>

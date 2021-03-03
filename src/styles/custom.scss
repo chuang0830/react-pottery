@@ -1619,6 +1619,15 @@ chienfooter .chien-social-icon {
   //background-color: hsla(195, 100%, 99%, 0.9) !important;
 }
 
+//麵包屑的a連結底線
+.breadcrumb {
+  .breadcrumb-item {
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';
