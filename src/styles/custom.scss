@@ -1627,7 +1627,12 @@ chienfooter .chien-social-icon {
     }
   }
 }
-
+video {
+  object-fit: contain;
+  outline: none;
+  border: 0;
+  overflow: hidden;
+}
 @import './cindyregister.scss';
 @import './cindylogin.scss';
 @import './cindymemberedit.scss';

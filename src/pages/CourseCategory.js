@@ -35,7 +35,7 @@ function CourseCategory() {
           <div className="row">
             {/* 標題文字 */}
             <div className="winnie-title" data-aos="fade-up">
-              <h1>DIY課程體驗</h1>
+              <h1>手作課程</h1>
             </div>
             <div className="winnie-text mb-11 " data-aos="fade-up">
               <p>
@@ -52,7 +52,7 @@ function CourseCategory() {
         <div className="container">
           <div className="row ">
             <div className="chien-card-title mb-5">
-              <h2>課程類別</h2>
+              <h2>課程體驗</h2>
               <div className="snail-list-text">
                 我們深知創作的快樂，於是我們特別重視，如何讓陶藝創作，更容易被一般人所接觸、學習。
                 <br />
