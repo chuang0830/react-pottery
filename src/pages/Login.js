@@ -130,7 +130,7 @@ function Login(props) {
               <Link to="/register">會員註冊</Link>
             </div>
           </div>
-          <div className="cindy-form-control col-4">
+          <div className="cindy-form-control">
             <div
               className="alert alert-danger"
               role="alert"
