@@ -29,7 +29,7 @@ function PlayMessage() {
             <div className="avatar-photo">{/* <img src alt /> */}</div>
             <div className="message-card-content d-flex justify-content-start">
               <span>PAPAYA</span>&nbsp;&nbsp;
-              <span>2018-05-19</span>&nbsp;&nbsp;
+              <span>2021-02-19</span>&nbsp;&nbsp;
               <span>5star</span>
             </div>
             <div className="message-card-content">
@@ -40,16 +40,23 @@ function PlayMessage() {
           </div>
           {/* 留言2 */}
           <div className="message-card border-buttom">
-            <div className="avatar-photo">{/* <img src alt /> */}</div>
+            <div className="avatar-photo">
+              <div className="portfolio-box">
+                {`http://localhost:3008/snail-imgs/course-work1.jpg`}
+              </div>
+            </div>
             <div className="message-card-content d-flex justify-content-start">
               <span>PAPAYA</span>&nbsp;&nbsp;
-              <span>2018-05-19</span>&nbsp;&nbsp;
+              <span>2021-01-19</span>&nbsp;&nbsp;
               <span>5star</span>
             </div>
             <div className="message-card-content">
               <p className="snail-message-text">
                 插入體驗打造上漲答案物理懂得，完了根本遵守高效，國務院給予最為有一些書記幫助警察自身評論尋求台北百姓消息插入體驗打造上漲答案物理懂得，完了根本遵守高效，國務院給予最為有一些書記幫助警察自身評論尋求台北百姓消息
               </p>
+            </div>
+            <div className="ex-img " data-aos="fade-up">
+              <img src="http://localhost:3008/snail-imgs/EX2.jpg" alt="" />
             </div>
           </div>
         </div>

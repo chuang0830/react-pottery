@@ -207,19 +207,19 @@ function PlayPage(props) {
               >
                 課程內容
               </Link>
+              {/* <Link
+                to={`/CourseCategory/OnlineCourse/PlayPage/playreview`}
+                className="snail-button mr-5"
+                onClick={() => {}}
+              >
+                準備工具
+              </Link> */}
               <Link
                 to={`/CourseCategory/OnlineCourse/PlayPage/playmessage`}
                 className="snail-button mr-5"
                 onClick={() => {}}
               >
                 課程留言
-              </Link>
-              <Link
-                to={`/CourseCategory/OnlineCourse/PlayPage/playreview`}
-                className="snail-button mr-5"
-                onClick={() => {}}
-              >
-                課程評價
               </Link>
             </div>
           </div>
