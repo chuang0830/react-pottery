@@ -68,7 +68,7 @@ function PlayPage(props) {
                 url={vedio}
                 height="100%"
                 width="100%"
-                style={{ borde: 'none' }}
+                style={{ border: 'none' }}
                 autoplay={false}
                 playing={false}
                 controls={true}
