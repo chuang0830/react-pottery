@@ -301,6 +301,12 @@
 /*↑↑↑↑↑↑↑↑↑↑ _chienbanner.scss ↑↑↑↑↑↑↑↑↑↑*/
 
 /*↓↓↓↓↓↓↓↓↓↓ _chienmain.scss ↓↓↓↓↓↓↓↓↓↓*/
+.chien-box-shadow {
+  &:hover {
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+}
+
 .chien-main-bg {
   overflow: hidden;
 }
@@ -346,6 +352,16 @@
     no-repeat;
   background-size: cover;
   background-origin: content-box;
+}
+
+.chien-prod-cont > a,
+.chien-lesson-cont > a,
+.chien-bid-cont > a {
+  text-decoration: none;
+  &:hover {
+    // text-decoration: underline;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  }
 }
 /*↑↑↑↑↑↑↑↑↑↑ _chienmain.scss ↑↑↑↑↑↑↑↑↑↑*/
 

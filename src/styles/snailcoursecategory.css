@@ -87,4 +87,21 @@
   background-size: cover;
   background-attachment: fixed;
 }
+
+.categorycard-Entitle {
+  font-size: 14px;
+  position: absolute;
+  top: 75%;
+  left: 15%;
+  color: white;
+  margin-bottom: 200px;
+}
+
+.categorycard-Chtitle {
+  font-size: 33px;
+  position: absolute;
+  top: 80%;
+  left: 15%;
+  color: white;
+}
 /*# sourceMappingURL=snailcoursecategory.css.map */

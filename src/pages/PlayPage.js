@@ -46,17 +46,23 @@ function PlayPage(props) {
               <Link to="/CourseCategory">課程類別</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              DIY體驗課程
+              <Link to="/CourseCategory/OnlineCourse">線上課程</Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              拉坏課程
             </li>
           </ol>
         </nav>
         {/* 影片 */}
-        <div className="winnie-title ">
+        <div className="winnie-title" style={{ marginBottom: '-30px' }}>
           <h1>拉坯課程</h1>
         </div>
         <div className="row">
           {/* <div className="col-lg-12"> */}
-          <div className="onlinepage d-flex justify-content-center">
+          <div
+            className="onlinepage d-flex justify-content-center"
+            style={{ overflow: 'hidden' }}
+          >
             <div className="col-6 snail-video">
               <ReactPlayer
                 url={vedio}
@@ -74,7 +80,7 @@ function PlayPage(props) {
               <div className="onlinepage-list">
                 {/* 滾動軸 */}
                 <div className="snail-vedio-Button" id="video1">
-                  <p className="course-title-sm">7 段單元，共 48 分鐘</p>
+                  <p className="course-title-sm ml-3">7 段單元，共 48 分鐘</p>
                 </div>
                 <Element
                   name="test7"
@@ -82,7 +88,7 @@ function PlayPage(props) {
                   id="containerElement"
                   style={{
                     position: 'relative',
-                    height: '268px',
+                    height: '309px',
                     overflow: 'scroll',
                     marginBottom: '100px',
                     overflowX: 'hidden',
@@ -92,13 +98,14 @@ function PlayPage(props) {
                     className="snail-vedio-Button"
                     id="video1"
                     onClick={() => {
-                      setVedio('https://www.youtube.com/watch?v=9WRv0bnY6ks')
+                      setVedio('/coursevedio0.mp4')
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
                     單元0 - 課程介紹
                   </button>
                   <button
+                    className="snail-vedio-Button"
                     id="video1"
                     onClick={() => {
                       setVedio('/coursevedio1.mp4')
@@ -118,9 +125,10 @@ function PlayPage(props) {
                     單元2 - 手捏和風茶碗
                   </button>
                   <button
+                    className="snail-vedio-Button"
                     id="video2"
                     onClick={() => {
-                      setVedio('/coursevedio2.mp4')
+                      setVedio('/coursevedio3.mp4')
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
@@ -130,7 +138,7 @@ function PlayPage(props) {
                     className="snail-vedio-Button"
                     id="video1"
                     onClick={() => {
-                      setVedio('/coursevedio1.mp4')
+                      setVedio('/coursevedio4.mp4')
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
@@ -140,7 +148,7 @@ function PlayPage(props) {
                     id="video1"
                     className="snail-vedio-button"
                     onClick={() => {
-                      setVedio('/coursevedio1.mp4')
+                      setVedio('/coursevedio5.mp4')
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
@@ -150,16 +158,17 @@ function PlayPage(props) {
                     className="snail-vedio-Button"
                     id="video1"
                     onClick={() => {
-                      setVedio('/coursevedio1.mp4')
+                      setVedio('/coursevedio6.mp4')
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
                     單元6 - 軟土板成形技法
                   </button>
                   <button
+                    className="snail-vedio-Button"
                     id="video2"
                     onClick={() => {
-                      setVedio('/coursevedio2.mp4')
+                      setVedio('/coursevedio7.mp4')
                     }}
                   >
                     <FaCaretRight className="mr-3 mb-1" />
@@ -192,21 +201,21 @@ function PlayPage(props) {
           <div className="col">
             <div className="snailbtnline d-flex mb-7 mt-7">
               <Link
-                to="/CourseCategory/MyOnlineCourse/PlayPage/playcontent"
+                to="/CourseCategory/OnlineCourse/PlayPage/playcontent"
                 className="snail-button mr-5"
                 onClick={() => {}}
               >
                 課程內容
               </Link>
               <Link
-                to={`/CourseCategory/MyOnlineCourse/PlayPage/playmessage`}
+                to={`/CourseCategory/OnlineCourse/PlayPage/playmessage`}
                 className="snail-button mr-5"
                 onClick={() => {}}
               >
                 課程留言
               </Link>
               <Link
-                to={`/CourseCategory/MyOnlineCourse/PlayPage/playreview`}
+                to={`/CourseCategory/OnlineCourse/PlayPage/playreview`}
                 className="snail-button mr-5"
                 onClick={() => {}}
               >
@@ -215,8 +224,7 @@ function PlayPage(props) {
             </div>
           </div>
         </div>
-        <div className="row"></div>
-        <div className="teacher-chat"></div>
+
         {/* <ScrollToItem> */}
         <Switch>
           <Route exact path={path}>

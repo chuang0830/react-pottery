@@ -1,15 +1,14 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import React, { useState, useEffect, useRef } from 'react'
 import Swal from 'sweetalert2'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 
 import Table from 'react-bootstrap/Table'
 import MyNavbar from '../components/MyNavbar'
 import Sticky from 'react-sticky-el'
 import Calendar from '../components/snailcomponents/Calendar'
 import ChienFooter from '../components/ChienFooter'
-
-import Aos from 'aos'
-import 'aos/dist/aos.css'
 
 //星等---------------------------------------------------------
 function StarRating({
@@ -18,6 +17,8 @@ function StarRating({
   inactiveColor = '#ddd',
   size = 24,
   activeColor = '#f00',
+  style = "lineHeight :'20px'",
+
   onChange,
 }) {
   // short trick
@@ -39,7 +40,12 @@ function StarRating({
           <div
             className={'star'}
             key={index}
-            style={{ color: style, width: size, height: size, fontSize: size }}
+            style={{
+              color: style,
+              width: size,
+              height: size,
+              fontSize: size,
+            }}
             onClick={() => handleChange(index)}
           >
             {s}
@@ -132,7 +138,7 @@ function Experience(props) {
   // }
   //aos套件
   useEffect(() => {
-    Aos.init({ duration: 2000 })
+    Aos.init({ duration: 1000 })
   }, [])
 
   async function addUserToSever() {
@@ -379,7 +385,7 @@ function Experience(props) {
               {console.log('course', course1[0])}
               <div className="experience-list mt-10 ">
                 <div className="d-flex experience-list-item justify-content-around">
-                  <div className="">上課日期</div>
+                  <div className="">上課時間</div>
                   <div>數量</div>
                 </div>
 
@@ -488,10 +494,10 @@ function Experience(props) {
                 <br />
                 <div className></div>
                 <br />
-                <div className="ex-img">
+                <div className="ex-img " data-aos="fade-up">
                   <img src="http://localhost:3008/snail-imgs/EX2.jpg" alt="" />
                 </div>
-                <div className="ex-img">
+                <div className="ex-img" data-aos="fade-up">
                   <img src="http://localhost:3008/snail-imgs/EX3.jpg" alt="" />
                 </div>
               </div>
@@ -549,7 +555,7 @@ function Experience(props) {
                   5. 作品燒製完成後將另行通知體驗者自行前往領取，通知後請於 2
                   個月內領取；若超過 2 個月未領回者，作品將以福利品售出
                   <br />{' '}
-                  <div className="ex-img w-100">
+                  <div className="ex-img w-100" data-aos="fade-up">
                     <img
                       src="http://localhost:3008/snail-imgs/EX4.jpg"
                       alt=""
@@ -634,15 +640,18 @@ function Experience(props) {
                         <span>{value.account}</span>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span>{value.message_created_time}</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <StarRating
-                          count={5}
-                          size={20}
-                          value={value.star}
-                          activeColor={'#fcaa3e'}
-                          inactiveColor={'#ddd'}
-                          style={{ verticalAlign: 'top' }}
-                        />
+                        {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
+                        <div className="ml-3 mb-5">
+                          {' '}
+                          <StarRating
+                            count={5}
+                            size={20}
+                            value={value.star}
+                            activeColor={'#fcaa3e'}
+                            inactiveColor={'#ddd'}
+                            style={{ verticalAlign: 'top' }}
+                          />
+                        </div>
                       </div>
                       <div className="message-card-content">
                         <p className="snail-message-text">{value.message}</p>
@@ -677,44 +686,6 @@ function Experience(props) {
                 查看更多
                 <i className="fas fa-angle-double-down" />
               </button>
-            </div>
-          </div>
-          {/* 學員作品 */}
-          <div className="work-card">
-            <div className="course-title-sm">學員作品</div>
-            <div className="row">
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="portfolio-box">
-                  <img
-                    src={`http://localhost:3008/snail-imgs/course-work1.jpg`}
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="portfolio-box">
-                  <img
-                    src={`http://localhost:3008/snail-imgs/course-work2.jpg`}
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="portfolio-box">
-                  <img
-                    src={`http://localhost:3008/snail-imgs/course-work1.jpg`}
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <div className="portfolio-box">
-                  <img
-                    src={`http://localhost:3008/snail-imgs/course-work2.jpg`}
-                    alt=""
-                  />
-                </div>
-              </div>
             </div>
           </div>
 
@@ -803,70 +774,69 @@ function Experience(props) {
                     />
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  class="cindy-btn"
-                  onClick={() => {
-                    // addUserToSever()
-                    // 按下按鈕刷新頁面
-                    setTimeout(() => {
-                      load()
-                    }, 0)
-                  }}
-                >
-                  送出留言
-                </button>
-                {/* <button className="cindy-btn">送出圖片</button> */}
-                <div className="position-absolute cindy-camera">
-                  <button type="button" onClick={onButtonClick}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="35"
-                      height="35"
-                      viewBox="0 0 50 50"
-                    >
-                      <g
-                        id="Group_811"
-                        data-name="Group 811"
-                        transform="translate(-620 -614)"
-                      >
-                        <path
-                          id="Path_97"
-                          data-name="Path 97"
-                          d="M25,0A25,25,0,1,1,0,25,25,25,0,0,1,25,0Z"
-                          transform="translate(620 614)"
-                          fill="#fcaa3e"
-                        />
-                        <path
-                          id="Union_6"
-                          data-name="Union 6"
-                          d="M2993,1330v-17.25h8.537V1307h17.927v5.75H3028V1330Z"
-                          transform="translate(-2365 -679)"
-                          fill="#fff"
-                        />
-                        <circle
-                          id="Ellipse_38"
-                          data-name="Ellipse 38"
-                          cx="7.5"
-                          cy="7.5"
-                          r="7.5"
-                          transform="translate(638 634)"
-                          fill="#fcaa3e"
-                        />
-                        <circle
-                          id="Ellipse_39"
-                          data-name="Ellipse 39"
-                          cx="4.5"
-                          cy="4.5"
-                          r="4.5"
-                          transform="translate(641 637)"
-                          fill="#fff"
-                        />
-                      </g>
-                    </svg>
+                <div className="d-flex">
+                  <button
+                    type="submit"
+                    className="cindy-btn mr-5"
+                    onClick={() => {
+                      // addUserToSever()
+                      // 按下按鈕刷新頁面
+                      setTimeout(() => {
+                        load()
+                      }, 0)
+                    }}
+                  >
+                    送出留言
+                  </button>{' '}
+                  <button
+                    type="button"
+                    class="cindy-btn"
+                    onClick={onButtonClick}
+                  >
+                    上傳圖片
                   </button>
                 </div>
+
+                {/* <button className="cindy-btn">送出圖片</button> */}
               </form>
+              {/* 學員作品 */}
+              <div className="work-card">
+                <div className="course-title-sm">學員作品</div>
+                <div className="row">
+                  <div className="col-lg-3 col-md-6 col-sm-12">
+                    <div className="portfolio-box">
+                      <img
+                        src={`http://localhost:3008/snail-imgs/course-work1.jpg`}
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 col-sm-12">
+                    <div className="portfolio-box">
+                      <img
+                        src={`http://localhost:3008/snail-imgs/course-work2.jpg`}
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 col-sm-12">
+                    <div className="portfolio-box">
+                      <img
+                        src={`http://localhost:3008/snail-imgs/course-work1.jpg`}
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-3 col-md-6 col-sm-12">
+                    <div className="portfolio-box">
+                      <img
+                        src={`http://localhost:3008/snail-imgs/course-work2.jpg`}
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

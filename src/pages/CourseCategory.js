@@ -28,12 +28,7 @@ function CourseCategory() {
             <li className="breadcrumb-item">
               <Link to="/">首頁</Link>
             </li>
-            <li className="breadcrumb-item">
-              <Link to="/CourseCategory">課程類別</Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              DIY體驗課程
-            </li>
+            <li className="breadcrumb-item">課程類別</li>
           </ol>
         </nav>
         <div className="container">
