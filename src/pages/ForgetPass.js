@@ -1,5 +1,5 @@
 import { Link, withRouter } from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ImEye, ImEyeBlocked } from 'react-icons/im'
 import { Modal, Button } from 'react-bootstrap'
 import Swal from 'sweetalert2'
@@ -15,31 +15,44 @@ function ForgetPass(props) {
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')
   const [modalShow, setModalShow] = React.useState(true)
+  const [errors, setErrors] = useState([])
+  //eye
+  const [visible, setVisible] = useState(false)
+  const [visible2, setVisible2] = useState(false)
 
   const uuid = props.match.url.split('/')[2]
   console.log('uuid', uuid)
   async function ResetPass() {
-    const newData = { uuid, password }
-    const url = 'http://localhost:3000/members/forget/' + uuid
-    const request = new Request(url, {
-      method: 'POST',
-      body: JSON.stringify(newData),
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
-    })
-    console.log(JSON.stringify(newData))
-    const response = await fetch(request)
-    const data = await response.json()
-    console.log('伺服器回傳的json資料', data)
-    Swal.fire({
-      icon: 'success',
-      title: '修改成功！',
-      showConfirmButton: false,
-      timer: 2000,
-    })
+    const newErrors = []
+    if (password !== password2) {
+      newErrors.push('password2')
+    }
+    setErrors(newErrors)
+    console.log(errors)
+    if (newErrors.length === 0) {
+      const newData = { uuid, password }
+      const url = 'http://localhost:3000/members/forget/' + uuid
+      const request = new Request(url, {
+        method: 'POST',
+        body: JSON.stringify(newData),
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      })
+      console.log(JSON.stringify(newData))
+      const response = await fetch(request)
+      const data = await response.json()
+      console.log('伺服器回傳的json資料', data)
+      Swal.fire({
+        icon: 'success',
+        title: '修改成功！',
+        showConfirmButton: false,
+        timer: 2000,
+      })
+    }
   }
+  useEffect(() => {}, [errors])
   return (
     <>
       <Modal
@@ -60,30 +73,49 @@ function ForgetPass(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="pass-reset-body">
-          <div className="">
+          <div className="position-relative">
             <label htmlFor="password">新密碼</label>
             <br />
             <input
-              type="password"
+              type={`${visible ? 'text' : 'password'}`}
               name="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="請輸入新密碼"
             />
+            <button
+              type="button"
+              className="position-absolute eye"
+              onClick={() => {
+                setVisible(!visible)
+              }}
+            >
+              {visible ? <ImEyeBlocked /> : <ImEye />}
+            </button>
           </div>
-          <div className="mt-1">
+          <div className="mt-1 position-relative">
             <label htmlFor="password">請再次輸入新密碼</label>
             <br />
             <input
-              type="password"
+              type={`${visible2 ? 'text' : 'password'}`}
               name="password2"
               id="password2"
               value={password2}
               onChange={(e) => setPassword2(e.target.value)}
               placeholder="請再次輸入新密碼"
             />
+            <button
+              type="button"
+              className="position-absolute eye"
+              onClick={() => {
+                setVisible2(!visible2)
+              }}
+            >
+              {visible2 ? <ImEyeBlocked /> : <ImEye />}
+            </button>
           </div>
+          {errors.includes('password2') && <span>兩次密碼輸入不一致</span>}
           <Button
             type="button"
             className="cindy mt-5 cindy-confrim-btn mx-auto d-block cindy-pass-btn"
