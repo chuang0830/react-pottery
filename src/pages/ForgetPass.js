@@ -49,6 +49,9 @@ function ForgetPass(props) {
         title: '修改成功！',
         showConfirmButton: false,
         timer: 2000,
+        willClose: () => {
+          props.history.push('/login')
+        },
       })
     }
   }
@@ -115,14 +118,16 @@ function ForgetPass(props) {
               {visible2 ? <ImEyeBlocked /> : <ImEye />}
             </button>
           </div>
-          {errors.includes('password2') && <span>兩次密碼輸入不一致</span>}
+          {errors.includes('password2') && (
+            <span style={{ color: 'red' }}>兩次密碼輸入不一致</span>
+          )}
           <Button
             type="button"
             className="cindy mt-5 cindy-confrim-btn mx-auto d-block cindy-pass-btn"
             onClick={() => {
               ResetPass()
-              setModalShow(false)
-              props.history.push('/member')
+              //setModalShow(false)
+              //props.history.push('/member')
             }}
           >
             確定
