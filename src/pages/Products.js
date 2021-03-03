@@ -319,7 +319,7 @@ function Products(props) {
       </div>
       {/* [_winnieclassimg.scss] 分類圖片 */}
       <div className="container-fluid">
-        <div className="row justify-content-around">
+        <div className="row justify-content-around d-flex flex-wrap">
           <ul className="winnie-classimg">
             <li>
               <Link

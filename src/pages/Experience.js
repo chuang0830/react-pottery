@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Swal from 'sweetalert2'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import { FaAngleDoubleDown } from 'react-icons/fa'
 
 import Table from 'react-bootstrap/Table'
 import MyNavbar from '../components/MyNavbar'
@@ -300,17 +301,24 @@ function Experience(props) {
           </div>
           <div className="winnie-text mb-11" data-aos="fade-up">
             <p>
+              用雙手，真實碰觸每天雙腳踩踏的土地，
+              去感受陶土那溫度、黏性、濕度、柔軟、粗糙
+              等等不同又多變的特有質感。 發揮創意，體會陶土自由奔放的魅力，
+              增加旅行的深度，帶回專屬自己獨一無二的紀念品。
               還記得第一次捏陶土就像玩泥巴一樣的有趣觸感嗎？利用創作力創作出的陶土器皿因為其溫潤的特質而顯得獨一無二，無論是陶杯、陶盤還是陶碗，除了實用性之外，還多了一分溫暖之感擁有多年教學經驗的UTSUWA創藝陶藝工坊，推出了一系列輕鬆有趣的陶土課程。透過專業老師的引導，您將學會利用陶土的特性做出你自己最喜歡的陶製品，更能在揉、捏、拍、壓的過程中，療癒自己甚至愛上捏陶的樂趣！
               <br />
               小朋友也非常適合這樣的體驗課程喔！透過手作的揉捏有充分的觸覺感受，視覺上的
               3D
               概念也能透過陶土捏塑學習，捏陶還可以直接的引導孩子感受數量、形體和造形的變化，更可以訓練孩子手部的各種大小肌肉、手眼協調和創造力。
               <br />
+              不論是想手做紓壓，或是當成志業經營，做陶沒有好壞美醜標準，更像是在從無到有、緩慢捏塑的過程中，清空思緒、專注於手中的陶土，靜下心與自己獨處。
+              <br/>
+              一個方便、溫暖的創作空間，採取自由創作模式，不限定課程主題與作品數量，只要心裡有想法，老師都會指導適合的成型方式，協助學員完成自己作品！
             </p>
             {/* 更多按鈕 */}
-            <button className="cindy-check more" href="#">
+            <button className="d-block cindy-check ml-auto" href="#">
               查看更多
-              <i className="fas fa-angle-double-down" />
+              <FaAngleDoubleDown />
             </button>
           </div>
         </div>
@@ -561,6 +569,12 @@ function Experience(props) {
                       alt=""
                     />
                   </div>
+                  <div className="ex-img w-100" data-aos="fade-up">
+                    <img
+                      src="http://localhost:3008/snail-imgs/EX5.jpg"
+                      alt=""
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -682,9 +696,9 @@ function Experience(props) {
                 })}
 
               {/* 更多按鈕 */}
-              <button className="cindy-check" href="#">
+              <button className="d-block cindy-check ml-auto " href="#">
                 查看更多
-                <i className="fas fa-angle-double-down" />
+                <FaAngleDoubleDown />
               </button>
             </div>
           </div>
@@ -822,7 +836,7 @@ function Experience(props) {
                   <div className="col-lg-3 col-md-6 col-sm-12">
                     <div className="portfolio-box">
                       <img
-                        src={`http://localhost:3008/snail-imgs/course-work1.jpg`}
+                        src={`http://localhost:3008/snail-imgs/course-work3.jpg`}
                         alt=""
                       />
                     </div>
@@ -830,7 +844,7 @@ function Experience(props) {
                   <div className="col-lg-3 col-md-6 col-sm-12">
                     <div className="portfolio-box">
                       <img
-                        src={`http://localhost:3008/snail-imgs/course-work2.jpg`}
+                        src={`http://localhost:3008/snail-imgs/course-work4.jpg`}
                         alt=""
                       />
                     </div>

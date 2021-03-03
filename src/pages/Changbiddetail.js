@@ -34,7 +34,7 @@ async function sendemail() {
 
 function Changbiddetail() {
   const Completionist = () => {
-    sendemail()
+    //sendemail()
     return <span>已結標</span>
   }
   // 新增競標資料*******************************************
@@ -49,6 +49,8 @@ function Changbiddetail() {
   function load() {
     window.location.reload()
   }
+  const [startTime, setStartTimer] = useState(Date.now() + 30000)
+  const [timer, setTimer] = useState(null)
 
   async function addUserToSever() {
     // 開啟載入指示
@@ -130,8 +132,11 @@ function Changbiddetail() {
   //一開始就會開始載入資料
   useEffect(() => {
     const interval = setInterval(() => {
-      // getphotos2FromServer1()
+      getphotos2FromServer1()
     }, 1000)
+
+    setTimer(interval)
+
     return () => clearInterval(interval)
   }, [])
   useEffect(() => {
@@ -311,9 +316,32 @@ function Changbiddetail() {
               </div>
               <p>
                 <Countdown
-                  date={new Date(2021, 2, 2, 17, 15, 10)}
+                  // date={new Date(2021, 2, 3, 15, 7, 10)}
+                  date={startTime}
                   onComplete={() => {
-                    document.querySelector('.chang-cart-btn.bidbuy').click()
+                    //document.querySelector('.chang-cart-btn.bidbuy').click()
+                    if (timer) {
+                      clearInterval(timer)
+                      setTimer(null)
+                    }
+
+                    setTimeout(() => {
+                      sendemail()
+                    }, 700)
+
+                    Swal.fire(
+                      {
+                        title: '您已得標',
+                        text:
+                          '拍賣物品結標後，系統將會自動寄出得標者通知信函，告訴您關於您的得標價格、數量以及物品的相關訊息。請務必與賣方確定付款與交貨的方式，以順利完成此筆交易！',
+                        confirmButtonText: `確認`,
+                      }
+                      // function (ans) {
+                      //   console.log('answer:-------------------', ans)
+                      // }
+                    ).then(async (result) => {
+                      console.log('result:-------------------', result)
+                    })
                   }}
                 >
                   <Completionist />
@@ -325,7 +353,7 @@ function Changbiddetail() {
               <p className="chang-text">
                 目前金額:{changphotos.length && changphotos[0].bid_sum_money}元
               </p>
-              <p>
+              {/* <p>
                 {changphotos.length &&
                   changphotos[0].bid_sum_money > 1000 && (
                     <Alert show={show} variant="success" className="bidlowbuy">
@@ -334,28 +362,7 @@ function Changbiddetail() {
                       <button
                         variant="success"
                         className="chang-cart-btn bidbuy"
-                        onClick={() => {
-                          // sendemail()
-                          // Swal.fire(
-                          //   {
-                          //     title: '您已得標',
-                          //     text:
-                          //       '拍賣物品結標後，系統將會自動寄出得標者通知信函，告訴您關於您的得標價格、數量以及物品的相關訊息。請務必與賣方確定付款與交貨的方式，以順利完成此筆交易！',
-                          //     confirmButtonText: `確認`,
-                          //   }
-                          //   // function (ans) {
-                          //   //   console.log('answer:-------------------', ans)
-                          //   // }
-                          // ).then(async (result) => {
-                          //   console.log('result:-------------------', result)
-                          //   /* Read more about isConfirmed, isDenied below */
-                          //   // if (result.isConfirmed) {
-                          //   //   Swal.fire('Saved!', '', 'success')
-                          //   // } else if (result.isDenied) {
-                          //   //   Swal.fire('Changes are not saved', '', 'info')
-                          //   // }
-                          // })
-                        }}
+                        onClick={() => {}}
                       >
                         直接購買
                       </button>
@@ -370,7 +377,7 @@ function Changbiddetail() {
                     Show Alert
                   </Button>
                 )}
-              </p>
+              </p> */}
 
               <p className="chang-text">出價金額</p>
               <div className="d-flex justify-content chang-button-box">

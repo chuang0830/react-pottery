@@ -171,9 +171,10 @@ function CheckOutP2(props) {
   const [readdress, setReaddress] = useState('')
   const [checked, setChecked] = useState(false)
   function same() {
-    setChecked(!checked)
+    const newChecked = !checked
+    setChecked(newChecked)
     console.log(checked)
-    if (!checked) {
+    if (newChecked === true) {
       setRename(name)
       setRetel(mobile)
       setReaddress(email)
@@ -183,7 +184,6 @@ function CheckOutP2(props) {
       setReaddress('')
     }
   }
-  useEffect(() => {}, [checked])
   // 按鈕切換
   const [Toggled, setToggled] = useState(false)
   const toggleTrueFalse = () => setToggled(!Toggled)
