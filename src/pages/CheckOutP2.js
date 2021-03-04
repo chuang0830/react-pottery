@@ -472,7 +472,7 @@ function CheckOutP2(props) {
           <div className="col-lg-8 col-12">
             <form className="mt-5">
               <div className="form-title text-center">
-                <span className="form-title-content">訂購人資訊</span>
+                <span className="form-title-content">配送資訊</span>
               </div>
               <div className="form-group">
                 <label
