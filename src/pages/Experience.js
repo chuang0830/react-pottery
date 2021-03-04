@@ -819,10 +819,7 @@ function Experience(props) {
                 <div className="row">
                   <div className="col-lg-3 col-md-6 col-sm-12">
                     <div className="portfolio-box">
-                      <img
-                        src={`http://localhost:3008/snail-imgs/course-work1.jpg`}
-                        alt=""
-                      />
+                      {`http://localhost:3008/snail-imgs/course-work1.jpg`}
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-6 col-sm-12">
