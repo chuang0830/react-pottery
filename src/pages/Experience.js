@@ -312,7 +312,7 @@ function Experience(props) {
               概念也能透過陶土捏塑學習，捏陶還可以直接的引導孩子感受數量、形體和造形的變化，更可以訓練孩子手部的各種大小肌肉、手眼協調和創造力。
               <br />
               不論是想手做紓壓，或是當成志業經營，做陶沒有好壞美醜標準，更像是在從無到有、緩慢捏塑的過程中，清空思緒、專注於手中的陶土，靜下心與自己獨處。
-              <br/>
+              <br />
               一個方便、溫暖的創作空間，採取自由創作模式，不限定課程主題與作品數量，只要心裡有想法，老師都會指導適合的成型方式，協助學員完成自己作品！
             </p>
             {/* 更多按鈕 */}
@@ -819,7 +819,10 @@ function Experience(props) {
                 <div className="row">
                   <div className="col-lg-3 col-md-6 col-sm-12">
                     <div className="portfolio-box">
-                      {`http://localhost:3008/snail-imgs/course-work1.jpg`}
+                      <img
+                        src={`http://localhost:3008/snail-imgs/course-work1.jpg`}
+                        alt=""
+                      />
                     </div>
                   </div>
                   <div className="col-lg-3 col-md-6 col-sm-12">
