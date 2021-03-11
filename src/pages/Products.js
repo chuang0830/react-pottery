@@ -674,7 +674,6 @@ function Products(props) {
         {/* [_winnierecentview.scss]recent view title*/}
         <WinnieLogo />
         {/* recent view product*/}
-        {/* 元件但一放product就掛了 */}
         <div className="row">
           <RecentView />
         </div>
