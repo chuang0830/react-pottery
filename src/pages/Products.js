@@ -320,122 +320,126 @@ function Products(props) {
       {/* [_winnieclassimg.scss] 分類圖片 */}
       <div className="container-fluid">
         <div className="row justify-content-around d-flex flex-wrap">
-          <ul className="winnie-classimg">
-            <li>
-              <Link
-                to={`/products`}
-                onClick={() => {
-                  scrollToAnchor('screens')
-                  resetData()
-                  setDetailCate(2)
-                }}
-              >
-                <img
-                  src="http://localhost:3008/winnie-images/class1.png"
-                  alt=""
-                />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <div className="winnie-class-p">
-                  <p>餐盤</p>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/products`}
-                onClick={() => {
-                  scrollToAnchor('screens')
-                  resetData()
-                  setDetailCate(1)
-                }}
-              >
-                <img
-                  src="http://localhost:3008/winnie-images/class2.png"
-                  alt=""
-                />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <div className="winnie-class-p">
-                  <p>杯具</p>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/products`}
-                onClick={() => {
-                  scrollToAnchor('screens')
-                  resetData()
-                  setDetailCate(3)
-                }}
-              >
-                <img
-                  src="http://localhost:3008/winnie-images/class3.png"
-                  alt=""
-                />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <div className="winnie-class-p">
-                  <p>飯碗</p>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/products`}
-                onClick={() => {
-                  scrollToAnchor('screens')
-                  resetData()
-                  setDetailCate(5)
-                }}
-              >
-                <img
-                  src="http://localhost:3008/winnie-images/class4.png"
-                  alt=""
-                />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <div className="winnie-class-p">
-                  <p>筷架</p>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/products`}
-                onClick={() => {
-                  scrollToAnchor('screens')
-                  resetData()
-                  setDetailCate(4)
-                }}
-              >
-                <img
-                  src="http://localhost:3008/winnie-images/class5.png"
-                  alt=""
-                />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <div className="winnie-class-p">
-                  <p>花器</p>
-                </div>
-              </Link>
-            </li>
+          <ul className="winnie-classimg d-flex flex-sm-column flex-md-column flex-xl-row flex-lg-row">
+            <div className="row">
+              <li>
+                <Link
+                  to={`/products`}
+                  onClick={() => {
+                    scrollToAnchor('screens')
+                    resetData()
+                    setDetailCate(2)
+                  }}
+                >
+                  <img
+                    src="http://localhost:3008/winnie-images/class1.png"
+                    alt=""
+                  />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <div className="winnie-class-p">
+                    <p>餐盤</p>
+                  </div>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`/products`}
+                  onClick={() => {
+                    scrollToAnchor('screens')
+                    resetData()
+                    setDetailCate(1)
+                  }}
+                >
+                  <img
+                    src="http://localhost:3008/winnie-images/class2.png"
+                    alt=""
+                  />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <div className="winnie-class-p">
+                    <p>杯具</p>
+                  </div>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`/products`}
+                  onClick={() => {
+                    scrollToAnchor('screens')
+                    resetData()
+                    setDetailCate(3)
+                  }}
+                >
+                  <img
+                    src="http://localhost:3008/winnie-images/class3.png"
+                    alt=""
+                  />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <div className="winnie-class-p">
+                    <p>飯碗</p>
+                  </div>
+                </Link>
+              </li>
+            </div>
+            <div className="row justify-content-center">
+              <li>
+                <Link
+                  to={`/products`}
+                  onClick={() => {
+                    scrollToAnchor('screens')
+                    resetData()
+                    setDetailCate(5)
+                  }}
+                >
+                  <img
+                    src="http://localhost:3008/winnie-images/class4.png"
+                    alt=""
+                  />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <div className="winnie-class-p">
+                    <p>筷架</p>
+                  </div>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`/products`}
+                  onClick={() => {
+                    scrollToAnchor('screens')
+                    resetData()
+                    setDetailCate(4)
+                  }}
+                >
+                  <img
+                    src="http://localhost:3008/winnie-images/class5.png"
+                    alt=""
+                  />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <div className="winnie-class-p">
+                    <p>花器</p>
+                  </div>
+                </Link>
+              </li>
+            </div>
           </ul>
         </div>
       </div>
