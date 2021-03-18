@@ -28,6 +28,28 @@
   line-height: 33px;
 }
 
+//查看更多按鈕
+.read-more-state {
+  display: none;
+}
+.read-more-state ~ .read-more-trigger:before {
+  content: '查看更多' ;
+}
+.read-more-state:checked ~ .read-more-trigger:before {
+  content: '顯示部分內容';
+}
+.read-more-target {
+  opacity: 0;
+  max-height: 0;
+  font-size: 0;
+  transition: 0.2s all;
+}
+.read-more-state:checked ~ .read-more-wrap .read-more-target {
+  opacity: 1;
+  font-size: inherit;
+  max-height: 999em;
+}
+
 // 體驗課程標題文字
 .snail-pricetitle {
   font-size: 24px;
