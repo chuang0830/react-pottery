@@ -117,7 +117,7 @@ function MMemberOrderList(props) {
               </tr>
             </thead>
             <tbody>
-              {order.length &&
+              {order.length > 0 &&
                 order.map((v, i) => {
                   return (
                     <>
