@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .EX-container {
   position: relative;
   z-index: -1;
@@ -33,16 +39,26 @@
   display: none;
 }
 .read-more-state ~ .read-more-trigger:before {
-  content: '查看更多' ;
+  content: '查看更多';
+}
+.read-more-state ~ .cindy-check svg {
+  transition: transform 0.5s;
 }
 .read-more-state:checked ~ .read-more-trigger:before {
   content: '顯示部分內容';
 }
+.read-more-state:checked ~ .cindy-check svg {
+  transition: transform 0.5s;
+  -webkit-transform: rotateZ(-180deg);
+  -ms-transform: rotateZ(-180deg);
+  transform: rotate(-180deg);
+}
+
 .read-more-target {
   opacity: 0;
   max-height: 0;
   font-size: 0;
-  transition: 0.2s all;
+  transition: 0.2s ;
 }
 .read-more-state:checked ~ .read-more-wrap .read-more-target {
   opacity: 1;
@@ -56,18 +72,18 @@
   color: #615956;
 }
 // 價目表
-.snail-pricelist {
-  ul {
-    li {
-      padding-bottom: 20px;
-      border-bottom: 1px solid gray;
-      margin-top: 20px;
-      label {
-        margin-left: 20px;
-      }
-    }
-  }
-}
+// .snail-pricelist {
+//   ul {
+//     li {
+//       padding-bottom: 20px;
+//       border-bottom: 1px solid rgb(206, 206, 206);
+//       margin-top: 20px;
+//       label {
+//         margin-left: 20px;
+//       }
+//     }
+//   }
+// }
 
 .more {
   right: 0;
@@ -113,6 +129,9 @@
 //內容圖片
 .ex-img {
   margin: 25px 0;
+}
+.ex-img img {
+  max-width: 100%;
 }
 
 .avatar-photo {
@@ -200,23 +219,30 @@
   label {
     padding-left: 20px;
   }
+  &:hover {
+    box-shadow: 1px 1px rgb(182, 182, 182), 2px 2px rgb(182, 182, 182), 3px 3px rgb(182, 182, 182);
+    -webkit-transform: translateX(-3px);
+    transform: translateX(-3px);
+    transition: transform 0.2s;
+  }
 }
 
 //購物車
-.snail-cart-btn {
-  font-size: 16px * 0.94;
-  text-align: center;
-  border: none;
-  background-color: transparent;
-  color: #92b6ba;
-  padding: 15px 100px;
-  border-radius: 5px;
-  border: 2px solid #92b6ba;
-}
 
-.snail-cart-btn:hover {
-  color: white;
-  background-color: #92b6ba;
+
+
+@media (max-width: 768px) {
+  .ninginfo-btn.snail-cart {
+    position: fixed;
+    bottom: 30px;
+    left: 10px;
+    transform: translate(0, -50%);
+    z-index: 998;
+    max-width: 700px;
+    background-color: $info;
+    color: #fff;
+    justify-content: center;
+  }
 }
 
 //FOOTer背景

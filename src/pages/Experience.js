@@ -314,9 +314,7 @@ function Experience(props) {
                 小朋友也非常適合這樣的體驗課程喔！透過手作的揉捏有充分的觸覺感受，視覺上的
                 3D
                 概念也能透過陶土捏塑學習，捏陶還可以直接的引導孩子感受數量、形體和造形的變化，更可以訓練孩子手部的各種大小肌肉、手眼協調和創造力。
-                <br />
                 不論是想手做紓壓，或是當成志業經營，做陶沒有好壞美醜標準，更像是在從無到有、緩慢捏塑的過程中，清空思緒、專注於手中的陶土，靜下心與自己獨處。
-                <br />
                 一個方便、溫暖的創作空間，採取自由創作模式，不限定課程主題與作品數量，只要心裡有想法，老師都會指導適合的成型方式，協助學員完成自己作品！
               </span>
             </p>
@@ -462,29 +460,30 @@ function Experience(props) {
                     )
                   })}
               </div>
-
-              <button
-                className="ninginfo-btn mt-1   w-100"
-                onClick={() => {
-                  Swal.fire('', '已加入至購物車')
-                  // updateCourseCartToLocalStorage({
-                  //   ...data[0],
-                  //   amount: amount,
-                  // })
-                  //課程sid存在classtitle的物件裡
-                  console.log('classtitle:', classtitle)
-                  //在寫入購物車時再用迴圈印出來，總數amount去找對應的sid要
-                  data.forEach((d) => {
-                    console.log('ddd: ', d)
-                    updateCourseCartToLocalStorage({
-                      ...d,
-                      amount: classtitle[d.sid],
+              <div className="snail-cart-div">
+                <button
+                  className="ninginfo-btn snail-cart mt-1   w-100"
+                  onClick={() => {
+                    Swal.fire('', '已加入至購物車')
+                    // updateCourseCartToLocalStorage({
+                    //   ...data[0],
+                    //   amount: amount,
+                    // })
+                    //課程sid存在classtitle的物件裡
+                    console.log('classtitle:', classtitle)
+                    //在寫入購物車時再用迴圈印出來，總數amount去找對應的sid要
+                    data.forEach((d) => {
+                      console.log('ddd: ', d)
+                      updateCourseCartToLocalStorage({
+                        ...d,
+                        amount: classtitle[d.sid],
+                      })
                     })
-                  })
-                }}
-              >
-                加入購物車
-              </button>
+                  }}
+                >
+                  加入購物車
+                </button>
+              </div>
             </div>
           </div>
 
