@@ -656,21 +656,24 @@ function Experience(props) {
                       <div className="avatar-photo">
                         <img className="chang-bidding-photo" src={p1} alt="" />
                       </div>
-                      <div className="message-card-content d-flex justify-content-start">
+                      <div className="message-card-content d-flex justify-content-between">
                         <span>{value.account}</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>{value.message_created_time}</span>
-                        {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
-                        <div className="ml-3 mb-5">
-                          {' '}
-                          <StarRating
-                            count={5}
-                            size={20}
-                            value={value.star}
-                            activeColor={'#fcaa3e'}
-                            inactiveColor={'#ddd'}
-                            style={{ verticalAlign: 'top' }}
-                          />
+                        <div className="d-flex">
+                          <span className="snail-time-text">
+                            {value.message_created_time}
+                          </span>
+
+                          <span className="ml-3 mb-5">
+                            {' '}
+                            <StarRating
+                              count={5}
+                              size={20}
+                              value={value.star}
+                              activeColor={'#fcaa3e'}
+                              inactiveColor={'#ddd'}
+                              style={{ verticalAlign: 'top' }}
+                            />
+                          </span>
                         </div>
                       </div>
                       <div className="message-card-content">
