@@ -1,10 +1,7 @@
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
-import { Accordion, Card, Button } from 'react-bootstrap'
 import { FaRegHeart } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
-import PlayPage from './PlayPage'
 import ChienFooter from '../components/ChienFooter'
 
 function OnlineCourse(props) {
@@ -59,17 +56,16 @@ function OnlineCourse(props) {
 
   return (
     <>
-      {/* banner */}
       <banner>
         <div className="snail-cat-bg"></div>
       </banner>
-      {/* 麵包屑 */}
+
       <div className="container">
         {/* 麵包屑 */}
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="#">首頁</a>
+              <Link to="/">首頁</Link>
             </li>
             <li className="breadcrumb-item">
               <Link to="/CourseCategory">課程類別</Link>
@@ -93,11 +89,6 @@ function OnlineCourse(props) {
             <br />
             克雷洛夫曾經認為現實是此岸，理想是彼岸。中間隔著湍急的河流，行動則是架在川上的橋樑。
           </p>
-          {/* 更多按鈕 */}
-          <button className="cindy-check more" href="#">
-            查看更多
-            <i className="fas fa-angle-double-down" />
-          </button>
         </div>
         <div className="row">
           {/* 按鈕列 */}

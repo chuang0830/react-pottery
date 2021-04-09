@@ -1,9 +1,7 @@
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import ChienFooter from '../components/ChienFooter'
 
-import WinnieLogo from './../components/winniecomponents/WinnieLogo'
 //導入動畫套件
 import Aos from 'aos'
 import 'aos/dist/aos.css'

@@ -1,15 +1,13 @@
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import React, { useState, useEffect, useRef } from 'react'
+import ChienFooter from '../components/ChienFooter'
+//套件
 import Swal from 'sweetalert2'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
 import { FaAngleDoubleDown } from 'react-icons/fa'
-
-import Table from 'react-bootstrap/Table'
 import MyNavbar from '../components/MyNavbar'
 import Sticky from 'react-sticky-el'
-import Calendar from '../components/snailcomponents/Calendar'
-import ChienFooter from '../components/ChienFooter'
 
 //星等---------------------------------------------------------
 function StarRating({
@@ -85,7 +83,7 @@ function Experience(props) {
     window.location.reload()
   }
 
-  //抓Node留言資料
+  //抓Node留言資料*******************************************
   async function getMessageFromServer() {
     // 開啟載入指示
     //setDataLoading(true)
@@ -110,7 +108,7 @@ function Experience(props) {
   }
 
   // 新增留言資料*******************************************
-  // const [dataLoading, setDataLoading] = useState(false)
+
   // 抓members丟出的sid(localstorage)
   const sid = localStorage.getItem('member-sid')
   const category_id = 11
@@ -137,6 +135,7 @@ function Experience(props) {
   // function load() {
   //   window.location.reload()
   // }
+
   //aos套件
   useEffect(() => {
     Aos.init({ duration: 1000 })
@@ -182,7 +181,7 @@ function Experience(props) {
     // }, 500)
   }
 
-  //抓Node課程資料
+  //抓Node課程資料***************************************************************
   async function getCourse1FromServer1() {
     // 開啟載入指示
     //setDataLoading(true)
@@ -216,23 +215,6 @@ function Experience(props) {
     getMessageFromServer()
   }, [])
 
-  //每次users資料有變動就會X秒後關掉載入指示
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setDataLoading(false)
-  //   }, 1000)
-  // }, [photos1])
-
-  //載入圖示
-  const loading = (
-    <>
-      <div className="d-flex justify-content-center">
-        <div className="spinner-border" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div>
-    </>
-  )
   const [data, setData] = useState([
     {
       sid: 0,
@@ -244,15 +226,7 @@ function Experience(props) {
       time: '',
     },
   ])
-  // const testData1 = {
-  //   sid: 1,
-  //   product_name: '拉胚',
-  //   category_id: 7,
-  //   price: 5800,
-  //   photo: '',
-  //   introduction: '',
-  //   time: '2021-03-20T16:00:00.000Z',
-  // }
+
   // 立即結帳-----------------------------------------------------------------
   const [mycoursecart, setMyCoursecart] = useState([])
   const updateCourseCartToLocalStorage = (item) => {
@@ -271,7 +245,6 @@ function Experience(props) {
   return (
     <>
       <>
-        {/* banner */}
         <banner>
           <div className="snail-cat-bg"></div>
         </banner>
@@ -291,9 +264,6 @@ function Experience(props) {
               </li>
             </ol>
           </nav>
-          {/* <div>
-            <Calendar />
-          </div> */}
 
           {/* 主標題 */}
           <div className="winnie-title " data-aos="fade-up">
@@ -332,7 +302,7 @@ function Experience(props) {
           <MyNavbar />
         </Sticky>
         <div className="container EX-container">
-          {/* 單選Radio -----------------------------*/}
+          {/* 單選Radio ----------------------------------------------------*/}
           <div className="row">
             <div className="col-8">
               <div className="radiobox-list">
@@ -388,13 +358,12 @@ function Experience(props) {
                 </div>
               </div>
 
-              {/* 單選Radio -----------------------------*/}
+              {/* 單選Radio -------------------------------------------------------------------------*/}
             </div>
             <div
               className="col-4"
               style={{ hight: '300px', position: 'absolute', right: '10px' }}
             >
-              {/* 月曆 */}
               {console.log('course', course1[0])}
               <div className="experience-list mt-10 ">
                 <div className="d-flex experience-list-item justify-content-around">
@@ -465,10 +434,6 @@ function Experience(props) {
                   className="ninginfo-btn snail-cart mt-1   w-100"
                   onClick={() => {
                     Swal.fire('', '已加入至購物車')
-                    // updateCourseCartToLocalStorage({
-                    //   ...data[0],
-                    //   amount: amount,
-                    // })
                     //課程sid存在classtitle的物件裡
                     console.log('classtitle:', classtitle)
                     //在寫入購物車時再用迴圈印出來，總數amount去找對應的sid要
@@ -488,7 +453,7 @@ function Experience(props) {
           </div>
 
           {/* //文字內容 */}
-          {/* <div className="row"> */}
+
           <div className="col-lg-8">
             <div className="course-card-content">
               <div className="course-title" id="content" name="content">
@@ -517,7 +482,6 @@ function Experience(props) {
               </div>
             </div>
           </div>
-          {/* </div> */}
 
           <div className="row">
             <div className="col-lg-8">
@@ -630,7 +594,6 @@ function Experience(props) {
               </div>
             </div>
           </div>
-          {/* </div> */}
 
           {/* 課程評價與學員作品 */}
           <div className="course-title" id="work" name="work">

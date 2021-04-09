@@ -1,15 +1,13 @@
 import { Route, withRouter, Link, Switch } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
-import { FaCaretRight } from 'react-icons/fa'
-// import OnlinePlayer from '../components/OnlinePlayer'
-import ReactPlayer from 'react-player'
-import Scroll from 'react-scroll'
+import React, { useState } from 'react'
 import PlayMessage from './PlayMessage'
 import PlayContent from './PlayContent'
 import PlayReview from './PlayReview'
 import ChienFooter from '../components/ChienFooter'
-
-// import ScrollToItem from '../components/winniecomponents/winnieitemscroll'
+//套件
+import { FaCaretRight } from 'react-icons/fa'
+import ReactPlayer from 'react-player'
+import Scroll from 'react-scroll'
 
 function PlayPage(props) {
   const [vedio, setVedio] = useState('/coursevedio1.mp4')
@@ -20,22 +18,12 @@ function PlayPage(props) {
   console.log('url', props.match.url)
   return (
     <>
-      {/* background */}
+
       <banner>
         <div className="snail-cat-bg"></div>
       </banner>
-      {/* banner */}
-      <div
-        className="container-fluid"
-        style={{
-          height: 605,
-          background: 'url("./img/course-banner2.jpg")center center no-repeat',
-          backgroundSize: 'cover',
-        }}
-      ></div>
-      {/* 內容 */}
+
       <div className="container">
-        {/* 麵包屑 */}
         {/* 麵包屑 */}
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
@@ -53,12 +41,11 @@ function PlayPage(props) {
             </li>
           </ol>
         </nav>
-        {/* 影片 */}
+        {/* vedio區塊 */}
         <div className="winnie-title" style={{ marginBottom: '-30px' }}>
           <h1>拉坯課程</h1>
         </div>
         <div className="row">
-          {/* <div className="col-lg-12"> */}
           <div
             className="onlinepage d-flex justify-content-center"
             style={{ overflow: 'hidden' }}
@@ -178,7 +165,6 @@ function PlayPage(props) {
               </div>
             </div>
           </div>
-          {/* </div> */}
         </div>
 
         {/* 進度條 */}
@@ -207,13 +193,6 @@ function PlayPage(props) {
               >
                 課程內容
               </Link>
-              {/* <Link
-                to={`/CourseCategory/OnlineCourse/PlayPage/playreview`}
-                className="snail-button mr-5"
-                onClick={() => {}}
-              >
-                準備工具
-              </Link> */}
               <Link
                 to={`/CourseCategory/OnlineCourse/PlayPage/playmessage`}
                 className="snail-button mr-5"
