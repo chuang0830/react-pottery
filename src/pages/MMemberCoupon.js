@@ -29,7 +29,7 @@ function MMemberCoupon(props) {
   return (
     <>
       <div className="cindy-coupon-outer d-flex flex-wrap" data-aos="fade-up">
-        {coupon.length &&
+        {coupon.length ? (
           coupon.map((value, index) => {
             let exp_date = new Date(value.date)
             return (
@@ -49,7 +49,10 @@ function MMemberCoupon(props) {
                 </div>
               </div>
             )
-          })}
+          })
+        ) : (
+          <div className="cindy-nonelist">目前沒有優惠券</div>
+        )}
 
         {/* <div className="cindy-card d-flex justify-content-center">
           <div className="cindy-card-left ">
