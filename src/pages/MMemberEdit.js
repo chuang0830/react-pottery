@@ -297,15 +297,6 @@ function MMemberEdit(props) {
                   setPassword(e.target.value)
                 }}
               />
-              <button
-                type="button"
-                className="position-absolute"
-                onClick={() => {
-                  setVisible1(!visible1)
-                }}
-              >
-                {visible1 ? <ImEyeBlocked /> : <ImEye />}
-              </button>
             </div>
             {errors.includes('password') && <span>密碼格式錯誤</span>}
             <div className="cindy-input position-relative">
@@ -320,15 +311,6 @@ function MMemberEdit(props) {
                   setPassword2(e.target.value)
                 }}
               />
-              <button
-                type="button"
-                className="position-absolute"
-                onClick={() => {
-                  setVisible2(!visible2)
-                }}
-              >
-                {visible2 ? <ImEyeBlocked /> : <ImEye />}
-              </button>
             </div>
             {errors.includes('password2') && <span>兩次密碼輸入不一致</span>}
             <div className="cindy-input">

@@ -22,7 +22,7 @@ function Member(props) {
 
   useEffect(() => {
     const pathNow = props.location.pathname.split('/')[2]
-    console.log(pathNow)
+    console.log('pathNow', pathNow)
     setLight(pathNow)
   }, [props.location.pathname])
 
@@ -50,7 +50,13 @@ function Member(props) {
             <div className="cindy-sec seclectbox1">
               <Link
                 to={`${url}/edit`}
-                className={light === 'edit' ? 'active' : ''}
+                className={
+                  light === undefined
+                    ? 'active'
+                    : '' + light === 'edit'
+                    ? 'active'
+                    : ''
+                }
               >
                 <img
                   src="http://localhost:3008/cindy-imgs/selectbox1.png"

@@ -117,7 +117,7 @@ function MMemberOrderList(props) {
               </tr>
             </thead>
             <tbody>
-              {order.length > 0 &&
+              {order.length ? (
                 order.map((v, i) => {
                   return (
                     <>
@@ -143,7 +143,13 @@ function MMemberOrderList(props) {
                       </tr>
                     </>
                   )
-                })}
+                })
+              ) : (
+                <tr>
+                  <td></td>
+                  <td>目前沒有訂單</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
